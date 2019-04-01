@@ -69,6 +69,7 @@
     <Compile Include="FileAccess\TextAccess.cs" />
     <Compile Include="Parse\HexParser.cs" />
     <Compile Include="Parse\S19Parser.cs" />
+    <Compile Include="Parse\MemBlock.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
