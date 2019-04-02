@@ -64,12 +64,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileAccess\IFileAccess.cs" />
     <Compile Include="FileAccess\HexAccess.cs" />
-    <Compile Include="FileAccess\SAccess.cs" />
     <Compile Include="FileAccess\BinAccess.cs" />
     <Compile Include="FileAccess\TextAccess.cs" />
-    <Compile Include="Parse\HexParser.cs" />
-    <Compile Include="Parse\S19Parser.cs" />
     <Compile Include="Parse\MemBlock.cs" />
+    <Compile Include="FileAccess\S19Access.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
