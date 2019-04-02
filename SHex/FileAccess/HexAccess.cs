@@ -14,21 +14,52 @@ namespace SHex
 			StrtLineAddr = 0x05
 		}
 		private byte startCode; // : 1 byte
-		private byte[] byteCount; // 2 bytes
-		private byte[] address; // 4 bytes
-		private byte[] recordType; // 2 bytes
+		private byte byteCount; // 1 byte
+		private ushort address; // 2 bytes
+		private byte recordType; // 1 byte
 		private byte[] data; //
-		private byte[] crc; // 2 bytes
+		private byte crc; // 1 byte
 		public Record()
 		{
-			byteCount = new byte[2];
-			address = new byte[4];
-			recordType = new byte[2];
-			crc = new byte[2];
+			
+		}
+		public static int hex2dec(byte c)
+		{
+			if (c >= 'a' && c <= 'f') {
+				return (c - 'a' + 10);
+			} else if (c >= 'A' && c <= 'F') {
+				return (c - 'A' + 10);
+			} else if (c >= '0' && c <= '9') {
+				return (c - '0');
+			} else {
+				return -1;
+			}
+		}
+		public static byte getFrstByte(string line){
+			byte retu = 0;
+			if (line.Length > 1) 
+			{
+				retu = hex2dec (line [0]) << 4;
+				retu += hex2dec (line [1]);
+			}
+			return retu;
+		}
+		public static byte getByte(char c1, char c2){
+			byte retu = 0;
+			retu = hex2dec (c1) << 4;
+			retu += hex2dec (c2);
+			return retu;
 		}
 		public bool parse(string line)
 		{
-			
+			if (':' != line [0]) {
+			} else {
+				line = line.Substring (1);
+				if ((line.Length) % 2 != 0) {
+				} else {
+					
+				}
+			}
 		}
 	}
 	public class HexAccess:IFileAccess
