@@ -63,16 +63,21 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileAccess\IFileAccess.cs" />
-    <Compile Include="FileAccess\HexAccess.cs" />
-    <Compile Include="FileAccess\BinAccess.cs" />
-    <Compile Include="FileAccess\TextAccess.cs" />
     <Compile Include="Parse\MemBlock.cs" />
-    <Compile Include="FileAccess\S19Access.cs" />
+    <Compile Include="FileAccess\Hex\HexAccess.cs" />
+    <Compile Include="FileAccess\Hex\HexRecord.cs" />
+    <Compile Include="FileAccess\Bin\BinAccess.cs" />
+    <Compile Include="FileAccess\S19\S19Access.cs" />
+    <Compile Include="FileAccess\Text\TextAccess.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="FileAccess\" />
     <Folder Include="Parse\" />
     <Folder Include="test\" />
+    <Folder Include="FileAccess\Hex\" />
+    <Folder Include="FileAccess\Bin\" />
+    <Folder Include="FileAccess\S19\" />
+    <Folder Include="FileAccess\Text\" />
   </ItemGroup>
 </Project>
