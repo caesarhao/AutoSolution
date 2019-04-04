@@ -31,6 +31,7 @@ namespace SHex
 		public HexRecord()
 		{
 			this.errNo = ErrorNum.NoErr;
+			this.startCode = Convert.ToByte(':');
 		}
 		public static string dec2hex(byte h)
 		{
@@ -70,11 +71,26 @@ namespace SHex
 			this.data = str2bytesAr(sdata);
 			byte calCrc = Convert.ToByte(this.byteCount + (byte)this.recordType);
 			calCrc = Convert.ToByte(calCrc + this.address >> 8);
-			calCrc += Convert.ToByte(calCrc + (this.address & 0xFF));
+			calCrc = Convert.ToByte(calCrc + (this.address & 0xFF));
 			if (this.crc != calcCrc (calCrc, this.data)) {
 				this.errNo = ErrorNum.WrongCRC;
 			}
 			return (this.errNo == ErrorNum.NoErr);
+		}
+		public string generate(){
+			string retu = "" + this.startCode;
+			retu += dec2hex (this.byteCount);
+			retu += String.Format ("{0,4:X4}", this.address);
+			retu += dec2hex ((byte)this.recordType);
+			for (int i = 0; i < this.data.Length; i++) {
+				retu += dec2hex (this.data [i]);
+			}
+			byte calCrc = Convert.ToByte(this.byteCount + (byte)this.recordType);
+			calCrc = Convert.ToByte(calCrc + this.address >> 8);
+			calCrc = Convert.ToByte(calCrc + (this.address & 0xFF));
+			calCrc = calcCrc (calCrc, this.data);
+			retu += dec2hex (calCrc);
+			return retu;
 		}
 	}
 }
