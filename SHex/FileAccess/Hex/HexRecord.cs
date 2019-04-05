@@ -49,12 +49,12 @@ namespace SHex
 		}
 		public static byte calcSum(byte baze, byte[] data){
 			for(int i = 0; i < data.Length; i++){
-				baze = Convert.ToByte(baze + data[i]);
+				baze = BitConverter.GetBytes(baze + data[i])[0];
 			}
 			return baze;
 		}
 		public static byte calcCrc(byte baze, byte[] data){
-			return Convert.ToByte(0xFF - calcSum(baze, data) + 0x01);
+			return BitConverter.GetBytes(0x100 - calcSum(baze, data))[0];
 		}
 		public bool parse(string line)
 		{
@@ -69,9 +69,9 @@ namespace SHex
 				this.errNo = ErrorNum.WrongLength;
 			}
 			this.data = str2bytesAr(sdata);
-			byte calCrc = Convert.ToByte(this.byteCount + (byte)this.recordType);
-			calCrc = Convert.ToByte(calCrc + this.address >> 8);
-			calCrc = Convert.ToByte(calCrc + (this.address & 0xFF));
+			byte calCrc = BitConverter.GetBytes(this.byteCount + (byte)this.recordType)[0];
+			calCrc = BitConverter.GetBytes(calCrc + this.address >> 8)[0];
+			calCrc = BitConverter.GetBytes(calCrc + (this.address & 0xFF))[0];
 			if (this.crc != calcCrc (calCrc, this.data)) {
 				this.errNo = ErrorNum.WrongCRC;
 			}
@@ -85,9 +85,9 @@ namespace SHex
 			for (int i = 0; i < this.data.Length; i++) {
 				retu += dec2hex (this.data [i]);
 			}
-			byte calCrc = Convert.ToByte(this.byteCount + (byte)this.recordType);
-			calCrc = Convert.ToByte(calCrc + this.address >> 8);
-			calCrc = Convert.ToByte(calCrc + (this.address & 0xFF));
+			byte calCrc = BitConverter.GetBytes(this.byteCount + (byte)this.recordType)[0];
+			calCrc = BitConverter.GetBytes(calCrc + this.address >> 8)[0];
+			calCrc = BitConverter.GetBytes(calCrc + (this.address & 0xFF))[0];
 			calCrc = calcCrc (calCrc, this.data);
 			retu += dec2hex (calCrc);
 			return retu;
