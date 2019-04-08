@@ -56,6 +56,34 @@ namespace SHex
 		public static byte calcCrc(byte baze, byte[] data){
 			return BitConverter.GetBytes(0x100 - calcSum(baze, data))[0];
 		}
+		public override string ToString ()
+		{
+			string retu = "";
+			switch (this.recordType) {
+			case RecordType.Data:
+				retu = "DATA: ";
+				break;
+			case RecordType.EoF:
+				retu = "End of File";
+				break;
+			case RecordType.StrtLineAddr:
+				retu = "Start Linear Address: ";
+				break;
+			case RecordType.StrtSegAddr:
+				retu = "Start Segment Address: ";
+				break;
+			case RecordType.ExtLineAddr:
+				retu = "Extended Linear Address: ";
+				break;
+			case RecordType.ExtSegAddr:
+				retu = "Extended Segment Address: ";
+				break;
+			default:
+				retu = "Wrong Hex Record";
+				break;
+			}
+			return retu;
+		}
 		public bool parse(string line)
 		{
 			Regex rgx = new Regex (@"^:(?<byteCount>[A-Fa-f0-9]{2})(?<address>[A-Fa-f0-9]{4})(?<type>[A-Fa-f0-9]{2})(?<data>[A-Fa-f0-9]*)(?<crc>[A-Fa-f0-9]{2})$");
@@ -78,7 +106,7 @@ namespace SHex
 			return (this.errNo == ErrorNum.NoErr);
 		}
 		public string generate(){
-			string retu = "" + this.startCode;
+			string retu = "" + Convert.ToChar(this.startCode);
 			retu += dec2hex (this.byteCount);
 			retu += String.Format ("{0,4:X4}", this.address);
 			retu += dec2hex ((byte)this.recordType);
