@@ -67,8 +67,9 @@
     <Compile Include="FileAccess\Hex\HexAccess.cs" />
     <Compile Include="FileAccess\Hex\HexRecord.cs" />
     <Compile Include="FileAccess\Bin\BinAccess.cs" />
-    <Compile Include="FileAccess\S19\S19Access.cs" />
     <Compile Include="FileAccess\Text\TextAccess.cs" />
+    <Compile Include="FileAccess\SRec\SRecAccess.cs" />
+    <Compile Include="FileAccess\SRec\SRecord.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -77,7 +78,7 @@
     <Folder Include="test\" />
     <Folder Include="FileAccess\Hex\" />
     <Folder Include="FileAccess\Bin\" />
-    <Folder Include="FileAccess\S19\" />
     <Folder Include="FileAccess\Text\" />
+    <Folder Include="FileAccess\SRec\" />
   </ItemGroup>
 </Project>
