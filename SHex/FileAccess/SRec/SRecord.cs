@@ -76,18 +76,19 @@ namespace SHex
 			this.data = str2bytesAr (sdata);
 		}
 		public byte calcSum(byte baze, byte[] data){
+			ushort p = baze;
 			for(int i = 0; i < data.Length; i++){
-				baze = BitConverter.GetBytes(baze + data[i])[0];
+				p += data[i];
 			}
+			baze = BitConverter.GetBytes(p)[0];
 			return baze;
 		}
 		public byte calcCrc(byte baze, byte[] data){
 			return BitConverter.GetBytes(0xFF - calcSum(baze, data))[0];
 		}
 		public void calcCrc(){
-			crcCal = this.byteCount;
 			byte[] sdataAr = str2bytesAr (this.addrEtdata);
-			crcCal = calcCrc (crcCal, sdataAr);
+			crcCal = calcCrc (this.byteCount, sdataAr);
 		}
 		public bool parse(string line){
 			Regex rgx = new Regex (@"^S(?<recordType>[0-9]{1})(?<byteCount>[A-Fa-f0-9]{2})(?<addressEtdata>[A-Fa-f0-9]*)(?<crc>[A-Fa-f0-9]{2})$");
@@ -113,7 +114,7 @@ namespace SHex
 			retu += this.addrEtdata;
 			calcCrc ();
 			this.crc = crcCal;
-			retu += this.crc;
+			retu += dec2hex(this.crc);
 			return retu;
 		}
 	}
