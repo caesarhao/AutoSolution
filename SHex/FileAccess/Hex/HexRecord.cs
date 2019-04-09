@@ -22,16 +22,19 @@ namespace SHex
 
 		};
 		private ErrorNum errNo;
-		private byte startCode; // : 1 byte
+		private char startCode; // : 1 byte
 		private byte byteCount; // 1 byte
 		private ushort address; // 2 bytes
 		private RecordType recordType; // 1 byte
 		private byte[] data; //
 		private byte crc; // 1 byte
+
+		private string sdata; // data read from input
+		private byte crcCal; // calculated crc
 		public HexRecord()
 		{
 			this.errNo = ErrorNum.NoErr;
-			this.startCode = Convert.ToByte(':');
+			this.startCode = ':';
 		}
 		public static string dec2hex(byte h)
 		{
@@ -55,6 +58,18 @@ namespace SHex
 		}
 		public static byte calcCrc(byte baze, byte[] data){
 			return BitConverter.GetBytes(0x100 - calcSum(baze, data))[0];
+		}
+		public void calcCrc(){
+			crcCal = BitConverter.GetBytes(this.byteCount + (byte)this.recordType)[0];
+			crcCal = BitConverter.GetBytes(crcCal + (this.address >> 8))[0];
+			crcCal = BitConverter.GetBytes(crcCal + (this.address & 0xFF))[0];
+			crcCal = calcCrc (crcCal, this.data);
+		}
+		public void data2sdata(){
+			this.sdata = "";
+			for (int i = 0; i < this.data.Length; i++) {
+				this.sdata += dec2hex (this.data [i]);
+			}
 		}
 		public override string ToString ()
 		{
@@ -82,6 +97,7 @@ namespace SHex
 				retu = "Wrong Hex Record";
 				break;
 			}
+			retu += this.sdata;
 			return retu;
 		}
 		public bool parse(string line)
@@ -91,33 +107,28 @@ namespace SHex
 			this.byteCount = byte.Parse(match.Groups["byteCount"].Value, NumberStyles.HexNumber);
 			this.address = ushort.Parse(match.Groups["address"].Value, NumberStyles.HexNumber);
 			this.recordType = (RecordType)byte.Parse(match.Groups["type"].Value, NumberStyles.HexNumber);
-			string sdata = match.Groups["data"].Value;
+			this.sdata = match.Groups["data"].Value;
 			this.crc = byte.Parse(match.Groups["crc"].Value, NumberStyles.HexNumber);
 			if (sdata.Length != (2 * byteCount)) {
 				this.errNo = ErrorNum.WrongLength;
 			}
 			this.data = str2bytesAr(sdata);
-			byte calCrc = BitConverter.GetBytes(this.byteCount + (byte)this.recordType)[0];
-			calCrc = BitConverter.GetBytes(calCrc + this.address >> 8)[0];
-			calCrc = BitConverter.GetBytes(calCrc + (this.address & 0xFF))[0];
-			if (this.crc != calcCrc (calCrc, this.data)) {
+			calcCrc ();
+			if (this.crc != crcCal) {
 				this.errNo = ErrorNum.WrongCRC;
 			}
 			return (this.errNo == ErrorNum.NoErr);
 		}
 		public string generate(){
-			string retu = "" + Convert.ToChar(this.startCode);
+			string retu = "" + this.startCode;
 			retu += dec2hex (this.byteCount);
 			retu += String.Format ("{0,4:X4}", this.address);
 			retu += dec2hex ((byte)this.recordType);
-			for (int i = 0; i < this.data.Length; i++) {
-				retu += dec2hex (this.data [i]);
-			}
-			byte calCrc = BitConverter.GetBytes(this.byteCount + (byte)this.recordType)[0];
-			calCrc = BitConverter.GetBytes(calCrc + this.address >> 8)[0];
-			calCrc = BitConverter.GetBytes(calCrc + (this.address & 0xFF))[0];
-			calCrc = calcCrc (calCrc, this.data);
-			retu += dec2hex (calCrc);
+			data2sdata ();
+			retu += this.sdata;
+			calcCrc ();
+			this.crc = crcCal;
+			retu += dec2hex (this.crc);
 			return retu;
 		}
 	}
