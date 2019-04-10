@@ -8,9 +8,9 @@ namespace SHex
 		public enum ErrorNum : byte
 		{
 			NoErr = 0x00,
-			WrongLength = 0x01,
-			WrongCRC = 0x02
-
+			WrongLength,
+			WrongCRC,
+			WrongRecord
 		};
 		public enum RecordType{
 			S0 = 0x00, //> Header
@@ -92,7 +92,11 @@ namespace SHex
 		}
 		public bool parse(string line){
 			Regex rgx = new Regex (@"^S(?<recordType>[0-9]{1})(?<byteCount>[A-Fa-f0-9]{2})(?<addressEtdata>[A-Fa-f0-9]*)(?<crc>[A-Fa-f0-9]{2})$");
-			Match match = rgx.Match(line);
+			Match match = rgx.Match(line.Trim());
+			if (!match.Success) {
+				this.errNo = ErrorNum.WrongRecord;
+				return false;
+			}
 			this.recordType = (RecordType)byte.Parse(match.Groups["recordType"].Value, NumberStyles.HexNumber);
 			this.byteCount = byte.Parse(match.Groups["byteCount"].Value, NumberStyles.HexNumber);
 			this.addrEtdata = match.Groups["addressEtdata"].Value;
