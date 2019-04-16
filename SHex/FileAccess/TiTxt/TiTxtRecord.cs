@@ -16,13 +16,21 @@ namespace SHex
 			WrongLength,
 			WrongRecord
 		};
-		public enum RecordType{
+		public enum RecordTypeE{
 			SecStrtAddr = 0x00, //> Section Start Address
 			Data = 0x01, //> Data line
 			EOF = 0x02 //> End of File
 		};
 		private ErrorNum errNo;
-		private RecordType recordType;
+		private RecordTypeE recordType;
+		public RecordTypeE RecordType{
+			get{
+				return this.recordType;
+			}
+			set{
+				this.recordType = value;
+			}
+		}
 		private ushort address; // 2 bytes
 		private byte[] data; //
 
@@ -66,7 +74,7 @@ namespace SHex
 		public bool parse(string line){
 			line = line.Trim ();
 			if ('@' == line [0]) {
-				this.recordType = RecordType.SecStrtAddr;
+				this.recordType = RecordTypeE.SecStrtAddr;
 				line = line.Substring (1);
 				if (4 != line.Length) {
 					this.errNo = ErrorNum.WrongLength;
@@ -75,7 +83,7 @@ namespace SHex
 				this.address = ushort.Parse (line, NumberStyles.HexNumber);
 				return true;
 			} else if ('q' == line [0]) {
-				this.recordType = RecordType.EOF;
+				this.recordType = RecordTypeE.EOF;
 				if (1 != line.Length) {
 					this.errNo = ErrorNum.WrongLength;
 					return false;
@@ -88,7 +96,7 @@ namespace SHex
 					this.errNo = ErrorNum.WrongRecord;
 					return false;
 				}
-				this.recordType = RecordType.Data;
+				this.recordType = RecordTypeE.Data;
 				this.data = str2bytesAr (match.Groups ["data"].Value);
 				return true;
 			}
@@ -97,13 +105,13 @@ namespace SHex
 		public string generate(){
 			string retu = "";
 			switch (this.recordType) {
-			case RecordType.SecStrtAddr:
+			case RecordTypeE.SecStrtAddr:
 				retu = "@" + addr2hex (this.address);
 				break;
-			case RecordType.EOF:
+			case RecordTypeE.EOF:
 				retu = "q";
 				break;
-			case RecordType.Data:
+			case RecordTypeE.Data:
 				retu = data2str (this.data);
 				break;
 			default:

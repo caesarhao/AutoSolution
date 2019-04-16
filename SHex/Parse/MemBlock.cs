@@ -1,15 +1,73 @@
 ﻿using System;
-
+using System.Linq;
 namespace SHex
 {
 	public class MemBlock
 	{
-		private int AddrSize;
-		private ulong StartAddr;
+		private int addrSize;
+		public int AddrSize{
+			get{
+				return this.addrSize;
+			}
+			set{
+				this.addrSize = value;
+			}
+		}
+		private ulong startAddr;
+		public ulong StartAddr{
+			get{
+				return this.startAddr;
+			}
+			set{
+				this.startAddr = value;
+			}
+		}
 		private byte[]	data;
+		public byte[] Data{
+			get{
+				if (data.Length > dataSize) {
+					Array.Resize (ref data, dataSize); 
+				}
+				return data;
+			}
+		}
+		private int dataSize;
+		public int DataSize{
+			get{
+				return this.dataSize;
+			}
+		}
 		public MemBlock ()
 		{
-			AddrSize = 4;
+			this.addrSize = 4;
+			this.dataSize = 0;
+		}
+		public int AppendData(byte[] nbs){
+			if (null == nbs) {
+				return -1;
+			}
+			if ((data.Length - dataSize) < nbs.Length) { // need to resize
+				int newSize = 0;
+				if (dataSize < nbs.Length) {
+					newSize = nbs.Length;
+				} else {
+					newSize = dataSize * 2;
+				}
+			}
+			foreach (byte b in nbs) {
+				data [dataSize++] = b;
+			}
+			return nbs.Length;
+		}
+		public ulong NextAddress(){
+			return (startAddr + (ulong)dataSize);
+		}
+		public ulong LastAddress(){
+			if (0 < dataSize) {
+				return (NextAddress () - 1);
+			} else {
+				return (NextAddress ());
+			}
 		}
 	}
 }
