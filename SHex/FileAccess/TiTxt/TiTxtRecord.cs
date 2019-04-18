@@ -31,8 +31,9 @@ namespace SHex
 				this.recordType = value;
 			}
 		}
-		private ushort address; // 2 bytes
-		private byte[] data; //
+		public ushort Address{ get; set;} // 2 bytes
+		public byte[] Data{ get; set;} //
+
 
 		public TiTxtRecord ()
 		{
@@ -80,7 +81,7 @@ namespace SHex
 					this.errNo = ErrorNum.WrongLength;
 					return false;
 				}
-				this.address = ushort.Parse (line, NumberStyles.HexNumber);
+				this.Address = ushort.Parse (line, NumberStyles.HexNumber);
 				return true;
 			} else if ('q' == line [0]) {
 				this.recordType = RecordTypeE.EOF;
@@ -97,7 +98,7 @@ namespace SHex
 					return false;
 				}
 				this.recordType = RecordTypeE.Data;
-				this.data = str2bytesAr (match.Groups ["data"].Value);
+				this.Data = str2bytesAr (match.Groups ["data"].Value);
 				return true;
 			}
 			return false;
@@ -106,13 +107,13 @@ namespace SHex
 			string retu = "";
 			switch (this.recordType) {
 			case RecordTypeE.SecStrtAddr:
-				retu = "@" + addr2hex (this.address);
+				retu = "@" + addr2hex (this.Address);
 				break;
 			case RecordTypeE.EOF:
 				retu = "q";
 				break;
 			case RecordTypeE.Data:
-				retu = data2str (this.data);
+				retu = data2str (this.Data);
 				break;
 			default:
 				break;

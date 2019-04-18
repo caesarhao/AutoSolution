@@ -18,6 +18,12 @@ namespace SHex
 		{
 			
 		}
+		public bool parse(string[] lines){
+			return true;
+		}
+		public string[] generate(){
+			return null;
+		}
 
 	}
 }

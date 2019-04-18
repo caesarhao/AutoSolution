@@ -25,9 +25,7 @@ namespace SHex
 		private byte[]	data;
 		public byte[] Data{
 			get{
-				if (data.Length > dataSize) {
-					Array.Resize (ref data, dataSize); 
-				}
+				ResizeData ();
 				return data;
 			}
 		}
@@ -41,6 +39,13 @@ namespace SHex
 		{
 			this.addrSize = 4;
 			this.dataSize = 0;
+			this.data = new byte[0];
+		}
+		public bool ResizeData(){
+			if (data.Length > dataSize) {
+				Array.Resize (ref data, dataSize); 
+			}
+			return true;
 		}
 		public int AppendData(byte[] nbs){
 			if (null == nbs) {
