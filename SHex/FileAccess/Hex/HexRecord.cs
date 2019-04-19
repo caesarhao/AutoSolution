@@ -5,7 +5,7 @@ namespace SHex
 {
 	public class HexRecord
 	{
-		public enum RecordType : byte
+		public enum RecordTypeE : byte
 		{
 			Data = 0x00,
 			EoF = 0x01,
@@ -26,7 +26,7 @@ namespace SHex
 		private char startCode; // : 1 byte
 		private byte byteCount; // 1 byte
 		private ushort address; // 2 bytes
-		private RecordType recordType; // 1 byte
+		public RecordTypeE RecordType{get;set;} // 1 byte
 		private byte[] data; //
 		private byte crc; // 1 byte
 
@@ -61,7 +61,7 @@ namespace SHex
 			return BitConverter.GetBytes(0x100 - calcSum(baze, data))[0];
 		}
 		public void calcCrc(){
-			crcCal = BitConverter.GetBytes(this.byteCount + (byte)this.recordType)[0];
+			crcCal = BitConverter.GetBytes(this.byteCount + (byte)this.RecordType)[0];
 			crcCal = BitConverter.GetBytes(crcCal + (this.address >> 8))[0];
 			crcCal = BitConverter.GetBytes(crcCal + (this.address & 0xFF))[0];
 			crcCal = calcCrc (crcCal, this.data);
@@ -75,23 +75,23 @@ namespace SHex
 		public override string ToString ()
 		{
 			string retu = "";
-			switch (this.recordType) {
-			case RecordType.Data:
+			switch (this.RecordType) {
+			case RecordTypeE.Data:
 				retu = "DATA: ";
 				break;
-			case RecordType.EoF:
+			case RecordTypeE.EoF:
 				retu = "End of File";
 				break;
-			case RecordType.StrtLineAddr:
+			case RecordTypeE.StrtLineAddr:
 				retu = "Start Linear Address: ";
 				break;
-			case RecordType.StrtSegAddr:
+			case RecordTypeE.StrtSegAddr:
 				retu = "Start Segment Address: ";
 				break;
-			case RecordType.ExtLineAddr:
+			case RecordTypeE.ExtLineAddr:
 				retu = "Extended Linear Address: ";
 				break;
-			case RecordType.ExtSegAddr:
+			case RecordTypeE.ExtSegAddr:
 				retu = "Extended Segment Address: ";
 				break;
 			default:
@@ -111,7 +111,7 @@ namespace SHex
 			}
 			this.byteCount = byte.Parse(match.Groups["byteCount"].Value, NumberStyles.HexNumber);
 			this.address = ushort.Parse(match.Groups["address"].Value, NumberStyles.HexNumber);
-			this.recordType = (RecordType)byte.Parse(match.Groups["type"].Value, NumberStyles.HexNumber);
+			this.RecordType = (RecordTypeE)byte.Parse(match.Groups["type"].Value, NumberStyles.HexNumber);
 			this.sdata = match.Groups["data"].Value;
 			this.crc = byte.Parse(match.Groups["crc"].Value, NumberStyles.HexNumber);
 			if (sdata.Length != (2 * byteCount)) {
@@ -128,7 +128,7 @@ namespace SHex
 			string retu = "" + this.startCode;
 			retu += dec2hex (this.byteCount);
 			retu += String.Format ("{0,4:X4}", this.address);
-			retu += dec2hex ((byte)this.recordType);
+			retu += dec2hex ((byte)this.RecordType);
 			data2sdata ();
 			retu += this.sdata;
 			calcCrc ();

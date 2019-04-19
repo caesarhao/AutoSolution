@@ -12,7 +12,7 @@ namespace SHex
 			WrongCRC,
 			WrongRecord
 		};
-		public enum RecordType{
+		public enum RecordTypeE{
 			S0 = 0x00, //> Header
 			S1 = 0x01, //> Data, 16-bit address
 			S2 = 0x02, //> Data, 24-bit address
@@ -25,7 +25,7 @@ namespace SHex
 			S9 = 0x09  //> Start Address, 16-bit
 		};
 		private ErrorNum errNo;
-		private RecordType recordType;
+		public RecordTypeE RecordType{ get; set;}
 		private byte byteCount; // 1 byte
 		private uint address; // 2 bytes, 3 bytes, or 4 bytes, depends on S1, S2, or S3
 		private byte[] data; //
@@ -54,16 +54,16 @@ namespace SHex
 		public void splitAddrEtData(){
 			string ad = "";
 			string sdata = "";
-			switch (this.recordType) {
-			case RecordType.S1:
+			switch (this.RecordType) {
+			case RecordTypeE.S1:
 				ad = this.addrEtdata.Substring (0, 4);
 				sdata = this.addrEtdata.Substring (4);
 				break;
-			case RecordType.S2:
+			case RecordTypeE.S2:
 				ad = this.addrEtdata.Substring (0, 6);
 				sdata = this.addrEtdata.Substring (6);
 				break;
-			case RecordType.S3:
+			case RecordTypeE.S3:
 				ad = this.addrEtdata.Substring (0, 8);
 				sdata = this.addrEtdata.Substring (8);
 				break;
@@ -97,7 +97,7 @@ namespace SHex
 				this.errNo = ErrorNum.WrongRecord;
 				return false;
 			}
-			this.recordType = (RecordType)byte.Parse(match.Groups["recordType"].Value, NumberStyles.HexNumber);
+			this.RecordType = (RecordTypeE)byte.Parse(match.Groups["recordType"].Value, NumberStyles.HexNumber);
 			this.byteCount = byte.Parse(match.Groups["byteCount"].Value, NumberStyles.HexNumber);
 			this.addrEtdata = match.Groups["addressEtdata"].Value;
 			this.crc = byte.Parse(match.Groups["crc"].Value, NumberStyles.HexNumber);
@@ -113,7 +113,7 @@ namespace SHex
 			return (this.errNo == ErrorNum.NoErr);
 		}
 		public string generate(){
-			string retu = this.recordType.ToString();
+			string retu = this.RecordType.ToString();
 			retu += dec2hex (this.byteCount);
 			retu += this.addrEtdata;
 			calcCrc ();

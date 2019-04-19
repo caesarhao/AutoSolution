@@ -51,6 +51,21 @@
         <property name="Label" translatable="yes">About</property>
         <property name="ShortLabel" translatable="yes">About</property>
       </action>
+      <action id="SaveAsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Save As...</property>
+        <property name="ShortLabel" translatable="yes">Save As...</property>
+      </action>
+      <action id="SaveAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Save</property>
+        <property name="ShortLabel" translatable="yes">Save</property>
+      </action>
+      <action id="SaveAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Save</property>
+        <property name="ShortLabel" translatable="yes">Save</property>
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
@@ -66,6 +81,8 @@
             <node name="menubar1" type="Menubar">
               <node type="Menu" action="FileAction">
                 <node type="Menuitem" action="OpenAction" />
+                <node type="Menuitem" action="SaveAction1" />
+                <node type="Menuitem" action="SaveAsAction" />
               </node>
               <node type="Menu" action="EditAction" />
               <node type="Menu" action="HelpAction">

@@ -81,5 +81,6 @@ public partial class MainWindow: Gtk.Window
 		tr.parse (j);
 		this.textview_debug.Buffer.Text += tr.generate ();
 		this.textview_debug.Buffer.Text += "\n";
+		Console.WriteLine ("have a try");
 	}
 }
