@@ -26,7 +26,7 @@ namespace SHex
 					if (TiTxtRecord.RecordTypeE.SecStrtAddr == tr.RecordType) {
 						MemBlock mb = new MemBlock ();
 						mb.StartAddr = tr.Address;
-						mb.AddrSize = 2;
+						mb.AddrSize = 16;
 						Memblks.Add (mb);
 					} else if (TiTxtRecord.RecordTypeE.EOF == tr.RecordType) {
 						// end of file

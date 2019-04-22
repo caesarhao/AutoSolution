@@ -26,8 +26,24 @@ namespace SHex
 		private char startCode; // : 1 byte
 		private byte byteCount; // 1 byte
 		private ushort address; // 2 bytes
+		public ushort Address{
+			get{
+				return this.address;
+			}
+			set{
+				this.address = value;
+			}
+		}
 		public RecordTypeE RecordType{get;set;} // 1 byte
 		private byte[] data; //
+		public byte[] Data{
+			get{
+				return data;
+			}
+			set{
+				data = value;
+			}
+		}
 		private byte crc; // 1 byte
 
 		private string sdata; // data read from input

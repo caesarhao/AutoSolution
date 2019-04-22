@@ -37,7 +37,7 @@ namespace SHex
 		}
 		public MemBlock ()
 		{
-			this.addrSize = 4;
+			this.addrSize = 32;
 			this.dataSize = 0;
 			this.data = new byte[0];
 		}
