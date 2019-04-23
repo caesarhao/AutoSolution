@@ -28,7 +28,23 @@ namespace SHex
 		public RecordTypeE RecordType{ get; set;}
 		private byte byteCount; // 1 byte
 		private uint address; // 2 bytes, 3 bytes, or 4 bytes, depends on S1, S2, or S3
+		public uint Address{
+			get{
+				return this.address;
+			}
+			set{
+				this.address = value;
+			}
+		}
 		private byte[] data; //
+		public byte[] Data{
+			get{
+				return this.data;
+			}
+			set{
+				this.data = value;
+			}
+		}
 		private byte crc; // 1 byte
 
 		private string addrEtdata;
