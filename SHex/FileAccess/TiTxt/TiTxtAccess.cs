@@ -10,9 +10,11 @@ namespace SHex
 	public class TiTxtAccess:IFileAccess
 	{
 		public List<MemBlock> Memblks{ get; set;}
+		public int BytesEachLine{ get; set; }
 		public TiTxtAccess ()
 		{
 			Memblks = new List<MemBlock> ();
+			this.BytesEachLine = 0;
 		}
 		public bool parse(string[] lines){
 			
@@ -32,6 +34,9 @@ namespace SHex
 						// end of file
 					} else if (TiTxtRecord.RecordTypeE.Data == tr.RecordType) {
 						MemBlock mb = Memblks [Memblks.Count - 1];
+						if (0 == this.BytesEachLine) {
+							this.BytesEachLine = tr.Data.Length;
+						}
 						mb.AppendData (tr.Data);
 					} else {
 					}
@@ -43,7 +48,33 @@ namespace SHex
 			return true;
 		}
 		public string[] generate(){
-			return null;
+			List<string> retu = new List<string> ();
+			TiTxtRecord tr = new TiTxtRecord ();
+			foreach(MemBlock mb in Memblks){
+				tr.RecordType = TiTxtRecord.RecordTypeE.SecStrtAddr;
+				tr.Address = (ushort)(mb.StartAddr);
+				retu.Add (tr.generate ());
+				tr.RecordType = TiTxtRecord.RecordTypeE.Data;
+				tr.Data = new byte[this.BytesEachLine];
+				int lines = mb.DataSize / this.BytesEachLine;
+				for (int i = 0; i < lines; i++) {
+					Array.Copy (mb.Data, i * (this.BytesEachLine), tr.Data, 0, (this.BytesEachLine));
+					retu.Add (tr.generate ());
+				}
+				int len = (mb.DataSize) % (this.BytesEachLine);
+				if (len > 0) {
+					tr.Data = new byte[len];
+					Array.Copy (mb.Data, lines * (this.BytesEachLine), tr.Data, 0, len);
+					retu.Add (tr.generate ());
+				}
+			}
+			tr.RecordType = TiTxtRecord.RecordTypeE.EOF;
+			retu.Add (tr.generate ());
+			return retu.ToArray();
+		}
+		public string[] generate(int lineSize){
+			this.BytesEachLine = lineSize;
+			return generate ();
 		}
 	}
 }

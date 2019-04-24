@@ -10,7 +10,7 @@ namespace SHex
 {
 	public class TiTxtRecord
 	{
-		public enum ErrorNum : byte
+		public enum ErrorNumE : byte
 		{
 			NoErr = 0x00,
 			WrongLength,
@@ -21,7 +21,7 @@ namespace SHex
 			Data = 0x01, //> Data line
 			EOF = 0x02 //> End of File
 		};
-		private ErrorNum errNo;
+		public ErrorNumE ErrNo{ get; set;}
 		private RecordTypeE recordType;
 		public RecordTypeE RecordType{
 			get{
@@ -37,7 +37,7 @@ namespace SHex
 
 		public TiTxtRecord ()
 		{
-			this.errNo = ErrorNum.NoErr;
+			this.ErrNo = ErrorNumE.NoErr;
 		}
 
 		public string dec2hex(byte h)
@@ -78,7 +78,7 @@ namespace SHex
 				this.recordType = RecordTypeE.SecStrtAddr;
 				line = line.Substring (1);
 				if (4 != line.Length) {
-					this.errNo = ErrorNum.WrongLength;
+					this.ErrNo = ErrorNumE.WrongLength;
 					return false;
 				}
 				this.Address = ushort.Parse (line, NumberStyles.HexNumber);
@@ -86,7 +86,7 @@ namespace SHex
 			} else if ('q' == line [0]) {
 				this.recordType = RecordTypeE.EOF;
 				if (1 != line.Length) {
-					this.errNo = ErrorNum.WrongLength;
+					this.ErrNo = ErrorNumE.WrongLength;
 					return false;
 				}
 				return true;
@@ -94,14 +94,13 @@ namespace SHex
 				Regex rgx = new Regex (@"^(?<data>[A-Fa-f0-9\s]*)$");
 				Match match = rgx.Match(line);
 				if (!match.Success) {
-					this.errNo = ErrorNum.WrongRecord;
+					this.ErrNo = ErrorNumE.WrongRecord;
 					return false;
 				}
 				this.recordType = RecordTypeE.Data;
 				this.Data = str2bytesAr (match.Groups ["data"].Value);
 				return true;
 			}
-			return false;
 		}
 		public string generate(){
 			string retu = "";

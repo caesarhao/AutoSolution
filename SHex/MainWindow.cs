@@ -43,7 +43,7 @@ public partial class MainWindow: Gtk.Window
 		hr.parse (c);
 		this.textview_debug.Buffer.Text += hr.generate ();
 		SRecord sr = new SRecord ();
-		this.textview_debug.Buffer.Text += "S Record Test:\n";
+		this.textview_debug.Buffer.Text += "\nS Record Test:\n";
 		string d = "  S00F000068656C6C6F202020202000003C";
 		string ee = "S11F00007C0802A6900100049421FFF07C6C1B787C8C23783C6000003863000026";
 		string f = "   S5030003F9  ";

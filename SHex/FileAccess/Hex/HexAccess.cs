@@ -6,6 +6,7 @@ namespace SHex
 	public class HexAccess:IFileAccess
 	{
 		public List<MemBlock> Memblks{ get; set;}
+		public int BytesEachLine{ get; set; }
 		public uint CsIp{ get; set; }
 		public uint EIP{ get; set; }
 		public HexAccess ()
@@ -77,9 +78,17 @@ namespace SHex
 			return true;
 		}
 		public string[] generate(){
-			return null;
+			List<string> retu = new List<string> ();
+			HexRecord hr = new HexRecord();
+			foreach(MemBlock mb in Memblks){
+				hr.RecordType = HexRecord.RecordTypeE.StrtLineAddr;
+			}
+			return retu.ToArray ();
 		}
-
+		public string[] generate(int lineSize){
+			this.BytesEachLine = lineSize;
+			return generate ();
+		}
 	}
 }
 

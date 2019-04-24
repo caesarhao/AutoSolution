@@ -13,7 +13,7 @@ namespace SHex
 		public SFileTypeE SFileType{ get; set; }
 		public uint DataRecordNum{ get; set;}
 		public List<MemBlock> Memblks{ get; set;}
-
+		public int BytesEachLine{ get; set; }
 		public SRecAccess ()
 		{
 			Memblks = new List<MemBlock> ();
@@ -159,7 +159,16 @@ namespace SHex
 			return true;
 		}
 		public string[] generate(){
-			return null;
+			List<string> retu = new List<string> ();
+			SRecord sr = new SRecord();
+			foreach(MemBlock mb in Memblks){
+				sr.RecordType = SRecord.RecordTypeE.S1;
+			}
+			return retu.ToArray ();
+		}
+		public string[] generate(int lineSize){
+			this.BytesEachLine = lineSize;
+			return generate ();
 		}
 	}
 }
