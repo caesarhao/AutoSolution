@@ -75,13 +75,17 @@ namespace SHex
 					}
 				}
 			}
+			foreach (MemBlock mb in Memblks) {
+				mb.ResizeData ();
+			}
+			MemBlock.MergeMBs (this.Memblks);
 			return true;
 		}
 		public string[] generate(){
 			List<string> retu = new List<string> ();
 			HexRecord hr = new HexRecord();
 			foreach(MemBlock mb in Memblks){
-				hr.RecordType = HexRecord.RecordTypeE.StrtLineAddr;
+				hr.RecordType = HexRecord.RecordTypeE.ExtLineAddr;
 			}
 			return retu.ToArray ();
 		}

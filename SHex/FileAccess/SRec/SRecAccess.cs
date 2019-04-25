@@ -156,6 +156,10 @@ namespace SHex
 					}
 				}
 			}
+			foreach (MemBlock mb in Memblks) {
+				mb.ResizeData ();
+			}
+			MemBlock.MergeMBs (this.Memblks);
 			return true;
 		}
 		public string[] generate(){
