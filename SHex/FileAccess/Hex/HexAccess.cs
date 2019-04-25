@@ -85,6 +85,8 @@ namespace SHex
 			List<string> retu = new List<string> ();
 			HexRecord hr = new HexRecord();
 			foreach(MemBlock mb in Memblks){
+				int subMbs = mb.DataSize / 0x10000;
+
 				hr.RecordType = HexRecord.RecordTypeE.ExtLineAddr;
 			}
 			return retu.ToArray ();
