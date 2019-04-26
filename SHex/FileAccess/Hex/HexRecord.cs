@@ -34,7 +34,64 @@ namespace SHex
 				this.address = value;
 			}
 		}
-		public RecordTypeE RecordType{get;set;} // 1 byte
+		private RecordTypeE recordType;
+		public RecordTypeE RecordType{
+			get{
+				return this.recordType;
+			}
+			set{ 
+				this.recordType = value;
+				switch (value) {
+				case RecordTypeE.Data:
+					{
+						this.byteCount = 2;
+						this.Address = 0;
+						this.Data = new byte[2];
+					}
+					break;
+				case RecordTypeE.EoF:
+					{
+						this.byteCount = 0;
+						this.Address = 0;
+						this.Data = new byte[0];
+					}
+					break;
+				case RecordTypeE.ExtSegAddr:
+					{
+						this.byteCount = 2;
+						this.Address = 0;
+						this.Data = new byte[2];
+					}
+					break;
+				case RecordTypeE.StrtSegAddr:
+					{
+						this.byteCount = 4;
+						this.Address = 0;
+						this.Data = new byte[4];
+					}
+					break;
+				case RecordTypeE.ExtLineAddr:
+					{
+						this.byteCount = 2;
+						this.Address = 0;
+						this.Data = new byte[2];
+					}
+					break;
+				case RecordTypeE.StrtLineAddr:
+					{
+						this.byteCount = 4;
+						this.Address = 0;
+						this.Data = new byte[4];
+					}
+					break;
+				default:
+					{
+
+					}
+					break;
+				}
+			}
+		} // 1 byte
 		private byte[] data; //
 		public byte[] Data{
 			get{
@@ -52,6 +109,18 @@ namespace SHex
 		{
 			this.errNo = ErrorNum.NoErr;
 			this.startCode = ':';
+		}
+		public void setEIP(uint dat){
+			this.RecordType = RecordTypeE.StrtLineAddr;
+			for (int i = 0; i < 4; i++) {
+				this.Data[i] = BitConverter.GetBytes (dat)[3-i];
+			}
+		}
+		public void setCsIp(uint dat){
+			this.RecordType = RecordTypeE.StrtSegAddr;
+			for (int i = 0; i < 4; i++) {
+				this.Data[i] = BitConverter.GetBytes (dat)[3-i];
+			}
 		}
 		public static string dec2hex(byte h)
 		{
