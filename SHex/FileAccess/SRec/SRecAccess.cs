@@ -50,7 +50,6 @@ namespace SHex
 								if (mb.NextAddress() == sr.Address) {
 									mb.AppendData (sr.Data);
 								} else { // create a new MemBlock
-									mb.ResizeData();
 									MemBlock mbn = new MemBlock ();
 									mbn.AddrSize = 16;
 									mbn.StartAddr = sr.Address;
@@ -75,7 +74,6 @@ namespace SHex
 								if (mb.NextAddress() == sr.Address) {
 									mb.AppendData (sr.Data);
 								} else { // create a new MemBlock
-									mb.ResizeData();
 									MemBlock mbn = new MemBlock ();
 									mbn.AddrSize = 24;
 									mbn.StartAddr = sr.Address;
@@ -100,7 +98,6 @@ namespace SHex
 								if (mb.NextAddress() == sr.Address) {
 									mb.AppendData (sr.Data);
 								} else { // create a new MemBlock
-									mb.ResizeData();
 									MemBlock mbn = new MemBlock ();
 									mbn.AddrSize = 32;
 									mbn.StartAddr = sr.Address;
@@ -155,9 +152,6 @@ namespace SHex
 						break;
 					}
 				}
-			}
-			foreach (MemBlock mb in Memblks) {
-				mb.ResizeData ();
 			}
 			MemBlock.MergeMBs (this.Memblks);
 			return true;

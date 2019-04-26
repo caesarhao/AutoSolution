@@ -23,63 +23,45 @@ namespace SHex
 				this.startAddr = value;
 			}
 		}
-		private byte[]	data;
-		public byte[] Data{
+		private List<byte>	data;
+		public List<byte> Data{
 			get{
-				ResizeData ();
 				return data;
 			}
 		}
-		private int dataSize;
 		public int DataSize{
 			get{
-				return this.dataSize;
+				return this.data.Count;
 			}
 		}
 		public MemBlock ()
 		{
+			StartAddr = 0;
 			this.addrSize = 32;
-			this.dataSize = 0;
-			this.data = new byte[0];
+			this.data = new List<byte>();
 		}
-		public bool ResizeData(){
-			if (data.Length > dataSize) {
-				Array.Resize (ref data, dataSize); 
-			}
-			return true;
+		public byte[] DataAsArray(){
+			return this.data.ToArray();
 		}
 		public int AppendData(byte[] nbs){
 			if (null == nbs) {
 				return -1;
 			}
-			if ((data.Length - dataSize) < nbs.Length) { // need to resize
-				int newSize = 0;
-				if (dataSize < nbs.Length) {
-					newSize = data.Length + nbs.Length;
-				} else {
-					newSize = dataSize * 2;
-				}
-				Array.Resize (ref data, newSize); 
-			}
-			foreach (byte b in nbs) {
-				data [dataSize++] = b;
-			}
+			data.AddRange (nbs);
 			return nbs.Length;
 		}
 		public ulong NextAddress(){
-			return (startAddr + (ulong)dataSize);
+			return (startAddr + (ulong)DataSize);
 		}
 		public ulong LastAddress(){
-			if (0 < dataSize) {
+			if (0 < DataSize) {
 				return (NextAddress () - 1);
 			} else {
 				return (NextAddress ());
 			}
 		}
 		public bool MergeMB(MemBlock nxt){
-			Array.Resize (ref data, dataSize + nxt.DataSize);
-			Array.Copy (nxt.Data, 0, data, dataSize, nxt.DataSize);
-			this.dataSize += nxt.DataSize;
+			this.Data.AddRange (nxt.Data);
 			return true;
 		}
 		public static bool MergeMBs(List<MemBlock> mbs){
