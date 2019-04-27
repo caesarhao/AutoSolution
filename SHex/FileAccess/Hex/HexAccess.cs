@@ -83,9 +83,22 @@ namespace SHex
 			HexRecord hr = new HexRecord();
 			foreach(MemBlock mb in Memblks){
 				int subMbs = mb.DataSize / 0x10000;
+				if (0 < mb.DataSize % 0x10000) {
+					subMbs++;
+				}
+				ushort ulba = (ushort)(mb.StartAddr >> 16);
+				for (int i = 0; i < subMbs; i++) {
+					// output start address
+					hr.RecordType = HexRecord.RecordTypeE.ExtLineAddr;
+					hr.Data[0]=BitConverter.GetBytes (ulba + i) [1];
+					hr.Data[1]=BitConverter.GetBytes (ulba + i) [0];
+					retu.Add (hr.generate());
+					// output data records
+				}
 
-				hr.RecordType = HexRecord.RecordTypeE.ExtLineAddr;
 			}
+			hr.RecordType = HexRecord.RecordTypeE.EoF;
+			retu.Add (hr.generate());
 			return retu.ToArray ();
 		}
 		public string[] generate(int lineSize){

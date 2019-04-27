@@ -113,13 +113,13 @@ namespace SHex
 		public void setEIP(uint dat){
 			this.RecordType = RecordTypeE.StrtLineAddr;
 			for (int i = 0; i < 4; i++) {
-				this.Data[i] = BitConverter.GetBytes (dat)[3-i];
+				this.Data[i] = (BitConverter.GetBytes (dat))[3-i];
 			}
 		}
 		public void setCsIp(uint dat){
 			this.RecordType = RecordTypeE.StrtSegAddr;
 			for (int i = 0; i < 4; i++) {
-				this.Data[i] = BitConverter.GetBytes (dat)[3-i];
+				this.Data[i] = (BitConverter.GetBytes (dat))[3-i];
 			}
 		}
 		public static string dec2hex(byte h)
