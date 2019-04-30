@@ -27,7 +27,7 @@ namespace SHex
 							MemBlock mb = Memblks [Memblks.Count - 1];
 							if ((0 == mb.DataSize) && ((0xFFFF & (mb.StartAddr)) != hr.Address)) {
 								mb.StartAddr += hr.Address;
-							} else if (((0xFFFF & (mb.StartAddr)) + mb.NextAddress()) != hr.Address) { // check the address
+							} else if (((0xFFFF & (mb.StartAddr)) + mb.NextAddress) != hr.Address) { // check the address
 							} else {
 							}
 							mb.AppendData (hr.Data);
@@ -94,6 +94,32 @@ namespace SHex
 					hr.Data[1]=BitConverter.GetBytes (ulba + i) [0];
 					retu.Add (hr.generate());
 					// output data records
+					uint startAd = ((uint)ulba<<16);
+					if (!mb.IsAddressInMemBlk (startAd)) {
+						startAd = (uint)mb.StartAddr;
+					}
+					uint lastAd = ((uint)ulba<<16) + 0xFFFF;
+					if (!mb.IsAddressInMemBlk (lastAd)) {
+						lastAd = (uint)mb.LastAddress;
+					}
+					int subMbLen = (int)(lastAd - startAd + 1);
+					int lines = subMbLen/BytesEachLine;
+					if (0 < subMbLen%BytesEachLine) {
+						lines++;
+					}
+					hr.RecordType = HexRecord.RecordTypeE.Data;
+					hr.Data = new byte[BytesEachLine];
+					for (int j = 0; j < lines; j++) {
+						int offset = j * BytesEachLine;
+						ushort llba = (ushort)((startAd + offset) & 0xFFFF);
+						hr.Address = llba;
+
+						//Array.Copy(mb.Data, 
+						retu.Add (hr.generate());
+					}
+					if (0 < subMbLen%BytesEachLine) {
+						lines++;
+					}
 				}
 
 			}

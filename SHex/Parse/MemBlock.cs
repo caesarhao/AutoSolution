@@ -50,15 +50,37 @@ namespace SHex
 			data.AddRange (nbs);
 			return nbs.Length;
 		}
-		public ulong NextAddress(){
-			return (startAddr + (ulong)DataSize);
-		}
-		public ulong LastAddress(){
-			if (0 < DataSize) {
-				return (NextAddress () - 1);
-			} else {
-				return (NextAddress ());
+		public ulong NextAddress{
+			get{
+				return (this.StartAddr + (ulong)DataSize);
 			}
+		}
+		public ulong LastAddress{
+			get{
+				if (0 < DataSize) {
+					return (NextAddress - 1);
+				} else {
+					return (NextAddress);
+				}
+			}
+		}
+		public bool IsAddressInMemBlk(ulong addr){
+			return(addr >= this.StartAddr && addr <= this.NextAddress);
+		}
+		public bool IsAddressInMemBlk(uint addr){
+			return(this.IsAddressInMemBlk((ulong)addr));
+		}
+		public bool IsAddressBeforeMemBlk(ulong addr){
+			return(addr < this.StartAddr);
+		}
+		public bool IsAddressBeforeMemBlk(uint addr){
+			return(IsAddressBeforeMemBlk((ulong)addr));
+		}
+		public bool IsAddressAfterMemBlk(ulong addr){
+			return(addr > this.LastAddress);
+		}
+		public bool IsAddressAfterMemBlk(uint addr){
+			return(IsAddressAfterMemBlk((ulong)addr));
 		}
 		public bool MergeMB(MemBlock nxt){
 			this.Data.AddRange (nxt.Data);
@@ -67,7 +89,7 @@ namespace SHex
 		public static bool MergeMBs(List<MemBlock> mbs){
 			int m = 0;
 			while (1 < mbs.Count && m < (mbs.Count-1)) {
-				if (mbs [m].NextAddress () == mbs [m + 1].StartAddr) {
+				if (mbs [m].NextAddress == mbs [m + 1].StartAddr) {
 					mbs [m].MergeMB (mbs [m + 1]);
 					mbs.RemoveAt (m + 1);
 					m = 0;

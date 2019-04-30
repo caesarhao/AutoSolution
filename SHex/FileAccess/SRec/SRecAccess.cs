@@ -47,7 +47,7 @@ namespace SHex
 								Memblks.Add (mb);
 							} else {
 								MemBlock mb = Memblks [Memblks.Count - 1];
-								if (mb.NextAddress() == sr.Address) {
+								if (mb.NextAddress == sr.Address) {
 									mb.AppendData (sr.Data);
 								} else { // create a new MemBlock
 									MemBlock mbn = new MemBlock ();
@@ -71,7 +71,7 @@ namespace SHex
 								Memblks.Add (mb);
 							} else {
 								MemBlock mb = Memblks [Memblks.Count - 1];
-								if (mb.NextAddress() == sr.Address) {
+								if (mb.NextAddress == sr.Address) {
 									mb.AppendData (sr.Data);
 								} else { // create a new MemBlock
 									MemBlock mbn = new MemBlock ();
@@ -95,7 +95,7 @@ namespace SHex
 								Memblks.Add (mb);
 							} else {
 								MemBlock mb = Memblks [Memblks.Count - 1];
-								if (mb.NextAddress() == sr.Address) {
+								if (mb.NextAddress == sr.Address) {
 									mb.AppendData (sr.Data);
 								} else { // create a new MemBlock
 									MemBlock mbn = new MemBlock ();
