@@ -56,13 +56,13 @@ namespace SHex
 				tr.Data = new byte[this.BytesEachLine];
 				int lines = mb.DataSize / this.BytesEachLine;
 				for (int i = 0; i < lines; i++) {
-					Array.Copy (mb.DataAsArray(), i * (this.BytesEachLine), tr.Data, 0, (this.BytesEachLine));
+					Array.Copy (mb.DataAsArray, i * (this.BytesEachLine), tr.Data, 0, (this.BytesEachLine));
 					retu.Add (tr.generate ());
 				}
 				int len = (mb.DataSize) % (this.BytesEachLine);
 				if (len > 0) {
 					tr.Data = new byte[len];
-					Array.Copy (mb.DataAsArray(), lines * (this.BytesEachLine), tr.Data, 0, len);
+					Array.Copy (mb.DataAsArray, lines * (this.BytesEachLine), tr.Data, 0, len);
 					retu.Add (tr.generate ());
 				}
 			}

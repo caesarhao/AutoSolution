@@ -104,24 +104,24 @@ namespace SHex
 					}
 					int subMbLen = (int)(lastAd - startAd + 1);
 					int lines = subMbLen/BytesEachLine;
-					if (0 < subMbLen%BytesEachLine) {
-						lines++;
-					}
 					hr.RecordType = HexRecord.RecordTypeE.Data;
 					hr.Data = new byte[BytesEachLine];
 					for (int j = 0; j < lines; j++) {
 						int offset = j * BytesEachLine;
 						ushort llba = (ushort)((startAd + offset) & 0xFFFF);
 						hr.Address = llba;
-
-						//Array.Copy(mb.Data, 
+						Array.Copy (mb.DataAsArray, offset, hr.Data, 0, BytesEachLine);
 						retu.Add (hr.generate());
 					}
 					if (0 < subMbLen%BytesEachLine) {
-						lines++;
+						int offset = BytesEachLine * lines;
+						int restBytes = subMbLen-offset;
+						hr.Data = new byte[restBytes];
+						hr.Address = (ushort)((startAd + offset) & 0xFFFF);
+						Array.Copy (mb.DataAsArray, offset, hr.Data, 0, restBytes);
+						retu.Add (hr.generate());
 					}
 				}
-
 			}
 			hr.RecordType = HexRecord.RecordTypeE.EoF;
 			retu.Add (hr.generate());

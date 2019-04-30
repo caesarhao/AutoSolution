@@ -40,8 +40,10 @@ namespace SHex
 			this.addrSize = 32;
 			this.data = new List<byte>();
 		}
-		public byte[] DataAsArray(){
-			return this.data.ToArray();
+		public byte[] DataAsArray{
+			get{
+				return this.data.ToArray ();
+			}
 		}
 		public int AppendData(byte[] nbs){
 			if (null == nbs) {
@@ -92,7 +94,6 @@ namespace SHex
 				if (mbs [m].NextAddress == mbs [m + 1].StartAddr) {
 					mbs [m].MergeMB (mbs [m + 1]);
 					mbs.RemoveAt (m + 1);
-					m = 0;
 					continue;
 				} else {
 					m++;

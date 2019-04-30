@@ -159,9 +159,72 @@ namespace SHex
 		public string[] generate(){
 			List<string> retu = new List<string> ();
 			SRecord sr = new SRecord();
+			int totalLines = 0;
 			foreach(MemBlock mb in Memblks){
-				sr.RecordType = SRecord.RecordTypeE.S1;
+				switch (SFileType) {
+				case SFileTypeE.S19:
+					{
+						sr.RecordType = SRecord.RecordTypeE.S1;
+					}
+					break;
+				case SFileTypeE.S28:
+					{
+						sr.RecordType = SRecord.RecordTypeE.S2;
+					}
+					break;
+				case SFileTypeE.S37:
+					{
+						sr.RecordType = SRecord.RecordTypeE.S3;
+					}
+					break;
+				default:
+					break;
+				}
+				sr.Data = new byte[this.BytesEachLine];
+				int lines = mb.DataSize / this.BytesEachLine;
+				for (int i = 0; i < lines; i++) {
+					int offset = i * this.BytesEachLine;
+					sr.Address = (uint)((int)mb.StartAddr+offset);
+					Array.Copy (mb.DataAsArray, offset, sr.Data, 0, this.BytesEachLine);
+					retu.Add (sr.generate ());
+				}
+				if (0 < mb.DataSize %BytesEachLine) {
+					int offset = BytesEachLine * lines;
+					int restBytes = mb.DataSize-offset;
+					sr.Data = new byte[restBytes];
+					sr.Address = (uint)((int)mb.StartAddr + offset);
+					Array.Copy (mb.DataAsArray, offset, sr.Data, 0, restBytes);
+					retu.Add (sr.generate());
+					lines++;
+				}
+				totalLines += lines;
 			}
+			if (totalLines <= 0xFFFF) {
+				sr.RecordType = SRecord.RecordTypeE.S5;
+			} else {
+				sr.RecordType = SRecord.RecordTypeE.S6;
+			}
+			retu.Add (sr.generate());
+			switch (SFileType) {
+			case SFileTypeE.S19:
+				{
+					sr.RecordType = SRecord.RecordTypeE.S9;
+				}
+				break;
+			case SFileTypeE.S28:
+				{
+					sr.RecordType = SRecord.RecordTypeE.S8;
+				}
+				break;
+			case SFileTypeE.S37:
+				{
+					sr.RecordType = SRecord.RecordTypeE.S7;
+				}
+				break;
+			default:
+				break;
+			}
+			retu.Add (sr.generate());
 			return retu.ToArray ();
 		}
 		public string[] generate(int lineSize){
