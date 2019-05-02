@@ -4,6 +4,7 @@
  * 
 */
 using System;
+using System.IO;
 using System.Collections.Generic;
 namespace SHex
 {
@@ -73,6 +74,13 @@ namespace SHex
 		public string[] generate(int lineSize){
 			this.BytesEachLine = lineSize;
 			return generate ();
+		}
+		public bool parseFile (string filePath){
+			return(parse(File.ReadAllLines (filePath)));
+		}
+		public bool generateFile (string destFilePath){
+			File.WriteAllLines (destFilePath, generate ());
+			return true;
 		}
 	}
 }
