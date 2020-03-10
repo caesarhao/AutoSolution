@@ -2,70 +2,97 @@
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
-    <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/SHex.exe" internal="true" />
+    <widget-library name="../bin/Debug/EasyOS.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="590 446">
+  <widget class="Gtk.Window" id="MainWindow" design-size="572 434">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
-        <property name="Accelerator">&lt;Alt&gt;&lt;Mod2&gt;f</property>
-        <property name="Label" translatable="yes">_File</property>
-        <property name="ShortLabel" translatable="yes">_File</property>
+        <property name="Label" translatable="yes">File</property>
+        <property name="ShortLabel" translatable="yes">File</property>
+      </action>
+      <action id="EditAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Edit</property>
+        <property name="ShortLabel" translatable="yes">Edit</property>
+      </action>
+      <action id="GenerateAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Generate</property>
+        <property name="ShortLabel" translatable="yes">Generate</property>
+      </action>
+      <action id="HelpAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Help</property>
+        <property name="ShortLabel" translatable="yes">Help</property>
+      </action>
+      <action id="newAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-new</property>
       </action>
       <action id="openAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Open</property>
-        <property name="ShortLabel" translatable="yes">_Open</property>
+        <property name="Label" translatable="yes" />
         <property name="StockId">gtk-open</property>
-        <signal name="Activated" handler="OnOpen" />
       </action>
       <action id="saveAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-save</property>
-        <signal name="Activated" handler="OnSave" />
       </action>
-      <action id="EditAction">
+      <action id="saveAsAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Edit</property>
-        <property name="ShortLabel" translatable="yes">Edit</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-save-as</property>
       </action>
-      <action id="HelpAction">
+      <action id="executeAction">
         <property name="Type">Action</property>
-        <property name="Accelerator">&lt;Alt&gt;&lt;Mod2&gt;h</property>
-        <property name="Label" translatable="yes">_Help</property>
-        <property name="ShortLabel" translatable="yes">_Help</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-execute</property>
       </action>
-      <action id="OpenAction">
+      <action id="zoomInAction">
         <property name="Type">Action</property>
-        <property name="Accelerator">&lt;Primary&gt;&lt;Mod2&gt;o</property>
-        <property name="Label" translatable="yes">_Open</property>
-        <property name="ShortLabel" translatable="yes">_Open</property>
-        <signal name="Activated" handler="OnOpen" />
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-zoom-in</property>
+      </action>
+      <action id="zoomOutAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-zoom-out</property>
+      </action>
+      <action id="zoomFitAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-zoom-fit</property>
       </action>
       <action id="AboutAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">About</property>
         <property name="ShortLabel" translatable="yes">About</property>
       </action>
-      <action id="SaveAsAction">
+      <action id="NewAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Save As...</property>
-        <property name="ShortLabel" translatable="yes">Save As...</property>
+        <property name="Label" translatable="yes">New</property>
+        <property name="ShortLabel" translatable="yes">New</property>
+      </action>
+      <action id="OpenAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Open</property>
+        <property name="ShortLabel" translatable="yes">Open</property>
       </action>
       <action id="SaveAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Save</property>
         <property name="ShortLabel" translatable="yes">Save</property>
       </action>
-      <action id="SaveAction1">
+      <action id="SaveAsAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Save</property>
-        <property name="ShortLabel" translatable="yes">Save</property>
+        <property name="Label" translatable="yes">Save As</property>
+        <property name="ShortLabel" translatable="yes">Save As</property>
       </action>
     </action-group>
     <property name="MemberName" />
@@ -73,7 +100,7 @@
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.VBox" id="vbox_main">
+      <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <child>
@@ -81,11 +108,13 @@
             <property name="MemberName" />
             <node name="menubar1" type="Menubar">
               <node type="Menu" action="FileAction">
+                <node type="Menuitem" action="NewAction" />
                 <node type="Menuitem" action="OpenAction" />
-                <node type="Menuitem" action="SaveAction1" />
+                <node type="Menuitem" action="SaveAction" />
                 <node type="Menuitem" action="SaveAsAction" />
               </node>
               <node type="Menu" action="EditAction" />
+              <node type="Menu" action="GenerateAction" />
               <node type="Menu" action="HelpAction">
                 <node type="Menuitem" action="AboutAction" />
               </node>
@@ -102,9 +131,15 @@
           <widget class="Gtk.Toolbar" id="toolbar1">
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
-            <node name="toolbar1" type="Toolbar">
+            <node name="__gtksharp_79_Stetic_Editor_ActionToolbar" type="Toolbar">
+              <node type="Toolitem" action="newAction" />
               <node type="Toolitem" action="openAction" />
               <node type="Toolitem" action="saveAction" />
+              <node type="Toolitem" action="saveAsAction" />
+              <node type="Toolitem" action="executeAction" />
+              <node type="Toolitem" action="zoomInAction" />
+              <node type="Toolitem" action="zoomOutAction" />
+              <node type="Toolitem" action="zoomFitAction" />
             </node>
           </widget>
           <packing>
@@ -115,17 +150,14 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+          <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
             <property name="MemberName" />
+            <property name="CanFocus">True</property>
             <property name="ShadowType">In</property>
             <child>
-              <widget class="Gtk.TextView" id="textview_debug">
+              <widget class="Gtk.TreeView" id="treeview1">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
-                <property name="ShowScrollbars">True</property>
-                <property name="Text" translatable="yes">haha</property>
-                <property name="WrapMode">WordChar</property>
-                <signal name="PasteClipboard" handler="OnTextviewDebugPasteClipboard" />
               </widget>
             </child>
           </widget>
@@ -133,6 +165,9 @@
             <property name="Position">2</property>
             <property name="AutoSize">True</property>
           </packing>
+        </child>
+        <child>
+          <placeholder />
         </child>
         <child>
           <widget class="Gtk.Statusbar" id="statusbar1">
@@ -146,7 +181,7 @@
             </child>
           </widget>
           <packing>
-            <property name="Position">3</property>
+            <property name="Position">4</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>

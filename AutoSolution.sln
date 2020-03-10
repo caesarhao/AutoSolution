@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalMes", "CalMes\CalMes.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHex", "SHex\SHex.csproj", "{E4A204B4-ED32-4F17-8B3F-865CD8DA806C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyOS", "EasyOS\EasyOS.csproj", "{F68DACC6-2182-4FF7-A493-1CE7EF60E992}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -31,5 +33,9 @@ Global
 		{E4A204B4-ED32-4F17-8B3F-865CD8DA806C}.Debug|x86.Build.0 = Debug|x86
 		{E4A204B4-ED32-4F17-8B3F-865CD8DA806C}.Release|x86.ActiveCfg = Release|x86
 		{E4A204B4-ED32-4F17-8B3F-865CD8DA806C}.Release|x86.Build.0 = Release|x86
+		{F68DACC6-2182-4FF7-A493-1CE7EF60E992}.Debug|x86.ActiveCfg = Debug|x86
+		{F68DACC6-2182-4FF7-A493-1CE7EF60E992}.Debug|x86.Build.0 = Debug|x86
+		{F68DACC6-2182-4FF7-A493-1CE7EF60E992}.Release|x86.ActiveCfg = Release|x86
+		{F68DACC6-2182-4FF7-A493-1CE7EF60E992}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal
