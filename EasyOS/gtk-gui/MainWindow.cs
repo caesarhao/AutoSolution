@@ -45,9 +45,17 @@ public partial class MainWindow
 	
 	private global::Gtk.Toolbar toolbar1;
 	
-	private global::Gtk.ScrolledWindow scrolledwindow1;
+	private global::Gtk.HPaned hpaned3;
 	
-	private global::Gtk.TreeView treeview1;
+	private global::Gtk.ScrolledWindow GtkScrolledWindow;
+	
+	private global::Gtk.TreeView prjTreeView;
+	
+	private global::Gtk.Frame frame1;
+	
+	private global::Gtk.Alignment GtkAlignment;
+	
+	private global::Gtk.Label editorGtkLabel;
 	
 	private global::Gtk.Statusbar statusbar1;
 
@@ -129,27 +137,49 @@ public partial class MainWindow
 		w3.Expand = false;
 		w3.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.scrolledwindow1 = new global::Gtk.ScrolledWindow ();
-		this.scrolledwindow1.CanFocus = true;
-		this.scrolledwindow1.Name = "scrolledwindow1";
-		this.scrolledwindow1.ShadowType = ((global::Gtk.ShadowType)(1));
-		// Container child scrolledwindow1.Gtk.Container+ContainerChild
-		this.treeview1 = new global::Gtk.TreeView ();
-		this.treeview1.CanFocus = true;
-		this.treeview1.Name = "treeview1";
-		this.scrolledwindow1.Add (this.treeview1);
-		this.vbox1.Add (this.scrolledwindow1);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.scrolledwindow1]));
-		w5.Position = 2;
+		this.hpaned3 = new global::Gtk.HPaned ();
+		this.hpaned3.CanFocus = true;
+		this.hpaned3.Name = "hpaned3";
+		this.hpaned3.Position = 195;
+		// Container child hpaned3.Gtk.Paned+PanedChild
+		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+		this.prjTreeView = new global::Gtk.TreeView ();
+		this.prjTreeView.CanFocus = true;
+		this.prjTreeView.Name = "prjTreeView";
+		this.GtkScrolledWindow.Add (this.prjTreeView);
+		this.hpaned3.Add (this.GtkScrolledWindow);
+		global::Gtk.Paned.PanedChild w5 = ((global::Gtk.Paned.PanedChild)(this.hpaned3 [this.GtkScrolledWindow]));
+		w5.Resize = false;
+		// Container child hpaned3.Gtk.Paned+PanedChild
+		this.frame1 = new global::Gtk.Frame ();
+		this.frame1.Name = "frame1";
+		this.frame1.ShadowType = ((global::Gtk.ShadowType)(0));
+		// Container child frame1.Gtk.Container+ContainerChild
+		this.GtkAlignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+		this.GtkAlignment.Name = "GtkAlignment";
+		this.GtkAlignment.LeftPadding = ((uint)(12));
+		this.frame1.Add (this.GtkAlignment);
+		this.editorGtkLabel = new global::Gtk.Label ();
+		this.editorGtkLabel.Name = "editorGtkLabel";
+		this.editorGtkLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>GtkFrame</b>");
+		this.editorGtkLabel.UseMarkup = true;
+		this.frame1.LabelWidget = this.editorGtkLabel;
+		this.hpaned3.Add (this.frame1);
+		this.vbox1.Add (this.hpaned3);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hpaned3]));
+		w8.Position = 2;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.statusbar1 = new global::Gtk.Statusbar ();
 		this.statusbar1.Name = "statusbar1";
 		this.statusbar1.Spacing = 6;
 		this.vbox1.Add (this.statusbar1);
-		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
-		w6.Position = 4;
-		w6.Expand = false;
-		w6.Fill = false;
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
+		w9.Position = 4;
+		w9.Expand = false;
+		w9.Fill = false;
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -158,5 +188,7 @@ public partial class MainWindow
 		this.DefaultHeight = 434;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.AboutAction.Activated += new global::System.EventHandler (this.showAboutDialog);
+		this.prjTreeView.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.OnPrjTreeViewButtonPressEvent);
 	}
 }
