@@ -13,7 +13,7 @@ public partial class MainWindow
 	
 	private global::Gtk.Action HelpAction;
 	
-	private global::Gtk.Action newAction;
+	private global::Gtk.Action fileAction;
 	
 	private global::Gtk.Action openAction;
 	
@@ -23,11 +23,11 @@ public partial class MainWindow
 	
 	private global::Gtk.Action executeAction;
 	
-	private global::Gtk.Action zoomInAction;
+	private global::Gtk.Action addAction;
 	
-	private global::Gtk.Action zoomOutAction;
+	private global::Gtk.Action deleteAction;
 	
-	private global::Gtk.Action zoomFitAction;
+	private global::Gtk.Action Action;
 	
 	private global::Gtk.Action AboutAction;
 	
@@ -39,6 +39,10 @@ public partial class MainWindow
 	
 	private global::Gtk.Action SaveAsAction;
 	
+	private global::Gtk.Action refreshAction;
+	
+	private global::Gtk.Action revertToSavedAction;
+	
 	private global::Gtk.VBox vbox1;
 	
 	private global::Gtk.MenuBar menubar1;
@@ -49,13 +53,13 @@ public partial class MainWindow
 	
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 	
-	private global::Gtk.TreeView prjTreeView;
+	private global::Gtk.TreeView trVwPrj;
 	
-	private global::Gtk.Frame frame1;
+	private global::Gtk.Frame frmEditor;
 	
-	private global::Gtk.Alignment GtkAlignment;
+	private global::Gtk.Alignment alignFrmEditor;
 	
-	private global::Gtk.Label editorGtkLabel;
+	private global::Gtk.Label lblFrmEditor;
 	
 	private global::Gtk.Statusbar statusbar1;
 
@@ -77,8 +81,8 @@ public partial class MainWindow
 		this.HelpAction = new global::Gtk.Action ("HelpAction", global::Mono.Unix.Catalog.GetString ("Help"), null, null);
 		this.HelpAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Help");
 		w1.Add (this.HelpAction, null);
-		this.newAction = new global::Gtk.Action ("newAction", null, null, "gtk-new");
-		w1.Add (this.newAction, null);
+		this.fileAction = new global::Gtk.Action ("fileAction", null, null, "gtk-file");
+		w1.Add (this.fileAction, null);
 		this.openAction = new global::Gtk.Action ("openAction", null, null, "gtk-open");
 		w1.Add (this.openAction, null);
 		this.saveAction = new global::Gtk.Action ("saveAction", null, null, "gtk-save");
@@ -87,27 +91,31 @@ public partial class MainWindow
 		w1.Add (this.saveAsAction, null);
 		this.executeAction = new global::Gtk.Action ("executeAction", null, null, "gtk-execute");
 		w1.Add (this.executeAction, null);
-		this.zoomInAction = new global::Gtk.Action ("zoomInAction", null, null, "gtk-zoom-in");
-		w1.Add (this.zoomInAction, null);
-		this.zoomOutAction = new global::Gtk.Action ("zoomOutAction", null, null, "gtk-zoom-out");
-		w1.Add (this.zoomOutAction, null);
-		this.zoomFitAction = new global::Gtk.Action ("zoomFitAction", null, null, "gtk-zoom-fit");
-		w1.Add (this.zoomFitAction, null);
+		this.addAction = new global::Gtk.Action ("addAction", null, null, "gtk-add");
+		w1.Add (this.addAction, null);
+		this.deleteAction = new global::Gtk.Action ("deleteAction", null, null, "gtk-delete");
+		w1.Add (this.deleteAction, null);
+		this.Action = new global::Gtk.Action ("Action", null, null, null);
+		w1.Add (this.Action, null);
 		this.AboutAction = new global::Gtk.Action ("AboutAction", global::Mono.Unix.Catalog.GetString ("About"), null, null);
 		this.AboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("About");
 		w1.Add (this.AboutAction, null);
 		this.NewAction = new global::Gtk.Action ("NewAction", global::Mono.Unix.Catalog.GetString ("New"), null, null);
 		this.NewAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("New");
-		w1.Add (this.NewAction, null);
+		w1.Add (this.NewAction, "<Primary><Mod2>n");
 		this.OpenAction = new global::Gtk.Action ("OpenAction", global::Mono.Unix.Catalog.GetString ("Open"), null, null);
 		this.OpenAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Open");
-		w1.Add (this.OpenAction, null);
+		w1.Add (this.OpenAction, "<Primary><Mod2>o");
 		this.SaveAction = new global::Gtk.Action ("SaveAction", global::Mono.Unix.Catalog.GetString ("Save"), null, null);
 		this.SaveAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Save");
-		w1.Add (this.SaveAction, null);
+		w1.Add (this.SaveAction, "<Primary><Mod2>s");
 		this.SaveAsAction = new global::Gtk.Action ("SaveAsAction", global::Mono.Unix.Catalog.GetString ("Save As"), null, null);
 		this.SaveAsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Save As");
 		w1.Add (this.SaveAsAction, null);
+		this.refreshAction = new global::Gtk.Action ("refreshAction", null, null, "gtk-refresh");
+		w1.Add (this.refreshAction, null);
+		this.revertToSavedAction = new global::Gtk.Action ("revertToSavedAction", null, null, "gtk-revert-to-saved");
+		w1.Add (this.revertToSavedAction, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -127,7 +135,7 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString (@"<ui><toolbar name='toolbar1'><toolitem name='newAction' action='newAction'/><toolitem name='openAction' action='openAction'/><toolitem name='saveAction' action='saveAction'/><toolitem name='saveAsAction' action='saveAsAction'/><toolitem name='executeAction' action='executeAction'/><toolitem name='zoomInAction' action='zoomInAction'/><toolitem name='zoomOutAction' action='zoomOutAction'/><toolitem name='zoomFitAction' action='zoomFitAction'/></toolbar></ui>");
+		this.UIManager.AddUiFromString (@"<ui><toolbar name='toolbar1'><toolitem name='fileAction' action='fileAction'/><toolitem name='openAction' action='openAction'/><toolitem name='saveAction' action='saveAction'/><toolitem name='saveAsAction' action='saveAsAction'/><toolitem name='executeAction' action='executeAction'/><toolitem name='addAction' action='addAction'/><toolitem name='deleteAction' action='deleteAction'/><toolitem name='refreshAction' action='refreshAction'/></toolbar></ui>");
 		this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 		this.toolbar1.Name = "toolbar1";
 		this.toolbar1.ShowArrow = false;
@@ -146,28 +154,29 @@ public partial class MainWindow
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-		this.prjTreeView = new global::Gtk.TreeView ();
-		this.prjTreeView.CanFocus = true;
-		this.prjTreeView.Name = "prjTreeView";
-		this.GtkScrolledWindow.Add (this.prjTreeView);
+		this.trVwPrj = new global::Gtk.TreeView ();
+		this.trVwPrj.CanFocus = true;
+		this.trVwPrj.Name = "trVwPrj";
+		this.GtkScrolledWindow.Add (this.trVwPrj);
 		this.hpaned3.Add (this.GtkScrolledWindow);
 		global::Gtk.Paned.PanedChild w5 = ((global::Gtk.Paned.PanedChild)(this.hpaned3 [this.GtkScrolledWindow]));
 		w5.Resize = false;
 		// Container child hpaned3.Gtk.Paned+PanedChild
-		this.frame1 = new global::Gtk.Frame ();
-		this.frame1.Name = "frame1";
-		this.frame1.ShadowType = ((global::Gtk.ShadowType)(0));
-		// Container child frame1.Gtk.Container+ContainerChild
-		this.GtkAlignment = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
-		this.GtkAlignment.Name = "GtkAlignment";
-		this.GtkAlignment.LeftPadding = ((uint)(12));
-		this.frame1.Add (this.GtkAlignment);
-		this.editorGtkLabel = new global::Gtk.Label ();
-		this.editorGtkLabel.Name = "editorGtkLabel";
-		this.editorGtkLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>GtkFrame</b>");
-		this.editorGtkLabel.UseMarkup = true;
-		this.frame1.LabelWidget = this.editorGtkLabel;
-		this.hpaned3.Add (this.frame1);
+		this.frmEditor = new global::Gtk.Frame ();
+		this.frmEditor.Name = "frmEditor";
+		this.frmEditor.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.frmEditor.BorderWidth = ((uint)(1));
+		// Container child frmEditor.Gtk.Container+ContainerChild
+		this.alignFrmEditor = new global::Gtk.Alignment (0F, 0F, 1F, 1F);
+		this.alignFrmEditor.Name = "alignFrmEditor";
+		this.alignFrmEditor.LeftPadding = ((uint)(12));
+		this.frmEditor.Add (this.alignFrmEditor);
+		this.lblFrmEditor = new global::Gtk.Label ();
+		this.lblFrmEditor.Name = "lblFrmEditor";
+		this.lblFrmEditor.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>GtkFrame</b>");
+		this.lblFrmEditor.UseMarkup = true;
+		this.frmEditor.LabelWidget = this.lblFrmEditor;
+		this.hpaned3.Add (this.frmEditor);
 		this.vbox1.Add (this.hpaned3);
 		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hpaned3]));
 		w8.Position = 2;
@@ -189,6 +198,6 @@ public partial class MainWindow
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.AboutAction.Activated += new global::System.EventHandler (this.showAboutDialog);
-		this.prjTreeView.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.OnPrjTreeViewButtonPressEvent);
+		this.trVwPrj.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.OnPrjTreeViewButtonPressEvent);
 	}
 }

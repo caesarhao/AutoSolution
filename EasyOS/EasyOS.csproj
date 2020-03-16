@@ -74,9 +74,12 @@
     <Compile Include="Data\Project.cs" />
     <Compile Include="AboutDialogue.cs" />
     <Compile Include="gtk-gui\EasyOS.AboutDialogue.cs" />
+    <Compile Include="View\EditProject.cs" />
+    <Compile Include="gtk-gui\EasyOS.EditProject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="View\" />
   </ItemGroup>
 </Project>

@@ -19,7 +19,7 @@ public partial class MainWindow: Gtk.Window
 		Gtk.TreeIter variables = ts.AppendValues (root, "VariableS");
 		Gtk.TreeIter computemethods = ts.AppendValues (root, "ComputeMethodS");
 		Gtk.TreeIter units = ts.AppendValues (root, "UnitS");
-		this.prjTreeView.Model = ts;
+		this.trVwPrj.Model = ts;
 
 		Gtk.TreeViewColumn prjColumn = new Gtk.TreeViewColumn ();
 //		prjColumn.Title = "Project";
@@ -28,7 +28,11 @@ public partial class MainWindow: Gtk.Window
 		prjColumn.AddAttribute (projectCell, "text", 0);
 //
 //		// Add the columns to the TreeView
-		prjTreeView.AppendColumn (prjColumn);
+		trVwPrj.AppendColumn (prjColumn);
+
+		EditProject ep = new EditProject ();
+		this.alignFrmEditor.Child = ep;
+		this.frmEditor.ShowAll ();
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -41,11 +45,11 @@ public partial class MainWindow: Gtk.Window
 	{
 		// single click, left button
 		if (args.Event.Type == Gdk.EventType.ButtonPress && args.Event.Button == 1) {
-			var model = prjTreeView.Model;
+			var model = trVwPrj.Model;
 			TreeIter iter;
 			model.GetIterFirst (out iter);
 			model.GetValue (iter, 0);
-			editorGtkLabel.Text = model.GetValue (iter, 0).ToString();
+			lblFrmEditor.Text = model.GetValue (iter, 0).ToString();
 		}
 	}
 	protected void showAboutDialog (object sender, EventArgs e)
