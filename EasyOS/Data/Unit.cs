@@ -4,7 +4,8 @@ namespace EasyOS
 {
 	public class Unit:BaseData
 	{
-		String showAs{ get; set;}
+		string showAs{ get; set;}
+		string description{ get; set;}
 		public Unit ()
 		{
 		}

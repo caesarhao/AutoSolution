@@ -4,9 +4,12 @@ namespace EasyOS
 {
 	public class BaseData
 	{
-		String name{ get; set;}
+		string name{ get; set;}
 		public BaseData ()
 		{
+		}
+		override public string ToString(){
+			return name;
 		}
 	}
 }

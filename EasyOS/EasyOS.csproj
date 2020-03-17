@@ -66,7 +66,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Unit.cs" />
     <Compile Include="Data\BaseData.cs" />
-    <Compile Include="Data\Variable.cs" />
     <Compile Include="Data\BaseType.cs" />
     <Compile Include="Data\Process.cs" />
     <Compile Include="Data\Task.cs" />
@@ -76,10 +75,16 @@
     <Compile Include="gtk-gui\EasyOS.AboutDialogue.cs" />
     <Compile Include="View\EditProject.cs" />
     <Compile Include="gtk-gui\EasyOS.EditProject.cs" />
+    <Compile Include="View\EditProcess.cs" />
+    <Compile Include="gtk-gui\EasyOS.EditProcess.cs" />
+    <Compile Include="Data\Message.cs" />
+    <Compile Include="Data\CompMethod.cs" />
+    <Compile Include="Control\ContrlProject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="View\" />
+    <Folder Include="Control\" />
   </ItemGroup>
 </Project>

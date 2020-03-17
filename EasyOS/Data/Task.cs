@@ -5,10 +5,10 @@ namespace EasyOS
 {
 	public class Task:BaseData
 	{
-		List<Process> procs;
+		List<Process> processes;
 		public Task ()
 		{
-			procs = new List<Process> ();
+			processes = new List<Process> ();
 		}
 	}
 }

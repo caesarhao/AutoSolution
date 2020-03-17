@@ -31,6 +31,7 @@ public partial class MainWindow: Gtk.Window
 		trVwPrj.AppendColumn (prjColumn);
 
 		EditProject ep = new EditProject ();
+		EditProcess epp = new EditProcess ();
 		this.alignFrmEditor.Child = ep;
 		this.frmEditor.ShowAll ();
 	}

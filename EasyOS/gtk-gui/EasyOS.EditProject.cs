@@ -51,6 +51,9 @@ namespace EasyOS
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.combobox2 = global::Gtk.ComboBox.NewText ();
+			this.combobox2.AppendText (global::Mono.Unix.Catalog.GetString ("ESP8266"));
+			this.combobox2.AppendText (global::Mono.Unix.Catalog.GetString ("ESP32"));
+			this.combobox2.AppendText ("");
 			this.combobox2.Name = "combobox2";
 			this.table1.Add (this.combobox2);
 			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.combobox2]));
@@ -70,7 +73,6 @@ namespace EasyOS
 			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.entry1]));
 			w3.LeftAttach = ((uint)(1));
 			w3.RightAttach = ((uint)(2));
-			w3.XOptions = ((global::Gtk.AttachOptions)(4));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.entry2 = new global::Gtk.Entry ();
@@ -103,7 +105,7 @@ namespace EasyOS
 			// Container child table1.Gtk.Table+TableChild
 			this.label1 = new global::Gtk.Label ();
 			this.label1.Name = "label1";
-			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Project Name");
+			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Name");
 			this.table1.Add (this.label1);
 			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.label1]));
 			w6.XOptions = ((global::Gtk.AttachOptions)(4));

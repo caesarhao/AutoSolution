@@ -3,17 +3,22 @@ using System.Collections.Generic;
 
 namespace EasyOS
 {
+	public class MessageAccess{
+		public Message message;
+		public bool input;
+		public bool output;
+		public MessageAccess(){
+			input = false;
+			output = false;
+		}
+	}
 	public class Process:BaseData
 	{
-		List<Variable> inVars;
-		List<Variable> outVars;
-		List<Variable> locVars;
+		private List<MessageAccess> messageaccesses;
 
 		public Process ()
 		{
-			inVars = new List<Variable> ();
-			outVars = new List<Variable> ();
-			locVars = new List<Variable> ();
+			messageaccesses = new List<MessageAccess> ();
 		}
 	}
 }
