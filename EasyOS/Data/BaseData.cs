@@ -2,9 +2,9 @@
 
 namespace EasyOS
 {
-	public class BaseData
+	public abstract class BaseData
 	{
-		string name{ get; set;}
+		public string name{ get; set;}
 		public BaseData ()
 		{
 		}

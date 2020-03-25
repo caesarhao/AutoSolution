@@ -52,6 +52,7 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -80,6 +81,7 @@
     <Compile Include="Data\Message.cs" />
     <Compile Include="Data\CompMethod.cs" />
     <Compile Include="Control\ContrlProject.cs" />
+    <Compile Include="Data\XmlHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
