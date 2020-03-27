@@ -12,6 +12,13 @@ namespace EasyOS
 	{
 		public RationalFunction ()
 		{
+			// 		(numerators[0]   + numerators[1]*PHYS   + numerators[2]*PHYS*PHYS   + ...)
+			// fi(PHYS) = -----------------------------------------------------------------------------
+			//		(denominators[0] + denominators[1]*PHYS + denominators[2]*PHYS*PHYS + ...)
+			
+			public double[] numerators{get; set;}
+			public double[] denominators{get; set;}
+			
 		}
 	}
 }
