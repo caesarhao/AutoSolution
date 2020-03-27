@@ -4,10 +4,12 @@ namespace EasyOS
 {
 	public class CompuMethod:BaseData
 	{
+		public Unit unit{get; set;}
 		public CompuMethod ()
 		{
 		}
 	}
+	// RAT_FUNC in ASAM
 	public class RationalFunction:CompuMethod
 	{
 		public RationalFunction ()
@@ -18,7 +20,20 @@ namespace EasyOS
 			
 			public double[] numerators{get; set;}
 			public double[] denominators{get; set;}
+			public RationalFunction ()
+			{
+			}
 			
+		}
+		
+	}
+	// TAB_VERB in ASAM
+	public class VerbalTable:CompuMethod
+	{
+		public Dictionary<int, string> vt{get; set;}
+		public VerbalTable ()
+		{
+			vt = new Dictionary<int, string>();
 		}
 	}
 }
