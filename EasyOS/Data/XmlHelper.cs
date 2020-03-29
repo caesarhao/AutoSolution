@@ -9,9 +9,6 @@ namespace EasyOS
 	public static class XmlHelper
 	{
 		public static bool NewLineOnAttributes { get; set; }
-		public XmlHelper ()
-		{
-		}
 		/// <summary>
 		/// Serializes an object to an XML string, using the specified namespaces.
 		/// </summary>
@@ -100,5 +97,5 @@ namespace EasyOS
 		}
 	}
 	}
-}
+
 

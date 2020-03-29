@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EasyOS
 {
@@ -12,18 +13,15 @@ namespace EasyOS
 	// RAT_FUNC in ASAM
 	public class RationalFunction:CompuMethod
 	{
+		// 				numerators[0]    +  numerators[1]*PHYS   +	numerators[2]*PHYS*PHYS + ...
+		// fi(PHYS) = ----------------------------------------------------------------------------- 
+		//				denominators[0]  +  denominators[1]*PHYS +	denominators[2]*PHYS*PHYS + ...
+		public double[] numerators;
+		public double[] denominators;
 		public RationalFunction ()
 		{
-			// 		(numerators[0]   + numerators[1]*PHYS   + numerators[2]*PHYS*PHYS   + ...)
-			// fi(PHYS) = -----------------------------------------------------------------------------
-			//		(denominators[0] + denominators[1]*PHYS + denominators[2]*PHYS*PHYS + ...)
-			
-			public double[] numerators{get; set;}
-			public double[] denominators{get; set;}
-			public RationalFunction ()
-			{
-			}
-			
+			numerators = new double[2];
+			denominators = new double[2];
 		}
 		
 	}

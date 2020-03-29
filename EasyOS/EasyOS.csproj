@@ -79,7 +79,7 @@
     <Compile Include="View\EditProcess.cs" />
     <Compile Include="gtk-gui\EasyOS.EditProcess.cs" />
     <Compile Include="Data\Message.cs" />
-    <Compile Include="Data\CompMethod.cs" />
+    <Compile Include="Data\CompuMethod.cs" />
     <Compile Include="Control\ContrlProject.cs" />
     <Compile Include="Data\XmlHelper.cs" />
   </ItemGroup>

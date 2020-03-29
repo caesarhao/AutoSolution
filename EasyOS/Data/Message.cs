@@ -4,9 +4,8 @@ namespace EasyOS
 {
 	public class Message:BaseData
 	{
-		BaseType type{ get; set;}
-		private string description{ get; set;}
-		private CompMethod CompMethod{ get; set;}
+		public BaseType type{ get; set;}
+		public CompuMethod compuMethod{ get; set;}
 		public Message ()
 		{
 		}
