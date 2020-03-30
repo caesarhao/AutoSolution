@@ -1,11 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace EasyOS
 {
 	public class Project:BaseData
 	{
 		public enum ELicense{
+			[Description("Private project")]
+			E_Private,
 			[Description("Apache License 2.0")]
 			E_Apache_License_2_0,
 			[Description("BSD 2-Clause \"Simplified\" or \"FreeBSD\" license")]
@@ -33,8 +36,20 @@ namespace EasyOS
 		public ELicense license;
 		public ETargetType target;
 		public string version;
+		public List<StateMachine> stateMachines;
+		public List<Task> tasks;
+		public List<Process> processes;
+		public List<Message> messages;
+		public List<CompuMethod> compuMethods;
+		public List<Unit> units;
 		public Project ()
 		{
+			stateMachines = new List<StateMachine> ();
+			tasks = new List<Task> ();
+			processes = new List<Process> ();
+			messages = new List<Message> ();
+			compuMethods = new List<CompuMethod> ();
+			units = new List<Unit> ();
 		}
 	}
 }

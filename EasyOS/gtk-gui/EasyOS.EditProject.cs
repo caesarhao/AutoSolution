@@ -6,9 +6,9 @@ namespace EasyOS
 	{
 		private global::Gtk.Table table1;
 		
-		private global::Gtk.ComboBox combobox1;
+		private global::Gtk.ComboBox cmbbTarget;
 		
-		private global::Gtk.ComboBox combobox2;
+		private global::Gtk.ComboBox cmbbxLicense;
 		
 		private global::Gtk.Entry entry1;
 		
@@ -39,26 +39,34 @@ namespace EasyOS
 			this.table1.ColumnSpacing = ((uint)(6));
 			this.table1.BorderWidth = ((uint)(9));
 			// Container child table1.Gtk.Table+TableChild
-			this.combobox1 = global::Gtk.ComboBox.NewText ();
-			this.combobox1.Name = "combobox1";
-			this.table1.Add (this.combobox1);
-			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1 [this.combobox1]));
-			w1.TopAttach = ((uint)(2));
-			w1.BottomAttach = ((uint)(3));
+			this.cmbbTarget = global::Gtk.ComboBox.NewText ();
+			this.cmbbTarget.AppendText (global::Mono.Unix.Catalog.GetString ("General C code"));
+			this.cmbbTarget.AppendText (global::Mono.Unix.Catalog.GetString ("General Python code"));
+			this.cmbbTarget.AppendText (global::Mono.Unix.Catalog.GetString ("General Lua code"));
+			this.cmbbTarget.Name = "cmbbTarget";
+			this.table1.Add (this.cmbbTarget);
+			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1 [this.cmbbTarget]));
+			w1.TopAttach = ((uint)(3));
+			w1.BottomAttach = ((uint)(4));
 			w1.LeftAttach = ((uint)(1));
 			w1.RightAttach = ((uint)(2));
 			w1.XOptions = ((global::Gtk.AttachOptions)(4));
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.combobox2 = global::Gtk.ComboBox.NewText ();
-			this.combobox2.AppendText (global::Mono.Unix.Catalog.GetString ("ESP8266"));
-			this.combobox2.AppendText (global::Mono.Unix.Catalog.GetString ("ESP32"));
-			this.combobox2.AppendText ("");
-			this.combobox2.Name = "combobox2";
-			this.table1.Add (this.combobox2);
-			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.combobox2]));
-			w2.TopAttach = ((uint)(3));
-			w2.BottomAttach = ((uint)(4));
+			this.cmbbxLicense = global::Gtk.ComboBox.NewText ();
+			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("Private project"));
+			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("Apache License 2.0"));
+			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("BSD 2-Clause \"Simplified\" or \"FreeBSD\" license"));
+			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("BSD 3-Clause \"New\" or \"Revised\" license"));
+			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("GNU General Public License (GPL)"));
+			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("MIT license"));
+			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("Mozilla Public License 2.0"));
+			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("Eclipse Public License version 2.0"));
+			this.cmbbxLicense.Name = "cmbbxLicense";
+			this.table1.Add (this.cmbbxLicense);
+			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.cmbbxLicense]));
+			w2.TopAttach = ((uint)(2));
+			w2.BottomAttach = ((uint)(3));
 			w2.LeftAttach = ((uint)(1));
 			w2.RightAttach = ((uint)(2));
 			w2.XOptions = ((global::Gtk.AttachOptions)(4));

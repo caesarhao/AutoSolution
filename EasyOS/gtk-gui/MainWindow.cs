@@ -53,7 +53,7 @@ public partial class MainWindow
 	
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 	
-	private global::Gtk.TreeView trVwPrj;
+	private global::Gtk.TreeView treeviewGlobal;
 	
 	private global::Gtk.Frame frmEditor;
 	
@@ -119,7 +119,7 @@ public partial class MainWindow
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
+		this.Title = global::Mono.Unix.Catalog.GetString ("AutoSolution-EasyOS");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox ();
@@ -154,10 +154,10 @@ public partial class MainWindow
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-		this.trVwPrj = new global::Gtk.TreeView ();
-		this.trVwPrj.CanFocus = true;
-		this.trVwPrj.Name = "trVwPrj";
-		this.GtkScrolledWindow.Add (this.trVwPrj);
+		this.treeviewGlobal = new global::Gtk.TreeView ();
+		this.treeviewGlobal.CanFocus = true;
+		this.treeviewGlobal.Name = "treeviewGlobal";
+		this.GtkScrolledWindow.Add (this.treeviewGlobal);
 		this.hpaned3.Add (this.GtkScrolledWindow);
 		global::Gtk.Paned.PanedChild w5 = ((global::Gtk.Paned.PanedChild)(this.hpaned3 [this.GtkScrolledWindow]));
 		w5.Resize = false;
@@ -173,7 +173,7 @@ public partial class MainWindow
 		this.frmEditor.Add (this.alignFrmEditor);
 		this.lblFrmEditor = new global::Gtk.Label ();
 		this.lblFrmEditor.Name = "lblFrmEditor";
-		this.lblFrmEditor.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>GtkFrame</b>");
+		this.lblFrmEditor.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Project</b>");
 		this.lblFrmEditor.UseMarkup = true;
 		this.frmEditor.LabelWidget = this.lblFrmEditor;
 		this.hpaned3.Add (this.frmEditor);
@@ -193,11 +193,11 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 572;
-		this.DefaultHeight = 434;
+		this.DefaultWidth = 790;
+		this.DefaultHeight = 472;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.AboutAction.Activated += new global::System.EventHandler (this.showAboutDialog);
-		this.trVwPrj.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.OnPrjTreeViewButtonPressEvent);
+		this.treeviewGlobal.CursorChanged += new global::System.EventHandler (this.OnTreeViewGlobalCursorChanged);
 	}
 }
