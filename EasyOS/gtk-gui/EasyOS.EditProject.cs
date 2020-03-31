@@ -10,11 +10,13 @@ namespace EasyOS
 		
 		private global::Gtk.ComboBox cmbbxLicense;
 		
-		private global::Gtk.Entry entry1;
+		private global::Gtk.Entry entryAuthor;
 		
-		private global::Gtk.Entry entry2;
+		private global::Gtk.Entry entryDescription;
 		
-		private global::Gtk.Entry entry3;
+		private global::Gtk.Entry entryName;
+		
+		private global::Gtk.Entry entryVersion;
 		
 		private global::Gtk.Label label1;
 		
@@ -25,6 +27,8 @@ namespace EasyOS
 		private global::Gtk.Label label4;
 		
 		private global::Gtk.Label label5;
+		
+		private global::Gtk.Label label6;
 
 		protected virtual void Build ()
 		{
@@ -33,63 +37,54 @@ namespace EasyOS
 			global::Stetic.BinContainer.Attach (this);
 			this.Name = "EasyOS.EditProject";
 			// Container child EasyOS.EditProject.Gtk.Container+ContainerChild
-			this.table1 = new global::Gtk.Table (((uint)(5)), ((uint)(2)), false);
-			this.table1.Name = "table1";
+			this.table1 = new global::Gtk.Table (((uint)(6)), ((uint)(2)), false);
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			this.table1.BorderWidth = ((uint)(9));
 			// Container child table1.Gtk.Table+TableChild
 			this.cmbbTarget = global::Gtk.ComboBox.NewText ();
-			this.cmbbTarget.AppendText (global::Mono.Unix.Catalog.GetString ("General C code"));
-			this.cmbbTarget.AppendText (global::Mono.Unix.Catalog.GetString ("General Python code"));
-			this.cmbbTarget.AppendText (global::Mono.Unix.Catalog.GetString ("General Lua code"));
 			this.cmbbTarget.Name = "cmbbTarget";
 			this.table1.Add (this.cmbbTarget);
 			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1 [this.cmbbTarget]));
-			w1.TopAttach = ((uint)(3));
-			w1.BottomAttach = ((uint)(4));
+			w1.TopAttach = ((uint)(4));
+			w1.BottomAttach = ((uint)(5));
 			w1.LeftAttach = ((uint)(1));
 			w1.RightAttach = ((uint)(2));
 			w1.XOptions = ((global::Gtk.AttachOptions)(4));
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.cmbbxLicense = global::Gtk.ComboBox.NewText ();
-			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("Private project"));
-			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("Apache License 2.0"));
-			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("BSD 2-Clause \"Simplified\" or \"FreeBSD\" license"));
-			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("BSD 3-Clause \"New\" or \"Revised\" license"));
-			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("GNU General Public License (GPL)"));
-			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("MIT license"));
-			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("Mozilla Public License 2.0"));
-			this.cmbbxLicense.AppendText (global::Mono.Unix.Catalog.GetString ("Eclipse Public License version 2.0"));
 			this.cmbbxLicense.Name = "cmbbxLicense";
 			this.table1.Add (this.cmbbxLicense);
 			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.cmbbxLicense]));
-			w2.TopAttach = ((uint)(2));
-			w2.BottomAttach = ((uint)(3));
+			w2.TopAttach = ((uint)(3));
+			w2.BottomAttach = ((uint)(4));
 			w2.LeftAttach = ((uint)(1));
 			w2.RightAttach = ((uint)(2));
 			w2.XOptions = ((global::Gtk.AttachOptions)(4));
 			w2.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.entry1 = new global::Gtk.Entry ();
-			this.entry1.CanFocus = true;
-			this.entry1.Name = "entry1";
-			this.entry1.IsEditable = true;
-			this.entry1.InvisibleChar = '●';
-			this.table1.Add (this.entry1);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.entry1]));
+			this.entryAuthor = new global::Gtk.Entry ();
+			this.entryAuthor.CanFocus = true;
+			this.entryAuthor.Name = "entryAuthor";
+			this.entryAuthor.IsEditable = true;
+			this.entryAuthor.InvisibleChar = '●';
+			this.table1.Add (this.entryAuthor);
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.entryAuthor]));
+			w3.TopAttach = ((uint)(2));
+			w3.BottomAttach = ((uint)(3));
 			w3.LeftAttach = ((uint)(1));
 			w3.RightAttach = ((uint)(2));
+			w3.XOptions = ((global::Gtk.AttachOptions)(4));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.entry2 = new global::Gtk.Entry ();
-			this.entry2.CanFocus = true;
-			this.entry2.Name = "entry2";
-			this.entry2.IsEditable = true;
-			this.entry2.InvisibleChar = '●';
-			this.table1.Add (this.entry2);
-			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1 [this.entry2]));
+			this.entryDescription = new global::Gtk.Entry ();
+			this.entryDescription.CanFocus = true;
+			this.entryDescription.Name = "entryDescription";
+			this.entryDescription.IsEditable = true;
+			this.entryDescription.InvisibleChar = '●';
+			this.table1.Add (this.entryDescription);
+			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1 [this.entryDescription]));
 			w4.TopAttach = ((uint)(1));
 			w4.BottomAttach = ((uint)(2));
 			w4.LeftAttach = ((uint)(1));
@@ -97,67 +92,88 @@ namespace EasyOS
 			w4.XOptions = ((global::Gtk.AttachOptions)(4));
 			w4.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.entry3 = new global::Gtk.Entry ();
-			this.entry3.CanFocus = true;
-			this.entry3.Name = "entry3";
-			this.entry3.IsEditable = true;
-			this.entry3.InvisibleChar = '●';
-			this.table1.Add (this.entry3);
-			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1 [this.entry3]));
-			w5.TopAttach = ((uint)(4));
-			w5.BottomAttach = ((uint)(5));
+			this.entryName = new global::Gtk.Entry ();
+			this.entryName.CanFocus = true;
+			this.entryName.Name = "entryName";
+			this.entryName.IsEditable = true;
+			this.entryName.InvisibleChar = '●';
+			this.table1.Add (this.entryName);
+			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1 [this.entryName]));
 			w5.LeftAttach = ((uint)(1));
 			w5.RightAttach = ((uint)(2));
-			w5.XOptions = ((global::Gtk.AttachOptions)(4));
 			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table1.Gtk.Table+TableChild
+			this.entryVersion = new global::Gtk.Entry ();
+			this.entryVersion.CanFocus = true;
+			this.entryVersion.Name = "entryVersion";
+			this.entryVersion.IsEditable = true;
+			this.entryVersion.InvisibleChar = '●';
+			this.table1.Add (this.entryVersion);
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.entryVersion]));
+			w6.TopAttach = ((uint)(5));
+			w6.BottomAttach = ((uint)(6));
+			w6.LeftAttach = ((uint)(1));
+			w6.RightAttach = ((uint)(2));
+			w6.XOptions = ((global::Gtk.AttachOptions)(4));
+			w6.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.label1 = new global::Gtk.Label ();
 			this.label1.Name = "label1";
 			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Name");
 			this.table1.Add (this.label1);
-			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.label1]));
-			w6.XOptions = ((global::Gtk.AttachOptions)(4));
-			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table1 [this.label1]));
+			w7.XOptions = ((global::Gtk.AttachOptions)(4));
+			w7.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.label2 = new global::Gtk.Label ();
 			this.label2.Name = "label2";
 			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Author");
 			this.table1.Add (this.label2);
-			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table1 [this.label2]));
-			w7.TopAttach = ((uint)(1));
-			w7.BottomAttach = ((uint)(2));
-			w7.XOptions = ((global::Gtk.AttachOptions)(4));
-			w7.YOptions = ((global::Gtk.AttachOptions)(4));
-			// Container child table1.Gtk.Table+TableChild
-			this.label3 = new global::Gtk.Label ();
-			this.label3.Name = "label3";
-			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("License");
-			this.table1.Add (this.label3);
-			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table1 [this.label3]));
+			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table1 [this.label2]));
 			w8.TopAttach = ((uint)(2));
 			w8.BottomAttach = ((uint)(3));
 			w8.XOptions = ((global::Gtk.AttachOptions)(4));
 			w8.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.label4 = new global::Gtk.Label ();
-			this.label4.Name = "label4";
-			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Target");
-			this.table1.Add (this.label4);
-			global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table1 [this.label4]));
+			this.label3 = new global::Gtk.Label ();
+			this.label3.Name = "label3";
+			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("License");
+			this.table1.Add (this.label3);
+			global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table1 [this.label3]));
 			w9.TopAttach = ((uint)(3));
 			w9.BottomAttach = ((uint)(4));
 			w9.XOptions = ((global::Gtk.AttachOptions)(4));
 			w9.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.label5 = new global::Gtk.Label ();
-			this.label5.Name = "label5";
-			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Version");
-			this.table1.Add (this.label5);
-			global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table1 [this.label5]));
+			this.label4 = new global::Gtk.Label ();
+			this.label4.Name = "label4";
+			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Target");
+			this.table1.Add (this.label4);
+			global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table1 [this.label4]));
 			w10.TopAttach = ((uint)(4));
 			w10.BottomAttach = ((uint)(5));
 			w10.XOptions = ((global::Gtk.AttachOptions)(4));
 			w10.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table1.Gtk.Table+TableChild
+			this.label5 = new global::Gtk.Label ();
+			this.label5.Name = "label5";
+			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Version");
+			this.table1.Add (this.label5);
+			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table1 [this.label5]));
+			w11.TopAttach = ((uint)(5));
+			w11.BottomAttach = ((uint)(6));
+			w11.XOptions = ((global::Gtk.AttachOptions)(4));
+			w11.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table1.Gtk.Table+TableChild
+			this.label6 = new global::Gtk.Label ();
+			this.label6.Name = "label6";
+			this.label6.LabelProp = global::Mono.Unix.Catalog.GetString ("Description");
+			this.table1.Add (this.label6);
+			global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.table1 [this.label6]));
+			w12.TopAttach = ((uint)(1));
+			w12.BottomAttach = ((uint)(2));
+			w12.XOptions = ((global::Gtk.AttachOptions)(4));
+			w12.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.Add (this.table1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

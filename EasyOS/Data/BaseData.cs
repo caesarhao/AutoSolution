@@ -12,6 +12,10 @@ namespace EasyOS
 		override public string ToString(){
 			return name;
 		}
+//		public abstract string SaveAsXml();
+//		public abstract string GenCodeC();
+//		public abstract string GenCodePython();
+//		public abstract string GenCodeLua();
 	}
 }
 

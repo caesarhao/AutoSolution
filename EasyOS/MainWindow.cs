@@ -50,12 +50,13 @@ public partial class MainWindow: Gtk.Window
 	{
 		TreeView tv = (TreeView)sender;
 		TreeModel tm = tv.Model;
-		int x, y;
+		TreeIter ti;
+
 		TreePath tp;
 		TreeViewColumn tvc;
 		tv.GetCursor (out tp, out tvc);
-		tv.GetPointer (out x, out y);
+		tm.GetIter (out ti, tp);
 
-		this.lblFrmEditor.Text = tm.NColumns.ToString();
+		this.lblFrmEditor.Text = tm.GetValue(ti, 0).ToString();
 	}
 }
