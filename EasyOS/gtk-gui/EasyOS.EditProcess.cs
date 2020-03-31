@@ -6,7 +6,7 @@ namespace EasyOS
 	{
 		private global::Gtk.Table table1;
 		
-		private global::Gtk.ComboBox combobox1;
+		private global::Gtk.ComboBox cmbbRaster;
 		
 		private global::Gtk.Entry entry1;
 		
@@ -33,10 +33,10 @@ namespace EasyOS
 			this.table1.ColumnSpacing = ((uint)(10));
 			this.table1.BorderWidth = ((uint)(10));
 			// Container child table1.Gtk.Table+TableChild
-			this.combobox1 = global::Gtk.ComboBox.NewText ();
-			this.combobox1.Name = "combobox1";
-			this.table1.Add (this.combobox1);
-			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1 [this.combobox1]));
+			this.cmbbRaster = global::Gtk.ComboBox.NewText ();
+			this.cmbbRaster.Name = "cmbbRaster";
+			this.table1.Add (this.cmbbRaster);
+			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1 [this.cmbbRaster]));
 			w1.TopAttach = ((uint)(1));
 			w1.BottomAttach = ((uint)(2));
 			w1.LeftAttach = ((uint)(1));
