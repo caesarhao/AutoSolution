@@ -4,11 +4,16 @@ using EasyOS;
 
 public partial class MainWindow: Gtk.Window
 {
+	private EditGeneric epgnr;
 	private EditProject eprj;
 	private EditProcess eprc;
+	Project pprj;
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
+		pprj = new Project ();
+		epgnr = new EditGeneric ();
+		epgnr.ShowAll ();
 		eprj = new EditProject ();
 		eprj.ShowAll ();
 		eprc = new EditProcess ();
@@ -64,34 +69,35 @@ public partial class MainWindow: Gtk.Window
 		if (1 == tm.GetPath (ti).Depth) { // Project level
 			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
 			this.alignFrmEditor.Child = eprj;
+			eprj.LoadData (pprj);
 		} else if (2 == tm.GetPath (ti).Depth) { // Sub levels, like Tasks
 			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
-			// show something
+			this.alignFrmEditor.Child = epgnr;
 		} else if (3 == tm.GetPath (ti).Depth) { // Sub levels, like Task
 			TreeIter tiL2;
 			tm.IterParent (out tiL2, ti);
 			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
 			switch ((string)tm.GetValue (tiL2, 0)) {
 			case "StateMachines":
-				this.alignFrmEditor.Child = eprc;
+				this.alignFrmEditor.Child = epgnr;
 				break;
 			case "Tasks":
-				this.alignFrmEditor.Child = eprc;
+				this.alignFrmEditor.Child = epgnr;
 				break;
 			case "Processes":
 				this.alignFrmEditor.Child = eprc;
 				break;
 			case "Messages":
-				this.alignFrmEditor.Child = eprc;
+				this.alignFrmEditor.Child = epgnr;
 				break;
 			case "CompuMethods":
-				this.alignFrmEditor.Child = eprc;
+				this.alignFrmEditor.Child = epgnr;
 				break;
 			case "Units":
-				this.alignFrmEditor.Child = eprc;
+				this.alignFrmEditor.Child = epgnr;
 				break;
 			default:
-				this.alignFrmEditor.Child = eprj;
+				this.alignFrmEditor.Child = epgnr;
 				break;
 			}
 		} else {

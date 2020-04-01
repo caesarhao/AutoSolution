@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace EasyOS
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class EditProcess : Gtk.Bin
+	public partial class EditGeneric : Gtk.Bin
 	{
-		public EditProcess ()
+		public EditGeneric ()
 		{
 			this.Build ();
-
 		}
 	}
 }

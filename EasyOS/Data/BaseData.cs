@@ -1,20 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EasyOS
 {
 	public abstract class BaseData
 	{
-		private static List<this.GetType()> allItems = new List<this.GetType()>();
+		private static List<BaseData> allItems = new List<BaseData> ();
 		public string name{ get; set;}
 		public string description{ get; set;}
 		public BaseData ()
 		{
+			if (null == allItems) {
+				allItems = new List<BaseData> ();
+			}
 			allItems.Add(this);
 		}
-		public static T[] GetAll<T where T: BaseData>(){
+		public static T[] GetAll<T>() where T: BaseData{
 			return (T[])allItems.ToArray();
 		}
-		public static T GetWithName<T where T: BaseData>(string name){
+		public static T GetWithName<T >(string name)where T: BaseData{
 			foreach(var item in allItems){
 				if (name.CompareTo(item.name) == 0){
 					return (T)item;

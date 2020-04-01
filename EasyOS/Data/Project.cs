@@ -24,13 +24,27 @@ namespace EasyOS
 			[Description("Eclipse Public License version 2.0")]
 			E_EPL
 		}
+		public enum ELanguage{
+			[Description("Language C")]
+			E_Lang_C = 0,
+			[Description("Language Python")]
+			E_Lang_Python = 1,
+			[Description("Language Lua")]
+			E_Lang_Lua = 2
+		}
 		public enum ETargetType{
-			[Description("General C code")]
-			E_General_C = 0,
-			[Description("General Python code")]
-			E_General_Python = 1,
-			[Description("General Lua code")]
-			E_General_Lua = 2
+			[Description("General C")]
+			E_C_General,
+			[Description("Arduino with C")]
+			E_C_Arduino,
+			[Description("General Python")]
+			E_Python_General,
+			[Description("PyS60")]
+			E_Python_PyS60,
+			[Description("General Lua")]
+			E_Lua_General,
+			[Description("NodeMCU with Lua")]
+			E_Lua_NodeMCU,
 		}
 		public string author;
 		public ELicense license;
@@ -50,6 +64,9 @@ namespace EasyOS
 			messages = new List<Message> ();
 			compuMethods = new List<CompuMethod> ();
 			units = new List<Unit> ();
+			// for test
+			name = "New Project";
+			version = "0.1";
 		}
 	}
 }

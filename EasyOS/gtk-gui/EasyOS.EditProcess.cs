@@ -6,19 +6,33 @@ namespace EasyOS
 	{
 		private global::Gtk.Table table1;
 		
-		private global::Gtk.ComboBox cmbbRaster;
+		private global::Gtk.Entry entryDescription;
 		
-		private global::Gtk.Entry entry1;
+		private global::Gtk.Entry entryName;
 		
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		
-		private global::Gtk.NodeView nodeview1;
+		private global::Gtk.NodeView nodeviewSendMessages;
+		
+		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
+		
+		private global::Gtk.NodeView nodeviewReceiveMessages;
 		
 		private global::Gtk.Label label1;
 		
-		private global::Gtk.Label label2;
+		private global::Gtk.Label label6;
+		
+		private global::Gtk.VBox vbox1;
 		
 		private global::Gtk.Label label3;
+		
+		private global::Gtk.Button buttonEditReceiveMessages;
+		
+		private global::Gtk.VBox vbox2;
+		
+		private global::Gtk.Label label4;
+		
+		private global::Gtk.Button buttonEditSendMessages;
 
 		protected virtual void Build ()
 		{
@@ -27,16 +41,19 @@ namespace EasyOS
 			global::Stetic.BinContainer.Attach (this);
 			this.Name = "EasyOS.EditProcess";
 			// Container child EasyOS.EditProcess.Gtk.Container+ContainerChild
-			this.table1 = new global::Gtk.Table (((uint)(3)), ((uint)(2)), false);
+			this.table1 = new global::Gtk.Table (((uint)(4)), ((uint)(2)), false);
 			this.table1.Name = "table1";
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(10));
 			this.table1.BorderWidth = ((uint)(10));
 			// Container child table1.Gtk.Table+TableChild
-			this.cmbbRaster = global::Gtk.ComboBox.NewText ();
-			this.cmbbRaster.Name = "cmbbRaster";
-			this.table1.Add (this.cmbbRaster);
-			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1 [this.cmbbRaster]));
+			this.entryDescription = new global::Gtk.Entry ();
+			this.entryDescription.CanFocus = true;
+			this.entryDescription.Name = "entryDescription";
+			this.entryDescription.IsEditable = true;
+			this.entryDescription.InvisibleChar = '●';
+			this.table1.Add (this.entryDescription);
+			global::Gtk.Table.TableChild w1 = ((global::Gtk.Table.TableChild)(this.table1 [this.entryDescription]));
 			w1.TopAttach = ((uint)(1));
 			w1.BottomAttach = ((uint)(2));
 			w1.LeftAttach = ((uint)(1));
@@ -44,13 +61,13 @@ namespace EasyOS
 			w1.XOptions = ((global::Gtk.AttachOptions)(4));
 			w1.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.entry1 = new global::Gtk.Entry ();
-			this.entry1.CanFocus = true;
-			this.entry1.Name = "entry1";
-			this.entry1.IsEditable = true;
-			this.entry1.InvisibleChar = '●';
-			this.table1.Add (this.entry1);
-			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.entry1]));
+			this.entryName = new global::Gtk.Entry ();
+			this.entryName.CanFocus = true;
+			this.entryName.Name = "entryName";
+			this.entryName.IsEditable = true;
+			this.entryName.InvisibleChar = '●';
+			this.table1.Add (this.entryName);
+			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.entryName]));
 			w2.LeftAttach = ((uint)(1));
 			w2.RightAttach = ((uint)(2));
 			w2.XOptions = ((global::Gtk.AttachOptions)(4));
@@ -60,45 +77,112 @@ namespace EasyOS
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.nodeview1 = new global::Gtk.NodeView ();
-			this.nodeview1.CanFocus = true;
-			this.nodeview1.Name = "nodeview1";
-			this.GtkScrolledWindow.Add (this.nodeview1);
+			this.nodeviewSendMessages = new global::Gtk.NodeView ();
+			this.nodeviewSendMessages.CanFocus = true;
+			this.nodeviewSendMessages.Name = "nodeviewSendMessages";
+			this.GtkScrolledWindow.Add (this.nodeviewSendMessages);
 			this.table1.Add (this.GtkScrolledWindow);
 			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1 [this.GtkScrolledWindow]));
-			w4.TopAttach = ((uint)(2));
-			w4.BottomAttach = ((uint)(3));
+			w4.TopAttach = ((uint)(3));
+			w4.BottomAttach = ((uint)(4));
 			w4.LeftAttach = ((uint)(1));
 			w4.RightAttach = ((uint)(2));
+			// Container child table1.Gtk.Table+TableChild
+			this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
+			this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
+			this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
+			this.nodeviewReceiveMessages = new global::Gtk.NodeView ();
+			this.nodeviewReceiveMessages.CanFocus = true;
+			this.nodeviewReceiveMessages.Name = "nodeviewReceiveMessages";
+			this.GtkScrolledWindow1.Add (this.nodeviewReceiveMessages);
+			this.table1.Add (this.GtkScrolledWindow1);
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.GtkScrolledWindow1]));
+			w6.TopAttach = ((uint)(2));
+			w6.BottomAttach = ((uint)(3));
+			w6.LeftAttach = ((uint)(1));
+			w6.RightAttach = ((uint)(2));
+			w6.XOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.label1 = new global::Gtk.Label ();
 			this.label1.Name = "label1";
 			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Name");
 			this.table1.Add (this.label1);
-			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1 [this.label1]));
-			w5.XOptions = ((global::Gtk.AttachOptions)(4));
-			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table1 [this.label1]));
+			w7.XOptions = ((global::Gtk.AttachOptions)(4));
+			w7.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.label2 = new global::Gtk.Label ();
-			this.label2.Name = "label2";
-			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Raster");
-			this.table1.Add (this.label2);
-			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.label2]));
-			w6.TopAttach = ((uint)(1));
-			w6.BottomAttach = ((uint)(2));
-			w6.XOptions = ((global::Gtk.AttachOptions)(4));
-			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			this.label6 = new global::Gtk.Label ();
+			this.label6.Name = "label6";
+			this.label6.LabelProp = global::Mono.Unix.Catalog.GetString ("Description");
+			this.table1.Add (this.label6);
+			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table1 [this.label6]));
+			w8.TopAttach = ((uint)(1));
+			w8.BottomAttach = ((uint)(2));
+			w8.XOptions = ((global::Gtk.AttachOptions)(4));
+			w8.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
+			this.vbox1 = new global::Gtk.VBox ();
+			this.vbox1.Name = "vbox1";
+			this.vbox1.Spacing = 6;
+			// Container child vbox1.Gtk.Box+BoxChild
 			this.label3 = new global::Gtk.Label ();
 			this.label3.Name = "label3";
 			this.label3.Yalign = 0F;
-			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Messages");
-			this.table1.Add (this.label3);
-			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table1 [this.label3]));
-			w7.TopAttach = ((uint)(2));
-			w7.BottomAttach = ((uint)(3));
-			w7.XOptions = ((global::Gtk.AttachOptions)(4));
-			w7.YOptions = ((global::Gtk.AttachOptions)(4));
+			this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("ReceiveMessages");
+			this.vbox1.Add (this.label3);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.label3]));
+			w9.Position = 0;
+			w9.Expand = false;
+			w9.Fill = false;
+			// Container child vbox1.Gtk.Box+BoxChild
+			this.buttonEditReceiveMessages = new global::Gtk.Button ();
+			this.buttonEditReceiveMessages.CanFocus = true;
+			this.buttonEditReceiveMessages.Name = "buttonEditReceiveMessages";
+			this.buttonEditReceiveMessages.UseUnderline = true;
+			this.buttonEditReceiveMessages.Label = global::Mono.Unix.Catalog.GetString ("Edit");
+			this.vbox1.Add (this.buttonEditReceiveMessages);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.buttonEditReceiveMessages]));
+			w10.Position = 1;
+			w10.Expand = false;
+			w10.Fill = false;
+			this.table1.Add (this.vbox1);
+			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table1 [this.vbox1]));
+			w11.TopAttach = ((uint)(2));
+			w11.BottomAttach = ((uint)(3));
+			w11.XOptions = ((global::Gtk.AttachOptions)(4));
+			w11.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table1.Gtk.Table+TableChild
+			this.vbox2 = new global::Gtk.VBox ();
+			this.vbox2.Name = "vbox2";
+			this.vbox2.Spacing = 6;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.label4 = new global::Gtk.Label ();
+			this.label4.Name = "label4";
+			this.label4.Yalign = 0F;
+			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("SendMessages");
+			this.vbox2.Add (this.label4);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.label4]));
+			w12.Position = 0;
+			w12.Expand = false;
+			w12.Fill = false;
+			// Container child vbox2.Gtk.Box+BoxChild
+			this.buttonEditSendMessages = new global::Gtk.Button ();
+			this.buttonEditSendMessages.CanFocus = true;
+			this.buttonEditSendMessages.Name = "buttonEditSendMessages";
+			this.buttonEditSendMessages.UseUnderline = true;
+			this.buttonEditSendMessages.Label = global::Mono.Unix.Catalog.GetString ("Edit");
+			this.vbox2.Add (this.buttonEditSendMessages);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.buttonEditSendMessages]));
+			w13.Position = 1;
+			w13.Expand = false;
+			w13.Fill = false;
+			this.table1.Add (this.vbox2);
+			global::Gtk.Table.TableChild w14 = ((global::Gtk.Table.TableChild)(this.table1 [this.vbox2]));
+			w14.TopAttach = ((uint)(3));
+			w14.BottomAttach = ((uint)(4));
+			w14.XOptions = ((global::Gtk.AttachOptions)(4));
+			w14.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.Add (this.table1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

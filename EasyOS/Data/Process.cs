@@ -10,8 +10,8 @@ namespace EasyOS
 		public List<Message> sendMessages;
 		public Process ()
 		{
-			receiveMessages = new List<MessageAccess> ();
-			sendMessages = new List<MessageAccess> ();
+			receiveMessages = new List<Message> ();
+			sendMessages = new List<Message> ();
 		}
 	}
 }
