@@ -205,6 +205,7 @@ namespace EasyOS
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.cmbbLanguage.Changed += new global::System.EventHandler (this.OnCmbbLanguageChanged);
 		}
 	}
 }

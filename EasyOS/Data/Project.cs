@@ -37,14 +37,20 @@ namespace EasyOS
 			E_C_General,
 			[Description("Arduino with C")]
 			E_C_Arduino,
+			[Description("C EndFlag")]
+			E_C_EndFlag,
 			[Description("General Python")]
 			E_Python_General,
 			[Description("PyS60")]
 			E_Python_PyS60,
+			[Description("Python EndFlag")]
+			E_Python_EndFlag,
 			[Description("General Lua")]
 			E_Lua_General,
 			[Description("NodeMCU with Lua")]
 			E_Lua_NodeMCU,
+			[Description("Lua EndFlag")]
+			E_Lua_EndFlag,
 		}
 		public string author;
 		public ELicense license;

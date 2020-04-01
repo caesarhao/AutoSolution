@@ -327,6 +327,7 @@
             <property name="MemberName" />
             <property name="IsTextCombo">True</property>
             <property name="Items" translatable="yes" />
+            <signal name="Changed" handler="OnCmbbLanguageChanged" />
           </widget>
           <packing>
             <property name="TopAttach">4</property>
