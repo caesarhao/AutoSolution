@@ -11,13 +11,13 @@ namespace EasyOS
 		{
 			allItems.Add(this);
 		}
-		public static BaseData[] GetAll(){
-			return allItems.ToArray();
+		public static T[] GetAll<T where T: BaseData>(){
+			return (T[])allItems.ToArray();
 		}
-		public static BaseData GetWithName(string name){
+		public static T GetWithName<T where T: BaseData>(string name){
 			foreach(var item in allItems){
 				if (name.CompareTo(item.name) == 0){
-					return item;
+					return (T)item;
 				}
 			}
 			return null;
