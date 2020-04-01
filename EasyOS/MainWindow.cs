@@ -17,14 +17,12 @@ public partial class MainWindow: Gtk.Window
 		Gtk.TreeStore ts = new Gtk.TreeStore (typeof (string));
 		this.treeviewGlobal.Model = ts;
 		Gtk.TreeIter prj = ts.AppendValues("Project");
-		Gtk.TreeIter statemachines = ts.AppendValues (prj, "StateMachines");
-		Gtk.TreeIter tasks = ts.AppendValues (prj, "Tasks");
-		Gtk.TreeIter processes = ts.AppendValues (prj, "Processes");
-		Gtk.TreeIter prc = ts.AppendValues (processes, "Prc 1");
 		Gtk.TreeIter messages = ts.AppendValues (prj, "Messages");
-		Gtk.TreeIter compumethods = ts.AppendValues (prj, "CompuMethods");
-		Gtk.TreeIter units = ts.AppendValues (prj, "Units");
-
+		Gtk.TreeIter processes = ts.AppendValues (prj, "Processes");
+		// for test
+		Gtk.TreeIter prc = ts.AppendValues (processes, "Prc 1");
+		Gtk.TreeIter tasks = ts.AppendValues (prj, "Tasks");
+		
 		Gtk.TreeViewColumn prjColumn = new Gtk.TreeViewColumn ();
 		prjColumn.Title = "Project";
 		Gtk.CellRendererText projectCell = new Gtk.CellRendererText ();
