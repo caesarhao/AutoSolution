@@ -1,18 +1,16 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace EasyOS
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class EditProcess : Gtk.Bin
+	public partial class EditTask : Gtk.Bin
 	{
-		public EditProcess ()
+		public EditTask ()
 		{
 			this.Build ();
-
 		}
 		public bool LoadData(BaseData data=null){
-			Process dat = (Process)data;
+			Task dat = (Task)data;
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
 

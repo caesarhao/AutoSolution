@@ -20,19 +20,33 @@ namespace EasyOS
 				this.cmbbLanguage.AppendText (despAtt.Description);
 			}
 		}
-		public bool LoadData(BaseData data){
+		public bool LoadData(BaseData data=null){
 			Project dat = (Project)data;
 			this.entryName.Text = dat.name;
+			this.entryDescription.Text = dat.description;
+			this.cmbbxLicense.Active = (int)dat.license;
+			this.cmbbLanguage.Active = (int)dat.language;
+			RefreshCmbbTarget ();
+			switch (dat.language) {
+			case Project.ELanguage.E_Lang_C:
+				this.cmbbTarget.Active = (int)dat.target - (int)Project.ELanguage.E_Lang_C;
+				break;
+			case Project.ELanguage.E_Lang_Python:
+				this.cmbbTarget.Active = (int)dat.target - (int)Project.ELanguage.E_Lang_Python;
+				break;
+			case Project.ELanguage.E_Lang_Lua:
+				this.cmbbTarget.Active = (int)dat.target - (int)Project.ELanguage.E_Lang_Lua;
+				break;
+			default:
+				break;
+			}
+
 			this.entryVersion.Text = dat.version;
 			return true;
 		}
-
-		protected void OnCmbbLanguageChanged (object sender, EventArgs e)
-		{
-			ComboBox senderr = (ComboBox)sender;
-			this.entryAuthor.Text = this.cmbbTarget.Model.IterNChildren().ToString();
-			int starter = (int)Project.ETargetType.E_C_General, ender=(int)Project.ETargetType.E_Lua_EndFlag;
-			switch ((Project.ELanguage)senderr.Active) {
+		private void RefreshCmbbTarget(){
+			int starter = 0, ender = 0;
+			switch ((Project.ELanguage)this.cmbbLanguage.Active) {
 			case Project.ELanguage.E_Lang_C:
 				starter = (int)Project.ETargetType.E_C_General;
 				ender = (int)Project.ETargetType.E_C_EndFlag;
@@ -58,6 +72,12 @@ namespace EasyOS
 				DescriptionAttribute despAtt = (DescriptionAttribute)item.GetType ().GetMember (item.ToString ()) [0].GetCustomAttributes (typeof(DescriptionAttribute), false) [0];
 				this.cmbbTarget.AppendText (despAtt.Description);
 			}
+		}
+
+		protected void OnCmbbLanguageChanged (object sender, EventArgs e)
+		{
+			ComboBox senderr = (ComboBox)sender;
+			RefreshCmbbTarget ();
 		}
 	}
 }

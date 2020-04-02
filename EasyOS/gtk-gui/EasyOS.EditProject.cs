@@ -45,7 +45,7 @@ namespace EasyOS
 			this.table1.Name = "table1";
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
-			this.table1.BorderWidth = ((uint)(9));
+			this.table1.BorderWidth = ((uint)(10));
 			// Container child table1.Gtk.Table+TableChild
 			this.cmbbLanguage = global::Gtk.ComboBox.NewText ();
 			this.cmbbLanguage.Name = "cmbbLanguage";

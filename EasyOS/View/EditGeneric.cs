@@ -9,6 +9,11 @@ namespace EasyOS
 		{
 			this.Build ();
 		}
+		public bool LoadData(BaseData data = null){
+			this.entryName.Text = "A new name?";
+			this.entryDescription.Text = "Some Description here";
+			return true;
+		}
 	}
 }
 

@@ -54,6 +54,7 @@ namespace EasyOS
 		}
 		public string author;
 		public ELicense license;
+		public ELanguage language;
 		public ETargetType target;
 		public string version;
 		public List<StateMachine> stateMachines;

@@ -72,6 +72,10 @@
     <Compile Include="Data\XmlHelper.cs" />
     <Compile Include="View\EditGeneric.cs" />
     <Compile Include="gtk-gui\EasyOS.EditGeneric.cs" />
+    <Compile Include="View\EditTask.cs" />
+    <Compile Include="gtk-gui\EasyOS.EditTask.cs" />
+    <Compile Include="View\EditMessage.cs" />
+    <Compile Include="gtk-gui\EasyOS.EditMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
