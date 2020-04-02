@@ -19,10 +19,6 @@ namespace EasyOS
 				DescriptionAttribute despAtt = (DescriptionAttribute)item.GetType ().GetMember (item.ToString ()) [0].GetCustomAttributes (typeof(DescriptionAttribute), false) [0];
 				this.cmbbLanguage.AppendText (despAtt.Description);
 			}
-			foreach (var item in Enum.GetValues(typeof(EasyOS.Project.ETargetType))) {
-				DescriptionAttribute despAtt = (DescriptionAttribute)item.GetType ().GetMember (item.ToString ()) [0].GetCustomAttributes (typeof(DescriptionAttribute), false) [0];
-				this.cmbbTarget.AppendText (despAtt.Description);
-			}
 		}
 		public bool LoadData(BaseData data){
 			Project dat = (Project)data;
@@ -34,7 +30,7 @@ namespace EasyOS
 		protected void OnCmbbLanguageChanged (object sender, EventArgs e)
 		{
 			ComboBox senderr = (ComboBox)sender;
-			this.entryAuthor.Text = senderr.Active.ToString();
+			this.entryAuthor.Text = this.cmbbTarget.Model.IterNChildren().ToString();
 			int starter = (int)Project.ETargetType.E_C_General, ender=(int)Project.ETargetType.E_Lua_EndFlag;
 			switch ((Project.ELanguage)senderr.Active) {
 			case Project.ELanguage.E_Lang_C:
@@ -53,9 +49,10 @@ namespace EasyOS
 				break;
 			}
 			// clearn combobox list
-//			for (int i = 0; i < this.cmbbTarget.Model.; i++) {
-//				this.cmbbTarget.RemoveText(i);
-//			}
+			int nrows = this.cmbbTarget.Model.IterNChildren();
+			for (int i = 0; i < nrows; i++) {
+				this.cmbbTarget.RemoveText(0);
+			}
 			for (int i = starter; i < ender; i++) {
 				Project.ETargetType item = (Project.ETargetType)i;
 				DescriptionAttribute despAtt = (DescriptionAttribute)item.GetType ().GetMember (item.ToString ()) [0].GetCustomAttributes (typeof(DescriptionAttribute), false) [0];
