@@ -11,7 +11,7 @@ namespace EasyOS
 		}
 		public bool LoadData(AbstractData data = null){
 			this.entryName.Text = data.name;
-			this.entryDescription.Text = "Some Description here";
+			this.entryDescription.Text = data.description;
 			return true;
 		}
 	}

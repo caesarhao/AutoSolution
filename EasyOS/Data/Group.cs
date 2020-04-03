@@ -9,7 +9,13 @@ namespace EasyOS
 		public Group ()
 		{
 			elements = new List<T> ();
-			this.name = typeof(T).Name;
+			if (typeof(T).Name.EndsWith("s")){
+				this.name = typeof(T).Name + "es";
+
+			}else{
+				this.name = typeof(T).Name + "s";
+			}
+			this.description = "Folder for saving " + this.name;
 		}
 	}
 }

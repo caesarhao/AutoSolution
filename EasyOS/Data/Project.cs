@@ -58,21 +58,21 @@ namespace EasyOS
 		public ETargetType target;
 		public string version;
 
-		public Group<Unit> units;
-		public Group<CompuMethod> compuMethods;
-		public Group<Message> messages;
-		public Group<Process> processes;
-		public Group<StateMachine> stateMachines;
-		public Group<Task> tasks;
+		public Group<Unit> Units;
+		public Group<CompuMethod> CompuMethods;
+		public Group<Message> Messages;
+		public Group<Process> Processes;
+		public Group<StateMachine> StateMachines;
+		public Group<Task> Tasks;
 
 		public Project ()
 		{
-			units = new Group<Unit> ();
-			compuMethods = new Group<CompuMethod> ();
-			messages = new Group<Message> ();
-			processes = new Group<Process> ();
-			stateMachines = new Group<StateMachine> ();
-			tasks = new Group<Task> ();
+			Units = new Group<Unit> ();
+			CompuMethods = new Group<CompuMethod> ();
+			Messages = new Group<Message> ();
+			Processes = new Group<Process> ();
+			StateMachines = new Group<StateMachine> ();
+			Tasks = new Group<Task> ();
 			// for test
 			name = "New Project";
 			version = "0.1";
