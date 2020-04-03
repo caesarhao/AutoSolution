@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace EasyOS
 {
-	public class Process:BaseData
+	public class Process:AbstractData
 	{
 		public List<Message> receiveMessages;
 		public List<Message> sendMessages;

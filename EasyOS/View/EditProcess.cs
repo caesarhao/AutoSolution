@@ -11,7 +11,7 @@ namespace EasyOS
 			this.Build ();
 
 		}
-		public bool LoadData(BaseData data=null){
+		public bool LoadData(AbstractData data=null){
 			Process dat = (Process)data;
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;

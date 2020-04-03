@@ -20,7 +20,7 @@ namespace EasyOS
 				this.cmbbLanguage.AppendText (despAtt.Description);
 			}
 		}
-		public bool LoadData(BaseData data=null){
+		public bool LoadData(AbstractData data=null){
 			Project dat = (Project)data;
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;

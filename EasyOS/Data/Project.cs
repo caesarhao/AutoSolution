@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace EasyOS
 {
-	public class Project:BaseData
+	public class Project:AbstractData
 	{
 		public enum ELicense{
 			[Description("Private project")]
@@ -57,20 +57,22 @@ namespace EasyOS
 		public ELanguage language;
 		public ETargetType target;
 		public string version;
-		public List<StateMachine> stateMachines;
-		public List<Task> tasks;
-		public List<Process> processes;
-		public List<Message> messages;
-		public List<CompuMethod> compuMethods;
-		public List<Unit> units;
+
+		public Group<Unit> units;
+		public Group<CompuMethod> compuMethods;
+		public Group<Message> messages;
+		public Group<Process> processes;
+		public Group<StateMachine> stateMachines;
+		public Group<Task> tasks;
+
 		public Project ()
 		{
-			stateMachines = new List<StateMachine> ();
-			tasks = new List<Task> ();
-			processes = new List<Process> ();
-			messages = new List<Message> ();
-			compuMethods = new List<CompuMethod> ();
-			units = new List<Unit> ();
+			units = new Group<Unit> ();
+			compuMethods = new Group<CompuMethod> ();
+			messages = new Group<Message> ();
+			processes = new Group<Process> ();
+			stateMachines = new Group<StateMachine> ();
+			tasks = new Group<Task> ();
 			// for test
 			name = "New Project";
 			version = "0.1";

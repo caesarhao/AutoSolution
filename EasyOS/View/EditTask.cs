@@ -9,7 +9,7 @@ namespace EasyOS
 		{
 			this.Build ();
 		}
-		public bool LoadData(BaseData data=null){
+		public bool LoadData(AbstractData data=null){
 			Task dat = (Task)data;
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;

@@ -2,7 +2,7 @@
 
 namespace EasyOS
 {
-	public class Unit:BaseData
+	public class Unit:AbstractData
 	{
 		string showAs{ get; set;}
 		public Unit ()

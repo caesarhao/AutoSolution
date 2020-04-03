@@ -4,7 +4,7 @@ using EasyOS;
 
 public partial class MainWindow: Gtk.Window
 {
-	private EditGeneric egnr;
+	private EditGroup egrp;
 	private EditProject eprj;
 	private EditMessage emsg;
 	private EditProcess eprc;
@@ -15,8 +15,8 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build ();
 
-		egnr = new EditGeneric ();
-		egnr.ShowAll ();
+		egrp = new EditGroup ();
+		egrp.ShowAll ();
 		eprj = new EditProject ();
 		eprj.ShowAll ();
 		emsg = new EditMessage ();
@@ -49,6 +49,7 @@ public partial class MainWindow: Gtk.Window
 
 		this.alignFrmEditor.Child = eprj;
 		this.frmEditor.ShowAll ();
+		this.frmEditor.Visible = false;
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -81,14 +82,15 @@ public partial class MainWindow: Gtk.Window
 			eprj.LoadData (GPrj);
 		} else if (2 == tm.GetPath (ti).Depth) { // Sub levels, like Tasks
 			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
-			this.alignFrmEditor.Child = egnr;
+			this.alignFrmEditor.Child = egrp;
+			egrp.LoadData (GPrj.tasks);
 		} else if (3 == tm.GetPath (ti).Depth) { // Sub levels, like Task
 			TreeIter tiL2;
 			tm.IterParent (out tiL2, ti);
 			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
 			switch ((string)tm.GetValue (tiL2, 0)) {
 			case "StateMachines":
-				this.alignFrmEditor.Child = egnr;
+				this.alignFrmEditor.Child = egrp;
 				break;
 			case "Tasks":
 				this.alignFrmEditor.Child = etsk;
@@ -100,13 +102,13 @@ public partial class MainWindow: Gtk.Window
 				this.alignFrmEditor.Child = emsg;
 				break;
 			case "CompuMethods":
-				this.alignFrmEditor.Child = egnr;
+				this.alignFrmEditor.Child = egrp;
 				break;
 			case "Units":
-				this.alignFrmEditor.Child = egnr;
+				this.alignFrmEditor.Child = egrp;
 				break;
 			default:
-				this.alignFrmEditor.Child = egnr;
+				this.alignFrmEditor.Child = egrp;
 				break;
 			}
 		} else {
@@ -117,5 +119,6 @@ public partial class MainWindow: Gtk.Window
 	{
 		this.GPrj = new Project ();
 		treeviewGlobal.Visible = true;
+		this.frmEditor.Visible = true;
 	}
 }

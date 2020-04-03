@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EasyOS
 {
-	public class CompuMethod:BaseData
+	public class CompuMethod:AbstractData
 	{
 		public Unit unit{get; set;}
 		public CompuMethod ()

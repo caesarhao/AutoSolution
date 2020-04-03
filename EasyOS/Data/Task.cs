@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace EasyOS
 {
-	public class Task:BaseData
+	public class Task:AbstractData
 	{
 		public enum ERaster{
 			[Description("ONCE")]

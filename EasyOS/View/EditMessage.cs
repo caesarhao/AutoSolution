@@ -13,7 +13,7 @@ namespace EasyOS
 			}
 
 		}
-		public bool LoadData(BaseData data=null){
+		public bool LoadData(AbstractData data=null){
 			Message dat = (Message)data;
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;

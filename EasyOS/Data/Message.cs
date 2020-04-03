@@ -2,7 +2,7 @@
 
 namespace EasyOS
 {
-	public class Message:BaseData
+	public class Message:AbstractData
 	{
 		public BaseType type{ get; set;}
 		public string unit{get; set;}

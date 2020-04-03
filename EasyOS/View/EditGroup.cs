@@ -3,14 +3,14 @@
 namespace EasyOS
 {
 	[System.ComponentModel.ToolboxItem (true)]
-	public partial class EditGeneric : Gtk.Bin
+	public partial class EditGroup : Gtk.Bin
 	{
-		public EditGeneric ()
+		public EditGroup ()
 		{
 			this.Build ();
 		}
-		public bool LoadData(BaseData data = null){
-			this.entryName.Text = "A new name?";
+		public bool LoadData(AbstractData data = null){
+			this.entryName.Text = data.name;
 			this.entryDescription.Text = "Some Description here";
 			return true;
 		}

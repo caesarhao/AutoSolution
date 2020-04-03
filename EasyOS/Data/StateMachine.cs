@@ -2,7 +2,7 @@
 
 namespace EasyOS
 {
-	public class StateMachine:BaseData
+	public class StateMachine:AbstractData
 	{
 		public StateMachine ()
 		{

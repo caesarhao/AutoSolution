@@ -855,7 +855,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Bin" id="EasyOS.EditGeneric" design-size="458 376">
+  <widget class="Gtk.Bin" id="EasyOS.EditGroup" design-size="458 376">
     <property name="MemberName" />
     <property name="Visible">False</property>
     <child>
