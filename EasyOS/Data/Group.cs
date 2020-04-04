@@ -17,6 +17,9 @@ namespace EasyOS
 			}
 			this.description = "Folder for saving " + this.name;
 		}
+		public void AddRange(IEnumerable<T> collection){
+			elements.AddRange (collection);
+		}
 	}
 }
 

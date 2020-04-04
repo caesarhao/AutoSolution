@@ -43,6 +43,7 @@ public partial class MainWindow: Gtk.Window
 
 	public void NewProject(){
 		this.GPrj = new Project ();
+		//GPrj.Units.elements.AddRange (EasyOS.Unit.CreateBaseUnits ());
 		if (treeviewGlobal.Columns.Length > 0) {
 			treeviewGlobal.RemoveColumn (treeviewGlobal.GetColumn (0));
 		}
