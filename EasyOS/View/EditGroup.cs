@@ -1,4 +1,6 @@
 ﻿using System;
+using Gtk;
+using System.Collections.Generic;
 
 namespace EasyOS
 {

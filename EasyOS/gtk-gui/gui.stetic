@@ -179,7 +179,6 @@
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="ShowScrollbars">True</property>
-                    <signal name="CursorChanged" handler="OnTreeViewGlobalCursorChanged" />
                   </widget>
                 </child>
               </widget>
@@ -229,10 +228,28 @@
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <placeholder />
+              <widget class="Gtk.Label" id="statusBarLabel1">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">label1</property>
+              </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
             <child>
-              <placeholder />
+              <widget class="Gtk.Label" id="statusBarLabel2">
+                <property name="MemberName" />
+                <property name="LabelProp" translatable="yes">label2</property>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
           </widget>
           <packing>

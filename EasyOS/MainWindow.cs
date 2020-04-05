@@ -14,6 +14,9 @@ public partial class MainWindow: Gtk.Window
 	public Project GPrj = null;
 	public Gtk.TreeStore ts = null;
 
+	public Gtk.TreeIter TIprj, TIunits, TIcompumethods,TImessages,TIprocesses,TItasks;
+
+
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
@@ -34,6 +37,14 @@ public partial class MainWindow: Gtk.Window
 		ts = new Gtk.TreeStore (typeof(string));
 		this.treeviewGlobal.Model = ts;
 
+		Gtk.TreeViewColumn prjColumn = new Gtk.TreeViewColumn ();
+		prjColumn.Title = "EasyOS";
+
+		Gtk.CellRendererText projectCell = new Gtk.CellRendererText ();
+		prjColumn.PackStart (projectCell, true);
+		prjColumn.AddAttribute (projectCell, "text", 0);
+		treeviewGlobal.AppendColumn (prjColumn);
+
 		treeviewGlobal.Visible = false;
 		this.alignFrmEditor.Child = eprj;
 		this.frmEditor.ShowAll ();
@@ -41,31 +52,27 @@ public partial class MainWindow: Gtk.Window
 
 	}
 
+	public void LoadTreeSubElements(){
+		foreach (var item in GPrj.Units.GetAll()) {
+			ts.AppendValues (TIunits, item.name);
+		}
+	}
+
 	public void NewProject(){
 		this.GPrj = new Project ();
 		//GPrj.Units.elements.AddRange (EasyOS.Unit.CreateBaseUnits ());
-		if (treeviewGlobal.Columns.Length > 0) {
-			treeviewGlobal.RemoveColumn (treeviewGlobal.GetColumn (0));
-		}
 		ts.Clear ();
-		Gtk.TreeIter TIprj = ts.AppendValues(this.GPrj.name);
-		Gtk.TreeIter TIunits = ts.AppendValues (TIprj, this.GPrj.Units.name);
-		Gtk.TreeIter TIcompumethods = ts.AppendValues (TIprj, this.GPrj.CompuMethods.name);
-		Gtk.TreeIter TImessages = ts.AppendValues (TIprj, this.GPrj.Messages.name);
+		TIprj = ts.AppendValues(this.GPrj.name);
+		TIunits = ts.AppendValues (TIprj, this.GPrj.Units.name);
+		TIcompumethods = ts.AppendValues (TIprj, this.GPrj.CompuMethods.name);
+		TImessages = ts.AppendValues (TIprj, this.GPrj.Messages.name);
 		//Gtk.TreeIter msg = ts.AppendValues (messages, "msg 1");
-		Gtk.TreeIter TIprocesses = ts.AppendValues (TIprj, this.GPrj.Processes.name);
+		TIprocesses = ts.AppendValues (TIprj, this.GPrj.Processes.name);
 		//Gtk.TreeIter prc = ts.AppendValues (processes, "Prc 1");
-		Gtk.TreeIter TItasks = ts.AppendValues (TIprj, this.GPrj.Tasks.name);
+		TItasks = ts.AppendValues (TIprj, this.GPrj.Tasks.name);
 		//Gtk.TreeIter tsk1 = ts.AppendValues (tasks, "Tsk 1");
-		Gtk.TreeViewColumn prjColumn = new Gtk.TreeViewColumn ();
-		prjColumn.Title = "EasyOS";
 
-		Gtk.CellRendererText projectCell = new Gtk.CellRendererText ();
-		prjColumn.PackStart (projectCell, true);
-		prjColumn.AddAttribute (projectCell, "text", 0);
-		//
-		// Add the columns to the TreeView
-		treeviewGlobal.AppendColumn (prjColumn);
+		LoadTreeSubElements ();
 
 		treeviewGlobal.Visible = true;
 		this.frmEditor.Visible = true;
@@ -158,5 +165,17 @@ public partial class MainWindow: Gtk.Window
 	protected void OnNewPrjActivated (object sender, EventArgs e)
 	{
 		NewProject ();
+	}
+
+	protected void OnTreeViewGlobalBtnPrs (object o, ButtonPressEventArgs args)
+	{
+		this.statusBarLabel1.Text = o.GetType ().FullName;
+		this.statusBarLabel2.Text = args.GetType ().FullName;
+	}
+
+	protected void OnTreeViewGlobalPopupMenu (object o, PopupMenuArgs args)
+	{
+		this.statusBarLabel1.Text = o.GetType ().FullName;
+		this.statusBarLabel2.Text = args.GetType ().FullName;
 	}
 }

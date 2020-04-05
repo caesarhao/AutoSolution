@@ -62,6 +62,10 @@ public partial class MainWindow
 	private global::Gtk.Label lblFrmEditor;
 	
 	private global::Gtk.Statusbar statusbar1;
+	
+	private global::Gtk.Label statusBarLabel1;
+	
+	private global::Gtk.Label statusBarLabel2;
 
 	protected virtual void Build ()
 	{
@@ -184,11 +188,29 @@ public partial class MainWindow
 		this.statusbar1 = new global::Gtk.Statusbar ();
 		this.statusbar1.Name = "statusbar1";
 		this.statusbar1.Spacing = 6;
-		this.vbox1.Add (this.statusbar1);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
-		w9.Position = 4;
+		// Container child statusbar1.Gtk.Box+BoxChild
+		this.statusBarLabel1 = new global::Gtk.Label ();
+		this.statusBarLabel1.Name = "statusBarLabel1";
+		this.statusBarLabel1.LabelProp = global::Mono.Unix.Catalog.GetString ("label1");
+		this.statusbar1.Add (this.statusBarLabel1);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.statusbar1 [this.statusBarLabel1]));
+		w9.Position = 1;
 		w9.Expand = false;
 		w9.Fill = false;
+		// Container child statusbar1.Gtk.Box+BoxChild
+		this.statusBarLabel2 = new global::Gtk.Label ();
+		this.statusBarLabel2.Name = "statusBarLabel2";
+		this.statusBarLabel2.LabelProp = global::Mono.Unix.Catalog.GetString ("label2");
+		this.statusbar1.Add (this.statusBarLabel2);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.statusbar1 [this.statusBarLabel2]));
+		w10.Position = 2;
+		w10.Expand = false;
+		w10.Fill = false;
+		this.vbox1.Add (this.statusbar1);
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
+		w11.Position = 4;
+		w11.Expand = false;
+		w11.Fill = false;
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -200,6 +222,5 @@ public partial class MainWindow
 		this.fileAction.Activated += new global::System.EventHandler (this.OnNewPrjActivated);
 		this.AboutAction.Activated += new global::System.EventHandler (this.showAboutDialog);
 		this.NewAction.Activated += new global::System.EventHandler (this.OnNewPrjActivated);
-		this.treeviewGlobal.CursorChanged += new global::System.EventHandler (this.OnTreeViewGlobalCursorChanged);
 	}
 }
