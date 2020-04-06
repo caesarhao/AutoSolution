@@ -173,9 +173,4 @@ public partial class MainWindow: Gtk.Window
 		this.statusBarLabel2.Text = args.GetType ().FullName;
 	}
 
-	protected void OnTreeViewGlobalPopupMenu (object o, PopupMenuArgs args)
-	{
-		this.statusBarLabel1.Text = o.GetType ().FullName;
-		this.statusBarLabel2.Text = args.GetType ().FullName;
-	}
 }

@@ -222,5 +222,7 @@ public partial class MainWindow
 		this.fileAction.Activated += new global::System.EventHandler (this.OnNewPrjActivated);
 		this.AboutAction.Activated += new global::System.EventHandler (this.showAboutDialog);
 		this.NewAction.Activated += new global::System.EventHandler (this.OnNewPrjActivated);
+		this.treeviewGlobal.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.OnTreeViewGlobalBtnPrs);
+		this.treeviewGlobal.CursorChanged += new global::System.EventHandler (this.OnTreeViewGlobalCursorChanged);
 	}
 }

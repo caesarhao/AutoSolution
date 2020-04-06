@@ -6,15 +6,14 @@ namespace EasyOS
 	public class Group<T> : AbstractData where T:AbstractData
 	{
 		private List<T> elements;
+		private static string name4check;
 
-		private static bool NameIsSame(T obj, string name)
-		{
-			return obj.name.Equals(name);
+		public static bool NameIsSame(T obj){
+			return obj.name.Equals (name4check);
 		}
 
-		private static Predicate<T> MatchName{
-			get {return NameIsSame;}
-		}
+		private static Predicate<T> MatchName = NameIsSame;
+
 		public Group ()
 		{
 			elements = new List<T> ();
@@ -33,12 +32,14 @@ namespace EasyOS
 			return elements.Find (match);
 		}
 		public T FindWithName(string name){
+			name4check = name;
 			return Find (MatchName);
 		}
 		public int FindIndex(Predicate<T> match){
 			return elements.FindIndex (match);
 		}
 		public int FindIndexWithName(string name){
+			name4check = name;
 			return FindIndex (MatchName);
 		}
 		public List<T> FindAll(Predicate<T> match){
@@ -66,6 +67,7 @@ namespace EasyOS
 			return elements.Remove (item);
 		}
 		public bool RemoveWithName(string name){
+			name4check = name;
 			return Remove (FindWithName (name));
 		}
 		public void RemoveAt(int index){
@@ -78,6 +80,7 @@ namespace EasyOS
 			elements.RemoveAll (match);
 		}
 		public void RemoveAllWithName(string name){
+			name4check = name;
 			elements.RemoveAll (MatchName);
 		}
 	}

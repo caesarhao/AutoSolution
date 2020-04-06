@@ -179,6 +179,8 @@
                     <property name="MemberName" />
                     <property name="CanFocus">True</property>
                     <property name="ShowScrollbars">True</property>
+                    <signal name="ButtonPressEvent" handler="OnTreeViewGlobalBtnPrs" after="yes" />
+                    <signal name="CursorChanged" handler="OnTreeViewGlobalCursorChanged" />
                   </widget>
                 </child>
               </widget>
