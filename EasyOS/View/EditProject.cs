@@ -20,10 +20,10 @@ namespace EasyOS
 				this.cmbbLanguage.AppendText (despAtt.Description);
 			}
 		}
-		public bool LoadData(AbstractData data=null){
-			Project dat = (Project)data;
+		public bool LoadData(Project dat){
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
+			this.entryAuthor.Text = dat.author;
 			this.cmbbxLicense.Active = (int)dat.license;
 			this.cmbbLanguage.Active = (int)dat.language;
 			RefreshCmbbTarget ();
@@ -43,6 +43,31 @@ namespace EasyOS
 
 			this.entryVersion.Text = dat.version;
 			return true;
+		}
+		public Project SaveData(Project dat=null){
+			if (null == dat) {
+				dat = new Project ();
+			}
+			dat.name=this.entryName.Text;
+			dat.description=this.entryDescription.Text;
+			dat.author = this.entryAuthor.Text;
+			dat.license = (Project.ELicense)this.cmbbxLicense.Active;
+			dat.language = (Project.ELanguage)this.cmbbLanguage.Active;
+			switch (dat.language) {
+			case Project.ELanguage.E_Lang_C:
+				dat.target = (Project.ETargetType)(this.cmbbTarget.Active + (int)Project.ETargetType.E_C_General);
+				break;
+			case Project.ELanguage.E_Lang_Python:
+				dat.target = (Project.ETargetType)(this.cmbbTarget.Active + (int)Project.ETargetType.E_Python_General);
+				break;
+			case Project.ELanguage.E_Lang_Lua:
+				dat.target = (Project.ETargetType)(this.cmbbTarget.Active + (int)Project.ETargetType.E_Lua_General);
+				break;
+			default:
+				break;
+			}
+			dat.version = this.entryVersion.Text;
+			return dat;
 		}
 		private void RefreshCmbbTarget(){
 			int starter = 0, ender = 0;

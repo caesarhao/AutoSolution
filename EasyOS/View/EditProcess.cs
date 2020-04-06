@@ -11,12 +11,19 @@ namespace EasyOS
 			this.Build ();
 
 		}
-		public bool LoadData(AbstractData data=null){
-			Process dat = (Process)data;
+		public bool LoadData(Process dat){
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
 
 			return true;
+		}
+		public Process SaveData(Process dat=null){
+			if (null == dat) {
+				dat = new Process ();
+			}
+			dat.name=this.entryName.Text;
+			dat.description=this.entryDescription.Text;
+			return dat;
 		}
 	}
 }

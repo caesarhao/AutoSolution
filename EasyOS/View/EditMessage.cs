@@ -13,13 +13,20 @@ namespace EasyOS
 			}
 
 		}
-		public bool LoadData(AbstractData data=null){
-			Message dat = (Message)data;
+		public bool LoadData(Message dat){
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
 			this.entryUnit.Text = dat.unit;
 			this.cmbbType.Active = (int)dat.type;
 			return true;
+		}
+		public Message SaveData(Message dat=null){
+			if (null == dat) {
+				dat = new Message ();
+			}
+			dat.name=this.entryName.Text;
+			dat.description=this.entryDescription.Text;
+			return dat;
 		}
 	}
 }

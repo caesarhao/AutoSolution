@@ -9,12 +9,11 @@ namespace EasyOS
 		{
 			this.Build ();
 		}
-		public bool LoadData(AbstractData data=null){
-			Unit dat = (Unit)data;
+		public bool LoadData(Unit dat){
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
 			this.entryShowAs.Text = dat.showAs;
-			this.spin_coeff.Value = dat.exponents [(int)Unit.SIunit.coeff];
+			this.spin_coeff.Value = dat.coeff;
 			this.spin_ten.Value = dat.exponents [(int)Unit.SIunit.ten];
 			this.spin_s.Value = dat.exponents [(int)Unit.SIunit.s];
 			this.spin_m.Value = dat.exponents [(int)Unit.SIunit.m];
@@ -26,8 +25,26 @@ namespace EasyOS
 			RefreshSIunit ();
 			return true;
 		}
+		public Unit SaveData(Unit dat=null){
+			if (null == dat) {
+				dat = new Unit ();
+			}
+			dat.name=this.entryName.Text;
+			dat.description=this.entryDescription.Text;
+			dat.showAs=this.entryShowAs.Text;
+			dat.coeff=this.spin_coeff.Value;
+			dat.exponents [(int)Unit.SIunit.ten]=Convert.ToInt32(this.spin_ten.Value);
+			dat.exponents [(int)Unit.SIunit.s]=Convert.ToInt32(this.spin_s.Value);
+			dat.exponents [(int)Unit.SIunit.m]=Convert.ToInt32(this.spin_m.Value);
+			dat.exponents [(int)Unit.SIunit.kg]=Convert.ToInt32(this.spin_kg.Value);
+			dat.exponents [(int)Unit.SIunit.A]=Convert.ToInt32(this.spin_A.Value);
+			dat.exponents [(int)Unit.SIunit.K]=Convert.ToInt32(this.spin_K.Value);
+			dat.exponents [(int)Unit.SIunit.mol]=Convert.ToInt32(this.spin_mol.Value);
+			dat.exponents [(int)Unit.SIunit.cd]=Convert.ToInt32(this.spin_cd.Value);
+			return dat;
+		}
 		public void RefreshSIunit(){
-			int coeff = Convert.ToInt32(this.spin_coeff.Value);
+			double coeff = this.spin_coeff.Value;
 			int ten = Convert.ToInt32(this.spin_ten.Value);
 			int s = Convert.ToInt32(this.spin_s.Value);
 			int m = Convert.ToInt32(this.spin_m.Value);
@@ -38,7 +55,7 @@ namespace EasyOS
 			int cd = Convert.ToInt32(this.spin_cd.Value);
 			string unitLabel = "";
 			bool alreadyStart = false;
-			if (1 != coeff) {
+			if (0 != coeff.CompareTo(1)) {
 				unitLabel += ("" + coeff);
 				alreadyStart = true;
 			}

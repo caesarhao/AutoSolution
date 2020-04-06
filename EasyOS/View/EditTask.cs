@@ -9,12 +9,19 @@ namespace EasyOS
 		{
 			this.Build ();
 		}
-		public bool LoadData(AbstractData data=null){
-			Task dat = (Task)data;
+		public bool LoadData(Task dat){
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
 
 			return true;
+		}
+		public Task SaveData(Task dat=null){
+			if (null == dat) {
+				dat = new Task ();
+			}
+			dat.name=this.entryName.Text;
+			dat.description=this.entryDescription.Text;
+			return dat;
 		}
 	}
 }
