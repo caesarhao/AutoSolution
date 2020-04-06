@@ -14,7 +14,7 @@ public partial class MainWindow: Gtk.Window
 	public Project GPrj = null;
 	public Gtk.TreeStore ts = null;
 
-	public Gtk.TreeIter TIprj, TIunits, TIcompumethods,TImessages,TIprocesses,TItasks;
+	public Gtk.TreeIter TIprj, TIunits, TIcompumethods,TImessages,TIprocesses,TItasks, TIstatemachines;
 
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
@@ -56,11 +56,26 @@ public partial class MainWindow: Gtk.Window
 		foreach (var item in GPrj.Units.GetAll()) {
 			ts.AppendValues (TIunits, item.name);
 		}
+		foreach (var item in GPrj.CompuMethods.GetAll()) {
+			ts.AppendValues (TIcompumethods, item.name);
+		}
+		foreach (var item in GPrj.Messages.GetAll()) {
+			ts.AppendValues (TImessages, item.name);
+		}
+		foreach (var item in GPrj.Processes.GetAll()) {
+			ts.AppendValues (TIprocesses, item.name);
+		}
+		foreach (var item in GPrj.Tasks.GetAll()) {
+			ts.AppendValues (TItasks, item.name);
+		}
+		foreach (var item in GPrj.StateMachines.GetAll()) {
+			ts.AppendValues (TIstatemachines, item.name);
+		}
 	}
 
 	public void NewProject(){
 		this.GPrj = new Project ();
-		//GPrj.Units.elements.AddRange (EasyOS.Unit.CreateBaseUnits ());
+		GPrj.Units.AddRange (EasyOS.Unit.CreateBaseUnits ());
 		ts.Clear ();
 		TIprj = ts.AppendValues(this.GPrj.name);
 		TIunits = ts.AppendValues (TIprj, this.GPrj.Units.name);
@@ -71,6 +86,7 @@ public partial class MainWindow: Gtk.Window
 		//Gtk.TreeIter prc = ts.AppendValues (processes, "Prc 1");
 		TItasks = ts.AppendValues (TIprj, this.GPrj.Tasks.name);
 		//Gtk.TreeIter tsk1 = ts.AppendValues (tasks, "Tsk 1");
+		TIstatemachines = ts.AppendValues (TIprj, this.GPrj.StateMachines.name);
 
 		LoadTreeSubElements ();
 
@@ -111,7 +127,7 @@ public partial class MainWindow: Gtk.Window
 			this.alignFrmEditor.Child = egrp;
 			switch((string)tm.GetValue(ti, 0)){
 			case "StateMachines":
-				egrp.LoadData (GPrj.Tasks);
+				egrp.LoadData (GPrj.StateMachines);
 				break;
 			case "Tasks":
 				egrp.LoadData (GPrj.Tasks);
@@ -135,24 +151,29 @@ public partial class MainWindow: Gtk.Window
 			TreeIter tiL2;
 			tm.IterParent (out tiL2, ti);
 			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
+			string itemName = (string)tm.GetValue (ti, 0);
 			switch ((string)tm.GetValue (tiL2, 0)) {
 			case "StateMachines":
 				this.alignFrmEditor.Child = egrp;
 				break;
 			case "Tasks":
 				this.alignFrmEditor.Child = etsk;
+				etsk.LoadData (this.GPrj.Tasks.FindWithName (itemName));
 				break;
 			case "Processes":
 				this.alignFrmEditor.Child = eprc;
+				eprc.LoadData (this.GPrj.Processes.FindWithName (itemName));
 				break;
 			case "Messages":
 				this.alignFrmEditor.Child = emsg;
+				emsg.LoadData (this.GPrj.Messages.FindWithName (itemName));
 				break;
 			case "CompuMethods":
 				this.alignFrmEditor.Child = egrp;
 				break;
 			case "Units":
 				this.alignFrmEditor.Child = eunt;
+				eunt.LoadData (this.GPrj.Units.FindWithName (itemName));
 				break;
 			default:
 				this.alignFrmEditor.Child = egrp;
