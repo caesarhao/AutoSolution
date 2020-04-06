@@ -47,7 +47,7 @@ namespace EasyOS
 					unitLabel += "*";
 				unitLabel += ("10");
 				if (1 != ten)
-					unitLabel += ("^" + ten);
+					unitLabel += ("<sup>" + ten + "</sup>");
 				alreadyStart = true;
 			}
 			if (0 != s) {
@@ -55,7 +55,7 @@ namespace EasyOS
 					unitLabel += "*";
 				unitLabel += ("s");
 				if (1 != s)
-					unitLabel += ("^" + s);
+					unitLabel += ("<sup>" + s + "</sup>");
 				alreadyStart = true;
 			}
 			if (0 != m) {
@@ -63,7 +63,7 @@ namespace EasyOS
 					unitLabel += "*";
 				unitLabel += ("m");
 				if (1 != m)
-					unitLabel += ("^" + m);
+					unitLabel += ("<sup>" + m + "</sup>");
 				alreadyStart = true;
 			}
 			if (0 != kg) {
@@ -71,7 +71,7 @@ namespace EasyOS
 					unitLabel += "*";
 				unitLabel += ("kg");
 				if (1 != kg)
-					unitLabel += ("^" + kg);
+					unitLabel += ("<sup>" + kg + "</sup>");
 				alreadyStart = true;
 			}
 			if (0 != A) {
@@ -79,7 +79,7 @@ namespace EasyOS
 					unitLabel += "*";
 				unitLabel += ("A");
 				if (1 != A)
-					unitLabel += ("^" + A);
+					unitLabel += ("<sup>" + A + "</sup>");
 				alreadyStart = true;
 			}
 			if (0 != K) {
@@ -87,7 +87,7 @@ namespace EasyOS
 					unitLabel += "*";
 				unitLabel += ("K");
 				if (1 != K)
-					unitLabel += ("^" + K);
+					unitLabel += ("<sup>" + K + "</sup>");
 				alreadyStart = true;
 			}
 			if (0 != mol) {
@@ -95,7 +95,7 @@ namespace EasyOS
 					unitLabel += "*";
 				unitLabel += ("mol");
 				if (1 != mol)
-					unitLabel += ("^" + mol);
+					unitLabel += ("<sup>" + mol + "</sup>");
 				alreadyStart = true;
 			}
 			if (0 != cd) {
@@ -103,10 +103,10 @@ namespace EasyOS
 					unitLabel += "*";
 				unitLabel += ("cd");
 				if (1 != cd)
-					unitLabel += ("^" + cd);
+					unitLabel += ("<sup>" + cd + "</sup>");
 				alreadyStart = true;
 			}
-			this.lblSIunit.Text = unitLabel;
+			this.lblSIunit.Markup = unitLabel;
 		}
 
 		protected void OnSpinValueChanged (object sender, EventArgs e)
