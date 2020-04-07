@@ -4,12 +4,13 @@ using EasyOS;
 
 public partial class MainWindow: Gtk.Window
 {
-	private EditGroup 	egrp;
-	private EditProject eprj;
-	private EditUnit 	eunt;
-	private EditMessage emsg;
-	private EditProcess eprc;
-	private EditTask 	etsk;
+	private EditGroup 		egrp;
+	private EditProject 	eprj;
+	private EditUnit 		eunt;
+	private EditCompuMethod ecpmd;
+	private EditMessage 	emsg;
+	private EditProcess 	eprc;
+	private EditTask 		etsk;
 
 	public Project GPrj = null;
 	public Gtk.TreeStore ts = null;
@@ -27,6 +28,8 @@ public partial class MainWindow: Gtk.Window
 		eprj.ShowAll ();
 		eunt = new EditUnit ();
 		eunt.ShowAll ();
+		ecpmd = new EditCompuMethod ();
+		ecpmd.ShowAll ();
 		emsg = new EditMessage ();
 		emsg.ShowAll ();
 		eprc = new EditProcess ();
@@ -76,6 +79,7 @@ public partial class MainWindow: Gtk.Window
 	public void NewProject(){
 		this.GPrj = new Project ();
 		GPrj.Units.AddRange (EasyOS.Unit.CreateBaseUnits ());
+		GPrj.CompuMethods.AddRange (EasyOS.CompuMethod.CreateBaseCompuMethods ());
 		ts.Clear ();
 		TIprj = ts.AppendValues(this.GPrj.name);
 		TIunits = ts.AppendValues (TIprj, this.GPrj.Units.name);
@@ -169,7 +173,8 @@ public partial class MainWindow: Gtk.Window
 				emsg.LoadData (this.GPrj.Messages.FindWithName (itemName));
 				break;
 			case "CompuMethods":
-				this.alignFrmEditor.Child = egrp;
+				this.alignFrmEditor.Child = ecpmd;
+				ecpmd.LoadData (this.GPrj.CompuMethods.FindWithName (itemName));
 				break;
 			case "Units":
 				this.alignFrmEditor.Child = eunt;
