@@ -1,6 +1,7 @@
 ﻿using System;
 using Gtk;
 using EasyOS;
+using Gdk;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -193,10 +194,31 @@ public partial class MainWindow: Gtk.Window
 		NewProject ();
 	}
 
+	[GLib.ConnectBefore]
 	protected void OnTreeViewGlobalBtnPrs (object o, ButtonPressEventArgs args)
 	{
+		TreeView sender = (TreeView)o;
+		// Button pressed
+		if (EventType.ButtonPress == args.Event.Type) {
+			switch (args.Event.Button) {
+			case 1: // left click
+				break;
+			case 2: // Middle click
+				break;
+			case 3: // right click
+				break;
+			case 8: // left scroll
+				break;
+			case 9: // right scroll
+				break;
+			default:
+				break;
+			}
+
+		}
 		this.statusBarLabel1.Text = o.GetType ().FullName;
-		this.statusBarLabel2.Text = args.GetType ().FullName;
+		this.statusBarLabel2.Text = ""+args.Event.Button;
+
 	}
 
 }
