@@ -224,5 +224,6 @@ public partial class MainWindow
 		this.NewAction.Activated += new global::System.EventHandler (this.OnNewPrjActivated);
 		this.treeviewGlobal.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.OnTreeViewGlobalBtnPrs);
 		this.treeviewGlobal.CursorChanged += new global::System.EventHandler (this.OnTreeViewGlobalCursorChanged);
+		this.treeviewGlobal.PopupMenu += new global::Gtk.PopupMenuHandler (this.OnTreeViewPopupMenu);
 	}
 }

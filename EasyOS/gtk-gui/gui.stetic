@@ -181,6 +181,7 @@
                     <property name="ShowScrollbars">True</property>
                     <signal name="ButtonPressEvent" handler="OnTreeViewGlobalBtnPrs" after="yes" />
                     <signal name="CursorChanged" handler="OnTreeViewGlobalCursorChanged" />
+                    <signal name="PopupMenu" handler="OnTreeViewPopupMenu" />
                   </widget>
                 </child>
               </widget>

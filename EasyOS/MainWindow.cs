@@ -18,6 +18,7 @@ public partial class MainWindow: Gtk.Window
 
 	public Gtk.TreeIter TIprj, TIunits, TIcompumethods,TImessages,TIprocesses,TItasks, TIstatemachines;
 
+	private uint TreeViewGlobalBtn = 0;
 
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
@@ -163,23 +164,33 @@ public partial class MainWindow: Gtk.Window
 				break;
 			case "Tasks":
 				this.alignFrmEditor.Child = etsk;
-				etsk.LoadData (this.GPrj.Tasks.FindWithName (itemName));
+				Task tsk = this.GPrj.Tasks.FindWithName (itemName);
+				etsk.LoadData (tsk);
+				PopTreeViewGlobalContextMenu (3, tsk);
 				break;
 			case "Processes":
 				this.alignFrmEditor.Child = eprc;
-				eprc.LoadData (this.GPrj.Processes.FindWithName (itemName));
+				Process prc = this.GPrj.Processes.FindWithName (itemName);
+				eprc.LoadData (prc);
+				PopTreeViewGlobalContextMenu (3, prc);
 				break;
 			case "Messages":
 				this.alignFrmEditor.Child = emsg;
-				emsg.LoadData (this.GPrj.Messages.FindWithName (itemName));
+				Message msg = this.GPrj.Messages.FindWithName (itemName);
+				emsg.LoadData (msg);
+				PopTreeViewGlobalContextMenu (3, msg);
 				break;
 			case "CompuMethods":
 				this.alignFrmEditor.Child = ecpmd;
-				ecpmd.LoadData (this.GPrj.CompuMethods.FindWithName (itemName));
+				CompuMethod cpmd = this.GPrj.CompuMethods.FindWithName (itemName);
+				ecpmd.LoadData (cpmd);
+				PopTreeViewGlobalContextMenu (3, cpmd);
 				break;
 			case "Units":
 				this.alignFrmEditor.Child = eunt;
-				eunt.LoadData (this.GPrj.Units.FindWithName (itemName));
+				EasyOS.Unit unt = this.GPrj.Units.FindWithName (itemName);
+				eunt.LoadData (unt);
+				PopTreeViewGlobalContextMenu (3, unt);
 				break;
 			default:
 				this.alignFrmEditor.Child = egrp;
@@ -188,7 +199,23 @@ public partial class MainWindow: Gtk.Window
 		} else {
 		}
 	}
+	protected void PopTreeViewGlobalContextMenu<T>(int level, T data)where T: AbstractData{
+		if (3 == TreeViewGlobalBtn) {
+			TreeViewGlobalBtn = 0;
 
+			if (1 == level) { // Project
+				
+			} else if (2 == level) { // Group
+				
+			} else if (3 == level) { // Item
+
+			} else {
+				
+			}
+
+
+		}
+	}
 	protected void OnNewPrjActivated (object sender, EventArgs e)
 	{
 		NewProject ();
@@ -197,28 +224,18 @@ public partial class MainWindow: Gtk.Window
 	[GLib.ConnectBefore]
 	protected void OnTreeViewGlobalBtnPrs (object o, ButtonPressEventArgs args)
 	{
-		TreeView sender = (TreeView)o;
-		// Button pressed
 		if (EventType.ButtonPress == args.Event.Type) {
-			switch (args.Event.Button) {
-			case 1: // left click
-				break;
-			case 2: // Middle click
-				break;
-			case 3: // right click
-				break;
-			case 8: // left scroll
-				break;
-			case 9: // right scroll
-				break;
-			default:
-				break;
-			}
-
+			TreeViewGlobalBtn = args.Event.Button;
 		}
+	}
+	[GLib.ConnectBefore]
+	protected void OnTreeViewPopupMenu (object o, PopupMenuArgs args)
+	{
+//		Menu menu = new Menu ();
+//		MenuItem mitem = new MenuItem ("Context Menu");
+//		menu.Add (mitem);
+//		menu.ShowAll ();
 		this.statusBarLabel1.Text = o.GetType ().FullName;
-		this.statusBarLabel2.Text = ""+args.Event.Button;
 
 	}
-
 }
