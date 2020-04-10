@@ -1285,7 +1285,7 @@
           <widget class="Gtk.Entry" id="entryName">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="IsEditable">False</property>
+            <property name="IsEditable">True</property>
             <property name="InvisibleChar">●</property>
           </widget>
           <packing>
@@ -1940,7 +1940,7 @@
           <widget class="Gtk.Entry" id="entryName">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="IsEditable">False</property>
+            <property name="IsEditable">True</property>
             <property name="InvisibleChar">●</property>
           </widget>
           <packing>

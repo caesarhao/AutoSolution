@@ -96,7 +96,7 @@ namespace EasyOS
 			this.entryName = new global::Gtk.Entry ();
 			this.entryName.CanFocus = true;
 			this.entryName.Name = "entryName";
-			this.entryName.IsEditable = false;
+			this.entryName.IsEditable = true;
 			this.entryName.InvisibleChar = '●';
 			this.table1.Add (this.entryName);
 			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.table1 [this.entryName]));

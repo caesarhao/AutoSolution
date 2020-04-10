@@ -118,7 +118,7 @@ public partial class MainWindow: Gtk.Window
 	protected void OnTreeViewGlobalCursorChanged (object sender, EventArgs e)
 	{
 		TreeView tv = (TreeView)sender;
-		TreeModel tm = tv.Model;
+		TreeStore tm = (TreeStore)tv.Model;
 		TreeIter root; 
 		TreeIter ti;
 		TreePath tp ;
@@ -254,25 +254,80 @@ public partial class MainWindow: Gtk.Window
 			switch((string)tm.GetValue(ti, 0)){
 			case "StateMachines":
 				dat = GPrj.StateMachines;
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					StateMachine sm = new StateMachine ();
+					this.GPrj.StateMachines.Add (sm);
+					ti = tm.AppendValues (TIstatemachines, sm.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//esm.LoadData (sm);
+				} else {
+				}
 				break;
 			case "Tasks":
 				dat = GPrj.Tasks;
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					Task tsk = new Task ();
+					this.GPrj.Tasks.Add (tsk);
+					ti = tm.AppendValues (TItasks, tsk.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//etsk.LoadData (tsk);
+				} else {
+				}
 				break;
 			case "Processes":
 				dat = GPrj.Processes;
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					Process prc = new Process ();
+					this.GPrj.Processes.Add (prc);
+					ti = tm.AppendValues (TIprocesses, prc.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//eprc.LoadData (prc);
+				} else {
+				}
 				break;
 			case "Messages":
 				dat = GPrj.Messages;
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					Message msg = new Message ();
+					this.GPrj.Messages.Add (msg);
+					ti = tm.AppendValues (TImessages, msg.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//emsg.LoadData (msg);
+				} else {
+				}
 				break;
 			case "CompuMethods":
 				dat = GPrj.CompuMethods;
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					CompuMethod cpmd = new CompuMethod ();
+					this.GPrj.CompuMethods.Add (cpmd);
+					ti = tm.AppendValues (TIcompumethods, cpmd.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//ecpmd.LoadData (cpmd);
+				} else {
+				}
 				break;
 			case "Units":
 				dat = GPrj.Units;
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					EasyOS.Unit unt = new EasyOS.Unit ();
+					this.GPrj.Units.Add (unt);
+					ti = tm.AppendValues (TIunits, unt.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//eunt.LoadData (unt);
+				} else {
+				}
 				break;
 			default:
 				break;
 			}
+			this.statusBarLabel1.Text = tp.ToString ();
 		} else if (3 == level) { // Item, like Task
 			TreeIter tiL2;
 			tm.IterParent (out tiL2, ti);
@@ -284,8 +339,10 @@ public partial class MainWindow: Gtk.Window
 				if (args.Event.Key == Gdk.Key.KP_Add) {
 					sm = new StateMachine ();
 					this.GPrj.StateMachines.Add (sm);
-					tm.AppendValues (TIstatemachines, sm.name);
-					esm.LoadData (sm);
+					ti = tm.AppendValues (TIstatemachines, sm.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//esm.LoadData (sm);
 				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
 					this.GPrj.StateMachines.Remove (sm);
 					tm.Remove (ref ti);
@@ -297,8 +354,10 @@ public partial class MainWindow: Gtk.Window
 				if (args.Event.Key == Gdk.Key.KP_Add) {
 					tsk = new Task ();
 					this.GPrj.Tasks.Add (tsk);
-					tm.AppendValues (TItasks, tsk.name);
-					etsk.LoadData (tsk);
+					ti = tm.AppendValues (TItasks, tsk.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//etsk.LoadData (tsk);
 				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
 					this.GPrj.Tasks.Remove (tsk);
 					tm.Remove (ref ti);
@@ -310,8 +369,10 @@ public partial class MainWindow: Gtk.Window
 				if (args.Event.Key == Gdk.Key.KP_Add) {
 					prc = new Process ();
 					this.GPrj.Processes.Add (prc);
-					tm.AppendValues (TIprocesses, prc.name);
-					eprc.LoadData (prc);
+					ti = tm.AppendValues (TIprocesses, prc.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//eprc.LoadData (prc);
 				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
 					this.GPrj.Processes.Remove (prc);
 					tm.Remove (ref ti);
@@ -323,8 +384,10 @@ public partial class MainWindow: Gtk.Window
 				if (args.Event.Key == Gdk.Key.KP_Add) {
 					msg = new Message ();
 					this.GPrj.Messages.Add (msg);
-					tm.AppendValues (TImessages, msg.name);
-					emsg.LoadData (msg);
+					ti = tm.AppendValues (TImessages, msg.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//emsg.LoadData (msg);
 				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
 					this.GPrj.Messages.Remove (msg);
 					tm.Remove (ref ti);
@@ -336,8 +399,10 @@ public partial class MainWindow: Gtk.Window
 				if (args.Event.Key == Gdk.Key.KP_Add) {
 					cpmd = new CompuMethod ();
 					this.GPrj.CompuMethods.Add (cpmd);
-					tm.AppendValues (TIcompumethods, cpmd.name);
-					ecpmd.LoadData (cpmd);
+					ti = tm.AppendValues (TIcompumethods, cpmd.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//ecpmd.LoadData (cpmd);
 				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
 					this.GPrj.CompuMethods.Remove (cpmd);
 					tm.Remove (ref ti);
@@ -349,8 +414,10 @@ public partial class MainWindow: Gtk.Window
 				if (args.Event.Key == Gdk.Key.KP_Add) {
 					unt = new EasyOS.Unit ();
 					this.GPrj.Units.Add (unt);
-					tm.AppendValues (TIunits, unt.name);
-					eunt.LoadData (unt);
+					ti = tm.AppendValues (TIunits, unt.name);
+					tp = tm.GetPath (ti);
+					tv.SetCursor (tp, tvc, true);
+					//eunt.LoadData (unt);
 				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
 					this.GPrj.Units.Remove (unt);
 					tm.Remove (ref ti);
@@ -361,6 +428,7 @@ public partial class MainWindow: Gtk.Window
 				this.alignFrmEditor.Child = egrp;
 				break;
 			}
+			this.statusBarLabel1.Text = tp.ToString ();
 		} else {
 		}
 

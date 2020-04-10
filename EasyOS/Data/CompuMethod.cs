@@ -25,7 +25,6 @@ namespace EasyOS
 		public double[] Denominators{get; set;}
 		public RationalFunction ()
 		{
-			name = "NewRationalFunction";
 			Numerators = new double[2];
 			Denominators = new double[2];
 		}
@@ -51,7 +50,6 @@ namespace EasyOS
 		public Dictionary<int, string> vt{get; set;}
 		public VerbalTable ()
 		{
-			name = "NewVerbalTable";
 			vt = new Dictionary<int, string>();
 		}
 		public static List<VerbalTable> CreateBaseVerbalTables(){
