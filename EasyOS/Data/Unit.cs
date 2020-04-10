@@ -20,6 +20,7 @@ namespace EasyOS
 		public int[] exponents;
 		public Unit ()
 		{
+			name = "NewUnit";
 			exponents = new int[8];
 			coeff = 1;
 		}

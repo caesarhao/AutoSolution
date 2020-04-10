@@ -82,6 +82,8 @@
     <Compile Include="View\EditCompuMethod.cs" />
     <Compile Include="gtk-gui\EasyOS.EditCompuMethod.cs" />
     <Compile Include="View\ContextMenuHelper.cs" />
+    <Compile Include="View\EditStateMachine.cs" />
+    <Compile Include="gtk-gui\EasyOS.EditStateMachine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

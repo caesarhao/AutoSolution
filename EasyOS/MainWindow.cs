@@ -5,13 +5,14 @@ using Gdk;
 
 public partial class MainWindow: Gtk.Window
 {
-	private EditGroup 		egrp;
-	private EditProject 	eprj;
-	private EditUnit 		eunt;
-	private EditCompuMethod ecpmd;
-	private EditMessage 	emsg;
-	private EditProcess 	eprc;
-	private EditTask 		etsk;
+	private EditGroup 			egrp;
+	private EditProject 		eprj;
+	private EditUnit 			eunt;
+	private EditCompuMethod 	ecpmd;
+	private EditMessage 		emsg;
+	private EditProcess 		eprc;
+	private EditTask 			etsk;
+	private EditStateMachine 	esm;
 
 	public Project GPrj = null;
 	public Gtk.TreeStore ts = null;
@@ -38,6 +39,8 @@ public partial class MainWindow: Gtk.Window
 		eprc.ShowAll ();
 		etsk = new EditTask ();
 		etsk.ShowAll ();
+		esm = new EditStateMachine ();
+		esm.ShowAll ();
 
 		ts = new Gtk.TreeStore (typeof(string));
 		this.treeviewGlobal.Model = ts;
@@ -160,7 +163,10 @@ public partial class MainWindow: Gtk.Window
 			string itemName = (string)tm.GetValue (ti, 0);
 			switch ((string)tm.GetValue (tiL2, 0)) {
 			case "StateMachines":
-				this.alignFrmEditor.Child = egrp;
+				this.alignFrmEditor.Child = esm;
+				StateMachine sm = this.GPrj.StateMachines.FindWithName (itemName);
+				esm.LoadData (sm);
+				PopTreeViewGlobalContextMenu (3, sm);
 				break;
 			case "Tasks":
 				this.alignFrmEditor.Child = etsk;
@@ -228,14 +234,135 @@ public partial class MainWindow: Gtk.Window
 			TreeViewGlobalBtn = args.Event.Button;
 		}
 	}
-	[GLib.ConnectBefore]
-	protected void OnTreeViewPopupMenu (object o, PopupMenuArgs args)
+
+	protected void OnTreeViewGlobalKeyPress (object o, KeyPressEventArgs args)
 	{
-//		Menu menu = new Menu ();
-//		MenuItem mitem = new MenuItem ("Context Menu");
-//		menu.Add (mitem);
-//		menu.ShowAll ();
-		this.statusBarLabel1.Text = o.GetType ().FullName;
+		TreeView tv = (TreeView)o;
+		TreeStore tm = (TreeStore)tv.Model;
+		TreeIter root; 
+		TreeIter ti;
+		TreePath tp ;
+		tm.GetIterFirst (out root);
+		TreeViewColumn tvc;
+		tv.GetCursor (out tp, out tvc);
+		tm.GetIter (out ti, tp);
+		int level = tm.GetPath (ti).Depth;
+		AbstractData dat;
+		if (1 == level) { // Project level
+			dat = GPrj;
+		} else if (2 == tm.GetPath (ti).Depth) { // Groups, like Tasks
+			switch((string)tm.GetValue(ti, 0)){
+			case "StateMachines":
+				dat = GPrj.StateMachines;
+				break;
+			case "Tasks":
+				dat = GPrj.Tasks;
+				break;
+			case "Processes":
+				dat = GPrj.Processes;
+				break;
+			case "Messages":
+				dat = GPrj.Messages;
+				break;
+			case "CompuMethods":
+				dat = GPrj.CompuMethods;
+				break;
+			case "Units":
+				dat = GPrj.Units;
+				break;
+			default:
+				break;
+			}
+		} else if (3 == level) { // Item, like Task
+			TreeIter tiL2;
+			tm.IterParent (out tiL2, ti);
+			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
+			string itemName = (string)tm.GetValue (ti, 0);
+			switch ((string)tm.GetValue (tiL2, 0)) {
+			case "StateMachines":
+				StateMachine sm = this.GPrj.StateMachines.FindWithName (itemName);
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					sm = new StateMachine ();
+					this.GPrj.StateMachines.Add (sm);
+					tm.AppendValues (TIstatemachines, sm.name);
+					esm.LoadData (sm);
+				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
+					this.GPrj.StateMachines.Remove (sm);
+					tm.Remove (ref ti);
+				} else {
+				}
+				break;
+			case "Tasks":
+				Task tsk = this.GPrj.Tasks.FindWithName (itemName);
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					tsk = new Task ();
+					this.GPrj.Tasks.Add (tsk);
+					tm.AppendValues (TItasks, tsk.name);
+					etsk.LoadData (tsk);
+				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
+					this.GPrj.Tasks.Remove (tsk);
+					tm.Remove (ref ti);
+				} else {
+				}
+				break;
+			case "Processes":
+				Process prc = this.GPrj.Processes.FindWithName (itemName);
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					prc = new Process ();
+					this.GPrj.Processes.Add (prc);
+					tm.AppendValues (TIprocesses, prc.name);
+					eprc.LoadData (prc);
+				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
+					this.GPrj.Processes.Remove (prc);
+					tm.Remove (ref ti);
+				} else {
+				}
+				break;
+			case "Messages":
+				Message msg = this.GPrj.Messages.FindWithName (itemName);
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					msg = new Message ();
+					this.GPrj.Messages.Add (msg);
+					tm.AppendValues (TImessages, msg.name);
+					emsg.LoadData (msg);
+				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
+					this.GPrj.Messages.Remove (msg);
+					tm.Remove (ref ti);
+				} else {
+				}
+				break;
+			case "CompuMethods":
+				CompuMethod cpmd = this.GPrj.CompuMethods.FindWithName (itemName);
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					cpmd = new CompuMethod ();
+					this.GPrj.CompuMethods.Add (cpmd);
+					tm.AppendValues (TIcompumethods, cpmd.name);
+					ecpmd.LoadData (cpmd);
+				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
+					this.GPrj.CompuMethods.Remove (cpmd);
+					tm.Remove (ref ti);
+				} else {
+				}
+				break;
+			case "Units":
+				EasyOS.Unit unt = this.GPrj.Units.FindWithName (itemName);
+				if (args.Event.Key == Gdk.Key.KP_Add) {
+					unt = new EasyOS.Unit ();
+					this.GPrj.Units.Add (unt);
+					tm.AppendValues (TIunits, unt.name);
+					eunt.LoadData (unt);
+				} else if (args.Event.Key == Gdk.Key.KP_Subtract) {
+					this.GPrj.Units.Remove (unt);
+					tm.Remove (ref ti);
+				} else {
+				}
+				break;
+			default:
+				this.alignFrmEditor.Child = egrp;
+				break;
+			}
+		} else {
+		}
 
 	}
 }
