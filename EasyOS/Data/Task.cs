@@ -42,6 +42,12 @@ namespace EasyOS
 			ret.Add ("</Task>");
 			return ret;
 		}
+		public static Task ParseFromXml(List<string> lines, Task ret = null){
+			if (null == ret) {
+				ret = new Task ();
+			}
+			return ret;
+		}
 	}
 }
 

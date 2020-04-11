@@ -38,6 +38,17 @@ namespace EasyOS
 			ret.Add ("</Unit>");
 			return ret;
 		}
+		public static Unit ParseFromXml(List<string> lines, Unit ret = null){
+			if (null == ret) {
+				ret = new Unit ();
+			}
+			foreach (var item in lines) {
+				if (item.StartsWith ("<name>")) {
+					ret.name = item.Substring (6, item.Length - 13);
+				}
+			}
+			return ret;
+		}
 		public override bool Equals(object obj){
 			if (null == obj) {
 				return false;

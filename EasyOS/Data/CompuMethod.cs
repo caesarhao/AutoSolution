@@ -46,6 +46,12 @@ namespace EasyOS
 			ret.Add ("</RationalFunction>");
 			return ret;
 		}
+		public static RationalFunction ParseFromXml(List<string> lines, RationalFunction ret = null){
+			if (null == ret) {
+				ret = new RationalFunction ();
+			}
+			return ret;
+		}
 		public static List<RationalFunction> CreateBaseRationalFunctions(){
 			List<RationalFunction> ret = new List<RationalFunction> ();
 			ret.Add (CreateOneToOne());
@@ -84,6 +90,12 @@ namespace EasyOS
 			}
 			ret.Add ("\t</items>");
 			ret.Add ("</VerbalTable>");
+			return ret;
+		}
+		public static VerbalTable ParseFromXml(List<string> lines, VerbalTable ret = null){
+			if (null == ret) {
+				ret = new VerbalTable ();
+			}
 			return ret;
 		}
 		public static List<VerbalTable> CreateBaseVerbalTables(){

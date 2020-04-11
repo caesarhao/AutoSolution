@@ -38,6 +38,12 @@ namespace EasyOS
 			ret.Add ("</" + this.name + ">");
 			return ret;
 		}
+		public static Group<T> ParseFromXml(List<string> lines, Group<T> ret = null){
+			if (null == ret) {
+				ret = new Group<T> ();
+			}
+			return ret;
+		}
 		public int Count(){
 			return elements.Count;
 		}

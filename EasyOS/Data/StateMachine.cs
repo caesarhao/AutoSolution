@@ -16,6 +16,12 @@ namespace EasyOS
 			ret.Add ("</StateMachine>");
 			return ret;
 		}
+		public static StateMachine ParseFromXml(List<string> lines, StateMachine ret = null){
+			if (null == ret) {
+				ret = new StateMachine ();
+			}
+			return ret;
+		}
 	}
 }
 

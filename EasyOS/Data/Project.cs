@@ -91,6 +91,12 @@ namespace EasyOS
 			ret.Add ("</Project>");
 			return ret;
 		}
+		public static Project ParseFromXml(List<string> lines, Project ret = null){
+			if (null == ret) {
+				ret = new Project ();
+			}
+			return ret;
+		}
 	}
 }
 

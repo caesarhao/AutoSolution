@@ -31,6 +31,12 @@ namespace EasyOS
 			ret.Add ("</Process>");
 			return ret;
 		}
+		public static Process ParseFromXml(List<string> lines, Process ret = null){
+			if (null == ret) {
+				ret = new Process ();
+			}
+			return ret;
+		}
 	}
 }
 

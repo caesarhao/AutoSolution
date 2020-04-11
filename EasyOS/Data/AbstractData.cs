@@ -16,7 +16,7 @@ namespace EasyOS
 			return name;
 		}
 		public abstract List<string> SaveToXml();
-//		public abstract BaseData ParseFromXml(string[] lines);
+//		public abstract typeof(this) ParseFromXml (string[] lines);
 //		public abstract string[] GenCode();
 	}
 }

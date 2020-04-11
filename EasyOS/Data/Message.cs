@@ -22,6 +22,12 @@ namespace EasyOS
 			ret.Add ("</Message>");
 			return ret;
 		}
+		public static Message ParseFromXml(List<string> lines, Message ret = null){
+			if (null == ret) {
+				ret = new Message ();
+			}
+			return ret;
+		}
 	}
 }
 
