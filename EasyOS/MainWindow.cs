@@ -111,8 +111,15 @@ public partial class MainWindow: Gtk.Window
 
 	protected void showAboutDialog (object sender, EventArgs e)
 	{
-		AboutDialogue ad = new AboutDialogue ();
-		ad.Run ();
+		AboutDialog about = new AboutDialog();
+		about.ProgramName = "AutoSolution-EasyOS";
+		about.Version = "0.1";
+		about.Copyright = "(c) caesarhao";
+		about.Comments = @"EasyOS is an app for generating OS structure";
+		about.Website = "http://www.notyet.com";
+		//about.Logo = new Gdk.Pixbuf("battery.png");
+		about.Run();
+		about.Destroy();
 	}
 
 	protected void OnTreeViewGlobalCursorChanged (object sender, EventArgs e)

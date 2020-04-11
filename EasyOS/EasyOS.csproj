@@ -59,7 +59,6 @@
     <Compile Include="Data\Task.cs" />
     <Compile Include="Data\StateMachine.cs" />
     <Compile Include="Data\Project.cs" />
-    <Compile Include="AboutDialogue.cs" />
     <Compile Include="gtk-gui\EasyOS.AboutDialogue.cs" />
     <Compile Include="View\EditProject.cs" />
     <Compile Include="gtk-gui\EasyOS.EditProject.cs" />
