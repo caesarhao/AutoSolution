@@ -20,10 +20,10 @@
         <property name="Label" translatable="yes">Edit</property>
         <property name="ShortLabel" translatable="yes">Edit</property>
       </action>
-      <action id="GenerateAction">
+      <action id="ToolAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Generate</property>
-        <property name="ShortLabel" translatable="yes">Generate</property>
+        <property name="Label" translatable="yes">Tool</property>
+        <property name="ShortLabel" translatable="yes">Tool</property>
       </action>
       <action id="HelpAction">
         <property name="Type">Action</property>
@@ -40,21 +40,25 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-open</property>
+        <signal name="Activated" handler="OnOpenActionActivated" />
       </action>
       <action id="saveAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-save</property>
+        <signal name="Activated" handler="OnSaveActionActivated" />
       </action>
       <action id="saveAsAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-save-as</property>
+        <signal name="Activated" handler="OnSaveAsActionActivated" />
       </action>
-      <action id="executeAction">
+      <action id="generateAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-execute</property>
+        <signal name="Activated" handler="OnGenerateActionActivated" />
       </action>
       <action id="addAction">
         <property name="Type">Action</property>
@@ -88,17 +92,20 @@
         <property name="Accelerator">&lt;Primary&gt;&lt;Mod2&gt;o</property>
         <property name="Label" translatable="yes">Open</property>
         <property name="ShortLabel" translatable="yes">Open</property>
+        <signal name="Activated" handler="OnOpenActionActivated" />
       </action>
       <action id="SaveAction">
         <property name="Type">Action</property>
         <property name="Accelerator">&lt;Primary&gt;&lt;Mod2&gt;s</property>
         <property name="Label" translatable="yes">Save</property>
         <property name="ShortLabel" translatable="yes">Save</property>
+        <signal name="Activated" handler="OnSaveActionActivated" />
       </action>
       <action id="SaveAsAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">Save As</property>
         <property name="ShortLabel" translatable="yes">Save As</property>
+        <signal name="Activated" handler="OnSaveAsActionActivated" />
       </action>
       <action id="refreshAction">
         <property name="Type">Action</property>
@@ -109,6 +116,12 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-revert-to-saved</property>
+      </action>
+      <action id="GenerateAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Generate</property>
+        <property name="ShortLabel" translatable="yes">Generate</property>
+        <signal name="Activated" handler="OnGenerateActionActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -130,7 +143,9 @@
                 <node type="Menuitem" action="SaveAsAction" />
               </node>
               <node type="Menu" action="EditAction" />
-              <node type="Menu" action="GenerateAction" />
+              <node type="Menu" action="ToolAction">
+                <node type="Menuitem" action="GenerateAction" />
+              </node>
               <node type="Menu" action="HelpAction">
                 <node type="Menuitem" action="AboutAction" />
               </node>
@@ -152,7 +167,7 @@
               <node type="Toolitem" action="openAction" />
               <node type="Toolitem" action="saveAction" />
               <node type="Toolitem" action="saveAsAction" />
-              <node type="Toolitem" action="executeAction" />
+              <node type="Toolitem" action="generateAction" />
               <node type="Toolitem" action="addAction" />
               <node type="Toolitem" action="deleteAction" />
               <node type="Toolitem" action="refreshAction" />
@@ -160,9 +175,8 @@
           </widget>
           <packing>
             <property name="Position">1</property>
-            <property name="AutoSize">True</property>
+            <property name="AutoSize">False</property>
             <property name="Expand">False</property>
-            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
@@ -258,74 +272,6 @@
           <packing>
             <property name="Position">4</property>
             <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
-          </packing>
-        </child>
-      </widget>
-    </child>
-  </widget>
-  <widget class="Gtk.Dialog" id="EasyOS.AboutDialogue" design-size="433 305">
-    <property name="MemberName" />
-    <property name="WindowPosition">CenterOnParent</property>
-    <property name="Buttons">1</property>
-    <property name="HelpButton">False</property>
-    <child internal-child="VBox">
-      <widget class="Gtk.VBox" id="dialog1_VBox">
-        <property name="MemberName" />
-        <property name="BorderWidth">2</property>
-        <child>
-          <widget class="Gtk.VBox" id="vbox1">
-            <property name="MemberName" />
-            <property name="Spacing">6</property>
-            <child>
-              <widget class="Gtk.Label" id="label1">
-                <property name="MemberName" />
-                <property name="Xalign">0</property>
-                <property name="LabelProp" translatable="yes">EasyOS generates OS structure for Embedded Project</property>
-                <property name="UseMarkup">True</property>
-              </widget>
-              <packing>
-                <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder />
-            </child>
-            <child>
-              <placeholder />
-            </child>
-          </widget>
-          <packing>
-            <property name="Position">0</property>
-            <property name="AutoSize">True</property>
-          </packing>
-        </child>
-      </widget>
-    </child>
-    <child internal-child="ActionArea">
-      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
-        <property name="MemberName" />
-        <property name="Spacing">10</property>
-        <property name="BorderWidth">5</property>
-        <property name="Size">1</property>
-        <property name="LayoutStyle">End</property>
-        <child>
-          <widget class="Gtk.Button" id="buttonOk">
-            <property name="MemberName" />
-            <property name="CanDefault">True</property>
-            <property name="CanFocus">True</property>
-            <property name="UseStock">True</property>
-            <property name="Type">StockItem</property>
-            <property name="StockId">gtk-ok</property>
-            <property name="ResponseId">-5</property>
-            <signal name="Clicked" handler="btnOkClicked_handler" />
-            <property name="label">gtk-ok</property>
-          </widget>
-          <packing>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

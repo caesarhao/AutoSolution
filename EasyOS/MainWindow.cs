@@ -58,6 +58,15 @@ public partial class MainWindow: Gtk.Window
 		this.frmEditor.ShowAll ();
 		this.frmEditor.Visible = false;
 
+		this.addAction.Sensitive = false;
+		this.deleteAction.Sensitive = false;
+		this.generateAction.Sensitive = false;
+		this.GenerateAction.Sensitive = false;
+		this.saveAction.Sensitive = false;
+		this.SaveAction.Sensitive = false;
+		this.saveAsAction.Sensitive = false;
+		this.SaveAsAction.Sensitive = false;
+		this.refreshAction.Sensitive = false;
 	}
 
 	public void LoadTreeSubElements(){
@@ -101,6 +110,11 @@ public partial class MainWindow: Gtk.Window
 
 		treeviewGlobal.Visible = true;
 		this.frmEditor.Visible = true;
+
+		this.saveAction.Sensitive = true;
+		this.SaveAction.Sensitive = true;
+		this.saveAsAction.Sensitive = true;
+		this.SaveAsAction.Sensitive = true;
 	}
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -135,10 +149,14 @@ public partial class MainWindow: Gtk.Window
 		tm.GetIter (out ti, tp);
 		this.lblFrmEditor.Text = (string)tm.GetValue(ti, 0);
 		if (1 == tm.GetPath (ti).Depth) { // Project level
+			this.addAction.Sensitive = false;
+			this.deleteAction.Sensitive = false;
 			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
 			this.alignFrmEditor.Child = eprj;
 			eprj.LoadData (GPrj);
 		} else if (2 == tm.GetPath (ti).Depth) { // Sub levels, like Tasks
+			this.addAction.Sensitive = true;
+			this.deleteAction.Sensitive = false;
 			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
 			this.alignFrmEditor.Child = egrp;
 			switch((string)tm.GetValue(ti, 0)){
@@ -164,6 +182,8 @@ public partial class MainWindow: Gtk.Window
 				break;
 			}
 		} else if (3 == tm.GetPath (ti).Depth) { // Sub levels, like Task
+			this.addAction.Sensitive = true;
+			this.deleteAction.Sensitive = true;
 			TreeIter tiL2;
 			tm.IterParent (out tiL2, ti);
 			this.alignFrmEditor.Remove(this.alignFrmEditor.Child);
@@ -314,7 +334,15 @@ public partial class MainWindow: Gtk.Window
 			case "CompuMethods":
 				dat = GPrj.CompuMethods;
 				if (args.Event.Key == Gdk.Key.KP_Add) {
-					CompuMethod cpmd = new CompuMethod ();
+					CompuMethod cpmd;
+					int resp = SelectCompuMethodToCreate (this);
+					if (1 == resp) {
+						cpmd = new RationalFunction ();
+					} else if (2 == resp) {
+						cpmd = new VerbalTable ();
+					} else {
+						return;
+					}
 					this.GPrj.CompuMethods.Add (cpmd);
 					ti = tm.AppendValues (TIcompumethods, cpmd.name);
 					tp = tm.GetPath (ti);
@@ -410,7 +438,14 @@ public partial class MainWindow: Gtk.Window
 			case "CompuMethods":
 				CompuMethod cpmd = this.GPrj.CompuMethods.FindWithName (itemName);
 				if (args.Event.Key == Gdk.Key.KP_Add) {
-					cpmd = new CompuMethod ();
+					int resp = SelectCompuMethodToCreate (this);
+					if (1 == resp) {
+						cpmd = new RationalFunction ();
+					} else if (2 == resp) {
+						cpmd = new VerbalTable ();
+					} else {
+						return;
+					}
 					this.GPrj.CompuMethods.Add (cpmd);
 					ti = tm.AppendValues (TIcompumethods, cpmd.name);
 					tp = tm.GetPath (ti);
@@ -446,4 +481,81 @@ public partial class MainWindow: Gtk.Window
 		}
 
 	}
+
+	protected int SelectCompuMethodToCreate(Gtk.Window parent){
+		MessageDialog md = new MessageDialog(parent, 
+			DialogFlags.DestroyWithParent, MessageType.Question, 
+			ButtonsType.None, "Create a new?");
+		md.AddButton ("RationalFuncion", 1);
+		md.AddButton ("VerbalTable", 2);
+		int resp = md.Run();
+		md.Destroy();
+		return resp;
+	}
+	protected void OnOpenActionActivated (object sender, EventArgs e)
+	{
+		FileChooserDialog fcd = new FileChooserDialog ("Open EasyOS project...", this, FileChooserAction.Open);
+		fcd.AddButton (Gtk.Stock.Ok, ResponseType.Ok);
+		fcd.AddButton (Gtk.Stock.Cancel, ResponseType.Cancel);
+		fcd.SelectMultiple = false;
+		fcd.Filter = new FileFilter ();
+		fcd.Filter.AddPattern ("*.eos");
+		fcd.DefaultResponse = ResponseType.Cancel;
+		ResponseType response = (ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			// TODO: Open project here.
+			this.statusBarLabel2.Text = fcd.Filename;
+		}
+		fcd.Destroy ();
+	}
+
+	protected void OnSaveActionActivated (object sender, EventArgs e)
+	{
+		FileChooserDialog fcd = new FileChooserDialog ("Save EasyOS project...", this, FileChooserAction.Save);
+		fcd.AddButton (Gtk.Stock.Ok, ResponseType.Ok);
+		fcd.AddButton (Gtk.Stock.Cancel, ResponseType.Cancel);
+		fcd.SelectMultiple = false;
+		fcd.Filter = new FileFilter ();
+		fcd.Filter.AddPattern ("*.eos");
+		fcd.DefaultResponse = ResponseType.Cancel;
+		fcd.SetFilename (GPrj.name);
+		ResponseType response = (ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			// TODO: Save project here.
+		}
+		fcd.Destroy ();
+	}
+
+	protected void OnSaveAsActionActivated (object sender, EventArgs e)
+	{
+		FileChooserDialog fcd = new FileChooserDialog ("Save EasyOS project as...", this, FileChooserAction.Save);
+		fcd.AddButton (Gtk.Stock.Ok, ResponseType.Ok);
+		fcd.AddButton (Gtk.Stock.Cancel, ResponseType.Cancel);
+		fcd.SelectMultiple = false;
+		fcd.Filter = new FileFilter ();
+		fcd.Filter.AddPattern ("*.eos");
+		fcd.DefaultResponse = ResponseType.Cancel;
+		fcd.SetFilename (GPrj.name + "_Copy");
+		ResponseType response = (ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			// TODO: SaveAs project here.
+		}
+		fcd.Destroy ();
+	}
+
+	protected void OnGenerateActionActivated (object sender, EventArgs e)
+	{
+		FileChooserDialog fcd = new FileChooserDialog ("Generate code into...", this, FileChooserAction.SelectFolder);
+		fcd.AddButton (Gtk.Stock.Ok, ResponseType.Ok);
+		fcd.AddButton (Gtk.Stock.Cancel, ResponseType.Cancel);
+		fcd.SelectMultiple = false;
+		fcd.Filter = new FileFilter ();
+		fcd.DefaultResponse = ResponseType.Cancel;
+		ResponseType response = (ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			// TODO: Generate code here.
+		}
+		fcd.Destroy ();
+	}
+
 }

@@ -15,7 +15,7 @@ namespace EasyOS
 		override public string ToString(){
 			return name;
 		}
-//		public abstract string[] SaveToXml();
+		public abstract List<string> SaveToXml();
 //		public abstract BaseData ParseFromXml(string[] lines);
 //		public abstract string[] GenCode();
 	}

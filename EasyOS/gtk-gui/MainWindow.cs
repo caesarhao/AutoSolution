@@ -9,7 +9,7 @@ public partial class MainWindow
 	
 	private global::Gtk.Action EditAction;
 	
-	private global::Gtk.Action GenerateAction;
+	private global::Gtk.Action ToolAction;
 	
 	private global::Gtk.Action HelpAction;
 	
@@ -21,7 +21,7 @@ public partial class MainWindow
 	
 	private global::Gtk.Action saveAsAction;
 	
-	private global::Gtk.Action executeAction;
+	private global::Gtk.Action generateAction;
 	
 	private global::Gtk.Action addAction;
 	
@@ -42,6 +42,8 @@ public partial class MainWindow
 	private global::Gtk.Action refreshAction;
 	
 	private global::Gtk.Action revertToSavedAction;
+	
+	private global::Gtk.Action GenerateAction;
 	
 	private global::Gtk.VBox vbox1;
 	
@@ -79,9 +81,9 @@ public partial class MainWindow
 		this.EditAction = new global::Gtk.Action ("EditAction", global::Mono.Unix.Catalog.GetString ("Edit"), null, null);
 		this.EditAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit");
 		w1.Add (this.EditAction, null);
-		this.GenerateAction = new global::Gtk.Action ("GenerateAction", global::Mono.Unix.Catalog.GetString ("Generate"), null, null);
-		this.GenerateAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Generate");
-		w1.Add (this.GenerateAction, null);
+		this.ToolAction = new global::Gtk.Action ("ToolAction", global::Mono.Unix.Catalog.GetString ("Tool"), null, null);
+		this.ToolAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Tool");
+		w1.Add (this.ToolAction, null);
 		this.HelpAction = new global::Gtk.Action ("HelpAction", global::Mono.Unix.Catalog.GetString ("Help"), null, null);
 		this.HelpAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Help");
 		w1.Add (this.HelpAction, null);
@@ -93,8 +95,8 @@ public partial class MainWindow
 		w1.Add (this.saveAction, null);
 		this.saveAsAction = new global::Gtk.Action ("saveAsAction", null, null, "gtk-save-as");
 		w1.Add (this.saveAsAction, null);
-		this.executeAction = new global::Gtk.Action ("executeAction", null, null, "gtk-execute");
-		w1.Add (this.executeAction, null);
+		this.generateAction = new global::Gtk.Action ("generateAction", null, null, "gtk-execute");
+		w1.Add (this.generateAction, null);
 		this.addAction = new global::Gtk.Action ("addAction", null, null, "gtk-add");
 		w1.Add (this.addAction, null);
 		this.deleteAction = new global::Gtk.Action ("deleteAction", null, null, "gtk-delete");
@@ -120,6 +122,9 @@ public partial class MainWindow
 		w1.Add (this.refreshAction, null);
 		this.revertToSavedAction = new global::Gtk.Action ("revertToSavedAction", null, null, "gtk-revert-to-saved");
 		w1.Add (this.revertToSavedAction, null);
+		this.GenerateAction = new global::Gtk.Action ("GenerateAction", global::Mono.Unix.Catalog.GetString ("Generate"), null, null);
+		this.GenerateAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Generate");
+		w1.Add (this.GenerateAction, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -130,7 +135,7 @@ public partial class MainWindow
 		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString (@"<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewAction' action='NewAction'/><menuitem name='OpenAction' action='OpenAction'/><menuitem name='SaveAction' action='SaveAction'/><menuitem name='SaveAsAction' action='SaveAsAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='GenerateAction' action='GenerateAction'/><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
+		this.UIManager.AddUiFromString (@"<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='NewAction' action='NewAction'/><menuitem name='OpenAction' action='OpenAction'/><menuitem name='SaveAction' action='SaveAction'/><menuitem name='SaveAsAction' action='SaveAsAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='ToolAction' action='ToolAction'><menuitem name='GenerateAction' action='GenerateAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
 		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 		this.menubar1.Name = "menubar1";
 		this.vbox1.Add (this.menubar1);
@@ -139,7 +144,7 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString (@"<ui><toolbar name='toolbar1'><toolitem name='fileAction' action='fileAction'/><toolitem name='openAction' action='openAction'/><toolitem name='saveAction' action='saveAction'/><toolitem name='saveAsAction' action='saveAsAction'/><toolitem name='executeAction' action='executeAction'/><toolitem name='addAction' action='addAction'/><toolitem name='deleteAction' action='deleteAction'/><toolitem name='refreshAction' action='refreshAction'/></toolbar></ui>");
+		this.UIManager.AddUiFromString (@"<ui><toolbar name='toolbar1'><toolitem name='fileAction' action='fileAction'/><toolitem name='openAction' action='openAction'/><toolitem name='saveAction' action='saveAction'/><toolitem name='saveAsAction' action='saveAsAction'/><toolitem name='generateAction' action='generateAction'/><toolitem name='addAction' action='addAction'/><toolitem name='deleteAction' action='deleteAction'/><toolitem name='refreshAction' action='refreshAction'/></toolbar></ui>");
 		this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 		this.toolbar1.Name = "toolbar1";
 		this.toolbar1.ShowArrow = false;
@@ -147,7 +152,6 @@ public partial class MainWindow
 		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.toolbar1]));
 		w3.Position = 1;
 		w3.Expand = false;
-		w3.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.hpaned3 = new global::Gtk.HPaned ();
 		this.hpaned3.CanFocus = true;
@@ -220,8 +224,16 @@ public partial class MainWindow
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.fileAction.Activated += new global::System.EventHandler (this.OnNewPrjActivated);
+		this.openAction.Activated += new global::System.EventHandler (this.OnOpenActionActivated);
+		this.saveAction.Activated += new global::System.EventHandler (this.OnSaveActionActivated);
+		this.saveAsAction.Activated += new global::System.EventHandler (this.OnSaveAsActionActivated);
+		this.generateAction.Activated += new global::System.EventHandler (this.OnGenerateActionActivated);
 		this.AboutAction.Activated += new global::System.EventHandler (this.showAboutDialog);
 		this.NewAction.Activated += new global::System.EventHandler (this.OnNewPrjActivated);
+		this.OpenAction.Activated += new global::System.EventHandler (this.OnOpenActionActivated);
+		this.SaveAction.Activated += new global::System.EventHandler (this.OnSaveActionActivated);
+		this.SaveAsAction.Activated += new global::System.EventHandler (this.OnSaveAsActionActivated);
+		this.GenerateAction.Activated += new global::System.EventHandler (this.OnGenerateActionActivated);
 		this.treeviewGlobal.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler (this.OnTreeViewGlobalBtnPrs);
 		this.treeviewGlobal.CursorChanged += new global::System.EventHandler (this.OnTreeViewGlobalCursorChanged);
 		this.treeviewGlobal.KeyPressEvent += new global::Gtk.KeyPressEventHandler (this.OnTreeViewGlobalKeyPress);

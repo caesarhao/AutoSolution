@@ -26,6 +26,16 @@ namespace EasyOS
 			this.description = "Folder for saving " + this.name;
 			name4check = "dqfezfsqnlogrsn:fsdhu";
 		}
+		public override List<string> SaveToXml(){
+			List<string> ret = new List<string> ();
+			ret.Add ("<" + this.name + ">\n");
+			ret.Add ("\t<description>" + description + "</description>\n");
+			foreach (var item in elements) {
+				ret.AddRange (item.SaveToXml ());
+			}
+			ret.Add ("</" + this.name + ">\n");
+			return ret;
+		}
 		public int Count(){
 			return elements.Count;
 		}

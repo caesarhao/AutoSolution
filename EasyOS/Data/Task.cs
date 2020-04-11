@@ -28,6 +28,14 @@ namespace EasyOS
 		{
 			processes = new List<Process> ();
 		}
+		public override List<string> SaveToXml(){
+			List<string> ret = new List<string> ();
+			ret.Add ("<Task>\n");
+			ret.Add ("\t<name>" + name + "</name>\n");
+			ret.Add ("\t<description>" + description + "</description>\n");
+			ret.Add ("</Task>\n");
+			return ret;
+		}
 	}
 }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EasyOS
 {
-	public class CompuMethod:AbstractData
+	public abstract class CompuMethod:AbstractData
 	{
 		public CompuMethod ()
 		{
@@ -28,6 +28,14 @@ namespace EasyOS
 			Numerators = new double[2];
 			Denominators = new double[2];
 		}
+		public override List<string> SaveToXml(){
+			List<string> ret = new List<string> ();
+			ret.Add ("<RationalFunction>\n");
+			ret.Add ("\t<name>" + name + "</name>\n");
+			ret.Add ("\t<description>" + description + "</description>\n");
+			ret.Add ("</RationalFunction>\n");
+			return ret;
+		}
 		public static List<RationalFunction> CreateBaseRationalFunctions(){
 			List<RationalFunction> ret = new List<RationalFunction> ();
 			ret.Add (CreateOneToOne());
@@ -51,6 +59,14 @@ namespace EasyOS
 		public VerbalTable ()
 		{
 			vt = new Dictionary<int, string>();
+		}
+		public override List<string> SaveToXml(){
+			List<string> ret = new List<string> ();
+			ret.Add ("<VerbalTable>\n");
+			ret.Add ("\t<name>" + name + "</name>\n");
+			ret.Add ("\t<description>" + description + "</description>\n");
+			ret.Add ("</VerbalTable>\n");
+			return ret;
 		}
 		public static List<VerbalTable> CreateBaseVerbalTables(){
 			List<VerbalTable> ret = new List<VerbalTable> ();

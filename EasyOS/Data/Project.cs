@@ -75,6 +75,14 @@ namespace EasyOS
 			Tasks = new Group<Task> ();
 			version = "0.1";
 		}
+		public override List<string> SaveToXml(){
+			List<string> ret = new List<string> ();
+			ret.Add ("<Project>\n");
+			ret.Add ("\t<name>" + name + "</name>\n");
+			ret.Add ("\t<description>" + description + "</description>\n");
+			ret.Add ("</Project>\n");
+			return ret;
+		}
 	}
 }
 
