@@ -73,8 +73,6 @@ namespace EasyOS
 			Processes = new Group<Process> ();
 			StateMachines = new Group<StateMachine> ();
 			Tasks = new Group<Task> ();
-			// for test
-			name = "New Project";
 			version = "0.1";
 		}
 	}

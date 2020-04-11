@@ -259,6 +259,7 @@ public partial class MainWindow: Gtk.Window
 					this.GPrj.StateMachines.Add (sm);
 					ti = tm.AppendValues (TIstatemachines, sm.name);
 					tp = tm.GetPath (ti);
+					tv.ExpandToPath (tp);
 					tv.SetCursor (tp, tvc, true);
 					//esm.LoadData (sm);
 				} else {
@@ -271,6 +272,7 @@ public partial class MainWindow: Gtk.Window
 					this.GPrj.Tasks.Add (tsk);
 					ti = tm.AppendValues (TItasks, tsk.name);
 					tp = tm.GetPath (ti);
+					tv.ExpandToPath (tp);
 					tv.SetCursor (tp, tvc, true);
 					//etsk.LoadData (tsk);
 				} else {
@@ -283,6 +285,7 @@ public partial class MainWindow: Gtk.Window
 					this.GPrj.Processes.Add (prc);
 					ti = tm.AppendValues (TIprocesses, prc.name);
 					tp = tm.GetPath (ti);
+					tv.ExpandToPath (tp);
 					tv.SetCursor (tp, tvc, true);
 					//eprc.LoadData (prc);
 				} else {
@@ -295,6 +298,7 @@ public partial class MainWindow: Gtk.Window
 					this.GPrj.Messages.Add (msg);
 					ti = tm.AppendValues (TImessages, msg.name);
 					tp = tm.GetPath (ti);
+					tv.ExpandToPath (tp);
 					tv.SetCursor (tp, tvc, true);
 					//emsg.LoadData (msg);
 				} else {
@@ -307,6 +311,7 @@ public partial class MainWindow: Gtk.Window
 					this.GPrj.CompuMethods.Add (cpmd);
 					ti = tm.AppendValues (TIcompumethods, cpmd.name);
 					tp = tm.GetPath (ti);
+					tv.ExpandToPath (tp);
 					tv.SetCursor (tp, tvc, true);
 					//ecpmd.LoadData (cpmd);
 				} else {
@@ -319,6 +324,7 @@ public partial class MainWindow: Gtk.Window
 					this.GPrj.Units.Add (unt);
 					ti = tm.AppendValues (TIunits, unt.name);
 					tp = tm.GetPath (ti);
+					tv.ExpandToPath (tp);
 					tv.SetCursor (tp, tvc, true);
 					//eunt.LoadData (unt);
 				} else {

@@ -10,6 +10,7 @@ namespace EasyOS
 		public AbstractData ()
 		{
 			name = "New" + this.GetType ().Name;
+			description = "";
 		}
 		override public string ToString(){
 			return name;

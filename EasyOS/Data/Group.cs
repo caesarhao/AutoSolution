@@ -24,6 +24,7 @@ namespace EasyOS
 				this.name = typeof(T).Name + "s";
 			}
 			this.description = "Folder for saving " + this.name;
+			name4check = "dqfezfsqnlogrsn:fsdhu";
 		}
 		public int Count(){
 			return elements.Count;
