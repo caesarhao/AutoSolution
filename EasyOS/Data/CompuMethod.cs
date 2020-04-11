@@ -30,10 +30,20 @@ namespace EasyOS
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
-			ret.Add ("<RationalFunction>\n");
-			ret.Add ("\t<name>" + name + "</name>\n");
-			ret.Add ("\t<description>" + description + "</description>\n");
-			ret.Add ("</RationalFunction>\n");
+			ret.Add ("<RationalFunction>");
+			ret.Add ("\t<name>" + name + "</name>");
+			ret.Add ("\t<description>" + description + "</description>");
+			ret.Add ("\t<Numerators>");
+			foreach (var item in Numerators) {
+				ret.Add ("\t\t<vt>" + item + "</vt>");
+			}
+			ret.Add ("\t</Numerators>");
+			ret.Add ("\t<Denominators>");
+			foreach (var item in Denominators) {
+				ret.Add ("\t\t<vt>" + item + "</vt>");
+			}
+			ret.Add ("\t</Denominators>");
+			ret.Add ("</RationalFunction>");
 			return ret;
 		}
 		public static List<RationalFunction> CreateBaseRationalFunctions(){
@@ -55,17 +65,25 @@ namespace EasyOS
 	// TAB_VERB in ASAM
 	public class VerbalTable:CompuMethod
 	{
-		public Dictionary<int, string> vt{get; set;}
+		public Dictionary<int, string> items{get; set;}
 		public VerbalTable ()
 		{
-			vt = new Dictionary<int, string>();
+			items = new Dictionary<int, string>();
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
-			ret.Add ("<VerbalTable>\n");
-			ret.Add ("\t<name>" + name + "</name>\n");
-			ret.Add ("\t<description>" + description + "</description>\n");
-			ret.Add ("</VerbalTable>\n");
+			ret.Add ("<VerbalTable>");
+			ret.Add ("\t<name>" + name + "</name>");
+			ret.Add ("\t<description>" + description + "</description>");
+			ret.Add ("\t<items>");
+			foreach (var item in items) {
+				ret.Add ("\t\t<item>");
+				ret.Add ("\t\t\t<key>" + item.Key + "</key>");
+				ret.Add ("\t\t\t<value>" + item.Value + "</value>");
+				ret.Add ("\t\t</item>");
+			}
+			ret.Add ("\t</items>");
+			ret.Add ("</VerbalTable>");
 			return ret;
 		}
 		public static List<VerbalTable> CreateBaseVerbalTables(){
@@ -78,16 +96,16 @@ namespace EasyOS
 			VerbalTable ret = new VerbalTable ();
 			ret.name = "TrueFalse";
 			ret.description = "True and False";
-			ret.vt.Add (0, "False");
-			ret.vt.Add (1, "True");
+			ret.items.Add (0, "False");
+			ret.items.Add (1, "True");
 			return ret;
 		}
 		public static VerbalTable CreateOnOff(){
 			VerbalTable ret = new VerbalTable ();
 			ret.name = "OnOff";
 			ret.description = "On and Off";
-			ret.vt.Add (0, "Off");
-			ret.vt.Add (1, "On");
+			ret.items.Add (0, "Off");
+			ret.items.Add (1, "On");
 			return ret;
 		}
 	}

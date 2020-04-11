@@ -5,6 +5,7 @@ namespace EasyOS
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class EditMessage : Gtk.Bin
 	{
+		public Project CurrentPrj{ get; set;}
 		public EditMessage ()
 		{
 			this.Build ();
@@ -14,9 +15,25 @@ namespace EasyOS
 
 		}
 		public bool LoadData(Message dat){
+			// clearn combobox list
+			int nrows = this.cmbbUnit.Model.IterNChildren();
+			for (int i = 0; i < nrows; i++) {
+				this.cmbbUnit.RemoveText(0);
+			}
+			foreach (var item in CurrentPrj.Units.GetAll()) {
+				this.cmbbUnit.AppendText (item.name);
+			}
+			nrows = this.cmbbCompuMethod.Model.IterNChildren();
+			for (int i = 0; i < nrows; i++) {
+				this.cmbbCompuMethod.RemoveText(0);
+			}
+			foreach (var item in CurrentPrj.CompuMethods.GetAll()) {
+				this.cmbbCompuMethod.AppendText (item.ToString ());
+			}
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
-			this.entryUnit.Text = dat.unit;
+			//this.cmbbUnit.Active = CurrentPrj.Units.FindIndexWithName(dat.unit.name);
+			//this.cmbbCompuMethod.Active = CurrentPrj.CompuMethods.FindIndexWithName(dat.compuMethod.name);
 			this.cmbbType.Active = (int)dat.type;
 			return true;
 		}

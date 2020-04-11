@@ -30,10 +30,16 @@ namespace EasyOS
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
-			ret.Add ("<Task>\n");
-			ret.Add ("\t<name>" + name + "</name>\n");
-			ret.Add ("\t<description>" + description + "</description>\n");
-			ret.Add ("</Task>\n");
+			ret.Add ("<Task>");
+			ret.Add ("\t<name>" + name + "</name>");
+			ret.Add ("\t<description>" + description + "</description>");
+			ret.Add ("\t<raster>" + raster + "</raster>");
+			ret.Add ("\t<processes>");
+			foreach (var item in processes) {
+				ret.Add ("\t\t<process>" + item.name + "</process>");
+			}
+			ret.Add ("\t</processes>");
+			ret.Add ("</Task>");
 			return ret;
 		}
 	}

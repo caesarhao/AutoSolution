@@ -6,17 +6,20 @@ namespace EasyOS
 	public class Message:AbstractData
 	{
 		public BaseType type{ get; set;}
-		public string unit{get; set;}
-		//public CompuMethod compuMethod{ get; set;}
+		public Unit unit{get; set;}
+		public CompuMethod compuMethod{ get; set;}
 		public Message ()
 		{
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
-			ret.Add ("<Message>\n");
-			ret.Add ("\t<name>" + name + "</name>\n");
-			ret.Add ("\t<description>" + description + "</description>\n");
-			ret.Add ("</Message>\n");
+			ret.Add ("<Message>");
+			ret.Add ("\t<name>" + name + "</name>");
+			ret.Add ("\t<description>" + description + "</description>");
+			ret.Add ("\t<type>" + type + "</type>");
+			ret.Add ("\t<unit>" + unit.name + "</unit>");
+			ret.Add ("\t<compuMethod>" + compuMethod.name + "</compuMethod>");
+			ret.Add ("</Message>");
 			return ret;
 		}
 	}

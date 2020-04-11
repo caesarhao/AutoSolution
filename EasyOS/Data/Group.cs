@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EasyOS
 {
@@ -28,12 +29,12 @@ namespace EasyOS
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
-			ret.Add ("<" + this.name + ">\n");
-			ret.Add ("\t<description>" + description + "</description>\n");
+			ret.Add ("<" + this.name + ">");
+			ret.Add ("\t<description>" + description + "</description>");
 			foreach (var item in elements) {
-				ret.AddRange (item.SaveToXml ());
+				ret.AddRange (item.SaveToXml ().Select(x => "\t" + x));
 			}
-			ret.Add ("</" + this.name + ">\n");
+			ret.Add ("</" + this.name + ">");
 			return ret;
 		}
 		public int Count(){

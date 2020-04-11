@@ -26,16 +26,16 @@ namespace EasyOS
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
-			ret.Add ("<Unit>\n");
-			ret.Add ("\t<name>" + name + "</name>\n");
-			ret.Add ("\t<description>" + description + "</description>\n");
-			ret.Add ("\t<showAs>" + showAs + "</showAs>\n");
-			ret.Add ("\t<exponents>\n");
+			ret.Add ("<Unit>");
+			ret.Add ("\t<name>" + name + "</name>");
+			ret.Add ("\t<description>" + description + "</description>");
+			ret.Add ("\t<showAs>" + showAs + "</showAs>");
+			ret.Add ("\t<exponents>");
 			foreach (var item in typeof(SIunit).GetEnumValues()) {
-				ret.Add ("\t\t<"+ item.ToString() + ">" + exponents[(int)item] + "</"+ item.ToString() + ">\n");
+				ret.Add ("\t\t<"+ item.ToString() + ">" + exponents[(int)item] + "</"+ item.ToString() + ">");
 			}
-			ret.Add ("\t</exponents>\n");
-			ret.Add ("</Unit>\n");
+			ret.Add ("\t</exponents>");
+			ret.Add ("</Unit>");
 			return ret;
 		}
 		public override bool Equals(object obj){

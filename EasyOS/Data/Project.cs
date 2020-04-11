@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EasyOS
 {
@@ -77,10 +78,17 @@ namespace EasyOS
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
-			ret.Add ("<Project>\n");
-			ret.Add ("\t<name>" + name + "</name>\n");
-			ret.Add ("\t<description>" + description + "</description>\n");
-			ret.Add ("</Project>\n");
+			ret.Add ("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+			ret.Add ("<Project>");
+			ret.Add ("\t<name>" + name + "</name>");
+			ret.Add ("\t<description>" + description + "</description>");
+			ret.AddRange (Units.SaveToXml ().Select(x => "\t" + x));
+			ret.AddRange (CompuMethods.SaveToXml ().Select(x => "\t" + x));
+			ret.AddRange (Messages.SaveToXml ().Select(x => "\t" + x));
+			ret.AddRange (Processes.SaveToXml ().Select(x => "\t" + x));
+			ret.AddRange (Tasks.SaveToXml ().Select(x => "\t" + x));
+			ret.AddRange (StateMachines.SaveToXml ().Select(x => "\t" + x));
+			ret.Add ("</Project>");
 			return ret;
 		}
 	}

@@ -2,6 +2,7 @@
 using Gtk;
 using EasyOS;
 using Gdk;
+using System.IO;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -92,6 +93,7 @@ public partial class MainWindow: Gtk.Window
 
 	public void NewProject(){
 		this.GPrj = new Project ();
+		emsg.CurrentPrj = this.GPrj;
 		GPrj.Units.AddRange (EasyOS.Unit.CreateBaseUnits ());
 		GPrj.CompuMethods.AddRange (EasyOS.CompuMethod.CreateBaseCompuMethods ());
 		ts.Clear ();
@@ -521,7 +523,15 @@ public partial class MainWindow: Gtk.Window
 		fcd.SetFilename (GPrj.name);
 		ResponseType response = (ResponseType) fcd.Run ();
 		if (response == Gtk.ResponseType.Ok) {
-			// TODO: Save project here.
+			string filename = fcd.Filename;
+			if (!filename.EndsWith(".eos")){
+				filename += ".eos";
+			}
+			TextWriter tw = new StreamWriter(filename);
+			foreach (var item in GPrj.SaveToXml()) {
+				tw.WriteLine (item);
+			}
+			tw.Close();
 		}
 		fcd.Destroy ();
 	}
