@@ -5,7 +5,6 @@ namespace EasyOS
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class EditMessage : Gtk.Bin
 	{
-		public Project CurrentPrj{ get; set;}
 		public EditMessage ()
 		{
 			this.Build ();
@@ -20,15 +19,15 @@ namespace EasyOS
 			for (int i = 0; i < nrows; i++) {
 				this.cmbbUnit.RemoveText(0);
 			}
-			foreach (var item in CurrentPrj.Units.GetAll()) {
+			foreach (var item in Group<Unit>.AllItems) {
 				this.cmbbUnit.AppendText (item.name);
 			}
 			nrows = this.cmbbCompuMethod.Model.IterNChildren();
 			for (int i = 0; i < nrows; i++) {
 				this.cmbbCompuMethod.RemoveText(0);
 			}
-			foreach (var item in CurrentPrj.CompuMethods.GetAll()) {
-				this.cmbbCompuMethod.AppendText (item.ToString ());
+			foreach (var item in Group<CompuMethod>.AllItems) {
+				this.cmbbCompuMethod.AppendText (item.name);
 			}
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;

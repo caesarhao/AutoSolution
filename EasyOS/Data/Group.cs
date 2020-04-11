@@ -8,7 +8,7 @@ namespace EasyOS
 	{
 		private List<T> elements;
 		private static string name4check;
-
+		public static List<T> AllItems;
 		public static bool NameIsSame(T obj){
 			return obj.name.Equals (name4check);
 		}
@@ -18,6 +18,7 @@ namespace EasyOS
 		public Group ()
 		{
 			elements = new List<T> ();
+			AllItems = elements;
 			if (typeof(T).Name.EndsWith("s")){
 				this.name = typeof(T).Name + "es";
 

@@ -93,7 +93,6 @@ public partial class MainWindow: Gtk.Window
 
 	public void NewProject(){
 		this.GPrj = new Project ();
-		emsg.CurrentPrj = this.GPrj;
 		GPrj.Units.AddRange (EasyOS.Unit.CreateBaseUnits ());
 		GPrj.CompuMethods.AddRange (EasyOS.CompuMethod.CreateBaseCompuMethods ());
 		ts.Clear ();
