@@ -3,6 +3,7 @@ using Gtk;
 using EasyOS;
 using Gdk;
 using System.IO;
+using System.Xml;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -504,8 +505,11 @@ public partial class MainWindow: Gtk.Window
 		fcd.DefaultResponse = ResponseType.Cancel;
 		ResponseType response = (ResponseType) fcd.Run ();
 		if (response == Gtk.ResponseType.Ok) {
-			// TODO: Open project here.
-			this.statusBarLabel2.Text = fcd.Filename;
+			XmlDocument doc = new XmlDocument();
+			doc.Load (fcd.Filename);
+			XmlNode nprj = doc.ChildNodes.Item(1);
+			this.GPrj = Project.ParseFromXml (nprj);
+			this.statusBarLabel2.Text = nprj.ChildNodes[3].Name;
 		}
 		fcd.Destroy ();
 	}

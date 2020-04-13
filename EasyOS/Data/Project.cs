@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 
 namespace EasyOS
 {
@@ -82,6 +83,11 @@ namespace EasyOS
 			ret.Add ("<Project>");
 			ret.Add ("\t<name>" + name + "</name>");
 			ret.Add ("\t<description>" + description + "</description>");
+			ret.Add ("\t<author>" + author + "</author>");
+			ret.Add ("\t<license>" + license + "</license>");
+			ret.Add ("\t<language>" + language + "</language>");
+			ret.Add ("\t<target>" + target + "</target>");
+			ret.Add ("\t<version>" + version + "</version>");
 			ret.AddRange (Units.SaveToXml ().Select(x => "\t" + x));
 			ret.AddRange (CompuMethods.SaveToXml ().Select(x => "\t" + x));
 			ret.AddRange (Messages.SaveToXml ().Select(x => "\t" + x));
@@ -91,9 +97,16 @@ namespace EasyOS
 			ret.Add ("</Project>");
 			return ret;
 		}
-		public static Project ParseFromXml(List<string> lines, Project ret = null){
+		public static Project ParseFromXml(XmlNode node, Project ret = null){
 			if (null == ret) {
 				ret = new Project ();
+			}
+			if (node.HasChildNodes)
+			{
+				for (int i=0; i<node.ChildNodes.Count; i++)
+				{
+					Console.WriteLine(node.ChildNodes[i].Name);
+				}
 			}
 			return ret;
 		}
