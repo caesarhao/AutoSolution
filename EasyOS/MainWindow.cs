@@ -92,10 +92,37 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
-	public void NewProject(){
+	protected void NewProject(){
 		this.GPrj = new Project ();
 		GPrj.Units.AddRange (EasyOS.Unit.CreateBaseUnits ());
 		GPrj.CompuMethods.AddRange (EasyOS.CompuMethod.CreateBaseCompuMethods ());
+		ts.Clear ();
+		TIprj = ts.AppendValues(this.GPrj.name);
+		TIunits = ts.AppendValues (TIprj, this.GPrj.Units.name);
+		TIcompumethods = ts.AppendValues (TIprj, this.GPrj.CompuMethods.name);
+		TImessages = ts.AppendValues (TIprj, this.GPrj.Messages.name);
+		//Gtk.TreeIter msg = ts.AppendValues (messages, "msg 1");
+		TIprocesses = ts.AppendValues (TIprj, this.GPrj.Processes.name);
+		//Gtk.TreeIter prc = ts.AppendValues (processes, "Prc 1");
+		TItasks = ts.AppendValues (TIprj, this.GPrj.Tasks.name);
+		//Gtk.TreeIter tsk1 = ts.AppendValues (tasks, "Tsk 1");
+		TIstatemachines = ts.AppendValues (TIprj, this.GPrj.StateMachines.name);
+
+		LoadTreeSubElements ();
+
+		treeviewGlobal.Visible = true;
+		this.frmEditor.Visible = true;
+
+		this.saveAction.Sensitive = true;
+		this.SaveAction.Sensitive = true;
+		this.saveAsAction.Sensitive = true;
+		this.SaveAsAction.Sensitive = true;
+	}
+
+	protected void OpenProject(){
+		if (null == this.GPrj) {
+			return;
+		}
 		ts.Clear ();
 		TIprj = ts.AppendValues(this.GPrj.name);
 		TIunits = ts.AppendValues (TIprj, this.GPrj.Units.name);
@@ -507,9 +534,10 @@ public partial class MainWindow: Gtk.Window
 		if (response == Gtk.ResponseType.Ok) {
 			XmlDocument doc = new XmlDocument();
 			doc.Load (fcd.Filename);
-			XmlNode nprj = doc.ChildNodes.Item(1);
-			this.GPrj = Project.ParseFromXml (nprj);
-			this.statusBarLabel2.Text = nprj.ChildNodes[3].Name;
+			XmlNode nprj = doc.SelectSingleNode ("/Project");
+			this.GPrj = (Project)Project.ParseFromXml (nprj);
+			OpenProject ();
+			//this.statusBarLabel2.Text = nprj.SelectSingleNode("name").InnerText;
 		}
 		fcd.Destroy ();
 	}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace EasyOS
 {
@@ -30,6 +31,7 @@ namespace EasyOS
 			ret.Add ("\t<name>" + name + "</name>");
 			ret.Add ("\t<description>" + description + "</description>");
 			ret.Add ("\t<showAs>" + showAs + "</showAs>");
+			ret.Add ("\t<coeff>" + coeff + "</coeff>");
 			ret.Add ("\t<exponents>");
 			foreach (var item in typeof(SIunit).GetEnumValues()) {
 				ret.Add ("\t\t<"+ item.ToString() + ">" + exponents[(int)item] + "</"+ item.ToString() + ">");
@@ -38,17 +40,32 @@ namespace EasyOS
 			ret.Add ("</Unit>");
 			return ret;
 		}
-		public static Unit ParseFromXml(List<string> lines, Unit ret = null){
+		public static Unit ParseFromXml(XmlNode node, Unit ret = null){
 			if (null == ret) {
 				ret = new Unit ();
 			}
-			foreach (var item in lines) {
-				if (item.StartsWith ("<name>")) {
-					ret.name = item.Substring (6, item.Length - 13);
+			ret = (Unit)AbstractData.ParseFromXml (node, ret);
+			XmlNode cnode = null;
+			cnode = node.SelectSingleNode ("showAs");
+			if (null != cnode) {
+				ret.showAs = cnode.InnerText;
+			}
+			cnode = node.SelectSingleNode ("coeff");
+			if (null != cnode) {
+				ret.coeff = Convert.ToDouble(cnode.InnerText);
+			}
+			cnode = node.SelectSingleNode ("exponents");
+			if (null != cnode) {
+				foreach (var item in typeof(SIunit).GetEnumValues()) {
+					XmlNode dnode = cnode.SelectSingleNode (item.ToString ());
+					if (null != dnode) {
+						ret.exponents [(int)item] = Convert.ToInt32(dnode.InnerText);
+					}
 				}
 			}
 			return ret;
 		}
+
 		public override bool Equals(object obj){
 			if (null == obj) {
 				return false;

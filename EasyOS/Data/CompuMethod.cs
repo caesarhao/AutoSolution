@@ -1,12 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace EasyOS
 {
-	public abstract class CompuMethod:AbstractData
+	public  abstract class CompuMethod:AbstractData
 	{
 		public CompuMethod ()
 		{
+		}
+		public static CompuMethod ParseFromXml(XmlNode node, CompuMethod ret = null){
+			switch (node.Name) {
+			case "RationalFunction":
+				return RationalFunction.ParseFromXml (node, ret);
+				break;
+			case "VerbalTable":
+				return VerbalTable.ParseFromXml (node, ret);
+				break;
+			default:
+				return ret;
+				break;
+			}
 		}
 		public static List<CompuMethod> CreateBaseCompuMethods(){
 			List<CompuMethod> ret = new List<CompuMethod> ();
@@ -46,9 +60,23 @@ namespace EasyOS
 			ret.Add ("</RationalFunction>");
 			return ret;
 		}
-		public static RationalFunction ParseFromXml(List<string> lines, RationalFunction ret = null){
+		public static RationalFunction ParseFromXml(XmlNode node, RationalFunction ret = null){
 			if (null == ret) {
 				ret = new RationalFunction ();
+			}
+			ret = (RationalFunction)AbstractData.ParseFromXml (node, ret);
+			XmlNode cnode = null;
+			cnode = node.SelectSingleNode ("Numerators");
+			if (null != cnode) {
+				for (int i = 0; i < cnode.SelectNodes ("vt").Count; i++) {
+					ret.Numerators [i] = Convert.ToDouble (cnode.SelectNodes ("vt").Item (i).InnerText);
+				}
+			}
+			cnode = node.SelectSingleNode ("Denominators");
+			if (null != cnode) {
+				for (int i = 0; i < cnode.SelectNodes ("vt").Count; i++) {
+					ret.Numerators [i] = Convert.ToDouble (cnode.SelectNodes ("vt").Item (i).InnerText);
+				}
 			}
 			return ret;
 		}
@@ -92,9 +120,19 @@ namespace EasyOS
 			ret.Add ("</VerbalTable>");
 			return ret;
 		}
-		public static VerbalTable ParseFromXml(List<string> lines, VerbalTable ret = null){
+		public static VerbalTable ParseFromXml(XmlNode node, VerbalTable ret = null){
 			if (null == ret) {
 				ret = new VerbalTable ();
+			}
+			ret = (VerbalTable)AbstractData.ParseFromXml (node, ret);
+			XmlNode cnode = null;
+			cnode = node.SelectSingleNode ("items");
+			if (null != cnode) {
+				for (int i = 0; i < cnode.SelectNodes ("item").Count; i++) {
+					XmlNode dnode = cnode.SelectNodes ("item").Item (i);
+					ret.items.Add (Convert.ToInt32 (dnode.SelectSingleNode ("key").InnerText), 
+						dnode.SelectSingleNode ("value").InnerText);
+				}
 			}
 			return ret;
 		}

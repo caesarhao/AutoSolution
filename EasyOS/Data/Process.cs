@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Xml;
 
 namespace EasyOS
 {
@@ -31,9 +32,15 @@ namespace EasyOS
 			ret.Add ("</Process>");
 			return ret;
 		}
-		public static Process ParseFromXml(List<string> lines, Process ret = null){
+		public static Process ParseFromXml(XmlNode node, Process ret = null){
 			if (null == ret) {
 				ret = new Process ();
+			}
+			ret = (Process)AbstractData.ParseFromXml (node, ret);
+			XmlNode cnode = null;
+			cnode = node.SelectSingleNode ("showAs");
+			if (null != cnode) {
+				//ret.showAs = cnode.InnerText;
 			}
 			return ret;
 		}

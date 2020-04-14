@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Xml;
 
 namespace EasyOS
 {
@@ -42,9 +43,15 @@ namespace EasyOS
 			ret.Add ("</Task>");
 			return ret;
 		}
-		public static Task ParseFromXml(List<string> lines, Task ret = null){
+		public static Task ParseFromXml(XmlNode node, Task ret = null){
 			if (null == ret) {
 				ret = new Task ();
+			}
+			ret = (Task)AbstractData.ParseFromXml (node, ret);
+			XmlNode cnode = null;
+			cnode = node.SelectSingleNode ("showAs");
+			if (null != cnode) {
+				//ret.showAs = cnode.InnerText;
 			}
 			return ret;
 		}

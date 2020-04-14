@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace EasyOS
 {
@@ -22,9 +23,21 @@ namespace EasyOS
 			ret.Add ("</Message>");
 			return ret;
 		}
-		public static Message ParseFromXml(List<string> lines, Message ret = null){
+		public static Message ParseFromXml(XmlNode node, Message ret = null){
 			if (null == ret) {
 				ret = new Message ();
+			}
+			ret = (Message)AbstractData.ParseFromXml (node, ret);
+			XmlNode cnode = null;
+			cnode = node.SelectSingleNode ("type");
+			if (null != cnode) {
+				BaseType eval;
+				Enum.TryParse (cnode.InnerText, out eval);
+				ret.type = eval;
+			}
+			cnode = node.SelectSingleNode ("unit");
+			if (null != cnode) {
+				ret.unit = Group<Unit>.GFindWithName (cnode.InnerText);
 			}
 			return ret;
 		}

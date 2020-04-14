@@ -75,6 +75,8 @@ namespace EasyOS
 			Processes = new Group<Process> ();
 			StateMachines = new Group<StateMachine> ();
 			Tasks = new Group<Task> ();
+			author = "caesarhao";
+			description = "An example";
 			version = "0.1";
 		}
 		public override List<string> SaveToXml(){
@@ -101,12 +103,35 @@ namespace EasyOS
 			if (null == ret) {
 				ret = new Project ();
 			}
-			if (node.HasChildNodes)
-			{
-				for (int i=0; i<node.ChildNodes.Count; i++)
-				{
-					Console.WriteLine(node.ChildNodes[i].Name);
-				}
+			ret = (Project)AbstractData.ParseFromXml (node, ret);
+			XmlNode cnode = null;
+			cnode = node.SelectSingleNode ("author");
+			if (null != cnode) {
+				ret.author = cnode.InnerText;
+			}
+			cnode = node.SelectSingleNode ("license");
+			if (null != cnode) {
+				ELicense eVal;
+				Enum.TryParse(cnode.InnerText, out eVal);
+				ret.license = eVal;
+			}
+			cnode = node.SelectSingleNode ("language");
+			if (null != cnode) {
+				ELanguage eVal;
+				Enum.TryParse(cnode.InnerText, out eVal);
+				ret.language = eVal;
+			}
+			cnode = node.SelectSingleNode ("author");
+			if (null != cnode) {
+				ret.author = cnode.InnerText;
+			}
+			cnode = node.SelectSingleNode ("Units");
+			if (null != cnode) {
+				ret.Units = Group<Unit>.ParseFromXml (cnode, ret.Units);
+			}
+			cnode = node.SelectSingleNode ("CompuMethods");
+			if (null != cnode) {
+				ret.CompuMethods = Group<CompuMethod>.ParseFromXml (cnode, ret.CompuMethods);
 			}
 			return ret;
 		}

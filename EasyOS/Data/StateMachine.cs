@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace EasyOS
 {
@@ -16,9 +17,15 @@ namespace EasyOS
 			ret.Add ("</StateMachine>");
 			return ret;
 		}
-		public static StateMachine ParseFromXml(List<string> lines, StateMachine ret = null){
+		public static StateMachine ParseFromXml(XmlNode node, StateMachine ret = null){
 			if (null == ret) {
 				ret = new StateMachine ();
+			}
+			ret = (StateMachine)AbstractData.ParseFromXml (node, ret);
+			XmlNode cnode = null;
+			cnode = node.SelectSingleNode ("showAs");
+			if (null != cnode) {
+				//ret.showAs = cnode.InnerText;
 			}
 			return ret;
 		}
