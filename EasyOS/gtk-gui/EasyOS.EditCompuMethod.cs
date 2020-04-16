@@ -135,7 +135,7 @@ namespace EasyOS
 			this.notebook1 = new global::Gtk.Notebook ();
 			this.notebook1.CanFocus = true;
 			this.notebook1.Name = "notebook1";
-			this.notebook1.CurrentPage = 1;
+			this.notebook1.CurrentPage = 0;
 			// Container child notebook1.Gtk.Notebook+NotebookChild
 			this.table2 = new global::Gtk.Table (((uint)(3)), ((uint)(3)), false);
 			this.table2.Name = "table2";
@@ -332,6 +332,10 @@ namespace EasyOS
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.entryDenominator.Changed += new global::System.EventHandler (this.OnEntryDenominatorChanged);
+			this.entryDenominator1.Changed += new global::System.EventHandler (this.OnEntryDenominator1Changed);
+			this.entryNumerator.Changed += new global::System.EventHandler (this.OnEntryNumeratorChanged);
+			this.entryNumerator1.Changed += new global::System.EventHandler (this.OnEntryNumerator1Changed);
 			this.buttonAdd.Clicked += new global::System.EventHandler (this.OnButtonAddClicked);
 			this.buttonDelete.Clicked += new global::System.EventHandler (this.OnButtonDeleteClicked);
 			this.TreeViewVT.CursorChanged += new global::System.EventHandler (this.OnTreeViewVTCursorChanged);

@@ -10,6 +10,7 @@ namespace EasyOS
 		public EditUnit ()
 		{
 			this.Build ();
+
 		}
 		public bool LoadData(Unit dat){
 			currentUnt = dat;
@@ -36,26 +37,26 @@ namespace EasyOS
 			dat.description=this.entryDescription.Text;
 			dat.showAs=this.entryShowAs.Text;
 			dat.coeff=this.spin_coeff.Value;
-			dat.exponents [(int)Unit.SIunit.ten]=Convert.ToInt32(this.spin_ten.Value);
-			dat.exponents [(int)Unit.SIunit.s]=Convert.ToInt32(this.spin_s.Value);
-			dat.exponents [(int)Unit.SIunit.m]=Convert.ToInt32(this.spin_m.Value);
-			dat.exponents [(int)Unit.SIunit.kg]=Convert.ToInt32(this.spin_kg.Value);
-			dat.exponents [(int)Unit.SIunit.A]=Convert.ToInt32(this.spin_A.Value);
-			dat.exponents [(int)Unit.SIunit.K]=Convert.ToInt32(this.spin_K.Value);
-			dat.exponents [(int)Unit.SIunit.mol]=Convert.ToInt32(this.spin_mol.Value);
-			dat.exponents [(int)Unit.SIunit.cd]=Convert.ToInt32(this.spin_cd.Value);
+			dat.exponents [(int)Unit.SIunit.ten]=this.spin_ten.ValueAsInt;
+			dat.exponents [(int)Unit.SIunit.s]=this.spin_s.ValueAsInt;
+			dat.exponents [(int)Unit.SIunit.m]=this.spin_m.ValueAsInt;
+			dat.exponents [(int)Unit.SIunit.kg]=this.spin_kg.ValueAsInt;
+			dat.exponents [(int)Unit.SIunit.A]=this.spin_A.ValueAsInt;
+			dat.exponents [(int)Unit.SIunit.K]=this.spin_K.ValueAsInt;
+			dat.exponents [(int)Unit.SIunit.mol]=this.spin_mol.ValueAsInt;
+			dat.exponents [(int)Unit.SIunit.cd]=this.spin_cd.ValueAsInt;
 			return dat;
 		}
 		public void RefreshSIunit(){
 			double coeff = this.spin_coeff.Value;
-			int ten = Convert.ToInt32(this.spin_ten.Value);
-			int s = Convert.ToInt32(this.spin_s.Value);
-			int m = Convert.ToInt32(this.spin_m.Value);
-			int kg = Convert.ToInt32(this.spin_kg.Value);
-			int A = Convert.ToInt32(this.spin_A.Value);
-			int K = Convert.ToInt32(this.spin_K.Value);
-			int mol = Convert.ToInt32(this.spin_mol.Value);
-			int cd = Convert.ToInt32(this.spin_cd.Value);
+			int ten = this.spin_ten.ValueAsInt;
+			int s = this.spin_s.ValueAsInt;
+			int m = this.spin_m.ValueAsInt;
+			int kg = this.spin_kg.ValueAsInt;
+			int A = this.spin_A.ValueAsInt;
+			int K = this.spin_K.ValueAsInt;
+			int mol = this.spin_mol.ValueAsInt;
+			int cd = this.spin_cd.ValueAsInt;
 			string unitLabel = "";
 			bool alreadyStart = false;
 			if (0 != coeff.CompareTo(1)) {
@@ -132,15 +133,51 @@ namespace EasyOS
 		protected void OnSpinValueChanged (object sender, EventArgs e)
 		{
 			RefreshSIunit ();
+			switch (((SpinButton)sender).Name) {
+			case "spin_coeff":
+				currentUnt.coeff = this.spin_coeff.Value;
+				break;
+			case "spin_ten":
+				currentUnt.exponents [(int)Unit.SIunit.ten] = this.spin_ten.ValueAsInt;
+				break;
+			case "spin_s":
+				currentUnt.exponents [(int)Unit.SIunit.s] = this.spin_s.ValueAsInt;
+				break;
+			case "spin_m":
+				currentUnt.exponents [(int)Unit.SIunit.m] = this.spin_m.ValueAsInt;
+				break;
+			case "spin_kg":
+				currentUnt.exponents [(int)Unit.SIunit.kg] = this.spin_kg.ValueAsInt;
+				break;
+			case "spin_A":
+				currentUnt.exponents [(int)Unit.SIunit.A] = this.spin_A.ValueAsInt;
+				break;
+			case "spin_K":
+				currentUnt.exponents [(int)Unit.SIunit.K] = this.spin_K.ValueAsInt;
+				break;
+			case "spin_mol":
+				currentUnt.exponents [(int)Unit.SIunit.mol] = this.spin_mol.ValueAsInt;
+				break;
+			case "spin_cd":
+				currentUnt.exponents [(int)Unit.SIunit.cd] = this.spin_cd.ValueAsInt;
+				break;
+			default:
+				break;
+			}
+
 		}
 
 		protected void OnEntryNameChanged (object sender, EventArgs e)
 		{
+			string nom = ((Entry)sender).Text;
 			TreeStore ts = MainWindow.MW.ts;
 			TreeIter ti;
 			MainWindow.MW.GetTreeViewGlobal().Selection.GetSelected(out ti);
-			ts.SetValue(ti, 0, ((Entry)sender).Text);
-			currentUnt.name = ((Entry)sender).Text;
+			if (currentUnt.SetName (nom)) {
+				ts.SetValue (ti, 0, ((Entry)sender).Text);
+			} else {
+				((Entry)sender).Text = currentUnt.name;
+			}
 		}
 
 		protected void OnEntryDescriptionChanged (object sender, EventArgs e)

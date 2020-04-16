@@ -128,6 +128,31 @@ namespace EasyOS
 		{
 			currentCM.description = ((Entry)sender).Text;
 		}
+
+		protected void OnEntryNumeratorChanged (object sender, EventArgs e)
+		{
+			if(((Entry)sender).Text.Length > 0)
+				currentRF.Numerators [0] = Convert.ToDouble(((Entry)sender).Text);
+
+		}
+
+		protected void OnEntryNumerator1Changed (object sender, EventArgs e)
+		{
+			if(((Entry)sender).Text.Length > 0)
+				currentRF.Numerators [1] = Convert.ToDouble(((Entry)sender).Text);
+		}
+
+		protected void OnEntryDenominatorChanged (object sender, EventArgs e)
+		{
+			if(((Entry)sender).Text.Length > 0)
+				currentRF.Denominators [0] = Convert.ToDouble(((Entry)sender).Text);
+		}
+
+		protected void OnEntryDenominator1Changed (object sender, EventArgs e)
+		{
+			if(((Entry)sender).Text.Length > 0)
+				currentRF.Denominators [1] = Convert.ToDouble(((Entry)sender).Text);
+		}
 	}
 }
 

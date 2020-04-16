@@ -442,6 +442,7 @@ namespace EasyOS
 			this.spin_coeff.ValueChanged += new global::System.EventHandler (this.OnSpinValueChanged);
 			this.spin_ten.ValueChanged += new global::System.EventHandler (this.OnSpinValueChanged);
 			this.spin_s.ValueChanged += new global::System.EventHandler (this.OnSpinValueChanged);
+			this.spin_mol.ValueChanged += new global::System.EventHandler (this.OnSpinValueChanged);
 			this.spin_m.ValueChanged += new global::System.EventHandler (this.OnSpinValueChanged);
 			this.spin_kg.ValueChanged += new global::System.EventHandler (this.OnSpinValueChanged);
 			this.spin_K.ValueChanged += new global::System.EventHandler (this.OnSpinValueChanged);

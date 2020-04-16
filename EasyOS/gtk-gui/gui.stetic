@@ -1800,6 +1800,7 @@
                     <property name="StepIncrement">1</property>
                     <property name="ClimbRate">1</property>
                     <property name="Numeric">True</property>
+                    <signal name="ValueChanged" handler="OnSpinValueChanged" />
                   </widget>
                   <packing>
                     <property name="TopAttach">2</property>
@@ -2027,7 +2028,7 @@
           <widget class="Gtk.Notebook" id="notebook1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="CurrentPage">1</property>
+            <property name="CurrentPage">0</property>
             <child>
               <widget class="Gtk.Table" id="table2">
                 <property name="MemberName" />
@@ -2061,6 +2062,7 @@
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">●</property>
+                        <signal name="Changed" handler="OnEntryNumeratorChanged" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -2086,6 +2088,7 @@
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">●</property>
+                        <signal name="Changed" handler="OnEntryNumerator1Changed" />
                       </widget>
                       <packing>
                         <property name="Position">2</property>
@@ -2129,6 +2132,7 @@
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">●</property>
+                        <signal name="Changed" handler="OnEntryDenominatorChanged" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -2154,6 +2158,7 @@
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">●</property>
+                        <signal name="Changed" handler="OnEntryDenominator1Changed" />
                       </widget>
                       <packing>
                         <property name="Position">2</property>

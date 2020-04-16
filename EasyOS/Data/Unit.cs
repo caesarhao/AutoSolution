@@ -25,6 +25,14 @@ namespace EasyOS
 			exponents = new int[8];
 			coeff = 1;
 		}
+		public bool SetName(string nom){
+			if (null == Group<Unit>.GFindWithName (nom)) {
+				this.name = nom;
+				return true;
+			} else {
+				return false;
+			}
+		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
 			ret.Add ("<Unit>");
