@@ -70,7 +70,16 @@ public partial class MainWindow: Gtk.Window
 		this.SaveAsAction.Sensitive = false;
 		this.refreshAction.Sensitive = false;
 	}
-
+	protected void CreateEmptyTreeStruct(){
+		ts.Clear ();
+		TIprj = ts.AppendValues(this.GPrj.name);
+		TIunits = ts.AppendValues (TIprj, this.GPrj.Units.name);
+		TIcompumethods = ts.AppendValues (TIprj, this.GPrj.CompuMethods.name);
+		TImessages = ts.AppendValues (TIprj, this.GPrj.Messages.name);
+		TIprocesses = ts.AppendValues (TIprj, this.GPrj.Processes.name);
+		TItasks = ts.AppendValues (TIprj, this.GPrj.Tasks.name);
+		TIstatemachines = ts.AppendValues (TIprj, this.GPrj.StateMachines.name);
+	}
 	public void LoadTreeSubElements(){
 		foreach (var item in GPrj.Units.GetAll()) {
 			ts.AppendValues (TIunits, item.name);
@@ -96,17 +105,8 @@ public partial class MainWindow: Gtk.Window
 		this.GPrj = new Project ();
 		GPrj.Units.AddRange (EasyOS.Unit.CreateBaseUnits ());
 		GPrj.CompuMethods.AddRange (EasyOS.CompuMethod.CreateBaseCompuMethods ());
-		ts.Clear ();
-		TIprj = ts.AppendValues(this.GPrj.name);
-		TIunits = ts.AppendValues (TIprj, this.GPrj.Units.name);
-		TIcompumethods = ts.AppendValues (TIprj, this.GPrj.CompuMethods.name);
-		TImessages = ts.AppendValues (TIprj, this.GPrj.Messages.name);
-		//Gtk.TreeIter msg = ts.AppendValues (messages, "msg 1");
-		TIprocesses = ts.AppendValues (TIprj, this.GPrj.Processes.name);
-		//Gtk.TreeIter prc = ts.AppendValues (processes, "Prc 1");
-		TItasks = ts.AppendValues (TIprj, this.GPrj.Tasks.name);
-		//Gtk.TreeIter tsk1 = ts.AppendValues (tasks, "Tsk 1");
-		TIstatemachines = ts.AppendValues (TIprj, this.GPrj.StateMachines.name);
+
+		CreateEmptyTreeStruct ();
 
 		LoadTreeSubElements ();
 
@@ -123,17 +123,7 @@ public partial class MainWindow: Gtk.Window
 		if (null == this.GPrj) {
 			return;
 		}
-		ts.Clear ();
-		TIprj = ts.AppendValues(this.GPrj.name);
-		TIunits = ts.AppendValues (TIprj, this.GPrj.Units.name);
-		TIcompumethods = ts.AppendValues (TIprj, this.GPrj.CompuMethods.name);
-		TImessages = ts.AppendValues (TIprj, this.GPrj.Messages.name);
-		//Gtk.TreeIter msg = ts.AppendValues (messages, "msg 1");
-		TIprocesses = ts.AppendValues (TIprj, this.GPrj.Processes.name);
-		//Gtk.TreeIter prc = ts.AppendValues (processes, "Prc 1");
-		TItasks = ts.AppendValues (TIprj, this.GPrj.Tasks.name);
-		//Gtk.TreeIter tsk1 = ts.AppendValues (tasks, "Tsk 1");
-		TIstatemachines = ts.AppendValues (TIprj, this.GPrj.StateMachines.name);
+		CreateEmptyTreeStruct ();
 
 		LoadTreeSubElements ();
 
@@ -537,7 +527,6 @@ public partial class MainWindow: Gtk.Window
 			XmlNode nprj = doc.SelectSingleNode ("/Project");
 			this.GPrj = (Project)Project.ParseFromXml (nprj);
 			OpenProject ();
-			//this.statusBarLabel2.Text = nprj.SelectSingleNode("name").InnerText;
 		}
 		fcd.Destroy ();
 	}

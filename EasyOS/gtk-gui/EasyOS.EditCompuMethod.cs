@@ -56,8 +56,6 @@ namespace EasyOS
 		
 		private global::Gtk.Button buttonDelete;
 		
-		private global::Gtk.Button buttonModify;
-		
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		
 		private global::Gtk.TreeView TreeViewVT;
@@ -72,6 +70,7 @@ namespace EasyOS
 			this.Name = "EasyOS.EditCompuMethod";
 			// Container child EasyOS.EditCompuMethod.Gtk.Container+ContainerChild
 			this.table1 = new global::Gtk.Table (((uint)(4)), ((uint)(2)), false);
+			this.table1.Name = "table1";
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			this.table1.BorderWidth = ((uint)(10));
@@ -296,23 +295,11 @@ namespace EasyOS
 			w21.Position = 1;
 			w21.Expand = false;
 			w21.Fill = false;
-			// Container child vbox1.Gtk.Box+BoxChild
-			this.buttonModify = new global::Gtk.Button ();
-			this.buttonModify.Sensitive = false;
-			this.buttonModify.CanFocus = true;
-			this.buttonModify.Name = "buttonModify";
-			this.buttonModify.UseUnderline = true;
-			this.buttonModify.Label = global::Mono.Unix.Catalog.GetString ("Modify");
-			this.vbox1.Add (this.buttonModify);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.buttonModify]));
-			w22.Position = 2;
+			this.hbox3.Add (this.vbox1);
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.vbox1]));
+			w22.Position = 0;
 			w22.Expand = false;
 			w22.Fill = false;
-			this.hbox3.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.vbox1]));
-			w23.Position = 0;
-			w23.Expand = false;
-			w23.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -323,11 +310,11 @@ namespace EasyOS
 			this.TreeViewVT.Name = "TreeViewVT";
 			this.GtkScrolledWindow.Add (this.TreeViewVT);
 			this.hbox3.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.GtkScrolledWindow]));
-			w25.Position = 1;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.GtkScrolledWindow]));
+			w24.Position = 1;
 			this.notebook1.Add (this.hbox3);
-			global::Gtk.Notebook.NotebookChild w26 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.hbox3]));
-			w26.Position = 1;
+			global::Gtk.Notebook.NotebookChild w25 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.hbox3]));
+			w25.Position = 1;
 			// Notebook tab
 			this.label3 = new global::Gtk.Label ();
 			this.label3.Name = "label3";
@@ -335,12 +322,11 @@ namespace EasyOS
 			this.notebook1.SetTabLabel (this.hbox3, this.label3);
 			this.label3.ShowAll ();
 			this.table1.Add (this.notebook1);
-			global::Gtk.Table.TableChild w27 = ((global::Gtk.Table.TableChild)(this.table1 [this.notebook1]));
-			w27.TopAttach = ((uint)(2));
-			w27.BottomAttach = ((uint)(3));
-			w27.LeftAttach = ((uint)(1));
-			w27.RightAttach = ((uint)(2));
-			w27.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w26 = ((global::Gtk.Table.TableChild)(this.table1 [this.notebook1]));
+			w26.TopAttach = ((uint)(2));
+			w26.BottomAttach = ((uint)(3));
+			w26.LeftAttach = ((uint)(1));
+			w26.RightAttach = ((uint)(2));
 			this.Add (this.table1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
@@ -348,7 +334,6 @@ namespace EasyOS
 			this.Hide ();
 			this.buttonAdd.Clicked += new global::System.EventHandler (this.OnButtonAddClicked);
 			this.buttonDelete.Clicked += new global::System.EventHandler (this.OnButtonDeleteClicked);
-			this.buttonModify.Clicked += new global::System.EventHandler (this.OnButtonModifyClicked);
 			this.TreeViewVT.CursorChanged += new global::System.EventHandler (this.OnTreeViewVTCursorChanged);
 		}
 	}
