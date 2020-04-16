@@ -73,6 +73,7 @@ namespace EasyOS
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.entryDescription.Changed += new global::System.EventHandler (this.OnEntryDescriptionChanged);
 		}
 	}
 }

@@ -45,11 +45,11 @@ namespace EasyOS
 			this.TreeViewVT.AppendColumn (tvcValue);
 		}
 		public bool LoadData(CompuMethod dat){
+			currentCM = dat;
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
 			if (dat is RationalFunction) {
 				currentRF = (RationalFunction)dat;
-				currentCM = dat;
 				this.notebook1.GetNthPage (0).ShowAll ();
 				this.notebook1.GetNthPage (1).HideAll ();
 				this.entryNumerator.Text = ((RationalFunction)dat).Numerators [0].ToString();
@@ -59,7 +59,6 @@ namespace EasyOS
 
 			} else if (dat is VerbalTable) {
 				currentVT = (VerbalTable)dat;
-				currentCM = dat;
 				this.notebook1.GetNthPage (0).HideAll ();
 				this.notebook1.GetNthPage (1).ShowAll ();
 				lsVT.Clear();
@@ -117,7 +116,18 @@ namespace EasyOS
 			lsVT.Remove (ref ti);
 			SaveData ();
 		}
-
+		protected void OnEntryNameChanged (object sender, EventArgs e)
+		{
+			TreeStore ts = MainWindow.MW.ts;
+			TreeIter ti;
+			MainWindow.MW.GetTreeViewGlobal().Selection.GetSelected(out ti);
+			ts.SetValue(ti, 0, ((Entry)sender).Text);
+			currentCM.name = ((Entry)sender).Text;
+		}
+		protected void OnEntryDescriptionChanged (object sender, EventArgs e)
+		{
+			currentCM.description = ((Entry)sender).Text;
+		}
 	}
 }
 

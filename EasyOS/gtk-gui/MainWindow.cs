@@ -165,6 +165,7 @@ public partial class MainWindow
 		this.treeviewGlobal = new global::Gtk.TreeView ();
 		this.treeviewGlobal.CanFocus = true;
 		this.treeviewGlobal.Name = "treeviewGlobal";
+		this.treeviewGlobal.EnableSearch = false;
 		this.GtkScrolledWindow.Add (this.treeviewGlobal);
 		this.hpaned3.Add (this.GtkScrolledWindow);
 		global::Gtk.Paned.PanedChild w5 = ((global::Gtk.Paned.PanedChild)(this.hpaned3 [this.GtkScrolledWindow]));

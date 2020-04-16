@@ -7,6 +7,7 @@ namespace EasyOS
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class EditProject : Gtk.Bin
 	{
+		private Project currentPrj;
 		public EditProject ()
 		{
 			
@@ -21,6 +22,7 @@ namespace EasyOS
 			}
 		}
 		public bool LoadData(Project dat){
+			currentPrj = dat;
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
 			this.entryAuthor.Text = dat.author;
@@ -46,7 +48,7 @@ namespace EasyOS
 		}
 		public Project SaveData(Project dat=null){
 			if (null == dat) {
-				dat = new Project ();
+				dat = currentPrj;
 			}
 			dat.name=this.entryName.Text;
 			dat.description=this.entryDescription.Text;
@@ -103,6 +105,18 @@ namespace EasyOS
 		{
 			ComboBox senderr = (ComboBox)sender;
 			RefreshCmbbTarget ();
+		}
+		protected void OnEntryNameChanged (object sender, EventArgs e)
+		{
+			TreeStore ts = MainWindow.MW.ts;
+			TreeIter ti;
+			MainWindow.MW.GetTreeViewGlobal().Selection.GetSelected(out ti);
+			ts.SetValue(ti, 0, ((Entry)sender).Text);
+			currentPrj.name = ((Entry)sender).Text;
+		}
+		protected void OnEntryDescriptionChanged (object sender, EventArgs e)
+		{
+			currentPrj.description = ((Entry)sender).Text;
 		}
 	}
 }

@@ -1,15 +1,18 @@
 ﻿using System;
+using Gtk;
 
 namespace EasyOS
 {
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class EditUnit : Gtk.Bin
 	{
+		private Unit currentUnt;
 		public EditUnit ()
 		{
 			this.Build ();
 		}
 		public bool LoadData(Unit dat){
+			currentUnt = dat;
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
 			this.entryShowAs.Text = dat.showAs;
@@ -27,7 +30,7 @@ namespace EasyOS
 		}
 		public Unit SaveData(Unit dat=null){
 			if (null == dat) {
-				dat = new Unit ();
+				dat = currentUnt;
 			}
 			dat.name=this.entryName.Text;
 			dat.description=this.entryDescription.Text;
@@ -129,6 +132,25 @@ namespace EasyOS
 		protected void OnSpinValueChanged (object sender, EventArgs e)
 		{
 			RefreshSIunit ();
+		}
+
+		protected void OnEntryNameChanged (object sender, EventArgs e)
+		{
+			TreeStore ts = MainWindow.MW.ts;
+			TreeIter ti;
+			MainWindow.MW.GetTreeViewGlobal().Selection.GetSelected(out ti);
+			ts.SetValue(ti, 0, ((Entry)sender).Text);
+			currentUnt.name = ((Entry)sender).Text;
+		}
+
+		protected void OnEntryDescriptionChanged (object sender, EventArgs e)
+		{
+			currentUnt.description = ((Entry)sender).Text;
+		}
+
+		protected void OnEntryShowAsChanged (object sender, EventArgs e)
+		{
+			currentUnt.showAs = ((Entry)sender).Text;
 		}
 	}
 }

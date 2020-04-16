@@ -335,6 +335,8 @@ namespace EasyOS
 			this.buttonAdd.Clicked += new global::System.EventHandler (this.OnButtonAddClicked);
 			this.buttonDelete.Clicked += new global::System.EventHandler (this.OnButtonDeleteClicked);
 			this.TreeViewVT.CursorChanged += new global::System.EventHandler (this.OnTreeViewVTCursorChanged);
+			this.entryName.Changed += new global::System.EventHandler (this.OnEntryNameChanged);
+			this.entryDescription.Changed += new global::System.EventHandler (this.OnEntryDescriptionChanged);
 		}
 	}
 }

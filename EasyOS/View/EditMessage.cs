@@ -1,10 +1,12 @@
 ﻿using System;
+using Gtk;
 
 namespace EasyOS
 {
 	[System.ComponentModel.ToolboxItem (true)]
 	public partial class EditMessage : Gtk.Bin
 	{
+		private Message currentMsg;
 		public EditMessage ()
 		{
 			this.Build ();
@@ -14,6 +16,7 @@ namespace EasyOS
 
 		}
 		public bool LoadData(Message dat){
+			currentMsg = dat;
 			// clearn combobox list
 			int nrows = this.cmbbUnit.Model.IterNChildren();
 			for (int i = 0; i < nrows; i++) {
@@ -38,11 +41,23 @@ namespace EasyOS
 		}
 		public Message SaveData(Message dat=null){
 			if (null == dat) {
-				dat = new Message ();
+				dat = currentMsg;
 			}
 			dat.name=this.entryName.Text;
 			dat.description=this.entryDescription.Text;
 			return dat;
+		}
+		protected void OnEntryNameChanged (object sender, EventArgs e)
+		{
+			TreeStore ts = MainWindow.MW.ts;
+			TreeIter ti;
+			MainWindow.MW.GetTreeViewGlobal().Selection.GetSelected(out ti);
+			ts.SetValue(ti, 0, ((Entry)sender).Text);
+			currentMsg.name = ((Entry)sender).Text;
+		}
+		protected void OnEntryDescriptionChanged (object sender, EventArgs e)
+		{
+			currentMsg.description = ((Entry)sender).Text;
 		}
 	}
 }

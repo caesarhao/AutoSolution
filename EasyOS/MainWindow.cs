@@ -16,6 +16,8 @@ public partial class MainWindow: Gtk.Window
 	private EditTask 			etsk;
 	private EditStateMachine 	esm;
 
+	public static MainWindow MW;
+
 	public Project GPrj = null;
 	public Gtk.TreeStore ts = null;
 
@@ -26,7 +28,7 @@ public partial class MainWindow: Gtk.Window
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
-
+		MW = this;
 		egrp = new EditGroup ();
 		egrp.ShowAll ();
 		eprj = new EditProject ();
@@ -69,6 +71,9 @@ public partial class MainWindow: Gtk.Window
 		this.saveAsAction.Sensitive = false;
 		this.SaveAsAction.Sensitive = false;
 		this.refreshAction.Sensitive = false;
+	}
+	public TreeView GetTreeViewGlobal(){
+		return this.treeviewGlobal;
 	}
 	protected void CreateEmptyTreeStruct(){
 		ts.Clear ();
