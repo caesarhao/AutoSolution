@@ -1041,6 +1041,7 @@
             <property name="MemberName" />
             <property name="IsTextCombo">True</property>
             <property name="Items" translatable="yes" />
+            <signal name="Changed" handler="OnCmbbCompuMethodChanged" />
           </widget>
           <packing>
             <property name="TopAttach">4</property>
@@ -1063,6 +1064,7 @@
             <property name="MemberName" />
             <property name="IsTextCombo">True</property>
             <property name="Items" translatable="yes" />
+            <signal name="Changed" handler="OnCmbbTypeChanged" />
           </widget>
           <packing>
             <property name="TopAttach">2</property>
@@ -1084,6 +1086,7 @@
             <property name="MemberName" />
             <property name="IsTextCombo">True</property>
             <property name="Items" translatable="yes" />
+            <signal name="Changed" handler="OnCmbbUnitChanged" />
           </widget>
           <packing>
             <property name="TopAttach">3</property>

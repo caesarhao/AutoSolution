@@ -151,6 +151,9 @@ namespace EasyOS
 			this.Hide ();
 			this.entryName.Changed += new global::System.EventHandler (this.OnEntryNameChanged);
 			this.entryDescription.Changed += new global::System.EventHandler (this.OnEntryDescriptionChanged);
+			this.cmbbUnit.Changed += new global::System.EventHandler (this.OnCmbbUnitChanged);
+			this.cmbbType.Changed += new global::System.EventHandler (this.OnCmbbTypeChanged);
+			this.cmbbCompuMethod.Changed += new global::System.EventHandler (this.OnCmbbCompuMethodChanged);
 		}
 	}
 }

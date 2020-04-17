@@ -131,27 +131,31 @@ namespace EasyOS
 
 		protected void OnEntryNumeratorChanged (object sender, EventArgs e)
 		{
-			if(((Entry)sender).Text.Length > 0)
-				currentRF.Numerators [0] = Convert.ToDouble(((Entry)sender).Text);
+			double resu;
+			if(double.TryParse(((Entry)sender).Text, out resu))
+				currentRF.Numerators [0] = resu;
 
 		}
 
 		protected void OnEntryNumerator1Changed (object sender, EventArgs e)
 		{
-			if(((Entry)sender).Text.Length > 0)
-				currentRF.Numerators [1] = Convert.ToDouble(((Entry)sender).Text);
+			double resu;
+			if(double.TryParse(((Entry)sender).Text, out resu))
+				currentRF.Numerators [1] = resu;
 		}
 
 		protected void OnEntryDenominatorChanged (object sender, EventArgs e)
 		{
-			if(((Entry)sender).Text.Length > 0)
-				currentRF.Denominators [0] = Convert.ToDouble(((Entry)sender).Text);
+			double resu;
+			if(double.TryParse(((Entry)sender).Text, out resu))
+				currentRF.Denominators [0] = resu;
 		}
 
 		protected void OnEntryDenominator1Changed (object sender, EventArgs e)
 		{
-			if(((Entry)sender).Text.Length > 0)
-				currentRF.Denominators [1] = Convert.ToDouble(((Entry)sender).Text);
+			double resu;
+			if(double.TryParse(((Entry)sender).Text, out resu))
+				currentRF.Denominators [1] = resu;
 		}
 	}
 }

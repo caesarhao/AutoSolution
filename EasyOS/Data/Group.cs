@@ -97,6 +97,12 @@ namespace EasyOS
 		public static int GCount(){
 			return AllItems.Count;
 		}
+		public T Item(int index){
+			return elements [index];
+		}
+		public static T GItem(int index){
+			return AllItems [index];
+		}
 		public T Find(Predicate<T> match){
 			return elements.Find (match);
 		}
