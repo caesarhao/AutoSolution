@@ -136,6 +136,10 @@ namespace EasyOS
 			units.Add (Unit.CreateGigaHertz());
 			units.Add (Unit.CreateMilliAmpere());
 			units.Add (Unit.CreateMicroAmpere());
+			units.Add (Unit.CreateCelsius());
+			units.Add (Unit.CreateFahrenheit());
+			units.Add (Unit.CreatePascal());
+			units.Add (Unit.CreateBar());
 			return units;
 		}
 		public static Unit CreateSecond(){
@@ -357,6 +361,45 @@ namespace EasyOS
 			unit.showAs = "µA";
 			unit.exponents [(int)SIunit.ten] = -6;
 			unit.exponents [(int)SIunit.A] = 1;
+			return unit;
+		}
+		public static Unit CreateCelsius(){
+			Unit unit = new Unit();
+			unit.name = "Celsius";
+			unit.description = "Temperature in Celsius";
+			unit.showAs = "°C";
+			unit.exponents [(int)SIunit.K] = 1;
+			return unit;
+		}
+		public static Unit CreateFahrenheit(){
+			Unit unit = new Unit();
+			unit.name = "Fahrenheit";
+			unit.description = "Temperature in Fahrenheit";
+			unit.showAs = "°F";
+			unit.coeff = 5.5555556;
+			unit.exponents [(int)SIunit.ten] = -1;
+			unit.exponents [(int)SIunit.K] = 1;
+			return unit;
+		}
+		public static Unit CreatePascal(){
+			Unit unit = new Unit();
+			unit.name = "Pascal";
+			unit.description = "Pressure in Pascal";
+			unit.showAs = "Pa";
+			unit.exponents [(int)SIunit.s] = -2;
+			unit.exponents [(int)SIunit.m] = -1;
+			unit.exponents [(int)SIunit.kg] = 1;
+			return unit;
+		}
+		public static Unit CreateBar(){
+			Unit unit = new Unit();
+			unit.name = "Bar";
+			unit.description = "Pressure in bar";
+			unit.showAs = "bar";
+			unit.exponents [(int)SIunit.ten] = 5;
+			unit.exponents [(int)SIunit.s] = -2;
+			unit.exponents [(int)SIunit.m] = -1;
+			unit.exponents [(int)SIunit.kg] = 1;
 			return unit;
 		}
 	}

@@ -110,7 +110,8 @@ public partial class MainWindow: Gtk.Window
 		this.GPrj = new Project ();
 		GPrj.Units.AddRange (EasyOS.Unit.CreateBaseUnits ());
 		GPrj.CompuMethods.AddRange (EasyOS.CompuMethod.CreateBaseCompuMethods ());
-
+		GPrj.Messages.AddRange (EasyOS.Message.CreateBaseMessages ());
+		GPrj.Processes.AddRange (EasyOS.Process.CreateBaseProcesses ());
 		CreateEmptyTreeStruct ();
 
 		LoadTreeSubElements ();

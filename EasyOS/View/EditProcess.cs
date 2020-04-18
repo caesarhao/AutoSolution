@@ -8,6 +8,7 @@ namespace EasyOS
 	public partial class EditProcess : Gtk.Bin
 	{
 		private Process currentPrc;
+
 		public EditProcess ()
 		{
 			this.Build ();

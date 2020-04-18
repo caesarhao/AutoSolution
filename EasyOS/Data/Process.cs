@@ -44,6 +44,19 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public static List<Process> CreateBaseProcesses(){
+			List<Process> ret = new List<Process> ();
+			ret.Add (CreateMeasureAmbientData ());
+			return ret;
+		}
+		public static Process CreateMeasureAmbientData(){
+			Process prc = new Process ();
+			prc.name = "MeasureAmbientData_Prc_10ms";
+			prc.description = "measure ambient sensor data";
+			prc.sendMessages.Add(Group<Message>.GFindWithName("t_ambient"));
+			prc.sendMessages.Add(Group<Message>.GFindWithName("p_atmosph"));
+			return prc;
+		}
 	}
 }
 

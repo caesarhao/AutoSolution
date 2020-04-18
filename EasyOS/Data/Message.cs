@@ -41,6 +41,30 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public static List<Message> CreateBaseMessages(){
+			List<Message> ret = new List<Message> ();
+			ret.Add (CreateAmbientTemperature ());
+			ret.Add (CreateAtmosphericPressure ());
+			return ret;
+		}
+		public static Message CreateAmbientTemperature(){
+			Message msg = new Message ();
+			msg.name = "t_ambient";
+			msg.description = "Ambient temperature in Celsius";
+			msg.type = BaseType.SINT32;
+			msg.unit = Group<Unit>.GFindWithName ("Celsius");
+			msg.compuMethod = Group<CompuMethod>.GFindWithName ("OneToOne");
+			return msg;
+		}
+		public static Message CreateAtmosphericPressure(){
+			Message msg = new Message ();
+			msg.name = "p_atmosph";
+			msg.description = "Atmospheric pressure in Pascal";
+			msg.type = BaseType.UINT32;
+			msg.unit = Group<Unit>.GFindWithName ("Pascal");
+			msg.compuMethod = Group<CompuMethod>.GFindWithName ("OneToOne");
+			return msg;
+		}
 	}
 }
 
