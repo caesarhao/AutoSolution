@@ -8,17 +8,42 @@ namespace EasyOS
 	public partial class EditProcess : Gtk.Bin
 	{
 		private Process currentPrc;
-
+		protected ListStore lsRM, lsSM;
 		public EditProcess ()
 		{
 			this.Build ();
+			lsRM = new ListStore (typeof(string));
+			this.treeviewReceiveMessages.Model = lsRM;
+			TreeViewColumn tvcRM = new TreeViewColumn ();
+			tvcRM.Title = "Receive Messages";
+			CellRendererText cellRM = new CellRendererText ();
+			cellRM.Editable = false;
+			tvcRM.PackStart (cellRM, true);
+			tvcRM.AddAttribute (cellRM, "text", 0);
+			this.treeviewReceiveMessages.AppendColumn (tvcRM);
 
+			lsSM = new ListStore (typeof(string));
+			this.treeviewSendMessages.Model = lsSM;
+			TreeViewColumn tvcSM = new TreeViewColumn ();
+			tvcSM.Title = "Send Messages";
+			CellRendererText cellSM = new CellRendererText ();
+			cellSM.Editable = false;
+			tvcSM.PackStart (cellSM, true);
+			tvcSM.AddAttribute (cellSM, "text", 0);
+			this.treeviewSendMessages.AppendColumn (tvcSM);
 		}
 		public bool LoadData(Process dat){
 			currentPrc = dat;
 			this.entryName.Text = dat.name;
 			this.entryDescription.Text = dat.description;
-
+			this.lsRM.Clear ();
+			foreach (var item in dat.receiveMessages) {
+				lsRM.AppendValues (item.name);
+			}
+			this.lsSM.Clear ();
+			foreach (var item in dat.sendMessages) {
+				lsSM.AppendValues (item.name);
+			}
 			return true;
 		}
 		public Process SaveData(Process dat=null){
@@ -40,6 +65,22 @@ namespace EasyOS
 		protected void OnEntryDescriptionChanged (object sender, EventArgs e)
 		{
 			currentPrc.description = ((Entry)sender).Text;
+		}
+
+		protected void OnButtonEditReceiveMessagesClicked (object sender, EventArgs e)
+		{
+			DialogMsgInPrc dlMP = new DialogMsgInPrc ();
+			dlMP.LoadData (currentPrc.receiveMessages);
+			dlMP.Run ();
+			dlMP.Destroy ();
+		}
+
+		protected void OnButtonEditSendMessagesClicked (object sender, EventArgs e)
+		{
+			DialogMsgInPrc dlMP = new DialogMsgInPrc ();
+			dlMP.LoadData (currentPrc.sendMessages);
+			dlMP.Run ();
+			dlMP.Destroy ();
 		}
 	}
 }

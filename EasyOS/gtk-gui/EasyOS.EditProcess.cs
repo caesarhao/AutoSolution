@@ -12,11 +12,11 @@ namespace EasyOS
 		
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		
-		private global::Gtk.NodeView nodeviewSendMessages;
+		private global::Gtk.TreeView treeviewReceiveMessages;
 		
 		private global::Gtk.ScrolledWindow GtkScrolledWindow1;
 		
-		private global::Gtk.NodeView nodeviewReceiveMessages;
+		private global::Gtk.TreeView treeviewSendMessages;
 		
 		private global::Gtk.Label label1;
 		
@@ -77,32 +77,32 @@ namespace EasyOS
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-			this.nodeviewSendMessages = new global::Gtk.NodeView ();
-			this.nodeviewSendMessages.CanFocus = true;
-			this.nodeviewSendMessages.Name = "nodeviewSendMessages";
-			this.GtkScrolledWindow.Add (this.nodeviewSendMessages);
+			this.treeviewReceiveMessages = new global::Gtk.TreeView ();
+			this.treeviewReceiveMessages.CanFocus = true;
+			this.treeviewReceiveMessages.Name = "treeviewReceiveMessages";
+			this.GtkScrolledWindow.Add (this.treeviewReceiveMessages);
 			this.table1.Add (this.GtkScrolledWindow);
 			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1 [this.GtkScrolledWindow]));
-			w4.TopAttach = ((uint)(3));
-			w4.BottomAttach = ((uint)(4));
+			w4.TopAttach = ((uint)(2));
+			w4.BottomAttach = ((uint)(3));
 			w4.LeftAttach = ((uint)(1));
 			w4.RightAttach = ((uint)(2));
+			w4.XOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.GtkScrolledWindow1 = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow1.Name = "GtkScrolledWindow1";
 			this.GtkScrolledWindow1.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child GtkScrolledWindow1.Gtk.Container+ContainerChild
-			this.nodeviewReceiveMessages = new global::Gtk.NodeView ();
-			this.nodeviewReceiveMessages.CanFocus = true;
-			this.nodeviewReceiveMessages.Name = "nodeviewReceiveMessages";
-			this.GtkScrolledWindow1.Add (this.nodeviewReceiveMessages);
+			this.treeviewSendMessages = new global::Gtk.TreeView ();
+			this.treeviewSendMessages.CanFocus = true;
+			this.treeviewSendMessages.Name = "treeviewSendMessages";
+			this.GtkScrolledWindow1.Add (this.treeviewSendMessages);
 			this.table1.Add (this.GtkScrolledWindow1);
 			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.GtkScrolledWindow1]));
-			w6.TopAttach = ((uint)(2));
-			w6.BottomAttach = ((uint)(3));
+			w6.TopAttach = ((uint)(3));
+			w6.BottomAttach = ((uint)(4));
 			w6.LeftAttach = ((uint)(1));
 			w6.RightAttach = ((uint)(2));
-			w6.XOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.label1 = new global::Gtk.Label ();
 			this.label1.Name = "label1";
@@ -188,6 +188,8 @@ namespace EasyOS
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.buttonEditSendMessages.Clicked += new global::System.EventHandler (this.OnButtonEditSendMessagesClicked);
+			this.buttonEditReceiveMessages.Clicked += new global::System.EventHandler (this.OnButtonEditReceiveMessagesClicked);
 			this.entryName.Changed += new global::System.EventHandler (this.OnEntryNameChanged);
 			this.entryDescription.Changed += new global::System.EventHandler (this.OnEntryDescriptionChanged);
 		}
