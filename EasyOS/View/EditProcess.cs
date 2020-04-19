@@ -52,6 +52,20 @@ namespace EasyOS
 			}
 			dat.name=this.entryName.Text;
 			dat.description=this.entryDescription.Text;
+
+			TreeIter ti;
+			dat.receiveMessages.Clear ();
+			lsRM.GetIterFirst (out ti);
+			for (int i = 0; i < lsRM.IterNChildren (); i++) {
+				dat.receiveMessages.Add (Group<Message>.GFindWithName ((string)lsRM.GetValue(ti, 0)));
+				lsRM.IterNext (ref ti);
+			}
+			dat.sendMessages.Clear ();
+			lsSM.GetIterFirst (out ti);
+			for (int i = 0; i < lsSM.IterNChildren (); i++) {
+				dat.sendMessages.Add (Group<Message>.GFindWithName ((string)lsSM.GetValue(ti, 0)));
+				lsSM.IterNext (ref ti);
+			}
 			return dat;
 		}
 		protected void OnEntryNameChanged (object sender, EventArgs e)
@@ -71,7 +85,15 @@ namespace EasyOS
 		{
 			DialogMsgInPrc dlMP = new DialogMsgInPrc ();
 			dlMP.LoadData (currentPrc.receiveMessages);
-			dlMP.Run ();
+			ResponseType resp = (ResponseType)dlMP.Run ();
+			if (Gtk.ResponseType.Ok == resp) {
+				lsRM.Clear ();
+				currentPrc.receiveMessages.Clear ();
+				foreach (var item in dlMP.lstSelectedMsgs) {
+					lsRM.AppendValues (item);
+					currentPrc.receiveMessages.Add (Group<Message>.GFindWithName (item));
+				}
+			}
 			dlMP.Destroy ();
 		}
 
@@ -79,7 +101,15 @@ namespace EasyOS
 		{
 			DialogMsgInPrc dlMP = new DialogMsgInPrc ();
 			dlMP.LoadData (currentPrc.sendMessages);
-			dlMP.Run ();
+			ResponseType resp = (ResponseType)dlMP.Run ();
+			if (Gtk.ResponseType.Ok == resp) {
+				lsSM.Clear ();
+				currentPrc.sendMessages.Clear ();
+				foreach (var item in dlMP.lstSelectedMsgs) {
+					lsSM.AppendValues (item);
+					currentPrc.sendMessages.Add (Group<Message>.GFindWithName (item));
+				}
+			}
 			dlMP.Destroy ();
 		}
 	}

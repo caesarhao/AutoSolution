@@ -7,11 +7,11 @@ namespace EasyOS
 	public partial class DialogMsgInPrc : Gtk.Dialog
 	{
 		protected ListStore lsAM, lsSM;
-		public List<string> availableMsgs, selectedMsgs;
+		public List<string> lstAvailableMsgs, lstSelectedMsgs;
 		public DialogMsgInPrc ()
 		{
-			availableMsgs = new List<string> ();
-			selectedMsgs = new List<string> ();
+			lstAvailableMsgs = new List<string> ();
+			lstSelectedMsgs = new List<string> ();
 			this.Build ();
 			lsAM = new ListStore (typeof(string));
 			this.treeviewAvailableMsgs.Model = lsAM;
@@ -35,18 +35,18 @@ namespace EasyOS
 		}
 		public bool LoadData(List<Message> alreadySelectedMsgs){
 			this.lsSM.Clear ();
-			this.selectedMsgs.Clear ();
+			this.lstSelectedMsgs.Clear ();
 			foreach (var item in alreadySelectedMsgs) {
 				lsSM.AppendValues (item.name);
-				this.selectedMsgs.Add (item.name);
+				lstSelectedMsgs.Add (item.name);
 			}
 
 			this.lsAM.Clear ();
-			availableMsgs.Clear ();
+			lstAvailableMsgs.Clear ();
 			foreach (var item in Group<Message>.AllItems) {
-				if (!this.selectedMsgs.Contains (item.name)) {
+				if (!this.lstSelectedMsgs.Contains (item.name)) {
 					lsAM.AppendValues (item.name);
-					this.availableMsgs.Add (item.name);
+					lstAvailableMsgs.Add (item.name);
 				}
 			}
 
@@ -58,11 +58,11 @@ namespace EasyOS
 			TreeIter ti;
 			this.treeviewAvailableMsgs.Selection.GetSelected (out ti);
 			string msgName = (string)lsAM.GetValue (ti, 0);
-			if (!this.selectedMsgs.Contains (msgName)) {
+			if (lstAvailableMsgs.Contains (msgName) && !lstSelectedMsgs.Contains (msgName)) {
+				lstSelectedMsgs.Add (msgName);
 				lsSM.AppendValues (msgName);
-				this.selectedMsgs.Add (msgName);
-				this.availableMsgs.Remove (msgName);
-				this.lsAM.Remove (ref ti);
+				lstAvailableMsgs.Remove (msgName);
+				lsAM.Remove (ref ti);
 			}
 		}
 
@@ -71,10 +71,12 @@ namespace EasyOS
 			TreeIter ti;
 			this.treeviewSelectedMsgs.Selection.GetSelected (out ti);
 			string msgName = (string)lsSM.GetValue (ti, 0);
-			lsSM.Remove (ref ti);
-			this.selectedMsgs.Remove (msgName);
-			this.availableMsgs.Add (msgName);
-			this.lsAM.AppendValues (msgName);
+			if (lstSelectedMsgs.Contains (msgName)) {
+				lstSelectedMsgs.Remove (msgName);
+				lsSM.Remove (ref ti);
+				lstAvailableMsgs.Add (msgName);
+				lsAM.AppendValues (msgName);
+			}
 		}
 	}
 }

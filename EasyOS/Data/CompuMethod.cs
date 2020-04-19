@@ -83,6 +83,7 @@ namespace EasyOS
 		public static List<RationalFunction> CreateBaseRationalFunctions(){
 			List<RationalFunction> ret = new List<RationalFunction> ();
 			ret.Add (CreateOneToOne());
+			ret.Add (CreateOneToTen());
 			return ret;
 		}
 		public static RationalFunction CreateOneToOne(){
@@ -91,6 +92,16 @@ namespace EasyOS
 			ret.description = "Rational function one to one";
 			ret.Numerators [0] = 0;
 			ret.Numerators [1] = 1;
+			ret.Denominators[0] = 1;
+			ret.Denominators[1] = 0;
+			return ret;
+		}
+		public static RationalFunction CreateOneToTen(){
+			RationalFunction ret = new RationalFunction ();
+			ret.name = "OneToTen";
+			ret.description = "Rational function one to ten";
+			ret.Numerators [0] = 0;
+			ret.Numerators [1] = 10;
 			ret.Denominators[0] = 1;
 			ret.Denominators[1] = 0;
 			return ret;

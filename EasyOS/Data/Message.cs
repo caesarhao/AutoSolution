@@ -45,6 +45,8 @@ namespace EasyOS
 			List<Message> ret = new List<Message> ();
 			ret.Add (CreateAmbientTemperature ());
 			ret.Add (CreateAtmosphericPressure ());
+			ret.Add (CreateBatteryVoltage ());
+			ret.Add (CreateChargeState ());
 			return ret;
 		}
 		public static Message CreateAmbientTemperature(){
@@ -63,6 +65,24 @@ namespace EasyOS
 			msg.type = BaseType.UINT32;
 			msg.unit = Group<Unit>.GFindWithName ("Pascal");
 			msg.compuMethod = Group<CompuMethod>.GFindWithName ("OneToOne");
+			return msg;
+		}
+		public static Message CreateBatteryVoltage(){
+			Message msg = new Message ();
+			msg.name = "v_battery";
+			msg.description = "Battery voltage in volt";
+			msg.type = BaseType.UINT32;
+			msg.unit = Group<Unit>.GFindWithName ("volt");
+			msg.compuMethod = Group<CompuMethod>.GFindWithName ("OneToTen");
+			return msg;
+		}
+		public static Message CreateChargeState(){
+			Message msg = new Message ();
+			msg.name = "st_charge";
+			msg.description = "The charging state";
+			msg.type = BaseType.BOOL;
+			msg.unit = Group<Unit>.GFindWithName ("none");
+			msg.compuMethod = Group<CompuMethod>.GFindWithName ("OnOff");
 			return msg;
 		}
 	}

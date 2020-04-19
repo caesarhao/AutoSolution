@@ -110,6 +110,7 @@ namespace EasyOS
 		}
 		public static List<Unit> CreateBaseUnits(){
 			List<Unit> units = new List<Unit> ();
+			units.Add (Unit.CreateNone());
 			units.Add (Unit.CreateSecond());
 			units.Add (Unit.CreateMeter());
 			units.Add (Unit.CreateKilogram());
@@ -141,6 +142,13 @@ namespace EasyOS
 			units.Add (Unit.CreatePascal());
 			units.Add (Unit.CreateBar());
 			return units;
+		}
+		public static Unit CreateNone(){
+			Unit unit = new Unit();
+			unit.name = "none";
+			unit.description = "None";
+			unit.showAs = "-";
+			return unit;
 		}
 		public static Unit CreateSecond(){
 			Unit unit = new Unit();
