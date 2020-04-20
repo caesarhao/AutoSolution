@@ -38,9 +38,19 @@ namespace EasyOS
 			}
 			ret = (Process)AbstractData.ParseFromXml (node, ret);
 			XmlNode cnode = null;
-			cnode = node.SelectSingleNode ("showAs");
+			cnode = node.SelectSingleNode ("receiveMessages");
 			if (null != cnode) {
-				//ret.showAs = cnode.InnerText;
+				for (int i = 0; i < cnode.SelectNodes ("message").Count; i++) {
+					XmlNode dnode = cnode.SelectNodes ("message").Item (i);
+					ret.receiveMessages.Add (Group<Message>.GFindWithName (dnode.InnerText)); 
+				}
+			}
+			cnode = node.SelectSingleNode ("sendMessages");
+			if (null != cnode) {
+				for (int i = 0; i < cnode.SelectNodes ("message").Count; i++) {
+					XmlNode dnode = cnode.SelectNodes ("message").Item (i);
+					ret.sendMessages.Add (Group<Message>.GFindWithName (dnode.InnerText)); 
+				}
 			}
 			return ret;
 		}

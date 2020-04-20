@@ -39,6 +39,10 @@ namespace EasyOS
 			if (null != cnode) {
 				ret.unit = Group<Unit>.GFindWithName (cnode.InnerText);
 			}
+			cnode = node.SelectSingleNode ("compuMethod");
+			if (null != cnode) {
+				ret.compuMethod = Group<CompuMethod>.GFindWithName (cnode.InnerText);
+			}
 			return ret;
 		}
 		public static List<Message> CreateBaseMessages(){

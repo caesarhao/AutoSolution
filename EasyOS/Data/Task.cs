@@ -7,6 +7,7 @@ namespace EasyOS
 {
 	public class Task:AbstractData
 	{
+		/*
 		public enum ERaster{
 			[Description("ONCE")]
 			E_ONCE,
@@ -23,10 +24,13 @@ namespace EasyOS
 			[Description("100 s")]
 			E_100s
 		};
-		public ERaster raster;
+		*/
+		//public ERaster raster;
+		public int raster;
 		public List<Process> processes;
 		public Task ()
 		{
+			raster = 0;
 			processes = new List<Process> ();
 		}
 		public override List<string> SaveToXml(){
@@ -49,9 +53,49 @@ namespace EasyOS
 			}
 			ret = (Task)AbstractData.ParseFromXml (node, ret);
 			XmlNode cnode = null;
-			cnode = node.SelectSingleNode ("showAs");
+			cnode = node.SelectSingleNode ("raster");
 			if (null != cnode) {
-				//ret.showAs = cnode.InnerText;
+				ret.raster = int.Parse(cnode.InnerText);
+			}
+			cnode = node.SelectSingleNode ("processes");
+			if (null != cnode) {
+				for (int i = 0; i < cnode.SelectNodes ("process").Count; i++) {
+					XmlNode dnode = cnode.SelectNodes ("process").Item (i);
+					ret.processes.Add (Group<Process>.GFindWithName (dnode.InnerText)); 
+				}
+			}
+			return ret;
+		}
+		public void RasterFromStr(string period){
+			if (period.ToLower ().Equals ("background")) {
+				raster = 0;
+			} else if (period.ToLower ().Equals ("once")) {
+				raster = -1;
+			} else {
+				if (period.EndsWith ("us")) {
+					raster = int.Parse (period.Substring(0, period.Length-2));
+				} else if (period.EndsWith ("ms")) {
+					raster = 1000 * int.Parse (period.Substring(0, period.Length-2));
+				} else if (period.EndsWith ("s")) {
+					raster = 1000000 * int.Parse (period.Substring(0, period.Length-1));
+				} else {
+					raster = 0;
+				}
+			}
+		}
+		public string RasterAsStr(){
+			string ret = "background";
+			if (raster == 0) {
+				ret = "background";
+			} else if (raster == -1) {
+				ret = "once";
+			} 
+			else if (raster < 1000) {
+				ret = raster.ToString () + "us";
+			} else if (raster >= 1000000) {
+				ret = (raster / 1000000).ToString () + "s";
+			} else {
+				ret = raster.ToString () + "ms";
 			}
 			return ret;
 		}
