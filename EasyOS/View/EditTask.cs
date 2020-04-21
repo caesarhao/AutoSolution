@@ -82,22 +82,66 @@ namespace EasyOS
 
 		protected void OnButtonAddClicked (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			DialogSelectPrc dlSP = new DialogSelectPrc ();
+			ResponseType resp = (ResponseType)dlSP.Run ();
+			if (Gtk.ResponseType.Ok == resp) {
+				if (1 > lsPrcs.IterNChildren()) { // empty, add prc directly
+					currentTsk.processes.Add(Group<Process>.GFindWithName(dlSP.selectedPrcName));
+					lsPrcs.AppendValues (dlSP.selectedPrcName);
+				} else {
+					TreeIter ti;
+					if (this.treeviewProcesses.Selection.GetSelected (out ti)) { // add after the selected prc
+						TreePath tp = lsPrcs.GetPath (ti);
+						currentTsk.processes.Insert((tp.Indices [0]+1), Group<Process>.GFindWithName(dlSP.selectedPrcName));
+						ti = lsPrcs.InsertAfter (ti);
+						lsPrcs.SetValue (ti, 0, dlSP.selectedPrcName);
+					}
+				}
+			}
+			dlSP.Destroy ();
+
 		}
 
 		protected void OnButtonDeleteClicked (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			TreeIter ti;
+			if (this.treeviewProcesses.Selection.GetSelected (out ti)) {
+				TreePath tp = lsPrcs.GetPath (ti);
+				Process selectedPrc = currentTsk.processes [tp.Indices [0]];
+				lsPrcs.Remove (ref ti);
+				currentTsk.processes.Remove (selectedPrc);
+			}
 		}
 
 		protected void OnButtonUpClicked (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			TreeIter ti;
+			if (this.treeviewProcesses.Selection.GetSelected (out ti)) {
+				TreePath tp = lsPrcs.GetPath (ti);
+				if (tp.Prev ()) {
+					TreeIter ti_prev;
+					lsPrcs.GetIter (out ti_prev, tp);
+					lsPrcs.MoveBefore (ti, ti_prev);
+					Process selectedPrc = currentTsk.processes [tp.Indices [0] + 1];
+					currentTsk.processes.Remove (selectedPrc);
+					currentTsk.processes.Insert (tp.Indices [0], selectedPrc);
+				}
+			}
 		}
 
 		protected void OnButtonDownClicked (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+			TreeIter ti;
+			if (this.treeviewProcesses.Selection.GetSelected (out ti)) {
+				TreePath tp = lsPrcs.GetPath (ti);
+				TreeIter ti_next = ti;
+				if (lsPrcs.IterNext (ref ti_next)) {
+					lsPrcs.MoveAfter (ti, ti_next);
+					Process selectedPrc = currentTsk.processes [tp.Indices [0]];
+					currentTsk.processes.Remove (selectedPrc);
+					currentTsk.processes.Insert (tp.Indices [0] + 1, selectedPrc);
+				}
+			}
 		}
 
 		protected void OnCmbbeRasterChanged (object sender, EventArgs e)

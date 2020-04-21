@@ -86,6 +86,8 @@
     <Compile Include="Data\XmlHelper.cs" />
     <Compile Include="View\DialogMsgInPrc.cs" />
     <Compile Include="gtk-gui\EasyOS.DialogMsgInPrc.cs" />
+    <Compile Include="View\DialogSelectPrc.cs" />
+    <Compile Include="gtk-gui\EasyOS.DialogSelectPrc.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

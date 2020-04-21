@@ -205,12 +205,8 @@ namespace EasyOS
 			}
 			this.Hide ();
 			this.buttonAdd.Clicked += new global::System.EventHandler (this.OnButtonAddClicked);
-			this.buttonDelete.Clicked += new global::System.EventHandler (this.OnButtonDeleteClicked);
-			this.buttonUp.Clicked += new global::System.EventHandler (this.OnButtonUpClicked);
-			this.buttonDown.Clicked += new global::System.EventHandler (this.OnButtonDownClicked);
 			this.entryName.Changed += new global::System.EventHandler (this.OnEntryNameChanged);
 			this.entryDescription.Changed += new global::System.EventHandler (this.OnEntryDescriptionChanged);
-			this.comboboxentryRaster.Changed += new global::System.EventHandler (this.OnCmbbeRasterChanged);
 		}
 	}
 }

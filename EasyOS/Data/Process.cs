@@ -57,14 +57,23 @@ namespace EasyOS
 		public static List<Process> CreateBaseProcesses(){
 			List<Process> ret = new List<Process> ();
 			ret.Add (CreateMeasureAmbientData ());
+			ret.Add (CreateGetChargeState ());
 			return ret;
 		}
 		public static Process CreateMeasureAmbientData(){
 			Process prc = new Process ();
-			prc.name = "MeasureAmbientData_Prc_10ms";
+			prc.name = "MeasureAmbientData_Prc";
 			prc.description = "measure ambient sensor data";
+			prc.receiveMessages.Add(Group<Message>.GFindWithName("v_battery"));
 			prc.sendMessages.Add(Group<Message>.GFindWithName("t_ambient"));
 			prc.sendMessages.Add(Group<Message>.GFindWithName("p_atmosph"));
+			return prc;
+		}
+		public static Process CreateGetChargeState(){
+			Process prc = new Process ();
+			prc.name = "GetChargeState";
+			prc.description = "Get the charge state";
+			prc.sendMessages.Add(Group<Message>.GFindWithName("st_charge"));
 			return prc;
 		}
 	}

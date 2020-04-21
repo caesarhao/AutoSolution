@@ -67,6 +67,21 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public static List<Task> CreateBaseTasks(){
+			List<Task> ret = new List<Task> ();
+			ret.Add (CreateOs10msTask ());
+			return ret;
+		}
+		public static Task CreateOs10msTask(){
+			Task tsk = new Task ();
+			tsk.name = "Os10msTask";
+			tsk.description = "10ms task";
+			tsk.raster = 10000;
+			tsk.processes.Add(Group<Process>.GFindWithName("MeasureAmbientData_Prc"));
+			tsk.processes.Add(Group<Process>.GFindWithName("GetChargeState"));
+			return tsk;
+		}
+
 		public static bool ValidTxtAsRaster(string txt){
 			txt = txt.ToLower ().Trim ();
 			Regex rx = new Regex (@"^(background|once|[1-9][0-9]*[um]?s)$", RegexOptions.Compiled);
