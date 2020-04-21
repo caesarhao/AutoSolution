@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace EasyOS
 {
@@ -66,10 +67,17 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public static bool ValidTxtAsRaster(string txt){
+			txt = txt.ToLower ().Trim ();
+			Regex rx = new Regex (@"^(background|once|[1-9][0-9]*[um]?s)$", RegexOptions.Compiled);
+			Match mtc = rx.Match (txt);
+			return mtc.Success;
+		}
 		public void RasterFromStr(string period){
-			if (period.ToLower ().Equals ("background")) {
+			period = period.ToLower ().Trim ();
+			if (period.Equals ("background")) {
 				raster = 0;
-			} else if (period.ToLower ().Equals ("once")) {
+			} else if (period.Equals ("once")) {
 				raster = -1;
 			} else {
 				if (period.EndsWith ("us")) {
@@ -95,7 +103,7 @@ namespace EasyOS
 			} else if (raster >= 1000000) {
 				ret = (raster / 1000000).ToString () + "s";
 			} else {
-				ret = raster.ToString () + "ms";
+				ret = (raster / 1000).ToString () + "ms";
 			}
 			return ret;
 		}

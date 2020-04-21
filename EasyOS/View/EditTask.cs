@@ -100,20 +100,10 @@ namespace EasyOS
 			throw new NotImplementedException ();
 		}
 
-		protected bool ValidTxtAsRaster(string txt){
-			bool ret = false;
-			if (RasterStrs.Contains (txt)) {
-				ret = true;
-			} else {
-				
-			}
-			return ret;
-		}
-
 		protected void OnCmbbeRasterChanged (object sender, EventArgs e)
 		{
 			string txt = ((ComboBoxEntry)sender).ActiveText;
-			if (ValidTxtAsRaster (txt)) {
+			if (Task.ValidTxtAsRaster (txt)) {
 				currentTsk.RasterFromStr (txt);
 			}
 		}
