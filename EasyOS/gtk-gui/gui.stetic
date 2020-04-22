@@ -1036,6 +1036,7 @@
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Delete</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnButtonDeleteClicked" />
                   </widget>
                   <packing>
                     <property name="Position">1</property>
@@ -1051,6 +1052,7 @@
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Up</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnButtonUpClicked" />
                   </widget>
                   <packing>
                     <property name="Position">2</property>
@@ -1066,6 +1068,7 @@
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Down</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="OnButtonDownClicked" />
                   </widget>
                   <packing>
                     <property name="Position">3</property>
@@ -2617,6 +2620,7 @@
   </widget>
   <widget class="Gtk.Dialog" id="EasyOS.DialogMsgInPrc" design-size="466 393">
     <property name="MemberName" />
+    <property name="Title" translatable="yes">Select messages</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>
@@ -2759,7 +2763,7 @@
   </widget>
   <widget class="Gtk.Dialog" id="EasyOS.DialogSelectPrc" design-size="410 108">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">dialog1</property>
+    <property name="Title" translatable="yes">Select Process</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Buttons">2</property>
     <property name="HelpButton">False</property>

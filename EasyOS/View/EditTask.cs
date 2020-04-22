@@ -92,9 +92,12 @@ namespace EasyOS
 					TreeIter ti;
 					if (this.treeviewProcesses.Selection.GetSelected (out ti)) { // add after the selected prc
 						TreePath tp = lsPrcs.GetPath (ti);
-						currentTsk.processes.Insert((tp.Indices [0]+1), Group<Process>.GFindWithName(dlSP.selectedPrcName));
+						currentTsk.processes.Insert ((tp.Indices [0] + 1), Group<Process>.GFindWithName (dlSP.selectedPrcName));
 						ti = lsPrcs.InsertAfter (ti);
 						lsPrcs.SetValue (ti, 0, dlSP.selectedPrcName);
+					} else { // Add at the end
+						currentTsk.processes.Add(Group<Process>.GFindWithName(dlSP.selectedPrcName));
+						lsPrcs.AppendValues (dlSP.selectedPrcName);
 					}
 				}
 			}
@@ -108,8 +111,8 @@ namespace EasyOS
 			if (this.treeviewProcesses.Selection.GetSelected (out ti)) {
 				TreePath tp = lsPrcs.GetPath (ti);
 				Process selectedPrc = currentTsk.processes [tp.Indices [0]];
-				lsPrcs.Remove (ref ti);
 				currentTsk.processes.Remove (selectedPrc);
+				lsPrcs.Remove (ref ti);
 			}
 		}
 

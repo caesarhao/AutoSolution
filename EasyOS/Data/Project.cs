@@ -133,6 +133,18 @@ namespace EasyOS
 			if (null != cnode) {
 				ret.CompuMethods = Group<CompuMethod>.ParseFromXml (cnode, ret.CompuMethods);
 			}
+			cnode = node.SelectSingleNode ("Messages");
+			if (null != cnode) {
+				ret.Messages = Group<Message>.ParseFromXml (cnode, ret.Messages);
+			}
+			cnode = node.SelectSingleNode ("Processes");
+			if (null != cnode) {
+				ret.Processes = Group<Process>.ParseFromXml (cnode, ret.Processes);
+			}
+			cnode = node.SelectSingleNode ("Tasks");
+			if (null != cnode) {
+				ret.Tasks = Group<Task>.ParseFromXml (cnode, ret.Tasks);
+			}
 			return ret;
 		}
 	}

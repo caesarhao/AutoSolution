@@ -29,6 +29,7 @@ namespace EasyOS
 			global::Stetic.Gui.Initialize (this);
 			// Widget EasyOS.DialogMsgInPrc
 			this.Name = "EasyOS.DialogMsgInPrc";
+			this.Title = global::Mono.Unix.Catalog.GetString ("Select messages");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			// Internal child EasyOS.DialogMsgInPrc.VBox
 			global::Gtk.VBox w1 = this.VBox;

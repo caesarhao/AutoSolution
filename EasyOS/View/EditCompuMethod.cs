@@ -52,11 +52,10 @@ namespace EasyOS
 				currentRF = (RationalFunction)dat;
 				this.notebook1.GetNthPage (0).ShowAll ();
 				this.notebook1.GetNthPage (1).HideAll ();
-				this.entryNumerator.Text = ((RationalFunction)dat).Numerators [0].ToString();
-				this.entryNumerator1.Text = ((RationalFunction)dat).Numerators [1].ToString();
-				this.entryDenominator.Text = ((RationalFunction)dat).Denominators [0].ToString();
-				this.entryDenominator1.Text = ((RationalFunction)dat).Denominators [1].ToString();
-
+				this.entryNumerator.Text = currentRF.Numerators [0].ToString();
+				this.entryNumerator1.Text = currentRF.Numerators [1].ToString();
+				this.entryDenominator.Text = currentRF.Denominators [0].ToString();
+				this.entryDenominator1.Text = currentRF.Denominators [1].ToString();
 			} else if (dat is VerbalTable) {
 				currentVT = (VerbalTable)dat;
 				this.notebook1.GetNthPage (0).HideAll ();
