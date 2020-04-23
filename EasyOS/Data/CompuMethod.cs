@@ -68,14 +68,16 @@ namespace EasyOS
 			XmlNode cnode = null;
 			cnode = node.SelectSingleNode ("Numerators");
 			if (null != cnode) {
-				for (int i = 0; i < cnode.SelectNodes ("vt").Count; i++) {
-					ret.Numerators [i] = Convert.ToDouble (cnode.SelectNodes ("vt").Item (i).InnerText);
+				XmlNodeList dnodes = cnode.SelectNodes ("vt");
+				for (int i = 0; i < dnodes.Count; i++) {
+					ret.Numerators [i] = Convert.ToDouble (dnodes.Item (i).InnerText);
 				}
 			}
 			cnode = node.SelectSingleNode ("Denominators");
 			if (null != cnode) {
-				for (int i = 0; i < cnode.SelectNodes ("vt").Count; i++) {
-					ret.Numerators [i] = Convert.ToDouble (cnode.SelectNodes ("vt").Item (i).InnerText);
+				XmlNodeList dnodes = cnode.SelectNodes ("vt");
+				for (int i = 0; i < dnodes.Count; i++) {
+					ret.Denominators [i] = Convert.ToDouble (dnodes.Item (i).InnerText);
 				}
 			}
 			return ret;
