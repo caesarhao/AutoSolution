@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace EasyOS
 {
@@ -38,6 +39,15 @@ namespace EasyOS
 			}
 			ret.Add ("</" + this.name + ">");
 			return ret;
+		}
+		public override XElement SaveAsXml(){
+			XElement xe = new XElement (name);
+			xe.Add (new XElement ("name", name));
+			xe.Add (new XElement ("description", description));
+			foreach (var item in elements) {
+				xe.Add (item.SaveAsXml());
+			}
+			return xe;
 		}
 		public static Group<T> ParseFromXml(XmlNode node, Group<T> ret = null){
 			if (null == ret) {

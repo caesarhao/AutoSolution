@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace EasyOS
 {
@@ -17,6 +18,7 @@ namespace EasyOS
 			return name;
 		}
 		public abstract List<string> SaveToXml();
+		public abstract XElement SaveAsXml ();
 		public static AbstractData ParseFromXml(XmlNode node, AbstractData ret = null){
 			if (null == ret) {
 				return null;

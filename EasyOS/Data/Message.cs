@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace EasyOS
 {
@@ -22,6 +23,15 @@ namespace EasyOS
 			ret.Add ("\t<compuMethod>" + compuMethod.name + "</compuMethod>");
 			ret.Add ("</Message>");
 			return ret;
+		}
+		public override XElement SaveAsXml(){
+			XElement xe = new XElement ("Task");
+			xe.Add (new XElement ("name", name));
+			xe.Add (new XElement ("description", description));
+			xe.Add (new XElement ("type", type));
+			xe.Add (new XElement ("unit", unit.name));
+			xe.Add (new XElement ("compuMethod", compuMethod.name));
+			return xe;
 		}
 		public static Message ParseFromXml(XmlNode node, Message ret = null){
 			if (null == ret) {

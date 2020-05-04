@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace EasyOS
 {
@@ -16,6 +17,12 @@ namespace EasyOS
 			ret.Add ("\t<description>" + description + "</description>");
 			ret.Add ("</StateMachine>");
 			return ret;
+		}
+		public override XElement SaveAsXml(){
+			XElement xe = new XElement ("StateMachine");
+			xe.Add (new XElement ("name", name));
+			xe.Add (new XElement ("description", description));
+			return xe;
 		}
 		public static StateMachine ParseFromXml(XmlNode node, StateMachine ret = null){
 			if (null == ret) {

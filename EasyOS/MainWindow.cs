@@ -555,9 +555,10 @@ public partial class MainWindow: Gtk.Window
 				filename += ".eos";
 			}
 			TextWriter tw = new StreamWriter(filename);
-			foreach (var item in GPrj.SaveToXml()) {
-				tw.WriteLine (item);
-			}
+//			foreach (var item in GPrj.SaveToXml()) {
+//				tw.WriteLine (item);
+//			}
+			GPrj.SaveAsXml().Save(tw);
 			tw.Close();
 		}
 		fcd.Destroy ();

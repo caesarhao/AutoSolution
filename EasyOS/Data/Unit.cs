@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace EasyOS
 {
@@ -47,6 +48,19 @@ namespace EasyOS
 			ret.Add ("\t</exponents>");
 			ret.Add ("</Unit>");
 			return ret;
+		}
+		public override XElement SaveAsXml(){
+			XElement xe = new XElement ("Unit");
+			xe.Add (new XElement ("name", name));
+			xe.Add (new XElement ("description", description));
+			xe.Add (new XElement ("showAs", showAs));
+			xe.Add (new XElement ("coeff", coeff));
+			XElement xeexp = new XElement ("exponents");
+			foreach (var item in typeof(SIunit).GetEnumValues()) {
+				xeexp.Add (new XElement(item.ToString(), exponents[(int)item]));
+			}
+			xe.Add (xeexp);
+			return xe;
 		}
 		public static Unit ParseFromXml(XmlNode node, Unit ret = null){
 			if (null == ret) {

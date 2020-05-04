@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace EasyOS
 {
@@ -31,6 +32,22 @@ namespace EasyOS
 			ret.Add ("\t</sendMessages>");
 			ret.Add ("</Process>");
 			return ret;
+		}
+		public override XElement SaveAsXml(){
+			XElement xe = new XElement ("Process");
+			xe.Add (new XElement ("name", name));
+			xe.Add (new XElement ("description", description));
+			XElement xereceiveMessages = new XElement ("receiveMessages");
+			foreach (var item in receiveMessages) {
+				xereceiveMessages.Add (new XElement("message", item.name));
+			}
+			xe.Add (xereceiveMessages);
+			XElement xesendMessages = new XElement ("sendMessages");
+			foreach (var item in sendMessages) {
+				xesendMessages.Add (new XElement("message", item.name));
+			}
+			xe.Add (xesendMessages);
+			return xe;
 		}
 		public static Process ParseFromXml(XmlNode node, Process ret = null){
 			if (null == ret) {

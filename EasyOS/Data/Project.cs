@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace EasyOS
 {
@@ -98,6 +99,23 @@ namespace EasyOS
 			ret.AddRange (StateMachines.SaveToXml ().Select(x => "\t" + x));
 			ret.Add ("</Project>");
 			return ret;
+		}
+		public override XElement SaveAsXml(){
+			XElement xe = new XElement ("Project");
+			xe.Add (new XElement ("name", name));
+			xe.Add (new XElement ("description", description));
+			xe.Add (new XElement ("author", author));
+			xe.Add (new XElement ("license", license));
+			xe.Add (new XElement ("language", language));
+			xe.Add (new XElement ("target", target));
+			xe.Add (new XElement ("version", version));
+			xe.Add (Units.SaveAsXml ());
+			xe.Add (CompuMethods.SaveAsXml ());
+			xe.Add (Messages.SaveAsXml ());
+			xe.Add (Processes.SaveAsXml ());
+			xe.Add (Tasks.SaveAsXml ());
+			xe.Add (StateMachines.SaveAsXml ());
+			return xe;
 		}
 		public static Project ParseFromXml(XmlNode node, Project ret = null){
 			if (null == ret) {

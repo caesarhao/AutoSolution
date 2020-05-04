@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace EasyOS
 {
@@ -59,6 +60,14 @@ namespace EasyOS
 			ret.Add ("\t</Denominators>");
 			ret.Add ("</RationalFunction>");
 			return ret;
+		}
+		public override XElement SaveAsXml(){
+			XElement xe = new XElement ("RationalFunction");
+			xe.Add (new XElement ("name", name));
+			xe.Add (new XElement ("description", description));
+			xe.Add (new XElement ("Numerators", new XElement("vt", Numerators[0]), new XElement("vt", Numerators[1])));
+			xe.Add (new XElement ("Denominators", new XElement("vt", Denominators[0]), new XElement("vt", Denominators[1])));
+			return xe;
 		}
 		public static RationalFunction ParseFromXml(XmlNode node, RationalFunction ret = null){
 			if (null == ret) {
@@ -132,6 +141,17 @@ namespace EasyOS
 			ret.Add ("\t</items>");
 			ret.Add ("</VerbalTable>");
 			return ret;
+		}
+		public override XElement SaveAsXml(){
+			XElement xe = new XElement ("VerbalTable");
+			xe.Add (new XElement ("name", name));
+			xe.Add (new XElement ("description", description));
+			XElement xeitems = new XElement ("items");
+			foreach (var item in items) {
+				xeitems.Add (new XElement("key", item.Key), new XElement("value", item.Value));
+			}
+			xe.Add (xeitems);
+			return xe;
 		}
 		public static VerbalTable ParseFromXml(XmlNode node, VerbalTable ret = null){
 			if (null == ret) {

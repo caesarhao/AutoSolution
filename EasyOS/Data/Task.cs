@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace EasyOS
 {
@@ -47,6 +48,18 @@ namespace EasyOS
 			ret.Add ("\t</processes>");
 			ret.Add ("</Task>");
 			return ret;
+		}
+		public override XElement SaveAsXml(){
+			XElement xe = new XElement ("Task");
+			xe.Add (new XElement ("name", name));
+			xe.Add (new XElement ("description", description));
+			xe.Add (new XElement ("raster", raster));
+			XElement xeprocesses = new XElement ("processes");
+			foreach (var item in processes) {
+				xeprocesses.Add (new XElement("process", item.name));
+			}
+			xe.Add (xeprocesses);
+			return xe;
 		}
 		public static Task ParseFromXml(XmlNode node, Task ret = null){
 			if (null == ret) {
