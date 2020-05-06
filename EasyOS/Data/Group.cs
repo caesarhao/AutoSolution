@@ -33,6 +33,7 @@ namespace EasyOS
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
 			ret.Add ("<" + this.name + ">");
+			ret.Add ("\t<name>" + this.name + "</name>");
 			ret.Add ("\t<description>" + description + "</description>");
 			foreach (var item in elements) {
 				ret.AddRange (item.SaveToXml ().Select(x => "\t" + x));

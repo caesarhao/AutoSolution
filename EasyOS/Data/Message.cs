@@ -25,7 +25,7 @@ namespace EasyOS
 			return ret;
 		}
 		public override XElement SaveAsXml(){
-			XElement xe = new XElement ("Task");
+			XElement xe = new XElement ("Message");
 			xe.Add (new XElement ("name", name));
 			xe.Add (new XElement ("description", description));
 			xe.Add (new XElement ("type", type));

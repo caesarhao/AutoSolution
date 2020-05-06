@@ -7,6 +7,7 @@ using System.Xml;
 
 public partial class MainWindow: Gtk.Window
 {
+	private string currentFileName;
 	private EditGroup 			egrp;
 	private EditProject 		eprj;
 	private EditUnit 			eunt;
@@ -28,6 +29,7 @@ public partial class MainWindow: Gtk.Window
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		currentFileName = "";
 		MW = this;
 		egrp = new EditGroup ();
 		egrp.ShowAll ();
@@ -122,8 +124,6 @@ public partial class MainWindow: Gtk.Window
 
 		this.saveAction.Sensitive = true;
 		this.SaveAction.Sensitive = true;
-		this.saveAsAction.Sensitive = true;
-		this.SaveAsAction.Sensitive = true;
 	}
 
 	protected void OpenProject(){
@@ -530,6 +530,7 @@ public partial class MainWindow: Gtk.Window
 		ResponseType response = (ResponseType) fcd.Run ();
 		if (response == Gtk.ResponseType.Ok) {
 			XmlDocument doc = new XmlDocument();
+			currentFileName = fcd.Filename;
 			doc.Load (fcd.Filename);
 			XmlNode nprj = doc.SelectSingleNode ("/Project");
 			this.GPrj = (Project)Project.ParseFromXml (nprj);
@@ -540,28 +541,37 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnSaveActionActivated (object sender, EventArgs e)
 	{
-		FileChooserDialog fcd = new FileChooserDialog ("Save EasyOS project...", this, FileChooserAction.Save);
-		fcd.AddButton (Gtk.Stock.Ok, ResponseType.Ok);
-		fcd.AddButton (Gtk.Stock.Cancel, ResponseType.Cancel);
-		fcd.SelectMultiple = false;
-		fcd.Filter = new FileFilter ();
-		fcd.Filter.AddPattern ("*.eos");
-		fcd.DefaultResponse = ResponseType.Cancel;
-		fcd.SetFilename (GPrj.name);
-		ResponseType response = (ResponseType) fcd.Run ();
-		if (response == Gtk.ResponseType.Ok) {
-			string filename = fcd.Filename;
-			if (!filename.EndsWith(".eos")){
-				filename += ".eos";
+		if (currentFileName.Equals ("")) {
+			FileChooserDialog fcd = new FileChooserDialog ("Save EasyOS project...", this, FileChooserAction.Save);
+			fcd.AddButton (Gtk.Stock.Ok, ResponseType.Ok);
+			fcd.AddButton (Gtk.Stock.Cancel, ResponseType.Cancel);
+			fcd.SelectMultiple = false;
+			fcd.Filter = new FileFilter ();
+			fcd.Filter.AddPattern ("*.eos");
+			fcd.DefaultResponse = ResponseType.Cancel;
+			fcd.SetFilename (GPrj.name);
+			ResponseType response = (ResponseType) fcd.Run ();
+			if (response == Gtk.ResponseType.Ok) {
+				string filename = fcd.Filename;
+				if (!filename.EndsWith(".eos")){
+					filename += ".eos";
+				}
+				currentFileName = filename;
+				TextWriter tw = new StreamWriter(filename);
+				//			foreach (var item in GPrj.SaveToXml()) {
+				//				tw.WriteLine (item);
+				//			}
+				GPrj.SaveAsXml().Save(tw);
+				tw.Close();
+				this.saveAsAction.Sensitive = true;
+				this.SaveAsAction.Sensitive = true;
 			}
-			TextWriter tw = new StreamWriter(filename);
-//			foreach (var item in GPrj.SaveToXml()) {
-//				tw.WriteLine (item);
-//			}
+			fcd.Destroy ();
+		} else {
+			TextWriter tw = new StreamWriter(currentFileName);
 			GPrj.SaveAsXml().Save(tw);
 			tw.Close();
 		}
-		fcd.Destroy ();
 	}
 
 	protected void OnSaveAsActionActivated (object sender, EventArgs e)
@@ -573,10 +583,18 @@ public partial class MainWindow: Gtk.Window
 		fcd.Filter = new FileFilter ();
 		fcd.Filter.AddPattern ("*.eos");
 		fcd.DefaultResponse = ResponseType.Cancel;
-		fcd.SetFilename (GPrj.name + "_Copy");
+		fcd.SetFilename (currentFileName.Replace(".eos", "_Copy.eos"));
+
 		ResponseType response = (ResponseType) fcd.Run ();
 		if (response == Gtk.ResponseType.Ok) {
-			// TODO: SaveAs project here.
+			string filename = fcd.Filename;
+			if (!filename.EndsWith(".eos")){
+				filename += ".eos";
+			}
+			currentFileName = filename;
+			TextWriter tw = new StreamWriter(currentFileName);
+			GPrj.SaveAsXml().Save(tw);
+			tw.Close();
 		}
 		fcd.Destroy ();
 	}

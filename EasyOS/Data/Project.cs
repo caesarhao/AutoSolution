@@ -82,7 +82,7 @@ namespace EasyOS
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
-			ret.Add ("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+			ret.Add ("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 			ret.Add ("<Project>");
 			ret.Add ("\t<name>" + name + "</name>");
 			ret.Add ("\t<description>" + description + "</description>");

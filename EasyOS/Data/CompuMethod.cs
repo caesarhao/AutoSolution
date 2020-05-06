@@ -148,7 +148,7 @@ namespace EasyOS
 			xe.Add (new XElement ("description", description));
 			XElement xeitems = new XElement ("items");
 			foreach (var item in items) {
-				xeitems.Add (new XElement("key", item.Key), new XElement("value", item.Value));
+				xeitems.Add (new XElement("item", new XElement("key", item.Key), new XElement("value", item.Value)));
 			}
 			xe.Add (xeitems);
 			return xe;
