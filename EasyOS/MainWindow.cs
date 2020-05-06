@@ -7,7 +7,7 @@ using System.Xml;
 
 public partial class MainWindow: Gtk.Window
 {
-	private string currentFileName;
+	private string currentFilePath;
 	private EditGroup 			egrp;
 	private EditProject 		eprj;
 	private EditUnit 			eunt;
@@ -29,7 +29,7 @@ public partial class MainWindow: Gtk.Window
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
-		currentFileName = "";
+		currentFilePath = "";
 		MW = this;
 		egrp = new EditGroup ();
 		egrp.ShowAll ();
@@ -530,7 +530,7 @@ public partial class MainWindow: Gtk.Window
 		ResponseType response = (ResponseType) fcd.Run ();
 		if (response == Gtk.ResponseType.Ok) {
 			XmlDocument doc = new XmlDocument();
-			currentFileName = fcd.Filename;
+			currentFilePath = fcd.Filename;
 			doc.Load (fcd.Filename);
 			XmlNode nprj = doc.SelectSingleNode ("/Project");
 			this.GPrj = (Project)Project.ParseFromXml (nprj);
@@ -541,7 +541,7 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnSaveActionActivated (object sender, EventArgs e)
 	{
-		if (currentFileName.Equals ("")) {
+		if (currentFilePath.Equals ("")) {
 			FileChooserDialog fcd = new FileChooserDialog ("Save EasyOS project...", this, FileChooserAction.Save);
 			fcd.AddButton (Gtk.Stock.Ok, ResponseType.Ok);
 			fcd.AddButton (Gtk.Stock.Cancel, ResponseType.Cancel);
@@ -549,14 +549,14 @@ public partial class MainWindow: Gtk.Window
 			fcd.Filter = new FileFilter ();
 			fcd.Filter.AddPattern ("*.eos");
 			fcd.DefaultResponse = ResponseType.Cancel;
-			fcd.SetFilename (GPrj.name);
+			fcd.CurrentName = GPrj.name + ".eos";
 			ResponseType response = (ResponseType) fcd.Run ();
 			if (response == Gtk.ResponseType.Ok) {
 				string filename = fcd.Filename;
 				if (!filename.EndsWith(".eos")){
 					filename += ".eos";
 				}
-				currentFileName = filename;
+				currentFilePath = filename;
 				TextWriter tw = new StreamWriter(filename);
 				//			foreach (var item in GPrj.SaveToXml()) {
 				//				tw.WriteLine (item);
@@ -568,7 +568,7 @@ public partial class MainWindow: Gtk.Window
 			}
 			fcd.Destroy ();
 		} else {
-			TextWriter tw = new StreamWriter(currentFileName);
+			TextWriter tw = new StreamWriter(currentFilePath);
 			GPrj.SaveAsXml().Save(tw);
 			tw.Close();
 		}
@@ -583,7 +583,8 @@ public partial class MainWindow: Gtk.Window
 		fcd.Filter = new FileFilter ();
 		fcd.Filter.AddPattern ("*.eos");
 		fcd.DefaultResponse = ResponseType.Cancel;
-		fcd.SetFilename (currentFileName.Replace(".eos", "_Copy.eos"));
+		fcd.SetCurrentFolder (System.IO.Path.GetDirectoryName (currentFilePath));
+		fcd.CurrentName = (System.IO.Path.GetFileName (currentFilePath).Replace(".eos", "_Copy.eos"));
 
 		ResponseType response = (ResponseType) fcd.Run ();
 		if (response == Gtk.ResponseType.Ok) {
@@ -591,8 +592,8 @@ public partial class MainWindow: Gtk.Window
 			if (!filename.EndsWith(".eos")){
 				filename += ".eos";
 			}
-			currentFileName = filename;
-			TextWriter tw = new StreamWriter(currentFileName);
+			currentFilePath = filename;
+			TextWriter tw = new StreamWriter(currentFilePath);
 			GPrj.SaveAsXml().Save(tw);
 			tw.Close();
 		}
