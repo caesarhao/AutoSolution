@@ -14,12 +14,14 @@ namespace EasyOS
 		{
 			RasterStrs = new List<string> ();
 			RasterStrs.Add ("background");
-			RasterStrs.Add ("once");
+			RasterStrs.Add ("init");
+			RasterStrs.Add ("shutdown");
 			RasterStrs.Add ("1ms");
 			RasterStrs.Add ("10ms");
 			RasterStrs.Add ("100ms");
 			RasterStrs.Add ("1s");
 			RasterStrs.Add ("10s");
+			RasterStrs.Add ("60s");
 			this.Build ();
 			ReBuildCmbbeRaster ();
 			lsPrcs = new ListStore (typeof(string));

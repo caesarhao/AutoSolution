@@ -97,7 +97,7 @@ namespace EasyOS
 
 		public static bool ValidTxtAsRaster(string txt){
 			txt = txt.ToLower ().Trim ();
-			Regex rx = new Regex (@"^(background|once|[1-9][0-9]*[um]?s)$", RegexOptions.Compiled);
+			Regex rx = new Regex (@"^(background|init|shutdown|[1-9][0-9]*[um]?s)$", RegexOptions.Compiled);
 			Match mtc = rx.Match (txt);
 			return mtc.Success;
 		}
@@ -105,9 +105,11 @@ namespace EasyOS
 			period = period.ToLower ().Trim ();
 			if (period.Equals ("background")) {
 				raster = 0;
-			} else if (period.Equals ("once")) {
+			} else if (period.Equals ("init")) {
 				raster = -1;
-			} else {
+			} else if (period.Equals ("shutdown")) {
+				raster = -2;
+			}else {
 				if (period.EndsWith ("us")) {
 					raster = int.Parse (period.Substring(0, period.Length-2));
 				} else if (period.EndsWith ("ms")) {
@@ -124,9 +126,10 @@ namespace EasyOS
 			if (raster == 0) {
 				ret = "background";
 			} else if (raster == -1) {
-				ret = "once";
-			} 
-			else if (raster < 1000) {
+				ret = "init";
+			} else if (raster == -2) {
+				ret = "shutdown";
+			} else if (raster < 1000) {
 				ret = raster.ToString () + "us";
 			} else if (raster >= 1000000) {
 				ret = (raster / 1000000).ToString () + "s";
