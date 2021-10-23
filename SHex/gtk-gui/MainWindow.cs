@@ -25,6 +25,8 @@ public partial class MainWindow
 	
 	private global::Gtk.Action SaveAction1;
 	
+	private global::Gtk.Action saveAsAction;
+	
 	private global::Gtk.VBox vbox_main;
 	
 	private global::Gtk.MenuBar menubar1;
@@ -49,7 +51,8 @@ public partial class MainWindow
 		this.openAction = new global::Gtk.Action ("openAction", global::Mono.Unix.Catalog.GetString ("_Open"), null, "gtk-open");
 		this.openAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Open");
 		w1.Add (this.openAction, null);
-		this.saveAction = new global::Gtk.Action ("saveAction", null, null, "gtk-save");
+		this.saveAction = new global::Gtk.Action ("saveAction", global::Mono.Unix.Catalog.GetString ("_Save"), null, "gtk-save");
+		this.saveAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Save");
 		w1.Add (this.saveAction, null);
 		this.EditAction = new global::Gtk.Action ("EditAction", global::Mono.Unix.Catalog.GetString ("_Edit"), null, null);
 		this.EditAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit");
@@ -69,9 +72,11 @@ public partial class MainWindow
 		this.SaveAction = new global::Gtk.Action ("SaveAction", global::Mono.Unix.Catalog.GetString ("Save"), null, null);
 		this.SaveAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Save");
 		w1.Add (this.SaveAction, null);
-		this.SaveAction1 = new global::Gtk.Action ("SaveAction1", global::Mono.Unix.Catalog.GetString ("Save"), null, null);
+		this.SaveAction1 = new global::Gtk.Action ("SaveAction1", global::Mono.Unix.Catalog.GetString ("_Save"), null, null);
 		this.SaveAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("Save");
 		w1.Add (this.SaveAction1, null);
+		this.saveAsAction = new global::Gtk.Action ("saveAsAction", null, null, "gtk-save-as");
+		w1.Add (this.saveAsAction, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -82,7 +87,7 @@ public partial class MainWindow
 		this.vbox_main.Name = "vbox_main";
 		this.vbox_main.Spacing = 6;
 		// Container child vbox_main.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='SaveAction1' action='SaveAction1'/><menuitem name='SaveAsAction' action='SaveAsAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
+		this.UIManager.AddUiFromString (@"<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='OpenAction' action='OpenAction'/><menuitem name='SaveAction1' action='SaveAction1'/><menuitem name='SaveAsAction' action='SaveAsAction'/></menu><menu name='EditAction' action='EditAction'/><menu name='HelpAction' action='HelpAction'><menuitem name='AboutAction' action='AboutAction'/></menu></menubar></ui>");
 		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 		this.menubar1.Name = "menubar1";
 		this.vbox_main.Add (this.menubar1);
@@ -91,7 +96,9 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox_main.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='openAction' action='openAction'/><toolitem name='saveAction' action='saveAction'/></toolbar></ui>");
+		this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar1\'><toolitem name=\'openAction\' action=\'openAction\'/><to" +
+		"olitem name=\'saveAction\' action=\'saveAction\'/><toolitem name=\'saveAsAction\' acti" +
+		"on=\'saveAsAction\'/></toolbar></ui>");
 		this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 		this.toolbar1.Name = "toolbar1";
 		this.toolbar1.ShowArrow = false;
@@ -134,6 +141,7 @@ public partial class MainWindow
 		this.openAction.Activated += new global::System.EventHandler (this.OnOpen);
 		this.saveAction.Activated += new global::System.EventHandler (this.OnSave);
 		this.OpenAction.Activated += new global::System.EventHandler (this.OnOpen);
+		this.saveAsAction.Activated += new global::System.EventHandler (this.OnSaveAs);
 		this.textview_debug.PasteClipboard += new global::System.EventHandler (this.OnTextviewDebugPasteClipboard);
 	}
 }

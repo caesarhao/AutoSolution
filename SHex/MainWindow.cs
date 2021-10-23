@@ -4,11 +4,11 @@ using SHex;
 
 public partial class MainWindow: Gtk.Window
 {
+	protected IFileAccess ifa = null;
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
 	}
-
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
@@ -16,7 +16,56 @@ public partial class MainWindow: Gtk.Window
 	}
 	protected void OnOpen(object sender, EventArgs e)
 	{
-		throw new NotImplementedException ();
+		//throw new NotImplementedException ();
+		Gtk.FileChooserDialog fcd = new Gtk.FileChooserDialog ("Open File", null, Gtk.FileChooserAction.Open);
+		fcd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
+		fcd.AddButton (Gtk.Stock.Open, Gtk.ResponseType.Ok);
+		fcd.DefaultResponse = Gtk.ResponseType.Ok;
+		fcd.SelectMultiple = false;
+		Gtk.FileFilter filterBin = new Gtk.FileFilter ();
+		filterBin.Name = "Bin";
+		filterBin.AddPattern("*.bin");
+		fcd.AddFilter (filterBin);
+		Gtk.FileFilter filterHex = new Gtk.FileFilter ();
+		filterHex.Name = "Hex";
+		filterHex.AddPattern("*.hex");
+		fcd.AddFilter (filterHex);
+		Gtk.FileFilter filterSRec = new Gtk.FileFilter ();
+		filterSRec.Name = "SRec";
+		filterSRec.AddPattern("*.s19");
+		filterSRec.AddPattern("*.s28");
+		filterSRec.AddPattern("*.s37");
+		filterSRec.AddPattern("*.s3");
+		fcd.AddFilter (filterSRec);
+		Gtk.FileFilter filterTiTxt = new Gtk.FileFilter ();
+		filterTiTxt.Name = "TiTxt";
+		filterTiTxt.AddPattern("*.txt");
+		fcd.AddFilter (filterTiTxt);
+		Gtk.ResponseType response = (Gtk.ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			if (fcd.Filter.Name == "Bin") {
+				ifa = new BinAccess ();
+				ifa.parseFile (fcd.Filename);
+			} else if (fcd.Filter.Name == "Hex") {
+				ifa = new HexAccess ();
+				ifa.parseFile (fcd.Filename);
+			} else if (fcd.Filter.Name == "SRec") {
+				ifa = new SRecAccess ();
+				ifa.parseFile (fcd.Filename);
+			} else if (fcd.Filter.Name == "TiTxt") {
+				ifa = new TiTxtAccess ();
+				ifa.parseFile (fcd.Filename);
+			} else {
+			}
+			if (null != ifa) {
+				this.textview_debug.Buffer.Text = "Parse memblocks : " + ifa.Memblks.Count + "\n";
+				for (int i = 0; i < ifa.Memblks.Count; i++) {
+					this.textview_debug.Buffer.Text += "Block : " + ifa.Memblks[i].StartAddr + " Len : " + ifa.Memblks[i].DataSize + "\n";
+				}
+			}
+		} else {
+		}
+		fcd.Destroy ();
 	}
 		
 	protected void OnTextviewDebugPasteClipboard (object sender, EventArgs e)
@@ -83,4 +132,56 @@ public partial class MainWindow: Gtk.Window
 		this.textview_debug.Buffer.Text += "\n";
 		Console.WriteLine ("have a try");
 	}
+	protected void OnSaveAs (object sender, EventArgs e)
+	{
+		Gtk.FileChooserDialog fcd = new Gtk.FileChooserDialog ("Save as...", null, Gtk.FileChooserAction.Save);
+		fcd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
+		fcd.AddButton (Gtk.Stock.SaveAs, Gtk.ResponseType.Ok);
+		fcd.DefaultResponse = Gtk.ResponseType.Ok;
+		fcd.SelectMultiple = false;
+		Gtk.FileFilter filterBin = new Gtk.FileFilter ();
+		filterBin.Name = "Bin";
+		filterBin.AddPattern("*.bin");
+		fcd.AddFilter (filterBin);
+		Gtk.FileFilter filterHex = new Gtk.FileFilter ();
+		filterHex.Name = "Hex";
+		filterHex.AddPattern("*.hex");
+		fcd.AddFilter (filterHex);
+		Gtk.FileFilter filterSRec = new Gtk.FileFilter ();
+		filterSRec.Name = "SRec";
+		filterSRec.AddPattern("*.s19");
+		filterSRec.AddPattern("*.s28");
+		filterSRec.AddPattern("*.s37");
+		filterSRec.AddPattern("*.s3");
+		fcd.AddFilter (filterSRec);
+		Gtk.FileFilter filterTiTxt = new Gtk.FileFilter ();
+		filterTiTxt.Name = "TiTxt";
+		filterTiTxt.AddPattern("*.txt");
+		fcd.AddFilter (filterTiTxt);
+		Gtk.ResponseType response = (Gtk.ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			IFileAccess old_ifa = ifa;
+			if (fcd.Filter.Name == "Bin") {
+				ifa = new BinAccess ();
+				ifa.Memblks = old_ifa.Memblks;
+				ifa.generateFile (fcd.Filename + ".bin");
+			} else if (fcd.Filter.Name == "Hex") {
+				ifa = new HexAccess ();
+				ifa.Memblks = old_ifa.Memblks;
+				ifa.generateFile (fcd.Filename + ".hex");
+			} else if (fcd.Filter.Name == "SRec") {
+				ifa = new SRecAccess ();
+				ifa.Memblks = old_ifa.Memblks;
+				ifa.generateFile (fcd.Filename + ".s19");
+			} else if (fcd.Filter.Name == "TiTxt") {
+				ifa = new TiTxtAccess ();
+				ifa.Memblks = old_ifa.Memblks;
+				ifa.generateFile (fcd.Filename + ".txt");
+			} else {
+			}
+		} else {
+		}
+		fcd.Destroy ();
+	}
+		
 }

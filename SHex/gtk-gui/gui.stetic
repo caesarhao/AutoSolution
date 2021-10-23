@@ -25,7 +25,8 @@
       </action>
       <action id="saveAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes" />
+        <property name="Label" translatable="yes">_Save</property>
+        <property name="ShortLabel" translatable="yes">_Save</property>
         <property name="StockId">gtk-save</property>
         <signal name="Activated" handler="OnSave" />
       </action>
@@ -64,8 +65,14 @@
       </action>
       <action id="SaveAction1">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Save</property>
+        <property name="Label" translatable="yes">_Save</property>
         <property name="ShortLabel" translatable="yes">Save</property>
+      </action>
+      <action id="saveAsAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-save-as</property>
+        <signal name="Activated" handler="OnSaveAs" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -105,6 +112,7 @@
             <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="openAction" />
               <node type="Toolitem" action="saveAction" />
+              <node type="Toolitem" action="saveAsAction" />
             </node>
           </widget>
           <packing>
