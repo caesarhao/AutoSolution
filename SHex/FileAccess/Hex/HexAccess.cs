@@ -28,7 +28,8 @@ namespace SHex
 							MemBlock mb = Memblks [Memblks.Count - 1];
 							if ((0 == mb.DataSize) && ((0xFFFF & (mb.StartAddr)) != hr.Address)) {
 								mb.StartAddr += hr.Address;
-							} else if (((0xFFFF & (mb.StartAddr)) + mb.NextAddress) != hr.Address) { // check the address
+							} else if (((0xFFFF & mb.NextAddress) == 0x0000) && 0 < mb.DataSize) { // check the address
+								
 							} else {
 							}
 							mb.AppendData (hr.Data);

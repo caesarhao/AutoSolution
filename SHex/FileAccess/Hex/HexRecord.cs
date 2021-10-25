@@ -41,6 +41,7 @@ namespace SHex
 			}
 			set{ 
 				this.recordType = value;
+/*
 				switch (value) {
 				case RecordTypeE.Data:
 					{
@@ -90,6 +91,7 @@ namespace SHex
 					}
 					break;
 				}
+*/
 			}
 		} // 1 byte
 		private byte[] data; //
