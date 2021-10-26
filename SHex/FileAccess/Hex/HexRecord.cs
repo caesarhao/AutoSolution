@@ -42,55 +42,7 @@ namespace SHex
 			set{ 
 				this.recordType = value;
 /*
-				switch (value) {
-				case RecordTypeE.Data:
-					{
-						this.byteCount = 2;
-						this.Address = 0;
-						this.Data = new byte[2];
-					}
-					break;
-				case RecordTypeE.EoF:
-					{
-						this.byteCount = 0;
-						this.Address = 0;
-						this.Data = new byte[0];
-					}
-					break;
-				case RecordTypeE.ExtSegAddr:
-					{
-						this.byteCount = 2;
-						this.Address = 0;
-						this.Data = new byte[2];
-					}
-					break;
-				case RecordTypeE.StrtSegAddr:
-					{
-						this.byteCount = 4;
-						this.Address = 0;
-						this.Data = new byte[4];
-					}
-					break;
-				case RecordTypeE.ExtLineAddr:
-					{
-						this.byteCount = 2;
-						this.Address = 0;
-						this.Data = new byte[2];
-					}
-					break;
-				case RecordTypeE.StrtLineAddr:
-					{
-						this.byteCount = 4;
-						this.Address = 0;
-						this.Data = new byte[4];
-					}
-					break;
-				default:
-					{
 
-					}
-					break;
-				}
 */
 			}
 		} // 1 byte
@@ -101,6 +53,7 @@ namespace SHex
 			}
 			set{
 				data = value;
+				this.byteCount = (byte)this.data.Length;
 			}
 		}
 		private byte crc; // 1 byte
@@ -111,6 +64,59 @@ namespace SHex
 		{
 			this.errNo = ErrorNum.NoErr;
 			this.startCode = ':';
+		}
+		public HexRecord(RecordTypeE rt):this()
+		{
+			this.recordType = rt;
+			switch (recordType) {
+			case RecordTypeE.Data:
+				{
+					this.byteCount = 2;
+					this.Address = 0;
+					this.Data = new byte[2];
+				}
+				break;
+			case RecordTypeE.EoF:
+				{
+					this.byteCount = 0;
+					this.Address = 0;
+					this.Data = new byte[0];
+				}
+				break;
+			case RecordTypeE.ExtSegAddr:
+				{
+					this.byteCount = 2;
+					this.Address = 0;
+					this.Data = new byte[2];
+				}
+				break;
+			case RecordTypeE.StrtSegAddr:
+				{
+					this.byteCount = 4;
+					this.Address = 0;
+					this.Data = new byte[4];
+				}
+				break;
+			case RecordTypeE.ExtLineAddr:
+				{
+					this.byteCount = 2;
+					this.Address = 0;
+					this.Data = new byte[2];
+				}
+				break;
+			case RecordTypeE.StrtLineAddr:
+				{
+					this.byteCount = 4;
+					this.Address = 0;
+					this.Data = new byte[4];
+				}
+				break;
+			default:
+				{
+
+				}
+				break;
+			}
 		}
 		public void setEIP(uint dat){
 			this.RecordType = RecordTypeE.StrtLineAddr;

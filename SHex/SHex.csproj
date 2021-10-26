@@ -44,6 +44,10 @@
     <EmbeddedResource Include="gtk-gui\gui.stetic">
       <LogicalName>gui.stetic</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\Resources\icons\fileBin_96x96.ico" />
+    <EmbeddedResource Include="..\Resources\icons\fileHex_96x96.ico" />
+    <EmbeddedResource Include="..\Resources\icons\fileSRec_96x96.ico" />
+    <EmbeddedResource Include="..\Resources\icons\fileTiTxt_96x96.ico" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />

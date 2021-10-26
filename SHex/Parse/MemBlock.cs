@@ -5,6 +5,7 @@ namespace SHex
 {
 	public class MemBlock
 	{
+		// how many bits
 		private int addrSize;
 		public int AddrSize{
 			get{
@@ -36,9 +37,12 @@ namespace SHex
 		}
 		public MemBlock ()
 		{
-			StartAddr = 0;
+			StartAddr = 0x00000000;
 			this.addrSize = 32;
 			this.data = new List<byte>();
+		}
+		public int Capacity(){
+			return (2 << (this.AddrSize - 1)); 
 		}
 		public byte[] DataAsArray{
 			get{

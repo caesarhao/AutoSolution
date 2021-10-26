@@ -10,9 +10,12 @@ namespace SHex
 		public int BytesEachLine{ get; set; }
 		public uint CsIp{ get; set; }
 		public uint EIP{ get; set; }
-		public HexAccess ()
+		public HexAccess (int bytesEachLine)
 		{
-			Memblks = new List<MemBlock> ();
+			this.Memblks = new List<MemBlock> ();
+			this.BytesEachLine = bytesEachLine;
+		}
+		public HexAccess():this(32){
 		}
 		public bool parse(string[] lines){
 			HexRecord hr = new HexRecord ();
@@ -26,11 +29,18 @@ namespace SHex
 					case HexRecord.RecordTypeE.Data:
 						{
 							MemBlock mb = Memblks [Memblks.Count - 1];
-							if ((0 == mb.DataSize) && ((0xFFFF & (mb.StartAddr)) != hr.Address)) {
+							if (0 == mb.DataSize) { // new empty block
+								mb.StartAddr &= 0xFFFF0000;
 								mb.StartAddr += hr.Address;
-							} else if (((0xFFFF & mb.NextAddress) == 0x0000) && 0 < mb.DataSize) { // check the address
-								
-							} else {
+							} else if ((0xFFFF & mb.NextAddress) != hr.Address) { // address is interrupted, create new block
+								this.Memblks.Add (new MemBlock());
+								MemBlock oldmb = mb;
+								mb = Memblks [Memblks.Count - 1];
+								mb.AddrSize = oldmb.AddrSize;
+								mb.StartAddr = oldmb.StartAddr;
+								mb.StartAddr &= 0xFFFF0000;
+								mb.StartAddr += hr.Address;
+							} else { // continual address, just merge the data
 							}
 							mb.AppendData (hr.Data);
 						}
@@ -43,6 +53,9 @@ namespace SHex
 					case HexRecord.RecordTypeE.ExtSegAddr:
 						{
 							MemBlock mb = new MemBlock ();
+							if (BitConverter.IsLittleEndian) {
+								Array.Reverse (hr.Data);
+							}
 							ushort usba = BitConverter.ToUInt16 (hr.Data, 0);
 							uint sba = (uint)usba;
 							sba <<= 4;
@@ -53,12 +66,18 @@ namespace SHex
 						break;
 					case HexRecord.RecordTypeE.StrtSegAddr:
 						{
+							if (BitConverter.IsLittleEndian) {
+								Array.Reverse (hr.Data);
+							}
 							this.CsIp = BitConverter.ToUInt32(hr.Data, 0);
 						}
 						break;
-					case HexRecord.RecordTypeE.ExtLineAddr:
+					case HexRecord.RecordTypeE.ExtLineAddr: // extend address, create a new MemBlock
 						{
 							MemBlock mb = new MemBlock ();
+							if (BitConverter.IsLittleEndian) {
+								Array.Reverse (hr.Data);
+							}
 							ushort ulba = BitConverter.ToUInt16 (hr.Data, 0);
 							uint lba = (uint)ulba;
 							lba <<= 16;
@@ -69,6 +88,9 @@ namespace SHex
 						break;
 					case HexRecord.RecordTypeE.StrtLineAddr:
 						{
+							if (BitConverter.IsLittleEndian) {
+								Array.Reverse (hr.Data);
+							}
 							this.EIP = BitConverter.ToUInt32(hr.Data, 0);
 						}
 						break;
@@ -82,7 +104,7 @@ namespace SHex
 		}
 		public string[] generate(){
 			List<string> retu = new List<string> ();
-			HexRecord hr = new HexRecord();
+			HexRecord hr = null;
 			foreach(MemBlock mb in Memblks){
 				int subMbs = mb.DataSize / 0x10000;
 				if (0 < mb.DataSize % 0x10000) {
@@ -91,7 +113,7 @@ namespace SHex
 				ushort ulba = (ushort)(mb.StartAddr >> 16);
 				for (int i = 0; i < subMbs; i++) {
 					// output start address
-					hr.RecordType = HexRecord.RecordTypeE.ExtLineAddr;
+					hr = new HexRecord(HexRecord.RecordTypeE.ExtLineAddr);
 					hr.Data[0]=BitConverter.GetBytes (ulba + i) [1];
 					hr.Data[1]=BitConverter.GetBytes (ulba + i) [0];
 					retu.Add (hr.generate());
@@ -106,7 +128,7 @@ namespace SHex
 					}
 					int subMbLen = (int)(lastAd - startAd + 1);
 					int lines = subMbLen/BytesEachLine;
-					hr.RecordType = HexRecord.RecordTypeE.Data;
+					hr = new HexRecord (HexRecord.RecordTypeE.Data);
 					hr.Data = new byte[BytesEachLine];
 					for (int j = 0; j < lines; j++) {
 						int offset = j * BytesEachLine;
@@ -125,7 +147,7 @@ namespace SHex
 					}
 				}
 			}
-			hr.RecordType = HexRecord.RecordTypeE.EoF;
+			hr = new HexRecord (HexRecord.RecordTypeE.EoF);
 			retu.Add (hr.generate());
 			return retu.ToArray ();
 		}

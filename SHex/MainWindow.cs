@@ -58,9 +58,10 @@ public partial class MainWindow: Gtk.Window
 			} else {
 			}
 			if (null != ifa) {
-				this.textview_debug.Buffer.Text = "Parse memblocks : " + ifa.Memblks.Count + "\n";
+				this.textview_debug.Buffer.Text = "Parsed memblocks : " + ifa.Memblks.Count + "\n";
 				for (int i = 0; i < ifa.Memblks.Count; i++) {
 					this.textview_debug.Buffer.Text += "Block : " + ifa.Memblks[i].StartAddr + " Len : " + ifa.Memblks[i].DataSize + "\n";
+
 				}
 			}
 		} else {
@@ -184,4 +185,91 @@ public partial class MainWindow: Gtk.Window
 		fcd.Destroy ();
 	}
 		
+	protected void OnSaveAsBin (object sender, EventArgs e)
+	{
+		Gtk.FileChooserDialog fcd = new Gtk.FileChooserDialog ("Save as Bin...", null, Gtk.FileChooserAction.Save);
+		fcd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
+		fcd.AddButton (Gtk.Stock.SaveAs, Gtk.ResponseType.Ok);
+		fcd.DefaultResponse = Gtk.ResponseType.Ok;
+		fcd.SelectMultiple = false;
+		Gtk.FileFilter filter = new Gtk.FileFilter ();
+		filter.Name = "Bin";
+		filter.AddPattern("*.bin");
+		fcd.AddFilter (filter);
+		Gtk.ResponseType response = (Gtk.ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			IFileAccess old_ifa = ifa;
+			ifa = new BinAccess ();
+			ifa.Memblks = old_ifa.Memblks;
+			ifa.generateFile (fcd.Filename + ".bin");
+		} else {
+		}
+		fcd.Destroy ();
+	}
+	protected void OnSaveAsHex (object sender, EventArgs e)
+	{
+		Gtk.FileChooserDialog fcd = new Gtk.FileChooserDialog ("Save as Hex...", null, Gtk.FileChooserAction.Save);
+		fcd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
+		fcd.AddButton (Gtk.Stock.SaveAs, Gtk.ResponseType.Ok);
+		fcd.DefaultResponse = Gtk.ResponseType.Ok;
+		fcd.SelectMultiple = false;
+		Gtk.FileFilter filter = new Gtk.FileFilter ();
+		filter.Name = "Hex";
+		filter.AddPattern("*.hex");
+		fcd.AddFilter (filter);
+		Gtk.ResponseType response = (Gtk.ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			IFileAccess old_ifa = ifa;
+			ifa = new HexAccess ();
+			ifa.Memblks = old_ifa.Memblks;
+			ifa.generateFile (fcd.Filename + ".hex");
+		} else {
+		}
+		fcd.Destroy ();
+	}
+	protected void OnSaveAsSRec (object sender, EventArgs e)
+	{
+		Gtk.FileChooserDialog fcd = new Gtk.FileChooserDialog ("Save as S-Record...", null, Gtk.FileChooserAction.Save);
+		fcd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
+		fcd.AddButton (Gtk.Stock.SaveAs, Gtk.ResponseType.Ok);
+		fcd.DefaultResponse = Gtk.ResponseType.Ok;
+		fcd.SelectMultiple = false;
+		Gtk.FileFilter filter = new Gtk.FileFilter ();
+		filter.Name = "SRec";
+		filter.AddPattern("*.s19");
+		filter.AddPattern("*.s28");
+		filter.AddPattern("*.s37");
+		filter.AddPattern("*.s3");
+		fcd.AddFilter (filter);
+		Gtk.ResponseType response = (Gtk.ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			IFileAccess old_ifa = ifa;
+			ifa = new SRecAccess ();
+			ifa.Memblks = old_ifa.Memblks;
+			ifa.generateFile (fcd.Filename + ".s19");
+		} else {
+		}
+		fcd.Destroy ();
+	}
+	protected void OnSaveAsTiTxt (object sender, EventArgs e)
+	{
+		Gtk.FileChooserDialog fcd = new Gtk.FileChooserDialog ("Save as TI Txt...", null, Gtk.FileChooserAction.Save);
+		fcd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
+		fcd.AddButton (Gtk.Stock.SaveAs, Gtk.ResponseType.Ok);
+		fcd.DefaultResponse = Gtk.ResponseType.Ok;
+		fcd.SelectMultiple = false;
+		Gtk.FileFilter filter = new Gtk.FileFilter ();
+		filter.Name = "TiTxt";
+		filter.AddPattern("*.txt");
+		fcd.AddFilter (filter);
+		Gtk.ResponseType response = (Gtk.ResponseType) fcd.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+			IFileAccess old_ifa = ifa;
+			ifa = new TiTxtAccess ();
+			ifa.Memblks = old_ifa.Memblks;
+			ifa.generateFile (fcd.Filename + ".txt");
+		} else {
+		}
+		fcd.Destroy ();
+	}
 }

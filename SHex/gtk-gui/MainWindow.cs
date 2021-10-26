@@ -27,6 +27,14 @@ public partial class MainWindow
 	
 	private global::Gtk.Action saveAsAction;
 	
+	private global::Gtk.Action fileBinAction;
+	
+	private global::Gtk.Action fileHexAction;
+	
+	private global::Gtk.Action fileSRecAction;
+	
+	private global::Gtk.Action fileTiTxtAction;
+	
 	private global::Gtk.VBox vbox_main;
 	
 	private global::Gtk.MenuBar menubar1;
@@ -77,6 +85,14 @@ public partial class MainWindow
 		w1.Add (this.SaveAction1, null);
 		this.saveAsAction = new global::Gtk.Action ("saveAsAction", null, null, "gtk-save-as");
 		w1.Add (this.saveAsAction, null);
+		this.fileBinAction = new global::Gtk.Action ("fileBinAction", null, null, "fileBin");
+		w1.Add (this.fileBinAction, null);
+		this.fileHexAction = new global::Gtk.Action ("fileHexAction", null, null, "fileHex");
+		w1.Add (this.fileHexAction, null);
+		this.fileSRecAction = new global::Gtk.Action ("fileSRecAction", null, null, "fileSRec");
+		w1.Add (this.fileSRecAction, null);
+		this.fileTiTxtAction = new global::Gtk.Action ("fileTiTxtAction", null, null, "fileTiTxt");
+		w1.Add (this.fileTiTxtAction, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -96,9 +112,7 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox_main.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><toolbar name=\'toolbar1\'><toolitem name=\'openAction\' action=\'openAction\'/><to" +
-		"olitem name=\'saveAction\' action=\'saveAction\'/><toolitem name=\'saveAsAction\' acti" +
-		"on=\'saveAsAction\'/></toolbar></ui>");
+		this.UIManager.AddUiFromString (@"<ui><toolbar name='toolbar1'><toolitem name='openAction' action='openAction'/><toolitem name='saveAction' action='saveAction'/><toolitem name='saveAsAction' action='saveAsAction'/><toolitem name='fileBinAction' action='fileBinAction'/><toolitem name='fileHexAction' action='fileHexAction'/><toolitem name='fileSRecAction' action='fileSRecAction'/><toolitem name='fileTiTxtAction' action='fileTiTxtAction'/></toolbar></ui>");
 		this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 		this.toolbar1.Name = "toolbar1";
 		this.toolbar1.ShowArrow = false;
@@ -142,6 +156,10 @@ public partial class MainWindow
 		this.saveAction.Activated += new global::System.EventHandler (this.OnSave);
 		this.OpenAction.Activated += new global::System.EventHandler (this.OnOpen);
 		this.saveAsAction.Activated += new global::System.EventHandler (this.OnSaveAs);
+		this.fileBinAction.Activated += new global::System.EventHandler (this.OnSaveAsBin);
+		this.fileHexAction.Activated += new global::System.EventHandler (this.OnSaveAsHex);
+		this.fileSRecAction.Activated += new global::System.EventHandler (this.OnSaveAsSRec);
+		this.fileTiTxtAction.Activated += new global::System.EventHandler (this.OnSaveAsTiTxt);
 		this.textview_debug.PasteClipboard += new global::System.EventHandler (this.OnTextviewDebugPasteClipboard);
 	}
 }

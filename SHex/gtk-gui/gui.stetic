@@ -8,6 +8,28 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/SHex.exe" internal="true" />
   </import>
+  <icon-factory>
+    <icon-set id="fileBin">
+      <source>
+        <property name="Image">resource:SHex.fileBin_96x96.ico</property>
+      </source>
+    </icon-set>
+    <icon-set id="fileHex">
+      <source>
+        <property name="Image">resource:SHex.fileHex_96x96.ico</property>
+      </source>
+    </icon-set>
+    <icon-set id="fileSRec">
+      <source>
+        <property name="Image">resource:SHex.fileSRec_96x96.ico</property>
+      </source>
+    </icon-set>
+    <icon-set id="fileTiTxt">
+      <source>
+        <property name="Image">resource:SHex.fileTiTxt_96x96.ico</property>
+      </source>
+    </icon-set>
+  </icon-factory>
   <widget class="Gtk.Window" id="MainWindow" design-size="590 446">
     <action-group name="Default">
       <action id="FileAction">
@@ -74,6 +96,30 @@
         <property name="StockId">gtk-save-as</property>
         <signal name="Activated" handler="OnSaveAs" />
       </action>
+      <action id="fileBinAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">fileBin</property>
+        <signal name="Activated" handler="OnSaveAsBin" />
+      </action>
+      <action id="fileHexAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">fileHex</property>
+        <signal name="Activated" handler="OnSaveAsHex" />
+      </action>
+      <action id="fileSRecAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">fileSRec</property>
+        <signal name="Activated" handler="OnSaveAsSRec" />
+      </action>
+      <action id="fileTiTxtAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">fileTiTxt</property>
+        <signal name="Activated" handler="OnSaveAsTiTxt" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
@@ -113,6 +159,10 @@
               <node type="Toolitem" action="openAction" />
               <node type="Toolitem" action="saveAction" />
               <node type="Toolitem" action="saveAsAction" />
+              <node type="Toolitem" action="fileBinAction" />
+              <node type="Toolitem" action="fileHexAction" />
+              <node type="Toolitem" action="fileSRecAction" />
+              <node type="Toolitem" action="fileTiTxtAction" />
             </node>
           </widget>
           <packing>
