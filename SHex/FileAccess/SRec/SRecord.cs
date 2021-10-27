@@ -67,6 +67,29 @@ namespace SHex
 			}
 			return retu;
 		}
+		public string address2str(uint addr, int addrSize){
+			string retu = "";
+			if (addrSize >= 8) {
+				retu = dec2hex ((byte)(this.Address & 0x000000FF)) + retu;
+			}
+			if (addrSize >= 16) {
+				retu = dec2hex ((byte)((this.Address & 0x0000FF00) >> 8)) + retu;
+			}
+			if (addrSize >= 24) {
+				retu = dec2hex ((byte)((this.Address & 0x00FF0000) >> 16)) + retu;
+			}
+			if (addrSize >= 32) {
+				retu = dec2hex ((byte)((this.Address & 0xFF000000) >> 24)) + retu;
+			}
+			return retu;
+		}
+		public string bytesAr2str(byte[] bytes){
+			string retu = "";
+			for(int i = 0; i < bytes.Length; i++){
+				retu += dec2hex (bytes [i]);
+			}
+			return retu;
+		}
 		public void splitAddrEtData(){
 			string ad = "";
 			string sdata = "";
@@ -90,6 +113,29 @@ namespace SHex
 			}
 			this.address = uint.Parse(ad, NumberStyles.HexNumber);
 			this.data = str2bytesAr (sdata);
+		}
+		public void mergeAddrEtData(){
+			this.addrEtdata = "";
+			switch (this.RecordType) {
+			case RecordTypeE.S1:
+				this.addrEtdata += address2str(this.Address, 16);
+				this.addrEtdata += bytesAr2str (this.Data);
+				this.byteCount = (byte)(4 + this.Data.Length * 2 + 2);
+				break;
+			case RecordTypeE.S2:
+				this.addrEtdata += address2str(this.Address, 24);
+				this.addrEtdata += bytesAr2str (this.Data);
+				this.byteCount = (byte)(6 + this.Data.Length * 2 + 2);
+				break;
+			case RecordTypeE.S3:
+				this.addrEtdata += address2str(this.Address, 32);
+				this.addrEtdata += bytesAr2str (this.Data);
+				this.byteCount = (byte)(8 + this.Data.Length * 2 + 2);
+				break;
+			default:
+				this.byteCount = 2;
+				break;
+			}
 		}
 		public byte calcSum(byte baze, byte[] data){
 			ushort p = baze;
@@ -130,6 +176,8 @@ namespace SHex
 		}
 		public string generate(){
 			string retu = this.RecordType.ToString();
+			// update addrEtdata, byteCount based on Address and Data
+			mergeAddrEtData();
 			retu += dec2hex (this.byteCount);
 			retu += this.addrEtdata;
 			calcCrc ();

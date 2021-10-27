@@ -18,7 +18,8 @@ namespace SHex
 		public SRecAccess ()
 		{
 			Memblks = new List<MemBlock> ();
-			this.SFileType = SFileTypeE.S19;
+			this.SFileType = SFileTypeE.S37;
+			this.BytesEachLine = 32;
 			this.DataRecordNum = 0;
 		}
 		public bool parse(string[] lines){
