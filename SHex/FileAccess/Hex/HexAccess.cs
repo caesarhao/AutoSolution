@@ -118,11 +118,11 @@ namespace SHex
 					hr.Data[1]=BitConverter.GetBytes (ulba + i) [0];
 					retu.Add (hr.generate());
 					// output data records
-					uint startAd = ((uint)ulba<<16);
+					uint startAd = ((uint)(ulba+i)<<16);
 					if (!mb.IsAddressInMemBlk (startAd)) {
 						startAd = (uint)mb.StartAddr;
 					}
-					uint lastAd = ((uint)ulba<<16) + 0xFFFF;
+					uint lastAd = ((uint)(ulba+i)<<16) + 0xFFFF;
 					if (!mb.IsAddressInMemBlk (lastAd)) {
 						lastAd = (uint)mb.LastAddress;
 					}
@@ -134,7 +134,7 @@ namespace SHex
 						int offset = j * BytesEachLine;
 						ushort llba = (ushort)((startAd + offset) & 0xFFFF);
 						hr.Address = llba;
-						Array.Copy (mb.DataAsArray, offset, hr.Data, 0, BytesEachLine);
+						Array.Copy (mb.DataAsArray, (startAd + offset), hr.Data, 0, BytesEachLine);
 						retu.Add (hr.generate());
 					}
 					if (0 < subMbLen%BytesEachLine) {
@@ -142,7 +142,7 @@ namespace SHex
 						int restBytes = subMbLen-offset;
 						hr.Data = new byte[restBytes];
 						hr.Address = (ushort)((startAd + offset) & 0xFFFF);
-						Array.Copy (mb.DataAsArray, offset, hr.Data, 0, restBytes);
+						Array.Copy (mb.DataAsArray, (startAd + offset), hr.Data, 0, restBytes);
 						retu.Add (hr.generate());
 					}
 				}

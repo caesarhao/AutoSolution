@@ -94,6 +94,7 @@ namespace SHex
 		}
 		public static bool MergeMBs(List<MemBlock> mbs){
 			int m = 0;
+			//mbs = mbs.OrderBy (x => x.StartAddr).ToList();
 			while (1 < mbs.Count && m < (mbs.Count-1)) {
 				if (mbs [m].NextAddress == mbs [m + 1].StartAddr) {
 					mbs [m].MergeMB (mbs [m + 1]);
