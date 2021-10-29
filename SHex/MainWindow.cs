@@ -227,7 +227,7 @@ public partial class MainWindow: Gtk.Window
 		}
 		fcd.Destroy ();
 	}
-	protected void OnSaveAsSRec (object sender, EventArgs e)
+	protected void OnSaveAsSRec_bak (object sender, EventArgs e)
 	{
 		Gtk.FileChooserDialog fcd = new Gtk.FileChooserDialog ("Save as S-Record...", null, Gtk.FileChooserAction.Save);
 		fcd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel);
@@ -251,6 +251,17 @@ public partial class MainWindow: Gtk.Window
 		}
 		fcd.Destroy ();
 	}
+	protected void OnSaveAsSRec (object sender, EventArgs e)
+	{
+		DlgSRecGen dlg = new DlgSRecGen();
+
+		Gtk.ResponseType response = (Gtk.ResponseType) dlg.Run ();
+		if (response == Gtk.ResponseType.Ok) {
+		} else {
+		}
+		dlg.Destroy ();
+	}
+
 	protected void OnSaveAsTiTxt (object sender, EventArgs e)
 	{
 		Gtk.FileChooserDialog fcd = new Gtk.FileChooserDialog ("Save as TI Txt...", null, Gtk.FileChooserAction.Save);

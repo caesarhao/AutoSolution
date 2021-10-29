@@ -64,6 +64,8 @@
     <Compile Include="FileAccess\SRec\SRecord.cs" />
     <Compile Include="FileAccess\TiTxt\TiTxtAccess.cs" />
     <Compile Include="FileAccess\TiTxt\TiTxtRecord.cs" />
+    <Compile Include="DlgSRecGen.cs" />
+    <Compile Include="gtk-gui\SHex.DlgSRecGen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
