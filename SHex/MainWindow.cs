@@ -257,6 +257,25 @@ public partial class MainWindow: Gtk.Window
 
 		Gtk.ResponseType response = (Gtk.ResponseType) dlg.Run ();
 		if (response == Gtk.ResponseType.Ok) {
+			IFileAccess old_ifa = ifa;
+			ifa = new SRecAccess ();
+			ifa.Memblks = old_ifa.Memblks;
+			switch (dlg.getAddrSize()) {
+			case 16:
+				((SRecAccess)ifa).SFileType = SRecAccess.SFileTypeE.S19;
+				break;
+			case 24:
+				((SRecAccess)ifa).SFileType = SRecAccess.SFileTypeE.S28;
+				break;
+			case 32:
+				((SRecAccess)ifa).SFileType = SRecAccess.SFileTypeE.S37;
+				break;
+			default:
+				((SRecAccess)ifa).SFileType = SRecAccess.SFileTypeE.S37;
+				break;
+			}
+			((SRecAccess)ifa).BytesEachLine = dlg.getDataLen();
+			ifa.generateFile (dlg.getFilename() + ".srec");
 		} else {
 		}
 		dlg.Destroy ();
@@ -278,6 +297,7 @@ public partial class MainWindow: Gtk.Window
 			IFileAccess old_ifa = ifa;
 			ifa = new TiTxtAccess ();
 			ifa.Memblks = old_ifa.Memblks;
+			((TiTxtAccess)ifa).BytesEachLine = 16;
 			ifa.generateFile (fcd.Filename + ".txt");
 		} else {
 		}

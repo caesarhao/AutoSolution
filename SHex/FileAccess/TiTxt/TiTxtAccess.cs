@@ -15,7 +15,7 @@ namespace SHex
 		public TiTxtAccess ()
 		{
 			Memblks = new List<MemBlock> ();
-			this.BytesEachLine = 0;
+			this.BytesEachLine = 16;
 		}
 		public bool parse(string[] lines){
 			
