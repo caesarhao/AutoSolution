@@ -32,9 +32,12 @@ public partial class MainWindow: Gtk.Window
 		fcd.AddFilter (filterHex);
 		Gtk.FileFilter filterSRec = new Gtk.FileFilter ();
 		filterSRec.Name = "SRec";
+		filterSRec.AddPattern("*.srec");
 		filterSRec.AddPattern("*.s19");
 		filterSRec.AddPattern("*.s28");
 		filterSRec.AddPattern("*.s37");
+		filterSRec.AddPattern("*.s1");
+		filterSRec.AddPattern("*.s2");
 		filterSRec.AddPattern("*.s3");
 		fcd.AddFilter (filterSRec);
 		Gtk.FileFilter filterTiTxt = new Gtk.FileFilter ();
@@ -150,9 +153,12 @@ public partial class MainWindow: Gtk.Window
 		fcd.AddFilter (filterHex);
 		Gtk.FileFilter filterSRec = new Gtk.FileFilter ();
 		filterSRec.Name = "SRec";
+		filterSRec.AddPattern("*.srec");
 		filterSRec.AddPattern("*.s19");
 		filterSRec.AddPattern("*.s28");
 		filterSRec.AddPattern("*.s37");
+		filterSRec.AddPattern("*.s1");
+		filterSRec.AddPattern("*.s2");
 		filterSRec.AddPattern("*.s3");
 		fcd.AddFilter (filterSRec);
 		Gtk.FileFilter filterTiTxt = new Gtk.FileFilter ();
@@ -173,7 +179,7 @@ public partial class MainWindow: Gtk.Window
 			} else if (fcd.Filter.Name == "SRec") {
 				ifa = new SRecAccess ();
 				ifa.Memblks = old_ifa.Memblks;
-				ifa.generateFile (fcd.Filename + ".s19");
+				ifa.generateFile (fcd.Filename + ".srec");
 			} else if (fcd.Filter.Name == "TiTxt") {
 				ifa = new TiTxtAccess ();
 				ifa.Memblks = old_ifa.Memblks;

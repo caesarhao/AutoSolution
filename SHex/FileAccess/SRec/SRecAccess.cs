@@ -117,6 +117,9 @@ namespace SHex
 					case SRecord.RecordTypeE.S5:
 						{
 							// check record count
+							if (BitConverter.IsLittleEndian) {
+								Array.Reverse (sr.Data);
+							}
 							ushort recCount = BitConverter.ToUInt16(sr.Data, 0);
 							if (recCount != this.DataRecordNum) {
 								// error happens
@@ -126,6 +129,9 @@ namespace SHex
 					case SRecord.RecordTypeE.S6:
 						{
 							// check record count
+							if (BitConverter.IsLittleEndian) {
+								Array.Reverse (sr.Data);
+							}
 							uint recCount = BitConverter.ToUInt16(sr.Data, 1);
 							recCount += (uint)(sr.Data [0] << 16);
 							if (recCount != this.DataRecordNum) {
