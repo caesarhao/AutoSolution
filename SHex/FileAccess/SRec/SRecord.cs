@@ -117,23 +117,46 @@ namespace SHex
 		public void mergeAddrEtData(){
 			this.addrEtdata = "";
 			switch (this.RecordType) {
+			case RecordTypeE.S0:
 			case RecordTypeE.S1:
 				this.addrEtdata += address2str(this.Address, 16);
 				this.addrEtdata += bytesAr2str (this.Data);
-				this.byteCount = (byte)(4 + this.Data.Length * 2 + 2);
+				this.byteCount = (byte)(2 + this.Data.Length + 1);
 				break;
 			case RecordTypeE.S2:
 				this.addrEtdata += address2str(this.Address, 24);
 				this.addrEtdata += bytesAr2str (this.Data);
-				this.byteCount = (byte)(6 + this.Data.Length * 2 + 2);
+				this.byteCount = (byte)(3 + this.Data.Length + 1);
 				break;
 			case RecordTypeE.S3:
 				this.addrEtdata += address2str(this.Address, 32);
 				this.addrEtdata += bytesAr2str (this.Data);
-				this.byteCount = (byte)(8 + this.Data.Length * 2 + 2);
+				this.byteCount = (byte)(4 + this.Data.Length + 1);
+				break;
+			case RecordTypeE.S4:
+				break;
+			case RecordTypeE.S5:
+				this.addrEtdata += address2str(this.Address, 16);
+				this.byteCount = (byte)(2 + 1);
+				break;
+			case RecordTypeE.S6:
+				this.addrEtdata += address2str(this.Address, 24);
+				this.byteCount = (byte)(3 + 1);
+				break;
+			case RecordTypeE.S7:
+				this.addrEtdata += address2str(this.Address, 32);
+				this.byteCount = (byte)(4 + 1);
+				break;
+			case RecordTypeE.S8:
+				this.addrEtdata += address2str(this.Address, 24);
+				this.byteCount = (byte)(3 + 1);
+				break;
+			case RecordTypeE.S9:
+				this.addrEtdata += address2str(this.Address, 16);
+				this.byteCount = (byte)(2 + 1);
 				break;
 			default:
-				this.byteCount = 2;
+				this.byteCount = 0;
 				break;
 			}
 		}

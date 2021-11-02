@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Text;
+
+
 namespace SHex
 {
 	public class SRecAccess:IFileAccess
@@ -167,7 +170,14 @@ namespace SHex
 		public string[] generate(){
 			List<string> retu = new List<string> ();
 			SRecord sr = new SRecord();
-			int totalLines = 0;
+			int totalS123Lines = 0;
+			sr.RecordType = SRecord.RecordTypeE.S0;
+			sr.Address = 0x0000;
+			DateTime localDate = DateTime.Now;
+			string strLocalDate = localDate.ToString ("yyyyMMddHHmmss");
+			byte[] btsLocalDate = Encoding.ASCII.GetBytes(strLocalDate);
+			sr.Data = btsLocalDate;
+			retu.Add (sr.generate ());
 			foreach(MemBlock mb in Memblks){
 				switch (SFileType) {
 				case SFileTypeE.S19:
@@ -205,34 +215,46 @@ namespace SHex
 					retu.Add (sr.generate());
 					lines++;
 				}
-				totalLines += lines;
+				totalS123Lines += lines;
 			}
-			if (totalLines <= 0xFFFF) {
+			if (totalS123Lines <= 0xFFFF) {
 				sr.RecordType = SRecord.RecordTypeE.S5;
+				sr.Address = (uint)totalS123Lines;
+				sr.Data = Array.Empty<byte>();
 			} else {
 				sr.RecordType = SRecord.RecordTypeE.S6;
+				sr.Address = (uint)totalS123Lines;
+				sr.Data = Array.Empty<byte>();
 			}
 			retu.Add (sr.generate());
 			switch (SFileType) {
 			case SFileTypeE.S19:
 				{
 					sr.RecordType = SRecord.RecordTypeE.S9;
+					sr.Address = 0x0000;
+					sr.Data = Array.Empty<byte>();
+					retu.Add (sr.generate());
 				}
 				break;
 			case SFileTypeE.S28:
 				{
 					sr.RecordType = SRecord.RecordTypeE.S8;
+					sr.Address = 0x000000;
+					sr.Data = Array.Empty<byte>();
+					retu.Add (sr.generate());
 				}
 				break;
 			case SFileTypeE.S37:
 				{
 					sr.RecordType = SRecord.RecordTypeE.S7;
+					sr.Address = 0x00000000;
+					sr.Data = Array.Empty<byte>();
+					retu.Add (sr.generate());
 				}
 				break;
 			default:
 				break;
 			}
-			retu.Add (sr.generate());
 			return retu.ToArray ();
 		}
 		public string[] generate(int lineSize){
