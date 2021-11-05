@@ -49,23 +49,20 @@ public partial class MainWindow: Gtk.Window
 			if (fcd.Filter.Name == "Bin") {
 				ifa = new BinAccess ();
 				ifa.parseFile (fcd.Filename);
+				this.memblockview.updateViewWithMemBlocks (ifa.Memblks);
 			} else if (fcd.Filter.Name == "Hex") {
 				ifa = new HexAccess ();
 				ifa.parseFile (fcd.Filename);
+				this.memblockview.updateViewWithMemBlocks (ifa.Memblks);
 			} else if (fcd.Filter.Name == "SRec") {
 				ifa = new SRecAccess ();
 				ifa.parseFile (fcd.Filename);
+				this.memblockview.updateViewWithMemBlocks (ifa.Memblks);
 			} else if (fcd.Filter.Name == "TiTxt") {
 				ifa = new TiTxtAccess ();
 				ifa.parseFile (fcd.Filename);
+				this.memblockview.updateViewWithMemBlocks (ifa.Memblks);
 			} else {
-			}
-			if (null != ifa) {
-				this.textview_debug.Buffer.Text = "Parsed memblocks : " + ifa.Memblks.Count + "\n";
-				for (int i = 0; i < ifa.Memblks.Count; i++) {
-					this.textview_debug.Buffer.Text += "Block : " + ifa.Memblks[i].StartAddr + " Len : " + ifa.Memblks[i].DataSize + "\n";
-
-				}
 			}
 		} else {
 		}
@@ -79,6 +76,7 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnSave (object sender, EventArgs e)
 	{
+/*
 		HexRecord hr = new HexRecord ();
 		this.textview_debug.Buffer.Text = "Hex Record Test:\n";
 		string a = " :10010000214601360121470136007EFE09D2190140";
@@ -134,6 +132,7 @@ public partial class MainWindow: Gtk.Window
 		tr.parse (j);
 		this.textview_debug.Buffer.Text += tr.generate ();
 		this.textview_debug.Buffer.Text += "\n";
+*/
 		Console.WriteLine ("have a try");
 	}
 	protected void OnSaveAs (object sender, EventArgs e)

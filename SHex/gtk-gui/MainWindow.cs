@@ -41,9 +41,7 @@ public partial class MainWindow
 	
 	private global::Gtk.Toolbar toolbar1;
 	
-	private global::Gtk.ScrolledWindow GtkScrolledWindow;
-	
-	private global::Gtk.TextView textview_debug;
+	private global::SHex.MemBlockView memblockview;
 	
 	private global::Gtk.Statusbar statusbar1;
 
@@ -122,28 +120,21 @@ public partial class MainWindow
 		w3.Expand = false;
 		w3.Fill = false;
 		// Container child vbox_main.Gtk.Box+BoxChild
-		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
-		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
-		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
-		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
-		this.textview_debug = new global::Gtk.TextView ();
-		this.textview_debug.Buffer.Text = "haha";
-		this.textview_debug.CanFocus = true;
-		this.textview_debug.Name = "textview_debug";
-		this.textview_debug.WrapMode = ((global::Gtk.WrapMode)(3));
-		this.GtkScrolledWindow.Add (this.textview_debug);
-		this.vbox_main.Add (this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox_main [this.GtkScrolledWindow]));
-		w5.Position = 2;
+		this.memblockview = new global::SHex.MemBlockView ();
+		this.memblockview.Events = ((global::Gdk.EventMask)(256));
+		this.memblockview.Name = "memblockview";
+		this.vbox_main.Add (this.memblockview);
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox_main [this.memblockview]));
+		w4.Position = 2;
 		// Container child vbox_main.Gtk.Box+BoxChild
 		this.statusbar1 = new global::Gtk.Statusbar ();
 		this.statusbar1.Name = "statusbar1";
 		this.statusbar1.Spacing = 6;
 		this.vbox_main.Add (this.statusbar1);
-		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox_main [this.statusbar1]));
-		w6.Position = 3;
-		w6.Expand = false;
-		w6.Fill = false;
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox_main [this.statusbar1]));
+		w5.Position = 3;
+		w5.Expand = false;
+		w5.Fill = false;
 		this.Add (this.vbox_main);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -160,6 +151,5 @@ public partial class MainWindow
 		this.fileHexAction.Activated += new global::System.EventHandler (this.OnSaveAsHex);
 		this.fileSRecAction.Activated += new global::System.EventHandler (this.OnSaveAsSRec);
 		this.fileTiTxtAction.Activated += new global::System.EventHandler (this.OnSaveAsTiTxt);
-		this.textview_debug.PasteClipboard += new global::System.EventHandler (this.OnTextviewDebugPasteClipboard);
 	}
 }

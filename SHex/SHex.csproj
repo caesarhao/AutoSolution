@@ -66,6 +66,8 @@
     <Compile Include="FileAccess\TiTxt\TiTxtRecord.cs" />
     <Compile Include="DlgSRecGen.cs" />
     <Compile Include="gtk-gui\SHex.DlgSRecGen.cs" />
+    <Compile Include="MemBlockView.cs" />
+    <Compile Include="gtk-gui\SHex.MemBlockView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
