@@ -15,14 +15,26 @@ namespace SHex
 				this.addrSize = value;
 			}
 		}
-		private ulong startAddr;
-		public ulong StartAddr{
+		private uint startAddr;
+		public uint StartAddr{
 			get{
 				return this.startAddr;
 			}
 			set{
 				this.startAddr = value;
 			}
+		}
+		public static string dec2hex(byte h)
+		{
+			return String.Format ("{0,2:X2}", h);
+		}
+		public string StartAddrAsHex(){
+			string retu = "";
+			int numOfB = AddrSize / 8;
+			for (int i = 0; i < numOfB; i++) {
+				retu = dec2hex((byte)((this.StartAddr & (0x000000FF << (8 * i))) >> (8 * i))) + retu;
+			}
+			return retu;
 		}
 		private List<byte>	data;
 		public List<byte> Data{
@@ -33,6 +45,29 @@ namespace SHex
 		public int DataSize{
 			get{
 				return this.data.Count;
+			}
+		}
+		public string DataSizeAsHex(){
+			string retu = "";
+			int numOfB = AddrSize / 8;
+			for (int i = 0; i < numOfB; i++) {
+				retu = dec2hex((byte)((this.DataSize & (0x000000FF << (8 * i))) >> (8 * i))) + retu;
+			}
+			return retu;
+		}
+		public float DataSizeAsKB(){
+			return ((float)this.DataSize) / 1024;
+		}
+		public float DataSizeAsMB(){
+			return this.DataSizeAsKB() / 1024;
+		}
+		public string DataSizeStr(){
+			if (DataSizeAsMB () > 1) {
+				return DataSizeAsMB ().ToString () + "M";
+			} else if (DataSizeAsKB () > 1) {
+				return DataSizeAsKB ().ToString () + "K";
+			} else {
+				return this.DataSize.ToString();
 			}
 		}
 		public MemBlock ()
@@ -56,12 +91,12 @@ namespace SHex
 			data.AddRange (nbs);
 			return nbs.Length;
 		}
-		public ulong NextAddress{
+		public uint NextAddress{
 			get{
-				return (this.StartAddr + (ulong)DataSize);
+				return (this.StartAddr + (uint)DataSize);
 			}
 		}
-		public ulong LastAddress{
+		public uint LastAddress{
 			get{
 				if (0 < DataSize) {
 					return (NextAddress - 1);
@@ -70,23 +105,14 @@ namespace SHex
 				}
 			}
 		}
-		public bool IsAddressInMemBlk(ulong addr){
+		public bool IsAddressInMemBlk(uint addr){
 			return(addr >= this.StartAddr && addr <= this.NextAddress);
 		}
-		public bool IsAddressInMemBlk(uint addr){
-			return(this.IsAddressInMemBlk((ulong)addr));
-		}
-		public bool IsAddressBeforeMemBlk(ulong addr){
+		public bool IsAddressBeforeMemBlk(uint addr){
 			return(addr < this.StartAddr);
 		}
-		public bool IsAddressBeforeMemBlk(uint addr){
-			return(IsAddressBeforeMemBlk((ulong)addr));
-		}
-		public bool IsAddressAfterMemBlk(ulong addr){
-			return(addr > this.LastAddress);
-		}
 		public bool IsAddressAfterMemBlk(uint addr){
-			return(IsAddressAfterMemBlk((ulong)addr));
+			return(addr > this.LastAddress);
 		}
 		public bool MergeMB(MemBlock nxt){
 			this.Data.AddRange (nxt.Data);

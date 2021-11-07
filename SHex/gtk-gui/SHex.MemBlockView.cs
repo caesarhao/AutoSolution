@@ -6,11 +6,7 @@ namespace SHex
 	{
 		private global::Gtk.ScrolledWindow scrolledwindow1;
 		
-		private global::Gtk.Table tblMemBlock;
-		
-		private global::Gtk.Label label1;
-		
-		private global::Gtk.Label label2;
+		private global::Gtk.TreeView treeviewMemBlcs;
 
 		protected virtual void Build ()
 		{
@@ -24,32 +20,11 @@ namespace SHex
 			this.scrolledwindow1.Name = "scrolledwindow1";
 			this.scrolledwindow1.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child scrolledwindow1.Gtk.Container+ContainerChild
-			global::Gtk.Viewport w1 = new global::Gtk.Viewport ();
-			w1.ShadowType = ((global::Gtk.ShadowType)(0));
-			// Container child GtkViewport.Gtk.Container+ContainerChild
-			this.tblMemBlock = new global::Gtk.Table (((uint)(1)), ((uint)(2)), false);
-			this.tblMemBlock.Name = "tblMemBlock";
-			this.tblMemBlock.RowSpacing = ((uint)(6));
-			this.tblMemBlock.ColumnSpacing = ((uint)(6));
-			// Container child tblMemBlock.Gtk.Table+TableChild
-			this.label1 = new global::Gtk.Label ();
-			this.label1.Name = "label1";
-			this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Index");
-			this.tblMemBlock.Add (this.label1);
-			global::Gtk.Table.TableChild w2 = ((global::Gtk.Table.TableChild)(this.tblMemBlock [this.label1]));
-			w2.XOptions = ((global::Gtk.AttachOptions)(4));
-			w2.YOptions = ((global::Gtk.AttachOptions)(0));
-			// Container child tblMemBlock.Gtk.Table+TableChild
-			this.label2 = new global::Gtk.Label ();
-			this.label2.Name = "label2";
-			this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Memory Block Info");
-			this.tblMemBlock.Add (this.label2);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.tblMemBlock [this.label2]));
-			w3.LeftAttach = ((uint)(1));
-			w3.RightAttach = ((uint)(2));
-			w3.YOptions = ((global::Gtk.AttachOptions)(0));
-			w1.Add (this.tblMemBlock);
-			this.scrolledwindow1.Add (w1);
+			this.treeviewMemBlcs = new global::Gtk.TreeView ();
+			this.treeviewMemBlcs.CanFocus = true;
+			this.treeviewMemBlcs.Name = "treeviewMemBlcs";
+			this.treeviewMemBlcs.Reorderable = true;
+			this.scrolledwindow1.Add (this.treeviewMemBlcs);
 			this.Add (this.scrolledwindow1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
