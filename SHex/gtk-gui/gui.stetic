@@ -427,6 +427,8 @@
             <property name="MemberName" />
             <property name="CanFocus">True</property>
             <property name="Reorderable">True</property>
+            <signal name="RowActivated" handler="OnRowActivated" />
+            <signal name="ColumnsChanged" handler="OnColumnsChanged" />
           </widget>
         </child>
       </widget>
