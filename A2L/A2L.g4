@@ -48,7 +48,68 @@ module
 
 a2ml
 	:	Begin 'A2ML'
+		.*
 		End 'A2ML'
+	;
+
+annotation
+	:	Begin 'ANNOTATION'
+			annotation_label?
+			annotation_origin?
+			annotation_text?
+		End 'ANNOTATION'
+	;
+
+annotation_label
+	:	'ANNOTATION_LABEL'	Title=String
+	;
+
+annotation_origin
+	:	'ANNOTATION_ORIGIN'	Creator=String
+	;
+
+annotation_text
+	:	Begin 'ANNOTATION_TEXT'
+			String*
+		End	'ANNOTATION_TEXT'
+	;
+
+array_size
+	:	'ARRARY_SIZE'	UInt
+	;
+
+axis_descr
+	:	Begin 'AXIS_DESCR'
+			Attribute=AXIS_DESCR_ATTRIBUTE
+			InputQuantity=Ident
+			Conversion=Ident
+			MaxAxisPoints=UInt
+			LowerLimit=Float
+			UpperLimit=Float
+			annotation*
+			axis_pts_ref?
+			byte_order?
+			curve_axis_ref?
+			deposit?
+			extended_limits?
+			fix_axis_par?
+			fix_axis_par_dist?
+			fix_axis_par_list?
+			format?
+			max_grad?
+			monotony?
+			phys_unit?
+			read_only?
+			step_size?
+		End	'AXIS_DESCR'
+	;
+
+AXIS_DESCR_ATTRIBUTE
+	:	'CURVE_AXIS'
+	|	'COM_AXIS'
+	|	'FIX_AXIS'
+	|	'RES_AXIS'
+	|	'STD_AXIS'
 	;
 
 axis_pts
@@ -66,6 +127,7 @@ axis_pts
 		End 'AXIS_PTS'
 	;
 
+fragment
 axis_pts_optional
 	:
 	;
@@ -83,15 +145,38 @@ measurement
 			
 		End 'MEASUREMENT'
 	;
-	
+
+fragment	
 measurement_optional
-	:
+	:	annotation
+	|	array_size
+	|	bit_mask
+	|	bit_operation
+	|	byte_order
+	|	discrete
+	|	display_identifier
+	|	ecu_address
+	|	ecu_address_extension
+	|	error_mask
+	|	format
+	|	function_list
+	|	if_data
+	|	layout
+	|	matrix_dim
+	|	max_refresh
+	|	phys_unit
+	|	read_write
+	|	ref_memory_segment
+	|	symbol_link
+	|	virtual
 	;
+
+
 
 characteristic
 	:	Begin 'CHARACTERISTIC' Name=Ident
 			LongIdentifier=String
-			Type=ENUM
+			Type=CHARACTERISTIC_TYPE
 			Address=ULong
 			Deposit=Ident
 			MaxDiff=Float
@@ -103,10 +188,46 @@ characteristic
 		End 'CHARACTERISTIC'
 	;
 
+fragment
 characteristic_optional
-	:
+	:	annotation
+	|	axis_descr
+	|	bit_mask
+	|	byte_order
+	|	calibration_access
+	|	comparison_quantity
+	|	dependent_characteristic
+	|	discrete
+	|	display_identifier
+	|	ecu_address_extension
+	|	extended_limits
+	|	format
+	|	function_list
+	|	guard_rails
+	|	if_data
+	|	map_list
+	|	matrix_dim
+	|	max_refresh
+	|	number
+	|	phys_unit
+	|	read_only
+	|	ref_memory_segment
+	|	step_size
+	|	symbol_link
+	|	virtual_characteristic
 	;
 
+CHARACTERISTIC_TYPE
+	:	'ASCII'
+	|	'CURVE'
+	|	'MAP'
+	|	'CUBOID'
+	|	'CUBE_4'
+	|	'CUBE_5'
+	|	'VAL_BLK'
+	|	'VALUE'
+	;
+	
 Begin :	'/begin';
 End : '/end';
 
