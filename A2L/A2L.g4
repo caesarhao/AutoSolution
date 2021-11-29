@@ -1,5 +1,5 @@
 grammar A2L;
-
+import AML;
 a2l 
 	:	(asap2_ver|a2ml_ver)* 
 		project
@@ -44,12 +44,6 @@ module
 				|mod_common|mod_par|variant_coding)*
 			
 		End 'MODULE'
-	;
-
-a2ml
-	:	Begin 'A2ML'
-		.*
-		End 'A2ML'
 	;
 
 annotation
@@ -127,51 +121,25 @@ axis_pts
 		End 'AXIS_PTS'
 	;
 
-fragment
 axis_pts_optional
-	:
-	;
-
-measurement
-	:	Begin 'MEASUREMENT' Name=Ident
-			LongIdentifier=String
-			Datatype=DATATYPE
-			Conversion=Ident
-			Resolution=UInt
-			Accuracy=Float
-			LowerLimit=Float
-			UpperLimit=Float
-			measurement_optional*
-			
-		End 'MEASUREMENT'
-	;
-
-fragment	
-measurement_optional
 	:	annotation
-	|	array_size
-	|	bit_mask
-	|	bit_operation
 	|	byte_order
-	|	discrete
+	|	calibration_access
+	|	deposit
 	|	display_identifier
-	|	ecu_address
 	|	ecu_address_extension
-	|	error_mask
+	|	extended_limits
 	|	format
 	|	function_list
+	|	guard_rails
 	|	if_data
-	|	layout
-	|	matrix_dim
-	|	max_refresh
+	|	monotony
 	|	phys_unit
-	|	read_write
+	|	read_only
 	|	ref_memory_segment
+	|	step_size
 	|	symbol_link
-	|	virtual
 	;
-
-
 
 characteristic
 	:	Begin 'CHARACTERISTIC' Name=Ident
@@ -188,7 +156,6 @@ characteristic
 		End 'CHARACTERISTIC'
 	;
 
-fragment
 characteristic_optional
 	:	annotation
 	|	axis_descr
@@ -227,9 +194,196 @@ CHARACTERISTIC_TYPE
 	|	'VAL_BLK'
 	|	'VALUE'
 	;
+
+coeffs	// f(x) = (axx + bx + c) / (dxx + ex + f)
+	:	'COEFFS'	a=Float b=Float c=Float d=Float e=Float f=Float
+	;
+
+coeffs_linear // 
+	:	'COEFFS'	a=Float b=Float
+	;
+
+compu_method
+	:	Begin 'COMPU_METHOD'
+			Name = Ident
+			LongIdentifier=String
+			ConversionType=COMPU_METHOD_CONVERSION_TYPE
+			Format=FormatString
+			Unit=String
+			compu_method_optional*
+		End 'COMPU_METHOD'
+	;
+
+compu_method_optional
+	:	coeffs
+	|	coeffs_linear
+	|	compu_tab_ref
+	|	formula
+	|	ref_unit
+	|	status_string_ref
+	;
+
+COMPU_METHOD_CONVERSION_TYPE
+	:	'IDENTICAL'
+	|	'FORM'
+	|	'LINEAR'
+	|	'RAT_FUNC'
+	|	'TAB_INTP'
+	|	'TAB_NOINTP'
+	|	'TAB_VERB'
+	;
+
+compu_tab
+	:	Begin 'COMPU_TAB'	Name=Ident
+			LongIdentifier=String
+			ConversionType=('TAB_INTP'|'TAB_NOINTP')
+			NumberValuePairs=UInt
+			(Float Float)*
+			compu_tab_optional*
+		End 'COMPU_TAB'
+	;
+
+
+compu_tab_optional
+	:	default_value
+	|	default_value_numeric
+	;
+
+compu_tab_ref
+	:	'COMPU_TAB_REF'	ConversionTable=Ident
+	;
+
+compu_vtab
+	:	Begin 'COMPU_VTAB' Name=Ident
+			LongIdentifier=String
+			ConversionType='TAB_VERB'
+			NumberValuePairs=UInt
+			(Float String)*
+			default_value?
+		End 'COMPU_VTAB'
+	;
+
+
+compu_vtab_range
+	:	Begin 'COMPU_VTAB_RANGE' Name=Ident
+			LongIdentifier=String
+			NumberValueTriples=UInt
+			(Float Float String)*
+			default_value?
+		End 'COMPU_VTAB_RANGE'
+	;
+
+cpu_type
+	:	'CPU_TYPE'	CPU=String
+	;
+
+customer
+	:	'CUSTOMER'	Customer=String
+	;
+
+customer_no
+	:	'CUSTOMER_NO'	CustomerNumber=String
+	;
+
+data_size
+	:	'DATA_SIZE'	Size=UInt
+	;
+
+default_value
+	:	'DEFAULT_VALUE'	String
+	;
+
+default_value_numeric
+	:	'DEFAULT_VALUE_NUMERIC'	Float
+	;
+
+deposit
+	:	'DEPOSIT'	('ABSOLUTE'|'DIFFERENCE')
+	;
+
+discrete
+	:	'DISCRETE'
+	;
+
+display_identifier
+	:	'DISPLAY_IDENTIFIER'	DisplayName=Ident
+	;
+
+ecu
+	:	'ECU'	ControlUnit=String
+	;
+
+ecu_address
+	:	'ECU_ADDRESS'	Address=ULong
+	;
+
+ecu_address_extension
+	:	'ECU_ADDRESS_EXTENSION'	Extension=Int
+	;
+
+epk
+	:	'EPK'	Identifier=String
+	;
+
+format
+	:	'FORMAT'	FormatString
+	;
+
+formula
+	:	Begin 'FORMULA'	Fx=String
+			formula_inv?
+		End 'FORMULA'
+	;
+
+formula_inv
+	: 'FORMULA_INV'	Gx=String
+	;
 	
-Begin :	'/begin';
-End : '/end';
+measurement
+	:	Begin 'MEASUREMENT' Name=Ident
+			LongIdentifier=String
+			Datatype=DATATYPE
+			Conversion=Ident
+			Resolution=UInt
+			Accuracy=Float
+			LowerLimit=Float
+			UpperLimit=Float
+			measurement_optional*
+			
+		End 'MEASUREMENT'
+	;
+	
+measurement_optional
+	:	annotation
+	|	array_size
+	|	bit_mask
+	|	bit_operation
+	|	byte_order
+	|	discrete
+	|	display_identifier
+	|	ecu_address
+	|	ecu_address_extension
+	|	error_mask
+	|	format
+	|	function_list
+	|	if_data
+	|	layout
+	|	matrix_dim
+	|	max_refresh
+	|	phys_unit
+	|	read_write
+	|	ref_memory_segment
+	|	symbol_link
+	|	virtual
+	;
+
+read_only
+	:	'READ_ONLY'
+	;
+
+read_write
+	:	'READ_WRITE'
+	;
 
 
 
@@ -241,11 +395,11 @@ Int
 
 UInt
 	:	'0'
-	|	NonzeroDigit Digit*
+	|	NonzeroDigit(Digit)*
 	;
 
 Float
-	:	DigitSequence? '.' DigitSequence? ((e|E)(+-)?DigitSequence)?
+	:	DigitSequence?'.'DigitSequence?(('e'|'E')('+'|'-')?DigitSequence)?
 	;
 
 HexNum
@@ -268,7 +422,7 @@ DigitSequence
 
 fragment
 HexadecimalPrefix
-    :   '0' [xX]
+    :   '0'[xX]
     ;
 
 fragment
@@ -329,12 +483,16 @@ INDEXORDER
 	|	'INDEX_DECR'
 	;
 
+FormatString
+	:	'"%'UInt?'.'UInt'"'
+	;
+
 Ident
-	:	PartIdent?(\.PartIdent)*
+	:	PartIdent('.'PartIdent)*
 	;
 
 PartIdent
-	:	CIdent(\[(ENUM|Index)\])?
+	:	CIdent('['(ENUM|Index)']')?
 	;
 
 Index
@@ -350,7 +508,7 @@ CIdent
 	;
 
 String
-	:	'"' SChar* '"'
+	:	'"'(ESC|.)*?'"'
 	;
 
 fragment
@@ -360,8 +518,8 @@ SChar
     |   '\\\r\n' // Added line
     ;
 
-Whitespace
-    :   [ \t]+
+WS
+    :   [ \t\r\n]+
         -> skip
     ;
 
@@ -378,7 +536,11 @@ BlockComment
     ;
 
 LineComment
-    :   '//' ~[\r\n]*
+    :   '//' .*? '\n'
         -> skip
     ;
 
+fragment
+ESC
+	:	'\\' [btnr"\\]
+	;
