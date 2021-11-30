@@ -141,6 +141,33 @@ axis_pts_optional
 	|	symbol_link
 	;
 
+bit_mask
+	:	'BIT_MASK'	Mask=UInt64
+	;
+
+bit_operation
+	:	Begin 'BIT_OPERATION'
+			left_shift?
+			right_shift?
+			sign_extend?
+		End 'BIT_OPERATION'
+	;
+
+byte_order
+	:	'BYTE_ORDER' ByteOrder=BYTEORDER
+	;
+
+calibration_access
+	:	'CALIBRATION_ACCESS' AccessType=CALIBRATION_ACCESS_TYPE
+	;
+
+CALIBRATION_ACCESS_TYPE
+	:	'CALIBRATION'
+	|	'NO_CALIBRATION'
+	|	'NOT_IN_MCD_SYSTEM'
+	|	'OFFLINE_CALIBRATION'
+	;
+
 characteristic
 	:	Begin 'CHARACTERISTIC' Name=Ident
 			LongIdentifier=String
@@ -338,7 +365,118 @@ formula
 formula_inv
 	: 'FORMULA_INV'	Gx=String
 	;
-	
+
+frame
+	:	Begin 'FRAME' Name=Ident
+			LongIdentifier=String
+			ScalingUnit=UInt
+			Rate=ULong
+			frame_measurement?
+			if_data*
+		End 'FRAME'
+	;
+
+frame_measurement
+	:	'FRAME_MEASUREMENT' Ident*
+	;
+
+function
+	:	Begin 'FUNCTION' Name=Ident
+			LongIdentifier=Ident
+			function_optional*
+		End 'FUNCTION'
+	;
+
+function_optional
+	:	annotation
+	|	def_characteristic
+	|	function_version
+	|	if_data
+	|	in_measurement
+	|	loc_measurement
+	|	out_measurement
+	|	ref_characteristic
+	|	sub_function
+	;
+
+function_list
+	:	Begin 'FUNCTION_LIST'	Name=Ident
+		End 'FUNCTION_LIST'
+	;
+
+function_version
+	:	'FUNCTION_VERSION'	VersionIdentifier=String
+	;
+
+group
+	:	Begin 'GROUP'	GroupName=Ident
+			GroupLongIdentifier=String
+			group_optional*
+		End 'GROUP'
+	;
+
+group_optional
+	:	annotation
+	|	function_list
+	|	if_data
+	|	ref_characteristic
+	|	ref_measurement
+	|	root
+	|	sub_group
+	;
+
+guard_rails
+	:	'GUARD_RAILS'
+	;
+
+identification
+	:	'IDENTIFICATION'	Position=UInt
+							DataType=DATATYPE
+	;
+
+if_data
+	:	Begin 'IF_DATA'	Name=Ident
+			.*
+		End 'IF_DATA'
+	;
+
+in_measurement
+	:	Begin 'IN_MEASUREMENT'
+			Ident*
+		End 'IN_MEASUREMENT'
+	;
+
+left_shift
+	:	'LEFT_SHIFT' Bitcount=ULong 
+	;
+
+loc_measurement
+	:	Begin 'LOC_MEASUREMENT'
+			Ident*
+		End 'LOC_MEASUREMENT'
+	;
+
+map_list
+	:	Begin 'MAP_LIST'
+			Ident*
+		End 'MAP_LIST'
+	;
+
+matrix_dim
+	:	'MATRIX_DIM'	xDim=UInt
+						yDim=UInt
+						zDim=UInt
+	;
+
+max_grad
+	:	'MAX_GRAD' MaxGradient=Float
+	;
+
+max_refresh
+	:	'MAX_REFRESH' ScalingUnit=UInt
+						Rate=ULong
+	;
+
 measurement
 	:	Begin 'MEASUREMENT' Name=Ident
 			LongIdentifier=String
@@ -377,6 +515,10 @@ measurement_optional
 	|	virtual
 	;
 
+phys_unit
+	:	'PHYS_UNIT'	Unit=String
+	;
+
 read_only
 	:	'READ_ONLY'
 	;
@@ -389,13 +531,29 @@ read_write
 
 
 
-Int
-    :	'-'? UInt
+Int		// 2-byte signed integer
+    :	HexNum
+	|	'-'?DigitNum
     ;
 
-UInt
-	:	'0'
-	|	NonzeroDigit(Digit)*
+UInt	// 2-byte unsigned integer
+	:	HexNum
+	|	DigitNum
+	;
+
+UInt64	// 8-byte unsigned integer
+	:	HexNum
+	|	DigitNum	
+	;
+
+Long	// 4-byte signed integer
+	:	HexNum
+	|	'-'?DigitNum
+	;
+
+ULong	// 4-byte unsigned integer
+	:	HexNum
+	|	DigitNum
 	;
 
 Float
@@ -403,7 +561,12 @@ Float
 	;
 
 HexNum
-	:	HexadecimalPrefix HexadecimalDigit+
+	:	HexadecimalPrefix(HexadecimalDigit)+
+	;
+
+DigitNum
+	:	'0'
+	|	NonzeroDigit(Digit)*
 	;
 
 fragment
