@@ -519,6 +519,10 @@ phys_unit
 	:	'PHYS_UNIT'	Unit=String
 	;
 
+project_no
+	:	'PROJECT_NO' ProjectNumber=Ident
+	;
+
 read_only
 	:	'READ_ONLY'
 	;
@@ -527,15 +531,263 @@ read_write
 	:	'READ_WRITE'
 	;
 
+record_layout
+	:	Begin 'RECORD_LAYOUT' Name=Ident
+			record_layout_optional*
+		End 'RECORD_LAYOUT'
+	;
 
+record_layout_optional
+	:	alignment_byte
+	|	alignment_float32_ieee
+	|	alignment_float64_ieee
+	|	alignment_int64
+	|	alignment_long
+	|	alignment_word
+	|	axis_pts_x
+	|	axis_pts_y
+	|	axis_pts_z
+	|	axis_pts_4
+	|	axis_pts_5
+	|	axis_rescale_x
+	|	dist_op_x
+	|	dist_op_y
+	|	dist_op_z
+	|	dist_op_4
+	|	dist_op_5
+	|	fix_no_axis_pts_x
+	|	fix_no_axis_pts_y
+	|	fix_no_axis_pts_z
+	|	fix_no_axis_pts_4
+	|	fix_no_axis_pts_5
+	|	fnc_values
+	|	identification
+	|	no_axis_pts_x
+	|	no_axis_pts_y
+	|	no_axis_pts_z
+	|	no_axis_pts_4
+	|	no_axis_pts_5
+	|	no_rescale_x
+	|	offset_x
+	|	offset_y
+	|	offset_z
+	|	offset_4
+	|	offset_5
+	|	reserved
+	|	rip_addr_w
+	|	rip_addr_x
+	|	rip_addr_y
+	|	rip_addr_z
+	|	rip_addr_4
+	|	rip_addr_5
+	|	src_addr_x
+	|	src_addr_y
+	|	src_addr_z
+	|	src_addr_4
+	|	src_addr_5
+	|	shift_op_x
+	|	shift_op_y
+	|	shift_op_z
+	|	shift_op_4
+	|	shift_op_5
+	|	static_record_layout
+	;
 
+ref_characteristic
+	:	Begin 'REF_CHARACTERISTIC'	Ident*
+		End 'REF_CHARACTERISTIC'
+	;
 
+ref_group
+	:	Begin 'REF_GROUP'	Ident*
+		End 'REF_GROUP'
+	;
+
+ref_measurement
+	:	Begin 'REF_MEASUREMENT'	Ident*
+	;
+
+ref_memory_segment
+	:	'REF_MEMORY_SEGMENT'	Name=Ident
+	;
+
+ref_unit
+	:	'REF_UNIT'	Unit=Ident
+	;
+
+reserved
+	:	'RESERVED'	Position=UInt
+					DataSize=DATASIZE
+	;
+
+right_shift
+	:	'RIGHT_SHIFT'	Bitcount=ULong
+	;
+
+rip_addr_w
+	:	'RIP_ADDR_W'	Position=UInt
+						DataType=DATATYPE
+	;
+
+rip_addr_x
+	:	'RIP_ADDR_X'	Position=UInt
+						DataType=DATATYPE
+	;
+
+rip_addr_y
+	:	'RIP_ADDR_Y'	Position=UInt
+						DataType=DATATYPE
+	;
+
+rip_addr_z
+	:	'RIP_ADDR_Z'	Position=UInt
+						DataType=DATATYPE
+	;
+
+rip_addr_4
+	:	'RIP_ADDR_4'	Position=UInt
+						DataType=DATATYPE
+	;
+
+rip_addr_5
+	:	'RIP_ADDR_5'	Position=UInt
+						DataType=DATATYPE
+	;
+
+root
+	:	'ROOT'
+	;
+
+shift_op_x
+	:	'SHIFT_OP_X'	Position=UInt
+						DataType=DATATYPE
+	;
+
+shift_op_y
+	:	'SHIFT_OP_Y'	Position=UInt
+						DataType=DATATYPE
+	;
+
+shift_op_z
+	:	'SHIFT_OP_Z'	Position=UInt
+						DataType=DATATYPE
+	;
+
+shift_op_4
+	:	'SHIFT_OP_4'	Position=UInt
+						DataType=DATATYPE
+	;
+
+shift_op_5
+	:	'SHIFT_OP_5'	Position=UInt
+						DataType=DATATYPE
+	;
+
+sign_extend
+	:	'SIGN_EXTEND'
+	;
+
+si_exponents
+	:	Length=Int Mass=Int Time=Int ElectricCurrent=Int
+		Temperature=Int AmountOfSubstance=Int LuminousIntensity=Int
+	;
+
+src_addr_x
+	:	'SRC_ADDR_X'	Position=UInt
+					DataType=DATATYPE
+	;
+
+src_addr_y
+	:	'SRC_ADDR_Y'	Position=UInt
+					DataType=DATATYPE
+	;
+
+src_addr_z
+	:	'SRC_ADDR_Z'	Position=UInt
+					DataType=DATATYPE
+	;
+
+src_addr_4
+	:	'SRC_ADDR_4'	Position=UInt
+					DataType=DATATYPE
+	;
+
+src_addr_5
+	:	'SRC_ADDR_5'	Position=UInt
+					DataType=DATATYPE
+	;
+
+static_record_layout
+	:	'STATIC_RECORD_LAYOUT'
+	;
+
+step_size
+	:	'STEP_SIZE'	StepSize=Float
+	;
+
+sub_function
+	:	Begin 'SUB_FUNCTION'	Ident*
+		End 'SUB_FUNCTION'
+	;
+
+sub_group
+	:	Begin 'SUB_GROUP'	Ident*
+		End 'SUB_GROUP'
+	;
+
+supplier
+	:	'SUPPLIER'	Manufacturer=String
+	;
+
+symbol_link
+	:	'SYMBOL_LINK'	SymbolName=String
+						Offset=Long
+	;
+
+system_constant
+	:	'SYSTEM_CONSTANT'	Name=String Value=String
+	;
+
+unit
+	:	Begin 'UNIT'	Name=Ident
+			LongIdentifier=String
+			Display=String
+			Type=('DERIVED'|'EXTENDED_SI')
+			unit_optional*
+		End 'UNIT'
+	;
+
+unit_optional
+	:	ref_unit
+	|	si_exponents
+	|	unit_conversion
+	;
+
+unit_conversion
+	:	'UNIT_CONVERSION'	Gradient=Float Offset=Float
+	;
+
+user
+	:	'USER'	UserName=String
+	;
+
+user_rights
+	:	Begin 'USER_RIGHTS'	UserLevelId=Ident
+			read_only?
+			ref_group*
+		End 'USER_RIGHTS'
+	;
+
+var_address
+	:	Begin 'VAR_ADDRESS'	ULong*
+		End 'VAR_ADDRESS'
+	;
 
 Int		// 2-byte signed integer
     :	HexNum
 	|	'-'?DigitNum
-    ;
-
+   ;
+ 
 UInt	// 2-byte unsigned integer
 	:	HexNum
 	|	DigitNum
