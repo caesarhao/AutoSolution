@@ -13,37 +13,32 @@ a2ml_ver
 	:	'A2ML_VERSION' VersionNo=UInt UpgradeNo=UInt
 	;
 
-project
-	:	Begin 'PROJECT' Name=Ident
-			LongIdentifier=String 
-			header?
-			include* 
-			module*
-		End 'PROJECT'
+addr_epk
+	:	'ADDR_EPK'	Address=ULong
 	;
 
-header
-	:	Begin 'HEADER' Comment=String 
-			('VERSION' String)?
-			('PROJECT_NO' Ident)?
-		End 'HEADER'
+alignment_byte
+	:	'ALIGNMENT_BYTE'	AlignmentBorder=UInt
 	;
 
-include
-	:	'/include' Ident
+alignment_float32_ieee
+	:	'ALIGNMENT_FLOAT32_IEEE'	AlignmentBorder=UInt
 	;
 
-module
-	:	Begin 'MODULE'	Name=Ident
-			LongIdentifier = String
-			a2ml?
-			(axis_pts|characteristic|compu_method
-				|compu_tab|compu_vtab|compu_vtab_range
-				|frame|function|group|if_data|measurement
-				|record_layout|unit|user_rights
-				|mod_common|mod_par|variant_coding)*
-			
-		End 'MODULE'
+alignment_float64_ieee
+	:	'ALIGNMENT_FLOAT64_IEEE'	AlignmentBorder=UInt
+	;
+
+alignment_int64
+	:	'ALIGNMENT_INT64'	AlignmentBorder=UInt
+	;
+
+alignment_long
+	:	'ALIGNMENT_LONG'	AlignmentBorder=UInt
+	;
+
+alignment_word
+	:	'ALIGNMENT_WORD'	AlignmentBorder=UInt
 	;
 
 annotation
@@ -141,6 +136,43 @@ axis_pts_optional
 	|	symbol_link
 	;
 
+axis_pts_ref
+	:	'AXIS_PTS_REF'	AxisPoints=Ident
+	;
+
+axis_pts_x
+	:	'AXIS_PTS_X'	Position=UInt
+					DataType=DATATYPE
+	;
+
+axis_pts_y
+	:	'AXIS_PTS_Y'	Position=UInt
+					DataType=DATATYPE
+	;
+
+axis_pts_z
+	:	'AXIS_PTS_Z'	Position=UInt
+					DataType=DATATYPE
+	;
+
+axis_pts_4
+	:	'AXIS_PTS_4'	Position=UInt
+					DataType=DATATYPE
+	;
+
+axis_pts_5
+	:	'AXIS_PTS_5'	Position=UInt
+					DataType=DATATYPE
+	;
+
+axis_rescale_x
+	:	'AXIS_RESCALE_X'	Position=UInt
+					DataType=DATATYPE
+					MaxNumberOfRescalePairs=UInt
+					IndexIncr=('INDEX_INCR'|'INDEX_DECR')
+					Addressing=ADDRTYPE
+	;
+
 bit_mask
 	:	'BIT_MASK'	Mask=UInt64
 	;
@@ -166,6 +198,24 @@ CALIBRATION_ACCESS_TYPE
 	|	'NO_CALIBRATION'
 	|	'NOT_IN_MCD_SYSTEM'
 	|	'OFFLINE_CALIBRATION'
+	;
+
+calibration_handle
+	:	Begin 'CALIBRATION_HANDLE'	Long*
+			calibration_handle_text?
+		End 'CALIBRATION_HANDLE'
+	;
+
+calibration_handle_text
+	:	'CALIBRATION_HANDLE_TEXT'	Text=String
+	;
+
+calibration_method
+	:	Begin 'CALIBRATION_METHOD'
+			Method=String
+			Version=ULong
+			calibration_handle?
+		End 'CALIBRATION_METHOD'
 	;
 
 characteristic
@@ -228,6 +278,10 @@ coeffs	// f(x) = (axx + bx + c) / (dxx + ex + f)
 
 coeffs_linear // 
 	:	'COEFFS'	a=Float b=Float
+	;
+
+comparison_quantity
+	:	'COMPARISON_QUANTITY'	Name=Ident
 	;
 
 compu_method
@@ -304,6 +358,10 @@ cpu_type
 	:	'CPU_TYPE'	CPU=String
 	;
 
+curve_axis_ref
+	:	'CURVE_AXIS_REF'	CurveAxis=Ident
+	;
+
 customer
 	:	'CUSTOMER'	Customer=String
 	;
@@ -316,12 +374,24 @@ data_size
 	:	'DATA_SIZE'	Size=UInt
 	;
 
+def_characteristic
+	:	Begin 'DEF_CHARACTERISTIC'
+			Ident*
+		End 'DEF_CHARACTERISTIC'
+	;
+
 default_value
 	:	'DEFAULT_VALUE'	String
 	;
 
 default_value_numeric
 	:	'DEFAULT_VALUE_NUMERIC'	Float
+	;
+
+dependent_characteristic
+	:	Begin 'DEPENDENT_CHARACTERISTIC' Formula=String
+			Characteristics=Ident*
+		End 'DEPENDENT_CHARACTERISTIC'
 	;
 
 deposit
@@ -336,6 +406,31 @@ display_identifier
 	:	'DISPLAY_IDENTIFIER'	DisplayName=Ident
 	;
 
+dist_op_x
+	:	'DIST_OP_X'	Position=UInt
+					DataType=DATATYPE
+	;
+
+dist_op_y
+	:	'DIST_OP_Y'	Position=UInt
+					DataType=DATATYPE
+	;
+
+dist_op_z
+	:	'DIST_OP_Z'	Position=UInt
+					DataType=DATATYPE
+	;
+
+dist_op_4
+	:	'DIST_OP_4'	Position=UInt
+					DataType=DATATYPE
+	;
+
+dist_op_5
+	:	'DIST_OP_5'	Position=UInt
+					DataType=DATATYPE
+	;
+
 ecu
 	:	'ECU'	ControlUnit=String
 	;
@@ -348,8 +443,70 @@ ecu_address_extension
 	:	'ECU_ADDRESS_EXTENSION'	Extension=Int
 	;
 
+ecu_calibration_offset
+	:	'ECU_CALIBRATION_OFFSET'	Offset=Long
+	;
+
 epk
 	:	'EPK'	Identifier=String
+	;
+
+error_mask
+	:	'ERROR_MASK'	Mask=UInt64
+	;
+
+extended_limits
+	:	'EXTENDED_LIMITS'	LowerLimit=Float
+							UpperLimit=Float
+	;
+
+fix_axis_par
+	:	'FIX_AXIS_PAR'	Offset=Float
+						Shift=Float
+						Numberapo=UInt
+	;
+
+fix_axis_par_dist
+	:	'FIX_AXIS_PAR_DIST'	Offset=Float
+							Distance=Float
+							Numberapo=UInt
+	;
+
+fix_axis_par_list
+	:	Begin 'FIX_AXIS_PAR_LIST'
+			AxisPts_Values=Float*
+		End 'FIX_AXIS_PAR_LIST'
+	;
+
+fix_no_axis_pts_x
+	:	'FIX_NO_AXIS_PTS_X'	NumberOfAxisPoints=UInt
+	;
+
+fix_no_axis_pts_y
+	:	'FIX_NO_AXIS_PTS_Y'	NumberOfAxisPoints=UInt
+	;
+
+fix_no_axis_pts_z
+	:	'FIX_NO_AXIS_PTS_Z'	NumberOfAxisPoints=UInt
+	;
+
+fix_no_axis_pts_4
+	:	'FIX_NO_AXIS_PTS_4'	NumberOfAxisPoints=UInt
+	;
+
+fix_no_axis_pts_5
+	:	'FIX_NO_AXIS_PTS_5'	NumberOfAxisPoints=UInt
+	;
+
+fnc_values
+	:	'FNC_VALUES'	Position=UInt
+						DataType=DATATYPE
+						IndexMode=('ALTERNATE_CURVES'
+						|'ALTERNATE_WITH_X'
+						|'ALTERNATE_WITH_Y'
+						|'COLUMN_DIR'
+						|'ROW_DIR')
+						AddressType=ADDRTYPE
 	;
 
 format
@@ -429,6 +586,13 @@ guard_rails
 	:	'GUARD_RAILS'
 	;
 
+header
+	:	Begin 'HEADER' Comment=String 
+			('VERSION' String)?
+			('PROJECT_NO' Ident)?
+		End 'HEADER'
+	;
+
 identification
 	:	'IDENTIFICATION'	Position=UInt
 							DataType=DATATYPE
@@ -440,10 +604,18 @@ if_data
 		End 'IF_DATA'
 	;
 
+include
+	:	'/include' Ident
+	;
+
 in_measurement
 	:	Begin 'IN_MEASUREMENT'
 			Ident*
 		End 'IN_MEASUREMENT'
+	;
+
+layout
+	:	'LAYOUT'	IndexMode=('ROW_DIR'|'COLUMN_DIR')
 	;
 
 left_shift
@@ -515,8 +687,162 @@ measurement_optional
 	|	virtual
 	;
 
+memory_layout
+	:	Begin 'MEMORY_LAYOUT'
+			PrgType=('PRG_CODE'
+			|'PRG_DATA'
+			|'PRG_RESERVED')
+			Address=ULong
+			Size=ULong
+			Offset=Long+
+			if_data*
+		End 'MEMORY_LAYOUT'
+	;
+
+mod_common
+	:	Begin 'MOD_COMMON'	Comment=String
+			mod_common_optional*
+		End 'MOD_COMMON'
+	;
+
+mod_common_optional
+	:	alignment_byte
+	|	alignment_float32_ieee
+	|	alignment_float64_ieee
+	|	alignment_int64
+	|	alignment_long
+	|	alignment_word
+	|	byte_order
+	|	data_size
+	|	deposit
+	;
+
+mod_par
+	:	Begin 'MOD_PAR'	Comment=String
+			mod_par_optional*
+		End 'MOD_PAR'
+	;
+
+mod_par_optional
+	:	addr_epk
+	|	calibration_method
+	|	cpu_type
+	|	customer
+	|	customer_no
+	|	ecu
+	|	ecu_calibration_offset
+	|	epk
+	|	memory_layout
+	|	memory_segment
+	|	no_of_interfaces
+	|	phone_no
+	|	supplier
+	|	system_constant
+	|	user
+	|	version
+	;
+
+module
+	:	Begin 'MODULE'	Name=Ident
+			LongIdentifier = String
+			a2ml?
+			(axis_pts|characteristic|compu_method
+				|compu_tab|compu_vtab|compu_vtab_range
+				|frame|function|group|if_data|measurement
+				|record_layout|unit|user_rights
+				|mod_common|mod_par|variant_coding)*
+			
+		End 'MODULE'
+	;
+
+monotony
+	:	'MONOTONY'	Monotony=('MON_DECREASE'|'MON_INCREASE'|'STRICT_DECREASE'|'STRICT_INCREASE'|'MONOTONOUS'|'STRICT_MON'|'NOT_MON')
+	;
+
+no_axis_pts_x
+	:	'NO_AXIS_PTS_X'	Position=UInt
+						DataType=DATATYPE
+	;
+
+no_axis_pts_y
+	:	'NO_AXIS_PTS_Y'	Position=UInt
+						DataType=DATATYPE
+	;
+
+no_axis_pts_z
+	:	'NO_AXIS_PTS_Z'	Position=UInt
+						DataType=DATATYPE
+	;
+
+no_axis_pts_4
+	:	'NO_AXIS_PTS_4'	Position=UInt
+						DataType=DATATYPE
+	;
+
+no_axis_pts_5
+	:	'NO_AXIS_PTS_5'	Position=UInt
+						DataType=DATATYPE
+	;
+
+no_of_interfaces
+	:	'NO_OF_INTERFACES'	Num=UInt
+	;
+
+no_rescale_x
+	:	'NO_RESCALE_X'	Position=UInt
+						DataType=DATATYPE
+	;
+
+number
+	:	'NUMBER'	Number=UInt
+	;
+
+offset_x
+	:	'OFFSET_X'	Position=UInt
+						DataType=DATATYPE
+	;
+
+offset_y
+	:	'OFFSET_Y'	Position=UInt
+						DataType=DATATYPE
+	;
+
+offset_z
+	:	'OFFSET_Z'	Position=UInt
+						DataType=DATATYPE
+	;
+
+offset_4
+	:	'OFFSET_4'	Position=UInt
+						DataType=DATATYPE
+	;
+
+offset_5
+	:	'OFFSET_5'	Position=UInt
+						DataType=DATATYPE
+	;
+
+out_measurement
+	:	Begin 'OUT_MEASUREMENT'
+			Ident*
+		End 'OUT_MEASUREMENT'
+	;
+
+phone_no
+	: 'PHONE_NO'	Telnum=String
+	;
+
 phys_unit
 	:	'PHYS_UNIT'	Unit=String
+	;
+
+project
+	:	Begin 'PROJECT' Name=Ident
+			LongIdentifier=String 
+			header?
+			include* 
+			module*
+		End 'PROJECT'
 	;
 
 project_no
@@ -721,6 +1047,10 @@ static_record_layout
 	:	'STATIC_RECORD_LAYOUT'
 	;
 
+status_string_ref
+	:	'STATUS_STRING_REF'	ConversionTable=Ident
+	;
+
 step_size
 	:	'STEP_SIZE'	StepSize=Float
 	;
@@ -781,6 +1111,73 @@ user_rights
 var_address
 	:	Begin 'VAR_ADDRESS'	ULong*
 		End 'VAR_ADDRESS'
+	;
+
+var_characteristic
+	:	Begin 'VAR_CHARACTERISTIC'	Name=Ident
+			CriterionNames=Ident*
+			var_address?
+		End	'VAR_CHARACTERISTIC'
+	;
+
+var_criterion
+	:	Begin 'VAR_CRITERION'	Name=Ident
+			LongIdentifier=String
+			Values=Ident*
+			var_measurement?
+			var_selection_characteristic?
+		End 'VAR_CRITERION'
+	;
+
+var_forbidden_comb
+	:	Begin 'VAR_FORBIDDEN_COMB'
+			(CriterionName=Ident CriterionValue=Ident)*
+		End 'VAR_FORBIDDEN_COMB'
+	;
+
+var_measurement
+	:	'VAR_MEASUREMENT'	Name=Ident
+	;
+
+var_naming
+	:	'VAR_NAMING'	Tag=('NUMERIC'|'ALPHA')
+	;
+
+var_selection_characteristic
+	:	'VAR_SELECTION_CHARACTERISTIC'	Name=Ident
+	;
+
+var_separator
+	:	'VAR_SEPARATOR'	Name=Ident
+	;
+
+variant_coding
+	:	Begin 'VARIANT_CODING'
+			variant_coding_optional*
+		End 'VARIANT_CODING'
+	;
+
+variant_coding_optional
+	:	var_characteristic
+	|	var_criterion
+	|	var_forbidden_comb
+	|	var_naming
+	|	var_separator
+	;
+
+version
+	:	'VERSION'	VersionIdentifier=String
+	;
+
+virtual
+	:	Begin 'VIRTUAL'	MeasuringChannels=Ident*
+		End 'VIRTUAL'
+	;
+
+virtual_characteristic
+	:	Begin 'VIRTUAL_CHARACTERISTIC'	Formula=String
+			Characteristics=Ident*
+		End 'VIRTUAL_CHARACTERISTIC'
 	;
 
 Int		// 2-byte signed integer
