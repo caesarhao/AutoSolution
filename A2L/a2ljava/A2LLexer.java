@@ -1,5 +1,5 @@
 // Generated from A2L.g4 by ANTLR 4.9.3
-package a2ltool;
+package a2ljava;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
