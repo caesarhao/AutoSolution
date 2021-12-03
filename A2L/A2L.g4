@@ -1,14 +1,12 @@
 grammar A2L;
 import AML;
+
+
 a2l 
-	:	(asap2_ver|a2ml_ver)* 
+	:	(asap2_ver|a2ml_ver)*? 
 		project
 	;
 
-asap2_ver
-	:	'ASAP2_VERSION' VersionNo=UInt UpgradeNo=UInt
-	;
-	
 a2ml_ver
 	:	'A2ML_VERSION' VersionNo=UInt UpgradeNo=UInt
 	;
@@ -67,6 +65,10 @@ array_size
 	:	'ARRARY_SIZE'	UInt
 	;
 
+asap2_ver
+	:	'ASAP2_VERSION' VersionNo=UInt UpgradeNo=UInt
+	;
+	
 axis_descr
 	:	Begin 'AXIS_DESCR'
 			Attribute=AXIS_DESCR_ATTRIBUTE
@@ -84,7 +86,7 @@ axis_descr
 			fix_axis_par?
 			fix_axis_par_dist?
 			fix_axis_par_list?
-			format?
+			phormat?
 			max_grad?
 			monotony?
 			phys_unit?
@@ -124,7 +126,7 @@ axis_pts_optional
 	|	display_identifier
 	|	ecu_address_extension
 	|	extended_limits
-	|	format
+	|	phormat
 	|	function_list
 	|	guard_rails
 	|	if_data
@@ -245,7 +247,7 @@ characteristic_optional
 	|	display_identifier
 	|	ecu_address_extension
 	|	extended_limits
-	|	format
+	|	phormat
 	|	function_list
 	|	guard_rails
 	|	if_data
@@ -509,7 +511,7 @@ fnc_values
 						AddressType=ADDRTYPE
 	;
 
-format
+phormat
 	:	'FORMAT'	FormatString
 	;
 
@@ -600,7 +602,7 @@ identification
 
 if_data
 	:	Begin 'IF_DATA'	Name=Ident
-			.*
+			.*?
 		End 'IF_DATA'
 	;
 
@@ -674,7 +676,7 @@ measurement_optional
 	|	ecu_address
 	|	ecu_address_extension
 	|	error_mask
-	|	format
+	|	phormat
 	|	function_list
 	|	if_data
 	|	layout
@@ -697,6 +699,32 @@ memory_layout
 			Offset=Long+
 			if_data*
 		End 'MEMORY_LAYOUT'
+	;
+
+memory_segment
+	:	Begin 'MEMORY_SEGMENT'	Name=Ident
+			LongIdentifier=String
+			PrgType=('CALIBRATION_VARIABLES'
+			|'CODE'
+			|'DATA'
+			|'EXCLUDE_FROM_FLASH'
+			|'OFFLINE_DATA'
+			|'RESERVED'
+			|'SERAM'
+			|'VARIABLES')
+			MemoryType=('EEPROM'
+			|'EPROM'
+			|'FLASH'
+			|'RAM'
+			|'ROM'
+			|'REGISTER')
+			Attribute=('INTERN'
+			|'EXTERN')
+			Address=ULong
+			Size=ULong
+			Long Long Long Long Long
+			if_data*
+		End 'MEMORY_SEGMENT'
 	;
 
 mod_common
