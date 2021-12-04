@@ -2,7 +2,7 @@ grammar AML;
 
 a2ml
 	:	Begin 'A2ML'
-			.*?
+			declaration*?
 		End 'A2ML'
 	;
 
@@ -106,18 +106,67 @@ tagged_union_member
 	|	(block_definition ';')
 	;
 
+Begin :	'/begin';
+End : '/end';
+
+identifier
+	: CIdent
+	;
+
 tag
-	:	'"'CIdent'"'
+	:	'"' CIdent '"'
 	;
 
 keyword
-	:	'"'CIdent'"'
+	:	'"' CIdent '"'
 	;
+
+
 
 CIdent
 	:	[a-zA-Z_][a-zA-Z0-9_]*
 	;
 
-Begin :	'/begin';
-End : '/end';
+
+
+constant
+	:	DigitNum
+	;
+
+DigitNum
+	:	'0'
+	|	(NonzeroDigit(Digit)*)
+	;
+
+fragment
+Digit
+    :   [0-9]
+    ;
+
+fragment
+NonzeroDigit
+    :   [1-9]
+    ;
+
+WS
+    :   [ \t\r\n]+
+        -> skip
+    ;
+
+Newline
+    :   (   '\r' '\n'?
+        |   '\n'
+        )
+        -> skip
+    ;
+
+BlockComment
+    :   '/*' .*? '*/'
+        -> skip
+    ;
+
+LineComment
+    :   '//' .*? '\n'
+        -> skip
+    ;
 

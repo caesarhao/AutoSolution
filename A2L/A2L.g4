@@ -1208,15 +1208,17 @@ virtual_characteristic
 		End 'VIRTUAL_CHARACTERISTIC'
 	;
 
-Int		// 2-byte signed integer
-    :	HexNum
-	|	'-'?DigitNum
-   ;
+
  
 UInt	// 2-byte unsigned integer
 	:	HexNum
 	|	DigitNum
 	;
+
+Int		// 2-byte signed integer
+    :	HexNum
+	|	'-'?DigitNum
+   ;
 
 UInt64	// 8-byte unsigned integer
 	:	HexNum
@@ -1243,7 +1245,7 @@ HexNum
 
 DigitNum
 	:	'0'
-	|	NonzeroDigit(Digit)*
+	|	(NonzeroDigit(Digit)*)
 	;
 
 fragment

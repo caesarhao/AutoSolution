@@ -1126,4 +1126,148 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitA2ml(A2LParser.A2mlContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaration(A2LParser.DeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#type_definition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitType_definition(A2LParser.Type_definitionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#type_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitType_name(A2LParser.Type_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#predefined_type_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPredefined_type_name(A2LParser.Predefined_type_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#block_definition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlock_definition(A2LParser.Block_definitionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#enum_type_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEnum_type_name(A2LParser.Enum_type_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#enumerator_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEnumerator_list(A2LParser.Enumerator_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#enumerator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEnumerator(A2LParser.EnumeratorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#struct_type_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStruct_type_name(A2LParser.Struct_type_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#struct_member_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStruct_member_list(A2LParser.Struct_member_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#struct_member}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStruct_member(A2LParser.Struct_memberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#member}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMember(A2LParser.MemberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#array_specifier}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArray_specifier(A2LParser.Array_specifierContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#taggedstruct_type_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTaggedstruct_type_name(A2LParser.Taggedstruct_type_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#taggedstruct_member_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTaggedstruct_member_list(A2LParser.Taggedstruct_member_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#taggedstruct_member}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTaggedstruct_member(A2LParser.Taggedstruct_memberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#taggedstruct_definition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTaggedstruct_definition(A2LParser.Taggedstruct_definitionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#taggedunion_type_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTaggedunion_type_name(A2LParser.Taggedunion_type_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#taggedunion_member_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTaggedunion_member_list(A2LParser.Taggedunion_member_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#tagged_union_member}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTagged_union_member(A2LParser.Tagged_union_memberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#identifier}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdentifier(A2LParser.IdentifierContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#tag}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTag(A2LParser.TagContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#keyword}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKeyword(A2LParser.KeywordContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#constant}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConstant(A2LParser.ConstantContext ctx);
 }
