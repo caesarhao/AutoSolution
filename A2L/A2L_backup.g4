@@ -1,133 +1,6 @@
 grammar A2L;
+import AML;
 
-/* A2ML grammar begin */
-
-a2ml
-	:	Begin 'A2ML'
-			declaration*?
-		End 'A2ML'
-	;
-
-declaration
-	:	type_definition  ';'
-	|	block_definition ';'
-	;
-
-type_definition
-	:	type_name
-	;
-
-type_name
-	:	Predefined_type_name
-	|	struct_type_name
-	|	taggedstruct_type_name
-	|	taggedunion_type_name
-	|	enum_type_name
-	;
-
-Predefined_type_name
-	:	'char'
-	|	'int'
-	|	'long'
-	|	'uchar'
-	|	'uint'
-	|	'ulong'
-	|	'double'
-	|	'float'
-	;
-
-block_definition
-	:	'block' tag type_name
-	;
-
-enum_type_name
-	:	'enum' identifier? '{' enumerator_list '}'
-	|	'enum' identifier
-	;
-
-enumerator_list
-	:	enumerator (',' enumerator_list)?
-	;
-
-enumerator
-	:	keyword ('=' constant)?
-	;
-
-struct_type_name
-	:	'struct' identifier? '{' struct_member_list? '}'
-	|	'struct' identifier
-	;
-
-struct_member_list
-	:	struct_member struct_member_list?
-	;
-
-struct_member
-	:	member ';'
-	;
-
-member
-	:	type_name array_specifier?
-	;
-
-array_specifier
-	:	'[' constant ']' array_specifier?
-	;
-
-taggedstruct_type_name
-	:	'taggedstruct' identifier? '{' taggedstruct_member_list? '}'
-	|	'taggedstruct' identifier
-	;
-
-taggedstruct_member_list
-	:	taggedstruct_member taggedstruct_member_list?
-	;
-
-taggedstruct_member
-	:	taggedstruct_definition ';'
-	|	'(' taggedstruct_definition ')*;'
-	|	block_definition ';' 
-	|	'(' block_definition ')*;'
-	;
-
-taggedstruct_definition
-	:	tag member?
-	|	tag '(' member ')*;'
-	;
-
-taggedunion_type_name
-	:	'taggedunion' identifier? '{' taggedunion_member_list? '}'
-	|	'taggedunion' identifier
-	;
-
-taggedunion_member_list
-	:	tagged_union_member taggedunion_member_list?
-	;
-
-tagged_union_member
-	:	tag member? ';'
-	|	block_definition ';'
-	;
-
-identifier
-	: Ident
-	;
-
-tag
-	:	STRING
-	;
-
-keyword
-	:	STRING
-	;
-
-constant
-	:	A2LNUM
-	;
-
-/* A2ML grammar end */
-
-/* A2L grammar begin */
 
 a2l 
 	:	(asap2_ver|a2ml_ver)*? 
@@ -135,35 +8,35 @@ a2l
 	;
 
 a2ml_ver
-	:	'A2ML_VERSION' VersionNo=A2LNUM UpgradeNo=A2LNUM
+	:	'A2ML_VERSION' VersionNo=UInt UpgradeNo=UInt
 	;
 
 addr_epk
-	:	'ADDR_EPK'	Address=A2LNUM
+	:	'ADDR_EPK'	Address=ULong
 	;
 
 alignment_byte
-	:	'ALIGNMENT_BYTE'	AlignmentBorder=A2LNUM
+	:	'ALIGNMENT_BYTE'	AlignmentBorder=UInt
 	;
 
-alignment_A2LNUM32_ieee
-	:	'ALIGNMENT_FLOAT32_IEEE'	AlignmentBorder=A2LNUM
+alignment_float32_ieee
+	:	'ALIGNMENT_FLOAT32_IEEE'	AlignmentBorder=UInt
 	;
 
-alignment_A2LNUM64_ieee
-	:	'ALIGNMENT_FLOAT64_IEEE'	AlignmentBorder=A2LNUM
+alignment_float64_ieee
+	:	'ALIGNMENT_FLOAT64_IEEE'	AlignmentBorder=UInt
 	;
 
-alignment_A2LNUM64
-	:	'ALIGNMENT_INT64'	AlignmentBorder=A2LNUM
+alignment_int64
+	:	'ALIGNMENT_INT64'	AlignmentBorder=UInt
 	;
 
 alignment_long
-	:	'ALIGNMENT_LONG'	AlignmentBorder=A2LNUM
+	:	'ALIGNMENT_LONG'	AlignmentBorder=UInt
 	;
 
 alignment_word
-	:	'ALIGNMENT_WORD'	AlignmentBorder=A2LNUM
+	:	'ALIGNMENT_WORD'	AlignmentBorder=UInt
 	;
 
 annotation
@@ -175,25 +48,25 @@ annotation
 	;
 
 annotation_label
-	:	'ANNOTATION_LABEL'	Title=STRING
+	:	'ANNOTATION_LABEL'	Title=String
 	;
 
 annotation_origin
-	:	'ANNOTATION_ORIGIN'	Creator=STRING
+	:	'ANNOTATION_ORIGIN'	Creator=String
 	;
 
 annotation_text
 	:	Begin 'ANNOTATION_TEXT'
-			STRING*
+			String*
 		End	'ANNOTATION_TEXT'
 	;
 
 array_size
-	:	'ARRARY_SIZE'	A2LNUM
+	:	'ARRARY_SIZE'	UInt
 	;
 
 asap2_ver
-	:	'ASAP2_VERSION' VersionNo=A2LNUM UpgradeNo=A2LNUM
+	:	'ASAP2_VERSION' VersionNo=UInt UpgradeNo=UInt
 	;
 	
 axis_descr
@@ -201,9 +74,9 @@ axis_descr
 			Attribute=AXIS_DESCR_ATTRIBUTE
 			InputQuantity=Ident
 			Conversion=Ident
-			MaxAxisPoA2LNUMs=A2LNUM
-			LowerLimit=A2LNUM
-			UpperLimit=A2LNUM
+			MaxAxisPoints=UInt
+			LowerLimit=Float
+			UpperLimit=Float
 			annotation*
 			axis_pts_ref?
 			byte_order?
@@ -232,15 +105,15 @@ AXIS_DESCR_ATTRIBUTE
 
 axis_pts
 	:	Begin 'AXIS_PTS' Name=Ident
-			LongIdentifier=STRING
-			Address=A2LNUM
+			LongIdentifier=String
+			Address=HexNum
 			InputQuantity=Ident
 			Deposit=Ident
-			MaxDiff=A2LNUM
+			MaxDiff=Float
 			Conversion=Ident
-			MaxAxisPoA2LNUMs=A2LNUM
-			LowerLimit=A2LNUM
-			UpperLimit=A2LNUM
+			MaxAxisPoints=UInt
+			LowerLimit=Float
+			UpperLimit=Float
 			axis_pts_optional*
 		End 'AXIS_PTS'
 	;
@@ -266,44 +139,44 @@ axis_pts_optional
 	;
 
 axis_pts_ref
-	:	'AXIS_PTS_REF'	AxisPoA2LNUMs=Ident
+	:	'AXIS_PTS_REF'	AxisPoints=Ident
 	;
 
 axis_pts_x
-	:	'AXIS_PTS_X'	Position=A2LNUM
+	:	'AXIS_PTS_X'	Position=UInt
 					DataType=DATATYPE
 	;
 
 axis_pts_y
-	:	'AXIS_PTS_Y'	Position=A2LNUM
+	:	'AXIS_PTS_Y'	Position=UInt
 					DataType=DATATYPE
 	;
 
 axis_pts_z
-	:	'AXIS_PTS_Z'	Position=A2LNUM
+	:	'AXIS_PTS_Z'	Position=UInt
 					DataType=DATATYPE
 	;
 
 axis_pts_4
-	:	'AXIS_PTS_4'	Position=A2LNUM
+	:	'AXIS_PTS_4'	Position=UInt
 					DataType=DATATYPE
 	;
 
 axis_pts_5
-	:	'AXIS_PTS_5'	Position=A2LNUM
+	:	'AXIS_PTS_5'	Position=UInt
 					DataType=DATATYPE
 	;
 
 axis_rescale_x
-	:	'AXIS_RESCALE_X'	Position=A2LNUM
+	:	'AXIS_RESCALE_X'	Position=UInt
 					DataType=DATATYPE
-					MaxNumberOfRescalePairs=A2LNUM
+					MaxNumberOfRescalePairs=UInt
 					IndexIncr=('INDEX_INCR'|'INDEX_DECR')
 					Addressing=ADDRTYPE
 	;
 
 bit_mask
-	:	'BIT_MASK'	Mask=A2LNUM
+	:	'BIT_MASK'	Mask=UInt64
 	;
 
 bit_operation
@@ -330,33 +203,33 @@ CALIBRATION_ACCESS_TYPE
 	;
 
 calibration_handle
-	:	Begin 'CALIBRATION_HANDLE'	A2LNUM*
+	:	Begin 'CALIBRATION_HANDLE'	Long*
 			calibration_handle_text?
 		End 'CALIBRATION_HANDLE'
 	;
 
 calibration_handle_text
-	:	'CALIBRATION_HANDLE_TEXT'	Text=STRING
+	:	'CALIBRATION_HANDLE_TEXT'	Text=String
 	;
 
 calibration_method
 	:	Begin 'CALIBRATION_METHOD'
-			Method=STRING
-			Version=A2LNUM
+			Method=String
+			Version=ULong
 			calibration_handle?
 		End 'CALIBRATION_METHOD'
 	;
 
 characteristic
 	:	Begin 'CHARACTERISTIC' Name=Ident
-			LongIdentifier=STRING
+			LongIdentifier=String
 			Type=CHARACTERISTIC_TYPE
-			Address=A2LNUM
+			Address=ULong
 			Deposit=Ident
-			MaxDiff=A2LNUM
+			MaxDiff=Float
 			Conversion=Ident
-			LowerLimit=A2LNUM
-			UpperLimit=A2LNUM
+			LowerLimit=Float
+			UpperLimit=Float
 			characteristic_optional*
 			
 		End 'CHARACTERISTIC'
@@ -402,11 +275,11 @@ CHARACTERISTIC_TYPE
 	;
 
 coeffs	// f(x) = (axx + bx + c) / (dxx + ex + f)
-	:	'COEFFS'	a=A2LNUM b=A2LNUM c=A2LNUM d=A2LNUM e=A2LNUM f=A2LNUM
+	:	'COEFFS'	a=Float b=Float c=Float d=Float e=Float f=Float
 	;
 
 coeffs_linear // 
-	:	'COEFFS'	a=A2LNUM b=A2LNUM
+	:	'COEFFS'	a=Float b=Float
 	;
 
 comparison_quantity
@@ -416,10 +289,10 @@ comparison_quantity
 compu_method
 	:	Begin 'COMPU_METHOD'
 			Name = Ident
-			LongIdentifier=STRING
+			LongIdentifier=String
 			ConversionType=COMPU_METHOD_CONVERSION_TYPE
-			Format=Formatstring
-			Unit=STRING
+			Format=FormatString
+			Unit=String
 			compu_method_optional*
 		End 'COMPU_METHOD'
 	;
@@ -445,10 +318,10 @@ COMPU_METHOD_CONVERSION_TYPE
 
 compu_tab
 	:	Begin 'COMPU_TAB'	Name=Ident
-			LongIdentifier=STRING
+			LongIdentifier=String
 			ConversionType=('TAB_INTP'|'TAB_NOINTP')
-			NumberValuePairs=A2LNUM
-			(A2LNUM A2LNUM)*
+			NumberValuePairs=UInt
+			(Float Float)*
 			compu_tab_optional*
 		End 'COMPU_TAB'
 	;
@@ -465,10 +338,10 @@ compu_tab_ref
 
 compu_vtab
 	:	Begin 'COMPU_VTAB' Name=Ident
-			LongIdentifier=STRING
+			LongIdentifier=String
 			ConversionType='TAB_VERB'
-			NumberValuePairs=A2LNUM
-			(A2LNUM STRING)*
+			NumberValuePairs=UInt
+			(Float String)*
 			default_value?
 		End 'COMPU_VTAB'
 	;
@@ -476,15 +349,15 @@ compu_vtab
 
 compu_vtab_range
 	:	Begin 'COMPU_VTAB_RANGE' Name=Ident
-			LongIdentifier=STRING
-			NumberValueTriples=A2LNUM
-			(A2LNUM A2LNUM STRING)*
+			LongIdentifier=String
+			NumberValueTriples=UInt
+			(Float Float String)*
 			default_value?
 		End 'COMPU_VTAB_RANGE'
 	;
 
 cpu_type
-	:	'CPU_TYPE'	CPU=STRING
+	:	'CPU_TYPE'	CPU=String
 	;
 
 curve_axis_ref
@@ -492,15 +365,15 @@ curve_axis_ref
 	;
 
 customer
-	:	'CUSTOMER'	Customer=STRING
+	:	'CUSTOMER'	Customer=String
 	;
 
 customer_no
-	:	'CUSTOMER_NO'	CustomerNumber=STRING
+	:	'CUSTOMER_NO'	CustomerNumber=String
 	;
 
 data_size
-	:	'DATA_SIZE'	Size=A2LNUM
+	:	'DATA_SIZE'	Size=UInt
 	;
 
 def_characteristic
@@ -510,15 +383,15 @@ def_characteristic
 	;
 
 default_value
-	:	'DEFAULT_VALUE'	STRING
+	:	'DEFAULT_VALUE'	String
 	;
 
 default_value_numeric
-	:	'DEFAULT_VALUE_NUMERIC'	A2LNUM
+	:	'DEFAULT_VALUE_NUMERIC'	Float
 	;
 
 dependent_characteristic
-	:	Begin 'DEPENDENT_CHARACTERISTIC' Formula=STRING
+	:	Begin 'DEPENDENT_CHARACTERISTIC' Formula=String
 			Characteristics=Ident*
 		End 'DEPENDENT_CHARACTERISTIC'
 	;
@@ -536,99 +409,99 @@ display_identifier
 	;
 
 dist_op_x
-	:	'DIST_OP_X'	Position=A2LNUM
+	:	'DIST_OP_X'	Position=UInt
 					DataType=DATATYPE
 	;
 
 dist_op_y
-	:	'DIST_OP_Y'	Position=A2LNUM
+	:	'DIST_OP_Y'	Position=UInt
 					DataType=DATATYPE
 	;
 
 dist_op_z
-	:	'DIST_OP_Z'	Position=A2LNUM
+	:	'DIST_OP_Z'	Position=UInt
 					DataType=DATATYPE
 	;
 
 dist_op_4
-	:	'DIST_OP_4'	Position=A2LNUM
+	:	'DIST_OP_4'	Position=UInt
 					DataType=DATATYPE
 	;
 
 dist_op_5
-	:	'DIST_OP_5'	Position=A2LNUM
+	:	'DIST_OP_5'	Position=UInt
 					DataType=DATATYPE
 	;
 
 ecu
-	:	'ECU'	ControlUnit=STRING
+	:	'ECU'	ControlUnit=String
 	;
 
 ecu_address
-	:	'ECU_ADDRESS'	Address=A2LNUM
+	:	'ECU_ADDRESS'	Address=ULong
 	;
 
 ecu_address_extension
-	:	'ECU_ADDRESS_EXTENSION'	Extension=A2LNUM
+	:	'ECU_ADDRESS_EXTENSION'	Extension=Int
 	;
 
 ecu_calibration_offset
-	:	'ECU_CALIBRATION_OFFSET'	Offset=A2LNUM
+	:	'ECU_CALIBRATION_OFFSET'	Offset=Long
 	;
 
 epk
-	:	'EPK'	Identifier=STRING
+	:	'EPK'	Identifier=String
 	;
 
 error_mask
-	:	'ERROR_MASK'	Mask=A2LNUM
+	:	'ERROR_MASK'	Mask=UInt64
 	;
 
 extended_limits
-	:	'EXTENDED_LIMITS'	LowerLimit=A2LNUM
-							UpperLimit=A2LNUM
+	:	'EXTENDED_LIMITS'	LowerLimit=Float
+							UpperLimit=Float
 	;
 
 fix_axis_par
-	:	'FIX_AXIS_PAR'	Offset=A2LNUM
-						Shift=A2LNUM
-						Numberapo=A2LNUM
+	:	'FIX_AXIS_PAR'	Offset=Float
+						Shift=Float
+						Numberapo=UInt
 	;
 
 fix_axis_par_dist
-	:	'FIX_AXIS_PAR_DIST'	Offset=A2LNUM
-							Distance=A2LNUM
-							Numberapo=A2LNUM
+	:	'FIX_AXIS_PAR_DIST'	Offset=Float
+							Distance=Float
+							Numberapo=UInt
 	;
 
 fix_axis_par_list
 	:	Begin 'FIX_AXIS_PAR_LIST'
-			AxisPts_Values=A2LNUM*
+			AxisPts_Values=Float*
 		End 'FIX_AXIS_PAR_LIST'
 	;
 
 fix_no_axis_pts_x
-	:	'FIX_NO_AXIS_PTS_X'	NumberOfAxisPoA2LNUMs=A2LNUM
+	:	'FIX_NO_AXIS_PTS_X'	NumberOfAxisPoints=UInt
 	;
 
 fix_no_axis_pts_y
-	:	'FIX_NO_AXIS_PTS_Y'	NumberOfAxisPoA2LNUMs=A2LNUM
+	:	'FIX_NO_AXIS_PTS_Y'	NumberOfAxisPoints=UInt
 	;
 
 fix_no_axis_pts_z
-	:	'FIX_NO_AXIS_PTS_Z'	NumberOfAxisPoA2LNUMs=A2LNUM
+	:	'FIX_NO_AXIS_PTS_Z'	NumberOfAxisPoints=UInt
 	;
 
 fix_no_axis_pts_4
-	:	'FIX_NO_AXIS_PTS_4'	NumberOfAxisPoA2LNUMs=A2LNUM
+	:	'FIX_NO_AXIS_PTS_4'	NumberOfAxisPoints=UInt
 	;
 
 fix_no_axis_pts_5
-	:	'FIX_NO_AXIS_PTS_5'	NumberOfAxisPoA2LNUMs=A2LNUM
+	:	'FIX_NO_AXIS_PTS_5'	NumberOfAxisPoints=UInt
 	;
 
 fnc_values
-	:	'FNC_VALUES'	Position=A2LNUM
+	:	'FNC_VALUES'	Position=UInt
 						DataType=DATATYPE
 						IndexMode=('ALTERNATE_CURVES'
 						|'ALTERNATE_WITH_X'
@@ -639,24 +512,24 @@ fnc_values
 	;
 
 phormat
-	:	'FORMAT'	Formatstring
+	:	'FORMAT'	FormatString
 	;
 
 formula
-	:	Begin 'FORMULA'	Fx=STRING
+	:	Begin 'FORMULA'	Fx=String
 			formula_inv?
 		End 'FORMULA'
 	;
 
 formula_inv
-	: 'FORMULA_INV'	Gx=STRING
+	: 'FORMULA_INV'	Gx=String
 	;
 
 frame
 	:	Begin 'FRAME' Name=Ident
-			LongIdentifier=STRING
-			ScalingUnit=A2LNUM
-			Rate=A2LNUM
+			LongIdentifier=String
+			ScalingUnit=UInt
+			Rate=ULong
 			frame_measurement?
 			if_data*
 		End 'FRAME'
@@ -691,12 +564,12 @@ function_list
 	;
 
 function_version
-	:	'FUNCTION_VERSION'	VersionIdentifier=STRING
+	:	'FUNCTION_VERSION'	VersionIdentifier=String
 	;
 
 group
 	:	Begin 'GROUP'	GroupName=Ident
-			GroupLongIdentifier=STRING
+			GroupLongIdentifier=String
 			group_optional*
 		End 'GROUP'
 	;
@@ -716,14 +589,14 @@ guard_rails
 	;
 
 header
-	:	Begin 'HEADER' Comment=STRING 
-			('VERSION' STRING)?
+	:	Begin 'HEADER' Comment=String 
+			('VERSION' String)?
 			('PROJECT_NO' Ident)?
 		End 'HEADER'
 	;
 
 identification
-	:	'IDENTIFICATION'	Position=A2LNUM
+	:	'IDENTIFICATION'	Position=UInt
 							DataType=DATATYPE
 	;
 
@@ -748,7 +621,7 @@ layout
 	;
 
 left_shift
-	:	'LEFT_SHIFT' Bitcount=A2LNUM 
+	:	'LEFT_SHIFT' Bitcount=ULong 
 	;
 
 loc_measurement
@@ -764,29 +637,29 @@ map_list
 	;
 
 matrix_dim
-	:	'MATRIX_DIM'	xDim=A2LNUM
-						yDim=A2LNUM
-						zDim=A2LNUM
+	:	'MATRIX_DIM'	xDim=UInt
+						yDim=UInt
+						zDim=UInt
 	;
 
 max_grad
-	:	'MAX_GRAD' MaxGradient=A2LNUM
+	:	'MAX_GRAD' MaxGradient=Float
 	;
 
 max_refresh
-	:	'MAX_REFRESH' ScalingUnit=A2LNUM
-						Rate=A2LNUM
+	:	'MAX_REFRESH' ScalingUnit=UInt
+						Rate=ULong
 	;
 
 measurement
 	:	Begin 'MEASUREMENT' Name=Ident
-			LongIdentifier=STRING
+			LongIdentifier=String
 			Datatype=DATATYPE
 			Conversion=Ident
-			Resolution=A2LNUM
-			Accuracy=A2LNUM
-			LowerLimit=A2LNUM
-			UpperLimit=A2LNUM
+			Resolution=UInt
+			Accuracy=Float
+			LowerLimit=Float
+			UpperLimit=Float
 			measurement_optional*
 			
 		End 'MEASUREMENT'
@@ -821,16 +694,16 @@ memory_layout
 			PrgType=('PRG_CODE'
 			|'PRG_DATA'
 			|'PRG_RESERVED')
-			Address=A2LNUM
-			Size=A2LNUM
-			Offset=A2LNUM+
+			Address=ULong
+			Size=ULong
+			Offset=Long+
 			if_data*
 		End 'MEMORY_LAYOUT'
 	;
 
 memory_segment
 	:	Begin 'MEMORY_SEGMENT'	Name=Ident
-			LongIdentifier=STRING
+			LongIdentifier=String
 			PrgType=('CALIBRATION_VARIABLES'
 			|'CODE'
 			|'DATA'
@@ -847,24 +720,24 @@ memory_segment
 			|'REGISTER')
 			Attribute=('INTERN'
 			|'EXTERN')
-			Address=A2LNUM
-			Size=A2LNUM
-			A2LNUM A2LNUM A2LNUM A2LNUM A2LNUM
+			Address=ULong
+			Size=ULong
+			Long Long Long Long Long
 			if_data*
 		End 'MEMORY_SEGMENT'
 	;
 
 mod_common
-	:	Begin 'MOD_COMMON'	Comment=STRING
+	:	Begin 'MOD_COMMON'	Comment=String
 			mod_common_optional*
 		End 'MOD_COMMON'
 	;
 
 mod_common_optional
 	:	alignment_byte
-	|	alignment_A2LNUM32_ieee
-	|	alignment_A2LNUM64_ieee
-	|	alignment_A2LNUM64
+	|	alignment_float32_ieee
+	|	alignment_float64_ieee
+	|	alignment_int64
 	|	alignment_long
 	|	alignment_word
 	|	byte_order
@@ -873,7 +746,7 @@ mod_common_optional
 	;
 
 mod_par
-	:	Begin 'MOD_PAR'	Comment=STRING
+	:	Begin 'MOD_PAR'	Comment=String
 			mod_par_optional*
 		End 'MOD_PAR'
 	;
@@ -889,7 +762,7 @@ mod_par_optional
 	|	epk
 	|	memory_layout
 	|	memory_segment
-	|	no_of_A2LNUMerfaces
+	|	no_of_interfaces
 	|	phone_no
 	|	supplier
 	|	system_constant
@@ -899,7 +772,7 @@ mod_par_optional
 
 module
 	:	Begin 'MODULE'	Name=Ident
-			LongIdentifier = STRING
+			LongIdentifier = String
 			a2ml?
 			(axis_pts|characteristic|compu_method
 				|compu_tab|compu_vtab|compu_vtab_range
@@ -915,65 +788,65 @@ monotony
 	;
 
 no_axis_pts_x
-	:	'NO_AXIS_PTS_X'	Position=A2LNUM
+	:	'NO_AXIS_PTS_X'	Position=UInt
 						DataType=DATATYPE
 	;
 
 no_axis_pts_y
-	:	'NO_AXIS_PTS_Y'	Position=A2LNUM
+	:	'NO_AXIS_PTS_Y'	Position=UInt
 						DataType=DATATYPE
 	;
 
 no_axis_pts_z
-	:	'NO_AXIS_PTS_Z'	Position=A2LNUM
+	:	'NO_AXIS_PTS_Z'	Position=UInt
 						DataType=DATATYPE
 	;
 
 no_axis_pts_4
-	:	'NO_AXIS_PTS_4'	Position=A2LNUM
+	:	'NO_AXIS_PTS_4'	Position=UInt
 						DataType=DATATYPE
 	;
 
 no_axis_pts_5
-	:	'NO_AXIS_PTS_5'	Position=A2LNUM
+	:	'NO_AXIS_PTS_5'	Position=UInt
 						DataType=DATATYPE
 	;
 
-no_of_A2LNUMerfaces
-	:	'NO_OF_INTERFACES'	Num=A2LNUM
+no_of_interfaces
+	:	'NO_OF_INTERFACES'	Num=UInt
 	;
 
 no_rescale_x
-	:	'NO_RESCALE_X'	Position=A2LNUM
+	:	'NO_RESCALE_X'	Position=UInt
 						DataType=DATATYPE
 	;
 
 number
-	:	'NUMBER'	Number=A2LNUM
+	:	'NUMBER'	Number=UInt
 	;
 
 offset_x
-	:	'OFFSET_X'	Position=A2LNUM
+	:	'OFFSET_X'	Position=UInt
 						DataType=DATATYPE
 	;
 
 offset_y
-	:	'OFFSET_Y'	Position=A2LNUM
+	:	'OFFSET_Y'	Position=UInt
 						DataType=DATATYPE
 	;
 
 offset_z
-	:	'OFFSET_Z'	Position=A2LNUM
+	:	'OFFSET_Z'	Position=UInt
 						DataType=DATATYPE
 	;
 
 offset_4
-	:	'OFFSET_4'	Position=A2LNUM
+	:	'OFFSET_4'	Position=UInt
 						DataType=DATATYPE
 	;
 
 offset_5
-	:	'OFFSET_5'	Position=A2LNUM
+	:	'OFFSET_5'	Position=UInt
 						DataType=DATATYPE
 	;
 
@@ -984,19 +857,19 @@ out_measurement
 	;
 
 phone_no
-	: 'PHONE_NO'	Telnum=STRING
+	: 'PHONE_NO'	Telnum=String
 	;
 
 phys_unit
-	:	'PHYS_UNIT'	Unit=STRING
+	:	'PHYS_UNIT'	Unit=String
 	;
 
 project
 	:	Begin 'PROJECT' Name=Ident
-			LongIdentifier=STRING 
+			LongIdentifier=String 
 			header?
-			include*?
-			module*?
+			include* 
+			module*
 		End 'PROJECT'
 	;
 
@@ -1020,9 +893,9 @@ record_layout
 
 record_layout_optional
 	:	alignment_byte
-	|	alignment_A2LNUM32_ieee
-	|	alignment_A2LNUM64_ieee
-	|	alignment_A2LNUM64
+	|	alignment_float32_ieee
+	|	alignment_float64_ieee
+	|	alignment_int64
 	|	alignment_long
 	|	alignment_word
 	|	axis_pts_x
@@ -1097,41 +970,41 @@ ref_unit
 	;
 
 reserved
-	:	'RESERVED'	Position=A2LNUM
+	:	'RESERVED'	Position=UInt
 					DataSize=DATASIZE
 	;
 
 right_shift
-	:	'RIGHT_SHIFT'	Bitcount=A2LNUM
+	:	'RIGHT_SHIFT'	Bitcount=ULong
 	;
 
 rip_addr_w
-	:	'RIP_ADDR_W'	Position=A2LNUM
+	:	'RIP_ADDR_W'	Position=UInt
 						DataType=DATATYPE
 	;
 
 rip_addr_x
-	:	'RIP_ADDR_X'	Position=A2LNUM
+	:	'RIP_ADDR_X'	Position=UInt
 						DataType=DATATYPE
 	;
 
 rip_addr_y
-	:	'RIP_ADDR_Y'	Position=A2LNUM
+	:	'RIP_ADDR_Y'	Position=UInt
 						DataType=DATATYPE
 	;
 
 rip_addr_z
-	:	'RIP_ADDR_Z'	Position=A2LNUM
+	:	'RIP_ADDR_Z'	Position=UInt
 						DataType=DATATYPE
 	;
 
 rip_addr_4
-	:	'RIP_ADDR_4'	Position=A2LNUM
+	:	'RIP_ADDR_4'	Position=UInt
 						DataType=DATATYPE
 	;
 
 rip_addr_5
-	:	'RIP_ADDR_5'	Position=A2LNUM
+	:	'RIP_ADDR_5'	Position=UInt
 						DataType=DATATYPE
 	;
 
@@ -1140,27 +1013,27 @@ root
 	;
 
 shift_op_x
-	:	'SHIFT_OP_X'	Position=A2LNUM
+	:	'SHIFT_OP_X'	Position=UInt
 						DataType=DATATYPE
 	;
 
 shift_op_y
-	:	'SHIFT_OP_Y'	Position=A2LNUM
+	:	'SHIFT_OP_Y'	Position=UInt
 						DataType=DATATYPE
 	;
 
 shift_op_z
-	:	'SHIFT_OP_Z'	Position=A2LNUM
+	:	'SHIFT_OP_Z'	Position=UInt
 						DataType=DATATYPE
 	;
 
 shift_op_4
-	:	'SHIFT_OP_4'	Position=A2LNUM
+	:	'SHIFT_OP_4'	Position=UInt
 						DataType=DATATYPE
 	;
 
 shift_op_5
-	:	'SHIFT_OP_5'	Position=A2LNUM
+	:	'SHIFT_OP_5'	Position=UInt
 						DataType=DATATYPE
 	;
 
@@ -1169,32 +1042,32 @@ sign_extend
 	;
 
 si_exponents
-	:	Length=A2LNUM Mass=A2LNUM Time=A2LNUM ElectricCurrent=A2LNUM
-		Temperature=A2LNUM AmountOfSubstance=A2LNUM LuminousA2LNUMensity=A2LNUM
+	:	Length=Int Mass=Int Time=Int ElectricCurrent=Int
+		Temperature=Int AmountOfSubstance=Int LuminousIntensity=Int
 	;
 
 src_addr_x
-	:	'SRC_ADDR_X'	Position=A2LNUM
+	:	'SRC_ADDR_X'	Position=UInt
 					DataType=DATATYPE
 	;
 
 src_addr_y
-	:	'SRC_ADDR_Y'	Position=A2LNUM
+	:	'SRC_ADDR_Y'	Position=UInt
 					DataType=DATATYPE
 	;
 
 src_addr_z
-	:	'SRC_ADDR_Z'	Position=A2LNUM
+	:	'SRC_ADDR_Z'	Position=UInt
 					DataType=DATATYPE
 	;
 
 src_addr_4
-	:	'SRC_ADDR_4'	Position=A2LNUM
+	:	'SRC_ADDR_4'	Position=UInt
 					DataType=DATATYPE
 	;
 
 src_addr_5
-	:	'SRC_ADDR_5'	Position=A2LNUM
+	:	'SRC_ADDR_5'	Position=UInt
 					DataType=DATATYPE
 	;
 
@@ -1207,7 +1080,7 @@ status_string_ref
 	;
 
 step_size
-	:	'STEP_SIZE'	StepSize=A2LNUM
+	:	'STEP_SIZE'	StepSize=Float
 	;
 
 sub_function
@@ -1221,22 +1094,22 @@ sub_group
 	;
 
 supplier
-	:	'SUPPLIER'	Manufacturer=STRING
+	:	'SUPPLIER'	Manufacturer=String
 	;
 
 symbol_link
-	:	'SYMBOL_LINK'	SymbolName=STRING
-						Offset=A2LNUM
+	:	'SYMBOL_LINK'	SymbolName=String
+						Offset=Long
 	;
 
 system_constant
-	:	'SYSTEM_CONSTANT'	Name=STRING Value=STRING
+	:	'SYSTEM_CONSTANT'	Name=String Value=String
 	;
 
 unit
 	:	Begin 'UNIT'	Name=Ident
-			LongIdentifier=STRING
-			Display=STRING
+			LongIdentifier=String
+			Display=String
 			Type=('DERIVED'|'EXTENDED_SI')
 			unit_optional*
 		End 'UNIT'
@@ -1249,11 +1122,11 @@ unit_optional
 	;
 
 unit_conversion
-	:	'UNIT_CONVERSION'	Gradient=A2LNUM Offset=A2LNUM
+	:	'UNIT_CONVERSION'	Gradient=Float Offset=Float
 	;
 
 user
-	:	'USER'	UserName=STRING
+	:	'USER'	UserName=String
 	;
 
 user_rights
@@ -1264,7 +1137,7 @@ user_rights
 	;
 
 var_address
-	:	Begin 'VAR_ADDRESS'	A2LNUM*
+	:	Begin 'VAR_ADDRESS'	ULong*
 		End 'VAR_ADDRESS'
 	;
 
@@ -1277,7 +1150,7 @@ var_characteristic
 
 var_criterion
 	:	Begin 'VAR_CRITERION'	Name=Ident
-			LongIdentifier=STRING
+			LongIdentifier=String
 			Values=Ident*
 			var_measurement?
 			var_selection_characteristic?
@@ -1321,7 +1194,7 @@ variant_coding_optional
 	;
 
 version
-	:	'VERSION'	VersionIdentifier=STRING
+	:	'VERSION'	VersionIdentifier=String
 	;
 
 virtual
@@ -1330,17 +1203,89 @@ virtual
 	;
 
 virtual_characteristic
-	:	Begin 'VIRTUAL_CHARACTERISTIC'	Formula=STRING
+	:	Begin 'VIRTUAL_CHARACTERISTIC'	Formula=String
 			Characteristics=Ident*
 		End 'VIRTUAL_CHARACTERISTIC'
 	;
 
-/* A2L grammar end */
 
-/* Lexer grammar begin */
+ 
+UInt	// 2-byte unsigned integer
+	:	HexNum
+	|	DigitNum
+	;
 
-Begin	:	'/begin'	;
-End		:	'/end'		;
+Int		// 2-byte signed integer
+    :	HexNum
+	|	'-'?DigitNum
+   ;
+
+UInt64	// 8-byte unsigned integer
+	:	HexNum
+	|	DigitNum	
+	;
+
+Long	// 4-byte signed integer
+	:	HexNum
+	|	'-'?DigitNum
+	;
+
+ULong	// 4-byte unsigned integer
+	:	HexNum
+	|	DigitNum
+	;
+
+Float
+	:	DigitSequence?'.'DigitSequence?(('e'|'E')('+'|'-')?DigitSequence)?
+	;
+
+HexNum
+	:	HexadecimalPrefix(HexadecimalDigit)+
+	;
+
+DigitNum
+	:	'0'
+	|	(NonzeroDigit(Digit)*)
+	;
+
+fragment
+Nondigit
+    :   [a-zA-Z_]
+    ;
+
+fragment
+Digit
+    :   [0-9]
+    ;
+
+DigitSequence
+    :   Digit+
+    ;
+
+fragment
+HexadecimalPrefix
+    :   '0'[xX]
+    ;
+
+fragment
+NonzeroDigit
+    :   [1-9]
+    ;
+
+fragment
+OctalDigit
+    :   [0-7]
+    ;
+
+fragment
+HexadecimalDigit
+    :   [0-9a-fA-F]
+    ;
+
+fragment
+Letter
+	:	[a-zA-Z]
+	;
 
 DATATYPE
 	:	'UBYTE'
@@ -1380,32 +1325,52 @@ INDEXORDER
 	|	'INDEX_DECR'
 	;
 
-A2LNUM
-	: HEX_VALUE
-	| DECIMAL
-	;
-	
-HEX_VALUE : '0' [xX] [a-fA-F0-9]+;
-INT : [\-+]? [0-9]+;
-DECIMAL : [\-+]? (([0-9]* '.'? [0-9]+)|([0-9]+ '.'? [0-9]*)) ([eE][\-+]?[0-9]+)?;
-Ident : IDENTIFIER;
-IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_\-]* ('[' [a-zA-Z0-9_]+ ']')* ([_.] [a-zA-Z0-9_\-]* ('[' [a-zA-Z0-9_]+ ']')*)*;
-
-Formatstring
-	:	'"%' INT? '.' INT '"'
+FormatString
+	:	'"%'UInt?'.'UInt'"'
 	;
 
-
-STRING
-	:	'"' (ESC|.)*? '"'
+Ident
+	:	PartIdent('.'PartIdent)*
 	;
 
+PartIdent
+	:	CIdent('['(ENUM|Index)']')?
+	;
+
+Index
+	:	Digit+
+	;
+
+ENUM
+	:	CIdent
+	;
+
+CIdent
+	:	[a-zA-Z_][a-zA-Z0-9_]*
+	;
+
+String
+	:	'"'(ESC|.)*?'"'
+	;
+
+fragment
+SChar
+    :   ~["\\\r\n]
+    |   '\\\n'   // Added line
+    |   '\\\r\n' // Added line
+    ;
 
 WS
     :   [ \t\r\n]+
         -> skip
     ;
 
+Newline
+    :   (   '\r' '\n'?
+        |   '\n'
+        )
+        -> skip
+    ;
 
 BlockComment
     :   '/*' .*? '*/'
@@ -1421,6 +1386,3 @@ fragment
 ESC
 	:	'\\' [btnr"\\]
 	;
-
-/* Lexer grammar end */
-

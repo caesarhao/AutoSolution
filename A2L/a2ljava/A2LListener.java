@@ -8,6 +8,246 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface A2LListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#a2ml}.
+	 * @param ctx the parse tree
+	 */
+	void enterA2ml(A2LParser.A2mlContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#a2ml}.
+	 * @param ctx the parse tree
+	 */
+	void exitA2ml(A2LParser.A2mlContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaration(A2LParser.DeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaration(A2LParser.DeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#type_definition}.
+	 * @param ctx the parse tree
+	 */
+	void enterType_definition(A2LParser.Type_definitionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#type_definition}.
+	 * @param ctx the parse tree
+	 */
+	void exitType_definition(A2LParser.Type_definitionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#type_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterType_name(A2LParser.Type_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#type_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitType_name(A2LParser.Type_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#block_definition}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock_definition(A2LParser.Block_definitionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#block_definition}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock_definition(A2LParser.Block_definitionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#enum_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnum_type_name(A2LParser.Enum_type_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#enum_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnum_type_name(A2LParser.Enum_type_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#enumerator_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnumerator_list(A2LParser.Enumerator_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#enumerator_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnumerator_list(A2LParser.Enumerator_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#enumerator}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnumerator(A2LParser.EnumeratorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#enumerator}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnumerator(A2LParser.EnumeratorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#struct_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterStruct_type_name(A2LParser.Struct_type_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#struct_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitStruct_type_name(A2LParser.Struct_type_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#struct_member_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterStruct_member_list(A2LParser.Struct_member_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#struct_member_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitStruct_member_list(A2LParser.Struct_member_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#struct_member}.
+	 * @param ctx the parse tree
+	 */
+	void enterStruct_member(A2LParser.Struct_memberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#struct_member}.
+	 * @param ctx the parse tree
+	 */
+	void exitStruct_member(A2LParser.Struct_memberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#member}.
+	 * @param ctx the parse tree
+	 */
+	void enterMember(A2LParser.MemberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#member}.
+	 * @param ctx the parse tree
+	 */
+	void exitMember(A2LParser.MemberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#array_specifier}.
+	 * @param ctx the parse tree
+	 */
+	void enterArray_specifier(A2LParser.Array_specifierContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#array_specifier}.
+	 * @param ctx the parse tree
+	 */
+	void exitArray_specifier(A2LParser.Array_specifierContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#taggedstruct_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterTaggedstruct_type_name(A2LParser.Taggedstruct_type_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#taggedstruct_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitTaggedstruct_type_name(A2LParser.Taggedstruct_type_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#taggedstruct_member_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterTaggedstruct_member_list(A2LParser.Taggedstruct_member_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#taggedstruct_member_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitTaggedstruct_member_list(A2LParser.Taggedstruct_member_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#taggedstruct_member}.
+	 * @param ctx the parse tree
+	 */
+	void enterTaggedstruct_member(A2LParser.Taggedstruct_memberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#taggedstruct_member}.
+	 * @param ctx the parse tree
+	 */
+	void exitTaggedstruct_member(A2LParser.Taggedstruct_memberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#taggedstruct_definition}.
+	 * @param ctx the parse tree
+	 */
+	void enterTaggedstruct_definition(A2LParser.Taggedstruct_definitionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#taggedstruct_definition}.
+	 * @param ctx the parse tree
+	 */
+	void exitTaggedstruct_definition(A2LParser.Taggedstruct_definitionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#taggedunion_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterTaggedunion_type_name(A2LParser.Taggedunion_type_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#taggedunion_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitTaggedunion_type_name(A2LParser.Taggedunion_type_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#taggedunion_member_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterTaggedunion_member_list(A2LParser.Taggedunion_member_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#taggedunion_member_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitTaggedunion_member_list(A2LParser.Taggedunion_member_listContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#tagged_union_member}.
+	 * @param ctx the parse tree
+	 */
+	void enterTagged_union_member(A2LParser.Tagged_union_memberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#tagged_union_member}.
+	 * @param ctx the parse tree
+	 */
+	void exitTagged_union_member(A2LParser.Tagged_union_memberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdentifier(A2LParser.IdentifierContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdentifier(A2LParser.IdentifierContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#tag}.
+	 * @param ctx the parse tree
+	 */
+	void enterTag(A2LParser.TagContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#tag}.
+	 * @param ctx the parse tree
+	 */
+	void exitTag(A2LParser.TagContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#keyword}.
+	 * @param ctx the parse tree
+	 */
+	void enterKeyword(A2LParser.KeywordContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#keyword}.
+	 * @param ctx the parse tree
+	 */
+	void exitKeyword(A2LParser.KeywordContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstant(A2LParser.ConstantContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstant(A2LParser.ConstantContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#a2l}.
 	 * @param ctx the parse tree
 	 */
@@ -48,35 +288,35 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitAlignment_byte(A2LParser.Alignment_byteContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#alignment_float32_ieee}.
+	 * Enter a parse tree produced by {@link A2LParser#alignment_A2LNUM32_ieee}.
 	 * @param ctx the parse tree
 	 */
-	void enterAlignment_float32_ieee(A2LParser.Alignment_float32_ieeeContext ctx);
+	void enterAlignment_A2LNUM32_ieee(A2LParser.Alignment_A2LNUM32_ieeeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link A2LParser#alignment_float32_ieee}.
+	 * Exit a parse tree produced by {@link A2LParser#alignment_A2LNUM32_ieee}.
 	 * @param ctx the parse tree
 	 */
-	void exitAlignment_float32_ieee(A2LParser.Alignment_float32_ieeeContext ctx);
+	void exitAlignment_A2LNUM32_ieee(A2LParser.Alignment_A2LNUM32_ieeeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#alignment_float64_ieee}.
+	 * Enter a parse tree produced by {@link A2LParser#alignment_A2LNUM64_ieee}.
 	 * @param ctx the parse tree
 	 */
-	void enterAlignment_float64_ieee(A2LParser.Alignment_float64_ieeeContext ctx);
+	void enterAlignment_A2LNUM64_ieee(A2LParser.Alignment_A2LNUM64_ieeeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link A2LParser#alignment_float64_ieee}.
+	 * Exit a parse tree produced by {@link A2LParser#alignment_A2LNUM64_ieee}.
 	 * @param ctx the parse tree
 	 */
-	void exitAlignment_float64_ieee(A2LParser.Alignment_float64_ieeeContext ctx);
+	void exitAlignment_A2LNUM64_ieee(A2LParser.Alignment_A2LNUM64_ieeeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#alignment_int64}.
+	 * Enter a parse tree produced by {@link A2LParser#alignment_A2LNUM64}.
 	 * @param ctx the parse tree
 	 */
-	void enterAlignment_int64(A2LParser.Alignment_int64Context ctx);
+	void enterAlignment_A2LNUM64(A2LParser.Alignment_A2LNUM64Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link A2LParser#alignment_int64}.
+	 * Exit a parse tree produced by {@link A2LParser#alignment_A2LNUM64}.
 	 * @param ctx the parse tree
 	 */
-	void exitAlignment_int64(A2LParser.Alignment_int64Context ctx);
+	void exitAlignment_A2LNUM64(A2LParser.Alignment_A2LNUM64Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#alignment_long}.
 	 * @param ctx the parse tree
@@ -1168,15 +1408,15 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitNo_axis_pts_5(A2LParser.No_axis_pts_5Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#no_of_interfaces}.
+	 * Enter a parse tree produced by {@link A2LParser#no_of_A2LNUMerfaces}.
 	 * @param ctx the parse tree
 	 */
-	void enterNo_of_interfaces(A2LParser.No_of_interfacesContext ctx);
+	void enterNo_of_A2LNUMerfaces(A2LParser.No_of_A2LNUMerfacesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link A2LParser#no_of_interfaces}.
+	 * Exit a parse tree produced by {@link A2LParser#no_of_A2LNUMerfaces}.
 	 * @param ctx the parse tree
 	 */
-	void exitNo_of_interfaces(A2LParser.No_of_interfacesContext ctx);
+	void exitNo_of_A2LNUMerfaces(A2LParser.No_of_A2LNUMerfacesContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#no_rescale_x}.
 	 * @param ctx the parse tree
@@ -1857,254 +2097,4 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVirtual_characteristic(A2LParser.Virtual_characteristicContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#a2ml}.
-	 * @param ctx the parse tree
-	 */
-	void enterA2ml(A2LParser.A2mlContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#a2ml}.
-	 * @param ctx the parse tree
-	 */
-	void exitA2ml(A2LParser.A2mlContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#declaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclaration(A2LParser.DeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#declaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclaration(A2LParser.DeclarationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#type_definition}.
-	 * @param ctx the parse tree
-	 */
-	void enterType_definition(A2LParser.Type_definitionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#type_definition}.
-	 * @param ctx the parse tree
-	 */
-	void exitType_definition(A2LParser.Type_definitionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#type_name}.
-	 * @param ctx the parse tree
-	 */
-	void enterType_name(A2LParser.Type_nameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#type_name}.
-	 * @param ctx the parse tree
-	 */
-	void exitType_name(A2LParser.Type_nameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#predefined_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void enterPredefined_type_name(A2LParser.Predefined_type_nameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#predefined_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void exitPredefined_type_name(A2LParser.Predefined_type_nameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#block_definition}.
-	 * @param ctx the parse tree
-	 */
-	void enterBlock_definition(A2LParser.Block_definitionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#block_definition}.
-	 * @param ctx the parse tree
-	 */
-	void exitBlock_definition(A2LParser.Block_definitionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#enum_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void enterEnum_type_name(A2LParser.Enum_type_nameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#enum_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void exitEnum_type_name(A2LParser.Enum_type_nameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#enumerator_list}.
-	 * @param ctx the parse tree
-	 */
-	void enterEnumerator_list(A2LParser.Enumerator_listContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#enumerator_list}.
-	 * @param ctx the parse tree
-	 */
-	void exitEnumerator_list(A2LParser.Enumerator_listContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#enumerator}.
-	 * @param ctx the parse tree
-	 */
-	void enterEnumerator(A2LParser.EnumeratorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#enumerator}.
-	 * @param ctx the parse tree
-	 */
-	void exitEnumerator(A2LParser.EnumeratorContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#struct_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void enterStruct_type_name(A2LParser.Struct_type_nameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#struct_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void exitStruct_type_name(A2LParser.Struct_type_nameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#struct_member_list}.
-	 * @param ctx the parse tree
-	 */
-	void enterStruct_member_list(A2LParser.Struct_member_listContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#struct_member_list}.
-	 * @param ctx the parse tree
-	 */
-	void exitStruct_member_list(A2LParser.Struct_member_listContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#struct_member}.
-	 * @param ctx the parse tree
-	 */
-	void enterStruct_member(A2LParser.Struct_memberContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#struct_member}.
-	 * @param ctx the parse tree
-	 */
-	void exitStruct_member(A2LParser.Struct_memberContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#member}.
-	 * @param ctx the parse tree
-	 */
-	void enterMember(A2LParser.MemberContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#member}.
-	 * @param ctx the parse tree
-	 */
-	void exitMember(A2LParser.MemberContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#array_specifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterArray_specifier(A2LParser.Array_specifierContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#array_specifier}.
-	 * @param ctx the parse tree
-	 */
-	void exitArray_specifier(A2LParser.Array_specifierContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#taggedstruct_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void enterTaggedstruct_type_name(A2LParser.Taggedstruct_type_nameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#taggedstruct_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void exitTaggedstruct_type_name(A2LParser.Taggedstruct_type_nameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#taggedstruct_member_list}.
-	 * @param ctx the parse tree
-	 */
-	void enterTaggedstruct_member_list(A2LParser.Taggedstruct_member_listContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#taggedstruct_member_list}.
-	 * @param ctx the parse tree
-	 */
-	void exitTaggedstruct_member_list(A2LParser.Taggedstruct_member_listContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#taggedstruct_member}.
-	 * @param ctx the parse tree
-	 */
-	void enterTaggedstruct_member(A2LParser.Taggedstruct_memberContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#taggedstruct_member}.
-	 * @param ctx the parse tree
-	 */
-	void exitTaggedstruct_member(A2LParser.Taggedstruct_memberContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#taggedstruct_definition}.
-	 * @param ctx the parse tree
-	 */
-	void enterTaggedstruct_definition(A2LParser.Taggedstruct_definitionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#taggedstruct_definition}.
-	 * @param ctx the parse tree
-	 */
-	void exitTaggedstruct_definition(A2LParser.Taggedstruct_definitionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#taggedunion_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void enterTaggedunion_type_name(A2LParser.Taggedunion_type_nameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#taggedunion_type_name}.
-	 * @param ctx the parse tree
-	 */
-	void exitTaggedunion_type_name(A2LParser.Taggedunion_type_nameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#taggedunion_member_list}.
-	 * @param ctx the parse tree
-	 */
-	void enterTaggedunion_member_list(A2LParser.Taggedunion_member_listContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#taggedunion_member_list}.
-	 * @param ctx the parse tree
-	 */
-	void exitTaggedunion_member_list(A2LParser.Taggedunion_member_listContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#tagged_union_member}.
-	 * @param ctx the parse tree
-	 */
-	void enterTagged_union_member(A2LParser.Tagged_union_memberContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#tagged_union_member}.
-	 * @param ctx the parse tree
-	 */
-	void exitTagged_union_member(A2LParser.Tagged_union_memberContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#identifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterIdentifier(A2LParser.IdentifierContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#identifier}.
-	 * @param ctx the parse tree
-	 */
-	void exitIdentifier(A2LParser.IdentifierContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#tag}.
-	 * @param ctx the parse tree
-	 */
-	void enterTag(A2LParser.TagContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#tag}.
-	 * @param ctx the parse tree
-	 */
-	void exitTag(A2LParser.TagContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#keyword}.
-	 * @param ctx the parse tree
-	 */
-	void enterKeyword(A2LParser.KeywordContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#keyword}.
-	 * @param ctx the parse tree
-	 */
-	void exitKeyword(A2LParser.KeywordContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#constant}.
-	 * @param ctx the parse tree
-	 */
-	void enterConstant(A2LParser.ConstantContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#constant}.
-	 * @param ctx the parse tree
-	 */
-	void exitConstant(A2LParser.ConstantContext ctx);
 }
