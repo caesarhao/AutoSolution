@@ -7,8 +7,8 @@ a2ml
 	;
 
 declaration
-	:	(type_definition
-	|	block_definition) ';'
+	:	type_definition  ';'
+	|	block_definition ';'
 	;
 
 type_definition
@@ -39,8 +39,8 @@ block_definition
 	;
 
 enum_type_name
-	:	('enum' identifier? '{' enumerator_list '}')
-	|	('enum' identifier)
+	:	'enum' identifier? '{' enumerator_list '}'
+	|	'enum' identifier
 	;
 
 enumerator_list
@@ -52,8 +52,8 @@ enumerator
 	;
 
 struct_type_name
-	:	('struct' identifier? '{' struct_member_list? '}')
-	|	('struct' identifier)
+	:	'struct' identifier? '{' struct_member_list? '}'
+	|	'struct' identifier
 	;
 
 struct_member_list
@@ -73,8 +73,8 @@ array_specifier
 	;
 
 taggedstruct_type_name
-	:	('taggedstruct' identifier? '{' taggedstruct_member_list? '}')
-	|	('taggedstruct' identifier)
+	:	'taggedstruct' identifier? '{' taggedstruct_member_list? '}'
+	|	'taggedstruct' identifier
 	;
 
 taggedstruct_member_list
@@ -82,19 +82,20 @@ taggedstruct_member_list
 	;
 
 taggedstruct_member
-	:	(taggedstruct_definition ';')
-	|	('(' taggedstruct_definition ')*;')
-	|	(block_definition ';' '(' block_definition ')*;')
+	:	taggedstruct_definition ';'
+	|	'(' taggedstruct_definition ')*;'
+	|	block_definition ';' 
+	|	'(' block_definition ')*;'
 	;
 
 taggedstruct_definition
-	:	(tag member?)
-	|	(tag '(' member ')*;')
+	:	tag member?
+	|	tag '(' member ')*;'
 	;
 
 taggedunion_type_name
-	:	('taggedunion' identifier? '{' taggedunion_member_list? '}')
-	|	('taggedunion' identifier)
+	:	'taggedunion' identifier? '{' taggedunion_member_list? '}'
+	|	'taggedunion' identifier
 	;
 
 taggedunion_member_list
@@ -102,8 +103,8 @@ taggedunion_member_list
 	;
 
 tagged_union_member
-	:	(tag member? ';')
-	|	(block_definition ';')
+	:	tag member? ';'
+	|	block_definition ';'
 	;
 
 Begin :	'/begin';
@@ -114,51 +115,37 @@ identifier
 	;
 
 tag
-	:	'"' CIdent '"'
+	:	STRING
 	;
 
 keyword
-	:	'"' CIdent '"'
+	:	STRING
 	;
 
-
+constant
+	:	NUMBER
+	;
 
 CIdent
 	:	[a-zA-Z_][a-zA-Z0-9_]*
 	;
-
-
-
-constant
-	:	DigitNum
-	;
-
-DigitNum
-	:	'0'
-	|	(NonzeroDigit(Digit)*)
-	;
-
-fragment
-Digit
-    :   [0-9]
-    ;
-
-fragment
-NonzeroDigit
-    :   [1-9]
-    ;
 
 WS
     :   [ \t\r\n]+
         -> skip
     ;
 
-Newline
-    :   (   '\r' '\n'?
-        |   '\n'
-        )
-        -> skip
-    ;
+STRING
+	: '"' .*? '"'
+	;
+
+SIGN
+	: ('+'|'-')
+	;
+
+NUMBER
+	: SIGN? ([0-9]* '.' )? [0-9]+
+	;
 
 BlockComment
     :   '/*' .*? '*/'

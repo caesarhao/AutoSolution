@@ -1,0 +1,36 @@
+Java:
+
+antlr4 -Dlanguage=Java MyGrammar.g4
+
+JavaScript:
+
+antlr4 -Dlanguage=JavaScript MyGrammar.g4
+
+C#:
+
+antlr4 -Dlanguage=CSharp MyGrammar.g4
+
+Python 3:
+
+antlr4 -Dlanguage=Python3 MyGrammar.g4
+
+Python 2:
+
+antlr4 -Dlanguage=Python2 MyGrammar.g4
+
+Go:
+
+antlr4 -Dlanguage=Go MyGrammar.g4
+
+C++:
+
+antlr4 -Dlanguage=Cpp MyGrammar.g4
+
+Swift:
+
+antlr4 -Dlanguage=Swift MyGrammar.g4 
+
+PHP:
+
+antlr4 -Dlanguage=PHP MyGrammar.g4
+
