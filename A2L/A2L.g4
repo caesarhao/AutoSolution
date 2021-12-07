@@ -18,23 +18,15 @@ type_definition
 	;
 
 type_name
-	:	Predefined_type_name
+	:	predefined_type_name
 	|	struct_type_name
 	|	taggedstruct_type_name
 	|	taggedunion_type_name
 	|	enum_type_name
 	;
 
-Predefined_type_name
-	:	'char'
-	|	'int'
-	|	'long'
-	|	'uchar'
-	|	'uint'
-	|	'ulong'
-	|	'double'
-	|	'float'
-	;
+predefined_type_name
+	:	PREDEFINED_TYPE_NAME;
 
 block_definition
 	:	'block' tag type_name
@@ -184,7 +176,7 @@ annotation_origin
 
 annotation_text
 	:	Begin 'ANNOTATION_TEXT'
-			STRING*
+			STRING*?
 		End	'ANNOTATION_TEXT'
 	;
 
@@ -330,7 +322,7 @@ CALIBRATION_ACCESS_TYPE
 	;
 
 calibration_handle
-	:	Begin 'CALIBRATION_HANDLE'	A2LNUM*
+	:	Begin 'CALIBRATION_HANDLE'	A2LNUM*?
 			calibration_handle_text?
 		End 'CALIBRATION_HANDLE'
 	;
@@ -448,7 +440,7 @@ compu_tab
 			LongIdentifier=STRING
 			ConversionType=('TAB_INTP'|'TAB_NOINTP')
 			NumberValuePairs=A2LNUM
-			(A2LNUM A2LNUM)*
+			(A2LNUM A2LNUM)*?
 			compu_tab_optional*
 		End 'COMPU_TAB'
 	;
@@ -468,7 +460,7 @@ compu_vtab
 			LongIdentifier=STRING
 			ConversionType='TAB_VERB'
 			NumberValuePairs=A2LNUM
-			(A2LNUM STRING)*
+			(A2LNUM STRING)*?
 			default_value?
 		End 'COMPU_VTAB'
 	;
@@ -478,7 +470,7 @@ compu_vtab_range
 	:	Begin 'COMPU_VTAB_RANGE' Name=Ident
 			LongIdentifier=STRING
 			NumberValueTriples=A2LNUM
-			(A2LNUM A2LNUM STRING)*
+			(A2LNUM A2LNUM STRING)*?
 			default_value?
 		End 'COMPU_VTAB_RANGE'
 	;
@@ -505,7 +497,7 @@ data_size
 
 def_characteristic
 	:	Begin 'DEF_CHARACTERISTIC'
-			Ident*
+			Ident*?
 		End 'DEF_CHARACTERISTIC'
 	;
 
@@ -519,7 +511,7 @@ default_value_numeric
 
 dependent_characteristic
 	:	Begin 'DEPENDENT_CHARACTERISTIC' Formula=STRING
-			Characteristics=Ident*
+			Characteristics=Ident*?
 		End 'DEPENDENT_CHARACTERISTIC'
 	;
 
@@ -663,7 +655,7 @@ frame
 	;
 
 frame_measurement
-	:	'FRAME_MEASUREMENT' Ident*
+	:	'FRAME_MEASUREMENT' Ident*?
 	;
 
 function
@@ -739,7 +731,7 @@ include
 
 in_measurement
 	:	Begin 'IN_MEASUREMENT'
-			Ident*
+			Ident*?
 		End 'IN_MEASUREMENT'
 	;
 
@@ -753,13 +745,13 @@ left_shift
 
 loc_measurement
 	:	Begin 'LOC_MEASUREMENT'
-			Ident*
+			Ident*?
 		End 'LOC_MEASUREMENT'
 	;
 
 map_list
 	:	Begin 'MAP_LIST'
-			Ident*
+			Ident*?
 		End 'MAP_LIST'
 	;
 
@@ -901,13 +893,28 @@ module
 	:	Begin 'MODULE'	Name=Ident
 			LongIdentifier = STRING
 			a2ml?
-			(axis_pts|characteristic|compu_method
-				|compu_tab|compu_vtab|compu_vtab_range
-				|frame|function|group|if_data|measurement
-				|record_layout|unit|user_rights
-				|mod_common|mod_par|variant_coding)*
-			
+			module_optional*	
 		End 'MODULE'
+	;
+
+module_optional
+	:	axis_pts
+	|	characteristic
+	|	compu_method
+	|	compu_tab
+	|	compu_vtab
+	|	compu_vtab_range
+	|	frame
+	|	function
+	|	group
+	|	if_data
+	|	measurement
+	|	record_layout
+	|	unit
+	|	user_rights
+	|	mod_common
+	|	mod_par
+	|	variant_coding
 	;
 
 monotony
@@ -995,8 +1002,8 @@ project
 	:	Begin 'PROJECT' Name=Ident
 			LongIdentifier=STRING 
 			header?
-			include*?
-			module*?
+			include*
+			module*
 		End 'PROJECT'
 	;
 
@@ -1342,6 +1349,18 @@ virtual_characteristic
 Begin	:	'/begin'	;
 End		:	'/end'		;
 
+
+PREDEFINED_TYPE_NAME
+	:	'char'
+	|	'int'
+	|	'long'
+	|	'uchar'
+	|	'uint'
+	|	'ulong'
+	|	'double'
+	|	'float'
+	;
+
 DATATYPE
 	:	'UBYTE'
 	|	'SBYTE'
@@ -1384,17 +1403,43 @@ A2LNUM
 	: HEX_VALUE
 	| DECIMAL
 	;
-	
-HEX_VALUE : '0' [xX] [a-fA-F0-9]+;
-INT : [\-+]? [0-9]+;
-DECIMAL : [\-+]? (([0-9]* '.'? [0-9]+)|([0-9]+ '.'? [0-9]*)) ([eE][\-+]?[0-9]+)?;
-Ident : IDENTIFIER;
-IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_\-]* ('[' [a-zA-Z0-9_]+ ']')* ([_.] [a-zA-Z0-9_\-]* ('[' [a-zA-Z0-9_]+ ']')*)*;
 
-Formatstring
-	:	'"%' INT? '.' INT '"'
+fragment	
+HEX_VALUE : '0' [xX] [a-fA-F0-9]+;
+
+fragment
+DECIMAL : INTEGER
+	|	FLOAT
 	;
 
+fragment
+INTEGER
+	:	'0'
+	|	[\-+]? [1-9] [0-9]*
+	;
+
+fragment
+FLOAT
+	:	[\-+]? '.' [0-9]+ ([eE][\-+]?[0-9]+)?
+	|	[\-+]? [0-9]+ ('.' [0-9]*)? ([eE][\-+]?[0-9]+)? 
+	;
+
+Ident : IDENTIFIER;
+
+fragment
+IDENTIFIER : PartIDENTIFIER ('.' IDENTIFIER)?
+;
+
+fragment 
+PartIDENTIFIER	:	[a-zA-Z_] [a-zA-Z0-9_]* // ('[' [a-zA-Z0-9_]+ ']')? 
+;
+
+// bug here, char[256] in A2ML is detected as IDENTIFIER instead of member.
+// PartIDENTIFIER is patched, to let A2ML be parsed correctly.
+
+Formatstring
+	:	'"%' [0-9]* '.' [0-9]+ '"'
+	;
 
 STRING
 	:	'"' (ESC|.)*? '"'

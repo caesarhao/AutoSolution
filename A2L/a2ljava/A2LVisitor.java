@@ -35,6 +35,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitType_name(A2LParser.Type_nameContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link A2LParser#predefined_type_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPredefined_type_name(A2LParser.Predefined_type_nameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link A2LParser#block_definition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -814,6 +820,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitModule(A2LParser.ModuleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#module_optional}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitModule_optional(A2LParser.Module_optionalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#monotony}.
 	 * @param ctx the parse tree

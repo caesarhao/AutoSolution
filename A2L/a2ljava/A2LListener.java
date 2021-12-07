@@ -48,6 +48,16 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitType_name(A2LParser.Type_nameContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#predefined_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterPredefined_type_name(A2LParser.Predefined_type_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#predefined_type_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitPredefined_type_name(A2LParser.Predefined_type_nameContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#block_definition}.
 	 * @param ctx the parse tree
 	 */
@@ -1347,6 +1357,16 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitModule(A2LParser.ModuleContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#module_optional}.
+	 * @param ctx the parse tree
+	 */
+	void enterModule_optional(A2LParser.Module_optionalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#module_optional}.
+	 * @param ctx the parse tree
+	 */
+	void exitModule_optional(A2LParser.Module_optionalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#monotony}.
 	 * @param ctx the parse tree

@@ -64,6 +64,18 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPredefined_type_name(A2LParser.Predefined_type_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPredefined_type_name(A2LParser.Predefined_type_nameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterBlock_definition(A2LParser.Block_definitionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1619,6 +1631,18 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitModule(A2LParser.ModuleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterModule_optional(A2LParser.Module_optionalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitModule_optional(A2LParser.Module_optionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

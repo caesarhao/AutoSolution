@@ -45,6 +45,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitPredefined_type_name(A2LParser.Predefined_type_nameContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitBlock_definition(A2LParser.Block_definitionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -949,6 +956,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitModule(A2LParser.ModuleContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitModule_optional(A2LParser.Module_optionalContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
