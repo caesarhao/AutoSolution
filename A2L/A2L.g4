@@ -57,7 +57,7 @@ struct_member_list
 struct_member
 	:	member ';'
 	;
-
+ 
 member
 	:	type_name array_specifier?
 	;
@@ -138,15 +138,15 @@ alignment_byte
 	:	'ALIGNMENT_BYTE'	AlignmentBorder=A2LNUM
 	;
 
-alignment_A2LNUM32_ieee
+alignment_float32_ieee
 	:	'ALIGNMENT_FLOAT32_IEEE'	AlignmentBorder=A2LNUM
 	;
 
-alignment_A2LNUM64_ieee
+alignment_float64_ieee
 	:	'ALIGNMENT_FLOAT64_IEEE'	AlignmentBorder=A2LNUM
 	;
 
-alignment_A2LNUM64
+alignment_int64
 	:	'ALIGNMENT_INT64'	AlignmentBorder=A2LNUM
 	;
 
@@ -181,7 +181,7 @@ annotation_text
 	;
 
 array_size
-	:	'ARRARY_SIZE'	A2LNUM
+	:	'ARRAY_SIZE'	A2LNUM
 	;
 
 asap2_ver
@@ -233,28 +233,24 @@ axis_pts
 			MaxAxisPoA2LNUMs=A2LNUM
 			LowerLimit=A2LNUM
 			UpperLimit=A2LNUM
-			axis_pts_optional*
+			(	annotation
+			|	byte_order
+			|	calibration_access
+			|	deposit
+			|	display_identifier
+			|	ecu_address_extension
+			|	extended_limits
+			|	phormat
+			|	function_list
+			|	guard_rails
+			|	if_data
+			|	monotony
+			|	phys_unit
+			|	read_only
+			|	ref_memory_segment
+			|	step_size
+			|	symbol_link)*
 		End 'AXIS_PTS'
-	;
-
-axis_pts_optional
-	:	annotation
-	|	byte_order
-	|	calibration_access
-	|	deposit
-	|	display_identifier
-	|	ecu_address_extension
-	|	extended_limits
-	|	phormat
-	|	function_list
-	|	guard_rails
-	|	if_data
-	|	monotony
-	|	phys_unit
-	|	read_only
-	|	ref_memory_segment
-	|	step_size
-	|	symbol_link
 	;
 
 axis_pts_ref
@@ -264,33 +260,44 @@ axis_pts_ref
 axis_pts_x
 	:	'AXIS_PTS_X'	Position=A2LNUM
 					DataType=DATATYPE
+					IndexOrder=INDEXORDER
+					AddrType=ADDRTYPE
+
 	;
 
 axis_pts_y
 	:	'AXIS_PTS_Y'	Position=A2LNUM
 					DataType=DATATYPE
+					IndexOrder=INDEXORDER
+					AddrType=ADDRTYPE
 	;
 
 axis_pts_z
 	:	'AXIS_PTS_Z'	Position=A2LNUM
 					DataType=DATATYPE
+					IndexOrder=INDEXORDER
+					AddrType=ADDRTYPE
 	;
 
 axis_pts_4
 	:	'AXIS_PTS_4'	Position=A2LNUM
 					DataType=DATATYPE
+					IndexOrder=INDEXORDER
+					AddrType=ADDRTYPE
 	;
 
 axis_pts_5
 	:	'AXIS_PTS_5'	Position=A2LNUM
 					DataType=DATATYPE
+					IndexOrder=INDEXORDER
+					AddrType=ADDRTYPE
 	;
 
 axis_rescale_x
 	:	'AXIS_RESCALE_X'	Position=A2LNUM
 					DataType=DATATYPE
 					MaxNumberOfRescalePairs=A2LNUM
-					IndexIncr=('INDEX_INCR'|'INDEX_DECR')
+					IndexIncr=INDEXORDER
 					Addressing=ADDRTYPE
 	;
 
@@ -349,37 +356,33 @@ characteristic
 			Conversion=Ident
 			LowerLimit=A2LNUM
 			UpperLimit=A2LNUM
-			characteristic_optional*
+			(	annotation
+			|	axis_descr
+			|	bit_mask
+			|	byte_order
+			|	calibration_access
+			|	comparison_quantity
+			|	dependent_characteristic
+			|	discrete
+			|	display_identifier
+			|	ecu_address_extension
+			|	extended_limits
+			|	phormat
+			|	function_list
+			|	guard_rails
+			|	if_data
+			|	map_list
+			|	matrix_dim
+			|	max_refresh
+			|	number
+			|	phys_unit
+			|	read_only
+			|	ref_memory_segment
+			|	step_size
+			|	symbol_link
+			|	virtual_characteristic)*
 			
 		End 'CHARACTERISTIC'
-	;
-
-characteristic_optional
-	:	annotation
-	|	axis_descr
-	|	bit_mask
-	|	byte_order
-	|	calibration_access
-	|	comparison_quantity
-	|	dependent_characteristic
-	|	discrete
-	|	display_identifier
-	|	ecu_address_extension
-	|	extended_limits
-	|	phormat
-	|	function_list
-	|	guard_rails
-	|	if_data
-	|	map_list
-	|	matrix_dim
-	|	max_refresh
-	|	number
-	|	phys_unit
-	|	read_only
-	|	ref_memory_segment
-	|	step_size
-	|	symbol_link
-	|	virtual_characteristic
 	;
 
 CHARACTERISTIC_TYPE
@@ -398,7 +401,7 @@ coeffs	// f(x) = (axx + bx + c) / (dxx + ex + f)
 	;
 
 coeffs_linear // 
-	:	'COEFFS'	a=A2LNUM b=A2LNUM
+	:	'COEFFS_LINEAR'	a=A2LNUM b=A2LNUM
 	;
 
 comparison_quantity
@@ -412,17 +415,13 @@ compu_method
 			ConversionType=COMPU_METHOD_CONVERSION_TYPE
 			Format=Formatstring
 			Unit=STRING
-			compu_method_optional*
+			(	coeffs
+			|	coeffs_linear
+			|	compu_tab_ref
+			|	formula
+			|	ref_unit
+			|	status_string_ref)*
 		End 'COMPU_METHOD'
-	;
-
-compu_method_optional
-	:	coeffs
-	|	coeffs_linear
-	|	compu_tab_ref
-	|	formula
-	|	ref_unit
-	|	status_string_ref
 	;
 
 COMPU_METHOD_CONVERSION_TYPE
@@ -438,17 +437,12 @@ COMPU_METHOD_CONVERSION_TYPE
 compu_tab
 	:	Begin 'COMPU_TAB'	Name=Ident
 			LongIdentifier=STRING
-			ConversionType=('TAB_INTP'|'TAB_NOINTP')
+			ConversionType=COMPU_METHOD_CONVERSION_TYPE
 			NumberValuePairs=A2LNUM
 			(A2LNUM A2LNUM)*?
-			compu_tab_optional*
+			(	default_value
+			|	default_value_numeric)*
 		End 'COMPU_TAB'
-	;
-
-
-compu_tab_optional
-	:	default_value
-	|	default_value_numeric
 	;
 
 compu_tab_ref
@@ -458,7 +452,7 @@ compu_tab_ref
 compu_vtab
 	:	Begin 'COMPU_VTAB' Name=Ident
 			LongIdentifier=STRING
-			ConversionType='TAB_VERB'
+			ConversionType=COMPU_METHOD_CONVERSION_TYPE
 			NumberValuePairs=A2LNUM
 			(A2LNUM STRING)*?
 			default_value?
@@ -660,22 +654,19 @@ frame_measurement
 
 function
 	:	Begin 'FUNCTION' Name=Ident
-			LongIdentifier=Ident
-			function_optional*
+			LongIdentifier=STRING
+			(	annotation
+			|	def_characteristic
+			|	function_version
+			|	if_data
+			|	in_measurement
+			|	loc_measurement
+			|	out_measurement
+			|	ref_characteristic
+			|	sub_function)*
 		End 'FUNCTION'
 	;
 
-function_optional
-	:	annotation
-	|	def_characteristic
-	|	function_version
-	|	if_data
-	|	in_measurement
-	|	loc_measurement
-	|	out_measurement
-	|	ref_characteristic
-	|	sub_function
-	;
 
 function_list
 	:	Begin 'FUNCTION_LIST'	Name=Ident
@@ -689,18 +680,14 @@ function_version
 group
 	:	Begin 'GROUP'	GroupName=Ident
 			GroupLongIdentifier=STRING
-			group_optional*
+			(	annotation
+			|	function_list
+			|	if_data
+			|	ref_characteristic
+			|	ref_measurement
+			|	root
+			|	sub_group)*
 		End 'GROUP'
-	;
-
-group_optional
-	:	annotation
-	|	function_list
-	|	if_data
-	|	ref_characteristic
-	|	ref_measurement
-	|	root
-	|	sub_group
 	;
 
 guard_rails
@@ -718,11 +705,16 @@ identification
 	:	'IDENTIFICATION'	Position=A2LNUM
 							DataType=DATATYPE
 	;
-
+/* 
 if_data
 	:	Begin 'IF_DATA'	Name=Ident
 			.*?
 		End 'IF_DATA'
+	;
+*/
+// if_data is skipped now
+if_data
+	:	'qnqmofnqmehqmbgq bgmusodgqhgoqnglmqsugqb:sguq'
 	;
 
 include
@@ -779,35 +771,31 @@ measurement
 			Accuracy=A2LNUM
 			LowerLimit=A2LNUM
 			UpperLimit=A2LNUM
-			measurement_optional*
+			(	annotation
+			|	array_size
+			|	bit_mask
+			|	bit_operation
+			|	byte_order
+			|	discrete
+			|	display_identifier
+			|	ecu_address
+			|	ecu_address_extension
+			|	error_mask
+			|	phormat
+			|	function_list
+			|	if_data
+			|	layout
+			|	matrix_dim
+			|	max_refresh
+			|	phys_unit
+			|	read_write
+			|	ref_memory_segment
+			|	symbol_link
+			|	virtual)*
 			
 		End 'MEASUREMENT'
 	;
 	
-measurement_optional
-	:	annotation
-	|	array_size
-	|	bit_mask
-	|	bit_operation
-	|	byte_order
-	|	discrete
-	|	display_identifier
-	|	ecu_address
-	|	ecu_address_extension
-	|	error_mask
-	|	phormat
-	|	function_list
-	|	if_data
-	|	layout
-	|	matrix_dim
-	|	max_refresh
-	|	phys_unit
-	|	read_write
-	|	ref_memory_segment
-	|	symbol_link
-	|	virtual
-	;
-
 memory_layout
 	:	Begin 'MEMORY_LAYOUT'
 			PrgType=('PRG_CODE'
@@ -848,73 +836,61 @@ memory_segment
 
 mod_common
 	:	Begin 'MOD_COMMON'	Comment=STRING
-			mod_common_optional*
+			(	alignment_byte
+			|	alignment_float32_ieee
+			|	alignment_float64_ieee
+			|	alignment_int64
+			|	alignment_long
+			|	alignment_word
+			|	byte_order
+			|	data_size
+			|	deposit)*
 		End 'MOD_COMMON'
-	;
-
-mod_common_optional
-	:	alignment_byte
-	|	alignment_A2LNUM32_ieee
-	|	alignment_A2LNUM64_ieee
-	|	alignment_A2LNUM64
-	|	alignment_long
-	|	alignment_word
-	|	byte_order
-	|	data_size
-	|	deposit
 	;
 
 mod_par
 	:	Begin 'MOD_PAR'	Comment=STRING
-			mod_par_optional*
+			(	addr_epk
+			|	calibration_method
+			|	cpu_type
+			|	customer
+			|	customer_no
+			|	ecu
+			|	ecu_calibration_offset
+			|	epk
+			|	memory_layout
+			|	memory_segment
+			|	no_of_A2LNUMerfaces
+			|	phone_no
+			|	supplier
+			|	system_constant
+			|	user
+			|	version)*
 		End 'MOD_PAR'
-	;
-
-mod_par_optional
-	:	addr_epk
-	|	calibration_method
-	|	cpu_type
-	|	customer
-	|	customer_no
-	|	ecu
-	|	ecu_calibration_offset
-	|	epk
-	|	memory_layout
-	|	memory_segment
-	|	no_of_A2LNUMerfaces
-	|	phone_no
-	|	supplier
-	|	system_constant
-	|	user
-	|	version
 	;
 
 module
 	:	Begin 'MODULE'	Name=Ident
 			LongIdentifier = STRING
-			a2ml?
-			module_optional*	
+			a2ml?	
+			(	axis_pts
+			|	characteristic
+			|	compu_method
+			|	compu_tab
+			|	compu_vtab
+			|	compu_vtab_range
+			|	frame
+			|	function
+			|	group
+			|	if_data
+			|	measurement
+			|	record_layout
+			|	unit
+			|	user_rights
+			|	mod_common
+			|	mod_par
+			|	variant_coding)*
 		End 'MODULE'
-	;
-
-module_optional
-	:	axis_pts
-	|	characteristic
-	|	compu_method
-	|	compu_tab
-	|	compu_vtab
-	|	compu_vtab_range
-	|	frame
-	|	function
-	|	group
-	|	if_data
-	|	measurement
-	|	record_layout
-	|	unit
-	|	user_rights
-	|	mod_common
-	|	mod_par
-	|	variant_coding
 	;
 
 monotony
@@ -1021,65 +997,62 @@ read_write
 
 record_layout
 	:	Begin 'RECORD_LAYOUT' Name=Ident
-			record_layout_optional*
+			(	alignment_byte
+			|	alignment_float32_ieee
+			|	alignment_float64_ieee
+			|	alignment_int64
+			|	alignment_long
+			|	alignment_word
+			|	axis_pts_x
+			|	axis_pts_y
+			|	axis_pts_z
+			|	axis_pts_4
+			|	axis_pts_5
+			|	axis_rescale_x
+			|	dist_op_x
+			|	dist_op_y
+			|	dist_op_z
+			|	dist_op_4
+			|	dist_op_5
+			|	fix_no_axis_pts_x
+			|	fix_no_axis_pts_y
+			|	fix_no_axis_pts_z
+			|	fix_no_axis_pts_4
+			|	fix_no_axis_pts_5
+			|	fnc_values
+			|	identification
+			|	no_axis_pts_x
+			|	no_axis_pts_y
+			|	no_axis_pts_z
+			|	no_axis_pts_4
+			|	no_axis_pts_5
+			|	no_rescale_x
+			|	offset_x
+			|	offset_y
+			|	offset_z
+			|	offset_4
+			|	offset_5
+			|	reserved
+			|	rip_addr_w
+			|	rip_addr_x
+			|	rip_addr_y
+			|	rip_addr_z
+			|	rip_addr_4
+			|	rip_addr_5
+			|	src_addr_x
+			|	src_addr_y
+			|	src_addr_z
+			|	src_addr_4
+			|	src_addr_5
+			|	shift_op_x
+			|	shift_op_y
+			|	shift_op_z
+			|	shift_op_4
+			|	shift_op_5
+			|	static_record_layout)*
 		End 'RECORD_LAYOUT'
 	;
 
-record_layout_optional
-	:	alignment_byte
-	|	alignment_A2LNUM32_ieee
-	|	alignment_A2LNUM64_ieee
-	|	alignment_A2LNUM64
-	|	alignment_long
-	|	alignment_word
-	|	axis_pts_x
-	|	axis_pts_y
-	|	axis_pts_z
-	|	axis_pts_4
-	|	axis_pts_5
-	|	axis_rescale_x
-	|	dist_op_x
-	|	dist_op_y
-	|	dist_op_z
-	|	dist_op_4
-	|	dist_op_5
-	|	fix_no_axis_pts_x
-	|	fix_no_axis_pts_y
-	|	fix_no_axis_pts_z
-	|	fix_no_axis_pts_4
-	|	fix_no_axis_pts_5
-	|	fnc_values
-	|	identification
-	|	no_axis_pts_x
-	|	no_axis_pts_y
-	|	no_axis_pts_z
-	|	no_axis_pts_4
-	|	no_axis_pts_5
-	|	no_rescale_x
-	|	offset_x
-	|	offset_y
-	|	offset_z
-	|	offset_4
-	|	offset_5
-	|	reserved
-	|	rip_addr_w
-	|	rip_addr_x
-	|	rip_addr_y
-	|	rip_addr_z
-	|	rip_addr_4
-	|	rip_addr_5
-	|	src_addr_x
-	|	src_addr_y
-	|	src_addr_z
-	|	src_addr_4
-	|	src_addr_5
-	|	shift_op_x
-	|	shift_op_y
-	|	shift_op_z
-	|	shift_op_4
-	|	shift_op_5
-	|	static_record_layout
-	;
 
 ref_characteristic
 	:	Begin 'REF_CHARACTERISTIC'	Ident*
@@ -1093,6 +1066,7 @@ ref_group
 
 ref_measurement
 	:	Begin 'REF_MEASUREMENT'	Ident*
+		End	'REF_MEASUREMENT'
 	;
 
 ref_memory_segment
@@ -1245,14 +1219,10 @@ unit
 			LongIdentifier=STRING
 			Display=STRING
 			Type=('DERIVED'|'EXTENDED_SI')
-			unit_optional*
+			(	ref_unit
+			|	si_exponents
+			|	unit_conversion)*
 		End 'UNIT'
-	;
-
-unit_optional
-	:	ref_unit
-	|	si_exponents
-	|	unit_conversion
 	;
 
 unit_conversion
@@ -1315,16 +1285,12 @@ var_separator
 
 variant_coding
 	:	Begin 'VARIANT_CODING'
-			variant_coding_optional*
+			(	var_characteristic
+			|	var_criterion
+			|	var_forbidden_comb
+			|	var_naming
+			|	var_separator)*
 		End 'VARIANT_CODING'
-	;
-
-variant_coding_optional
-	:	var_characteristic
-	|	var_criterion
-	|	var_forbidden_comb
-	|	var_naming
-	|	var_separator
 	;
 
 version
@@ -1345,6 +1311,13 @@ virtual_characteristic
 /* A2L grammar end */
 
 /* Lexer grammar begin */
+
+IF_DATA_BLOCK
+	:	'/begin' WS+ 'IF_DATA'
+			.*?
+		'/end' WS+ 'IF_DATA'
+		-> skip
+	;
 
 Begin	:	'/begin'	;
 End		:	'/end'		;
@@ -1431,11 +1404,9 @@ IDENTIFIER : PartIDENTIFIER ('.' IDENTIFIER)?
 ;
 
 fragment 
-PartIDENTIFIER	:	[a-zA-Z_] [a-zA-Z0-9_]* // ('[' [a-zA-Z0-9_]+ ']')? 
+PartIDENTIFIER	:	[a-zA-Z_] [a-zA-Z0-9_]* //('[' [a-zA-Z0-9_]+ ']')? 
 ;
 
-// bug here, char[256] in A2ML is detected as IDENTIFIER instead of member.
-// PartIDENTIFIER is patched, to let A2ML be parsed correctly.
 
 Formatstring
 	:	'"%' [0-9]* '.' [0-9]+ '"'

@@ -185,23 +185,23 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlignment_byte(A2LParser.Alignment_byteContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#alignment_A2LNUM32_ieee}.
+	 * Visit a parse tree produced by {@link A2LParser#alignment_float32_ieee}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAlignment_A2LNUM32_ieee(A2LParser.Alignment_A2LNUM32_ieeeContext ctx);
+	T visitAlignment_float32_ieee(A2LParser.Alignment_float32_ieeeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#alignment_A2LNUM64_ieee}.
+	 * Visit a parse tree produced by {@link A2LParser#alignment_float64_ieee}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAlignment_A2LNUM64_ieee(A2LParser.Alignment_A2LNUM64_ieeeContext ctx);
+	T visitAlignment_float64_ieee(A2LParser.Alignment_float64_ieeeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#alignment_A2LNUM64}.
+	 * Visit a parse tree produced by {@link A2LParser#alignment_int64}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAlignment_A2LNUM64(A2LParser.Alignment_A2LNUM64Context ctx);
+	T visitAlignment_int64(A2LParser.Alignment_int64Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#alignment_long}.
 	 * @param ctx the parse tree
@@ -262,12 +262,6 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAxis_pts(A2LParser.Axis_ptsContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link A2LParser#axis_pts_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAxis_pts_optional(A2LParser.Axis_pts_optionalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#axis_pts_ref}.
 	 * @param ctx the parse tree
@@ -359,12 +353,6 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCharacteristic(A2LParser.CharacteristicContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#characteristic_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCharacteristic_optional(A2LParser.Characteristic_optionalContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link A2LParser#coeffs}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -389,23 +377,11 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCompu_method(A2LParser.Compu_methodContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#compu_method_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCompu_method_optional(A2LParser.Compu_method_optionalContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link A2LParser#compu_tab}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCompu_tab(A2LParser.Compu_tabContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link A2LParser#compu_tab_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCompu_tab_optional(A2LParser.Compu_tab_optionalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#compu_tab_ref}.
 	 * @param ctx the parse tree
@@ -659,12 +635,6 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunction(A2LParser.FunctionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#function_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunction_optional(A2LParser.Function_optionalContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link A2LParser#function_list}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -682,12 +652,6 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitGroup(A2LParser.GroupContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link A2LParser#group_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGroup_optional(A2LParser.Group_optionalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#guard_rails}.
 	 * @param ctx the parse tree
@@ -773,12 +737,6 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMeasurement(A2LParser.MeasurementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#measurement_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMeasurement_optional(A2LParser.Measurement_optionalContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link A2LParser#memory_layout}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -797,35 +755,17 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMod_common(A2LParser.Mod_commonContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#mod_common_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMod_common_optional(A2LParser.Mod_common_optionalContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link A2LParser#mod_par}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMod_par(A2LParser.Mod_parContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#mod_par_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMod_par_optional(A2LParser.Mod_par_optionalContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link A2LParser#module}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitModule(A2LParser.ModuleContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link A2LParser#module_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitModule_optional(A2LParser.Module_optionalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#monotony}.
 	 * @param ctx the parse tree
@@ -958,12 +898,6 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitRecord_layout(A2LParser.Record_layoutContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link A2LParser#record_layout_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRecord_layout_optional(A2LParser.Record_layout_optionalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#ref_characteristic}.
 	 * @param ctx the parse tree
@@ -1175,12 +1109,6 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUnit(A2LParser.UnitContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#unit_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUnit_optional(A2LParser.Unit_optionalContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link A2LParser#unit_conversion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -1252,12 +1180,6 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVariant_coding(A2LParser.Variant_codingContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link A2LParser#variant_coding_optional}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariant_coding_optional(A2LParser.Variant_coding_optionalContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#version}.
 	 * @param ctx the parse tree

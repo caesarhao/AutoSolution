@@ -9,6 +9,131 @@ else:
 
 class A2LVisitor(ParseTreeVisitor):
 
+    # Visit a parse tree produced by A2LParser#a2ml.
+    def visitA2ml(self, ctx:A2LParser.A2mlContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#declaration.
+    def visitDeclaration(self, ctx:A2LParser.DeclarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#type_definition.
+    def visitType_definition(self, ctx:A2LParser.Type_definitionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#type_name.
+    def visitType_name(self, ctx:A2LParser.Type_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#predefined_type_name.
+    def visitPredefined_type_name(self, ctx:A2LParser.Predefined_type_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#block_definition.
+    def visitBlock_definition(self, ctx:A2LParser.Block_definitionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#enum_type_name.
+    def visitEnum_type_name(self, ctx:A2LParser.Enum_type_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#enumerator_list.
+    def visitEnumerator_list(self, ctx:A2LParser.Enumerator_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#enumerator.
+    def visitEnumerator(self, ctx:A2LParser.EnumeratorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#struct_type_name.
+    def visitStruct_type_name(self, ctx:A2LParser.Struct_type_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#struct_member_list.
+    def visitStruct_member_list(self, ctx:A2LParser.Struct_member_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#struct_member.
+    def visitStruct_member(self, ctx:A2LParser.Struct_memberContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#member.
+    def visitMember(self, ctx:A2LParser.MemberContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#array_specifier.
+    def visitArray_specifier(self, ctx:A2LParser.Array_specifierContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#taggedstruct_type_name.
+    def visitTaggedstruct_type_name(self, ctx:A2LParser.Taggedstruct_type_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#taggedstruct_member_list.
+    def visitTaggedstruct_member_list(self, ctx:A2LParser.Taggedstruct_member_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#taggedstruct_member.
+    def visitTaggedstruct_member(self, ctx:A2LParser.Taggedstruct_memberContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#taggedstruct_definition.
+    def visitTaggedstruct_definition(self, ctx:A2LParser.Taggedstruct_definitionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#taggedunion_type_name.
+    def visitTaggedunion_type_name(self, ctx:A2LParser.Taggedunion_type_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#taggedunion_member_list.
+    def visitTaggedunion_member_list(self, ctx:A2LParser.Taggedunion_member_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#tagged_union_member.
+    def visitTagged_union_member(self, ctx:A2LParser.Tagged_union_memberContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#identifier.
+    def visitIdentifier(self, ctx:A2LParser.IdentifierContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#tag.
+    def visitTag(self, ctx:A2LParser.TagContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#keyword.
+    def visitKeyword(self, ctx:A2LParser.KeywordContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#constant.
+    def visitConstant(self, ctx:A2LParser.ConstantContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by A2LParser#a2l.
     def visitA2l(self, ctx:A2LParser.A2lContext):
         return self.visitChildren(ctx)
@@ -94,11 +219,6 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#axis_pts_optional.
-    def visitAxis_pts_optional(self, ctx:A2LParser.Axis_pts_optionalContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by A2LParser#axis_pts_ref.
     def visitAxis_pts_ref(self, ctx:A2LParser.Axis_pts_refContext):
         return self.visitChildren(ctx)
@@ -174,11 +294,6 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#characteristic_optional.
-    def visitCharacteristic_optional(self, ctx:A2LParser.Characteristic_optionalContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by A2LParser#coeffs.
     def visitCoeffs(self, ctx:A2LParser.CoeffsContext):
         return self.visitChildren(ctx)
@@ -199,18 +314,8 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#compu_method_optional.
-    def visitCompu_method_optional(self, ctx:A2LParser.Compu_method_optionalContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by A2LParser#compu_tab.
     def visitCompu_tab(self, ctx:A2LParser.Compu_tabContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by A2LParser#compu_tab_optional.
-    def visitCompu_tab_optional(self, ctx:A2LParser.Compu_tab_optionalContext):
         return self.visitChildren(ctx)
 
 
@@ -424,11 +529,6 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#function_optional.
-    def visitFunction_optional(self, ctx:A2LParser.Function_optionalContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by A2LParser#function_list.
     def visitFunction_list(self, ctx:A2LParser.Function_listContext):
         return self.visitChildren(ctx)
@@ -441,11 +541,6 @@ class A2LVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by A2LParser#group.
     def visitGroup(self, ctx:A2LParser.GroupContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by A2LParser#group_optional.
-    def visitGroup_optional(self, ctx:A2LParser.Group_optionalContext):
         return self.visitChildren(ctx)
 
 
@@ -519,11 +614,6 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#measurement_optional.
-    def visitMeasurement_optional(self, ctx:A2LParser.Measurement_optionalContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by A2LParser#memory_layout.
     def visitMemory_layout(self, ctx:A2LParser.Memory_layoutContext):
         return self.visitChildren(ctx)
@@ -539,18 +629,8 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#mod_common_optional.
-    def visitMod_common_optional(self, ctx:A2LParser.Mod_common_optionalContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by A2LParser#mod_par.
     def visitMod_par(self, ctx:A2LParser.Mod_parContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by A2LParser#mod_par_optional.
-    def visitMod_par_optional(self, ctx:A2LParser.Mod_par_optionalContext):
         return self.visitChildren(ctx)
 
 
@@ -589,8 +669,8 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#no_of_interfaces.
-    def visitNo_of_interfaces(self, ctx:A2LParser.No_of_interfacesContext):
+    # Visit a parse tree produced by A2LParser#no_of_A2LNUMerfaces.
+    def visitNo_of_A2LNUMerfaces(self, ctx:A2LParser.No_of_A2LNUMerfacesContext):
         return self.visitChildren(ctx)
 
 
@@ -666,11 +746,6 @@ class A2LVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by A2LParser#record_layout.
     def visitRecord_layout(self, ctx:A2LParser.Record_layoutContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by A2LParser#record_layout_optional.
-    def visitRecord_layout_optional(self, ctx:A2LParser.Record_layout_optionalContext):
         return self.visitChildren(ctx)
 
 
@@ -849,11 +924,6 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#unit_optional.
-    def visitUnit_optional(self, ctx:A2LParser.Unit_optionalContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by A2LParser#unit_conversion.
     def visitUnit_conversion(self, ctx:A2LParser.Unit_conversionContext):
         return self.visitChildren(ctx)
@@ -914,11 +984,6 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#variant_coding_optional.
-    def visitVariant_coding_optional(self, ctx:A2LParser.Variant_coding_optionalContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by A2LParser#version.
     def visitVersion(self, ctx:A2LParser.VersionContext):
         return self.visitChildren(ctx)
@@ -931,11 +996,6 @@ class A2LVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by A2LParser#virtual_characteristic.
     def visitVirtual_characteristic(self, ctx:A2LParser.Virtual_characteristicContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by A2LParser#a2ml.
-    def visitA2ml(self, ctx:A2LParser.A2mlContext):
         return self.visitChildren(ctx)
 
 

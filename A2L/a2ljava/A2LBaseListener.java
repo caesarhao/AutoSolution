@@ -364,37 +364,37 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAlignment_A2LNUM32_ieee(A2LParser.Alignment_A2LNUM32_ieeeContext ctx) { }
+	@Override public void enterAlignment_float32_ieee(A2LParser.Alignment_float32_ieeeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAlignment_A2LNUM32_ieee(A2LParser.Alignment_A2LNUM32_ieeeContext ctx) { }
+	@Override public void exitAlignment_float32_ieee(A2LParser.Alignment_float32_ieeeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAlignment_A2LNUM64_ieee(A2LParser.Alignment_A2LNUM64_ieeeContext ctx) { }
+	@Override public void enterAlignment_float64_ieee(A2LParser.Alignment_float64_ieeeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAlignment_A2LNUM64_ieee(A2LParser.Alignment_A2LNUM64_ieeeContext ctx) { }
+	@Override public void exitAlignment_float64_ieee(A2LParser.Alignment_float64_ieeeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAlignment_A2LNUM64(A2LParser.Alignment_A2LNUM64Context ctx) { }
+	@Override public void enterAlignment_int64(A2LParser.Alignment_int64Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAlignment_A2LNUM64(A2LParser.Alignment_A2LNUM64Context ctx) { }
+	@Override public void exitAlignment_int64(A2LParser.Alignment_int64Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -515,18 +515,6 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAxis_pts(A2LParser.Axis_ptsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAxis_pts_optional(A2LParser.Axis_pts_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAxis_pts_optional(A2LParser.Axis_pts_optionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -712,18 +700,6 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCharacteristic_optional(A2LParser.Characteristic_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCharacteristic_optional(A2LParser.Characteristic_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCoeffs(A2LParser.CoeffsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -772,18 +748,6 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCompu_method_optional(A2LParser.Compu_method_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCompu_method_optional(A2LParser.Compu_method_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCompu_tab(A2LParser.Compu_tabContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -791,18 +755,6 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCompu_tab(A2LParser.Compu_tabContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCompu_tab_optional(A2LParser.Compu_tab_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCompu_tab_optional(A2LParser.Compu_tab_optionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1312,18 +1264,6 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction_optional(A2LParser.Function_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFunction_optional(A2LParser.Function_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterFunction_list(A2LParser.Function_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1355,18 +1295,6 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitGroup(A2LParser.GroupContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGroup_optional(A2LParser.Group_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGroup_optional(A2LParser.Group_optionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1540,18 +1468,6 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMeasurement_optional(A2LParser.Measurement_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMeasurement_optional(A2LParser.Measurement_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterMemory_layout(A2LParser.Memory_layoutContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1588,18 +1504,6 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMod_common_optional(A2LParser.Mod_common_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMod_common_optional(A2LParser.Mod_common_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterMod_par(A2LParser.Mod_parContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1612,18 +1516,6 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMod_par_optional(A2LParser.Mod_par_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMod_par_optional(A2LParser.Mod_par_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterModule(A2LParser.ModuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1631,18 +1523,6 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitModule(A2LParser.ModuleContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterModule_optional(A2LParser.Module_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitModule_optional(A2LParser.Module_optionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1907,18 +1787,6 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRecord_layout(A2LParser.Record_layoutContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRecord_layout_optional(A2LParser.Record_layout_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRecord_layout_optional(A2LParser.Record_layout_optionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2344,18 +2212,6 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnit_optional(A2LParser.Unit_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUnit_optional(A2LParser.Unit_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterUnit_conversion(A2LParser.Unit_conversionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -2495,18 +2351,6 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVariant_coding(A2LParser.Variant_codingContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterVariant_coding_optional(A2LParser.Variant_coding_optionalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitVariant_coding_optional(A2LParser.Variant_coding_optionalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

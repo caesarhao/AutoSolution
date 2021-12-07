@@ -298,35 +298,35 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitAlignment_byte(A2LParser.Alignment_byteContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#alignment_A2LNUM32_ieee}.
+	 * Enter a parse tree produced by {@link A2LParser#alignment_float32_ieee}.
 	 * @param ctx the parse tree
 	 */
-	void enterAlignment_A2LNUM32_ieee(A2LParser.Alignment_A2LNUM32_ieeeContext ctx);
+	void enterAlignment_float32_ieee(A2LParser.Alignment_float32_ieeeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link A2LParser#alignment_A2LNUM32_ieee}.
+	 * Exit a parse tree produced by {@link A2LParser#alignment_float32_ieee}.
 	 * @param ctx the parse tree
 	 */
-	void exitAlignment_A2LNUM32_ieee(A2LParser.Alignment_A2LNUM32_ieeeContext ctx);
+	void exitAlignment_float32_ieee(A2LParser.Alignment_float32_ieeeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#alignment_A2LNUM64_ieee}.
+	 * Enter a parse tree produced by {@link A2LParser#alignment_float64_ieee}.
 	 * @param ctx the parse tree
 	 */
-	void enterAlignment_A2LNUM64_ieee(A2LParser.Alignment_A2LNUM64_ieeeContext ctx);
+	void enterAlignment_float64_ieee(A2LParser.Alignment_float64_ieeeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link A2LParser#alignment_A2LNUM64_ieee}.
+	 * Exit a parse tree produced by {@link A2LParser#alignment_float64_ieee}.
 	 * @param ctx the parse tree
 	 */
-	void exitAlignment_A2LNUM64_ieee(A2LParser.Alignment_A2LNUM64_ieeeContext ctx);
+	void exitAlignment_float64_ieee(A2LParser.Alignment_float64_ieeeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#alignment_A2LNUM64}.
+	 * Enter a parse tree produced by {@link A2LParser#alignment_int64}.
 	 * @param ctx the parse tree
 	 */
-	void enterAlignment_A2LNUM64(A2LParser.Alignment_A2LNUM64Context ctx);
+	void enterAlignment_int64(A2LParser.Alignment_int64Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link A2LParser#alignment_A2LNUM64}.
+	 * Exit a parse tree produced by {@link A2LParser#alignment_int64}.
 	 * @param ctx the parse tree
 	 */
-	void exitAlignment_A2LNUM64(A2LParser.Alignment_A2LNUM64Context ctx);
+	void exitAlignment_int64(A2LParser.Alignment_int64Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#alignment_long}.
 	 * @param ctx the parse tree
@@ -427,16 +427,6 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAxis_pts(A2LParser.Axis_ptsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#axis_pts_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterAxis_pts_optional(A2LParser.Axis_pts_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#axis_pts_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitAxis_pts_optional(A2LParser.Axis_pts_optionalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#axis_pts_ref}.
 	 * @param ctx the parse tree
@@ -588,16 +578,6 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitCharacteristic(A2LParser.CharacteristicContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#characteristic_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterCharacteristic_optional(A2LParser.Characteristic_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#characteristic_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitCharacteristic_optional(A2LParser.Characteristic_optionalContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link A2LParser#coeffs}.
 	 * @param ctx the parse tree
 	 */
@@ -638,16 +618,6 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitCompu_method(A2LParser.Compu_methodContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#compu_method_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterCompu_method_optional(A2LParser.Compu_method_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#compu_method_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitCompu_method_optional(A2LParser.Compu_method_optionalContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link A2LParser#compu_tab}.
 	 * @param ctx the parse tree
 	 */
@@ -657,16 +627,6 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCompu_tab(A2LParser.Compu_tabContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#compu_tab_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterCompu_tab_optional(A2LParser.Compu_tab_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#compu_tab_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitCompu_tab_optional(A2LParser.Compu_tab_optionalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#compu_tab_ref}.
 	 * @param ctx the parse tree
@@ -1088,16 +1048,6 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitFunction(A2LParser.FunctionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#function_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunction_optional(A2LParser.Function_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#function_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunction_optional(A2LParser.Function_optionalContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link A2LParser#function_list}.
 	 * @param ctx the parse tree
 	 */
@@ -1127,16 +1077,6 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitGroup(A2LParser.GroupContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#group_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterGroup_optional(A2LParser.Group_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#group_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitGroup_optional(A2LParser.Group_optionalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#guard_rails}.
 	 * @param ctx the parse tree
@@ -1278,16 +1218,6 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitMeasurement(A2LParser.MeasurementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#measurement_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterMeasurement_optional(A2LParser.Measurement_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#measurement_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitMeasurement_optional(A2LParser.Measurement_optionalContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link A2LParser#memory_layout}.
 	 * @param ctx the parse tree
 	 */
@@ -1318,16 +1248,6 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitMod_common(A2LParser.Mod_commonContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#mod_common_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterMod_common_optional(A2LParser.Mod_common_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#mod_common_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitMod_common_optional(A2LParser.Mod_common_optionalContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link A2LParser#mod_par}.
 	 * @param ctx the parse tree
 	 */
@@ -1338,16 +1258,6 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitMod_par(A2LParser.Mod_parContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#mod_par_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterMod_par_optional(A2LParser.Mod_par_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#mod_par_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitMod_par_optional(A2LParser.Mod_par_optionalContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link A2LParser#module}.
 	 * @param ctx the parse tree
 	 */
@@ -1357,16 +1267,6 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitModule(A2LParser.ModuleContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#module_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterModule_optional(A2LParser.Module_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#module_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitModule_optional(A2LParser.Module_optionalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#monotony}.
 	 * @param ctx the parse tree
@@ -1587,16 +1487,6 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRecord_layout(A2LParser.Record_layoutContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#record_layout_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterRecord_layout_optional(A2LParser.Record_layout_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#record_layout_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitRecord_layout_optional(A2LParser.Record_layout_optionalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#ref_characteristic}.
 	 * @param ctx the parse tree
@@ -1948,16 +1838,6 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitUnit(A2LParser.UnitContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#unit_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnit_optional(A2LParser.Unit_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#unit_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnit_optional(A2LParser.Unit_optionalContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link A2LParser#unit_conversion}.
 	 * @param ctx the parse tree
 	 */
@@ -2077,16 +1957,6 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariant_coding(A2LParser.Variant_codingContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link A2LParser#variant_coding_optional}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariant_coding_optional(A2LParser.Variant_coding_optionalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link A2LParser#variant_coding_optional}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariant_coding_optional(A2LParser.Variant_coding_optionalContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#version}.
 	 * @param ctx the parse tree
