@@ -140,8 +140,8 @@ public partial class AMLParser : Parser {
 	public A2mlContext a2ml() {
 		A2mlContext _localctx = new A2mlContext(Context, State);
 		EnterRule(_localctx, 0, RULE_a2ml);
+		int _la;
 		try {
-			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 50;
@@ -150,19 +150,17 @@ public partial class AMLParser : Parser {
 			Match(T__0);
 			State = 55;
 			ErrorHandler.Sync(this);
-			_alt = Interpreter.AdaptivePredict(TokenStream,0,Context);
-			while ( _alt!=1 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1+1 ) {
-					{
-					{
-					State = 52;
-					declaration();
-					}
-					} 
+			_la = TokenStream.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__16) | (1L << T__19) | (1L << T__22))) != 0)) {
+				{
+				{
+				State = 52;
+				declaration();
+				}
 				}
 				State = 57;
 				ErrorHandler.Sync(this);
-				_alt = Interpreter.AdaptivePredict(TokenStream,0,Context);
+				_la = TokenStream.LA(1);
 			}
 			State = 58;
 			Match(End);
@@ -1878,15 +1876,15 @@ public partial class AMLParser : Parser {
 		'\x3', '\x16', '\x3', '\x16', '\x3', '\x16', '\x3', '\x16', '\x3', '\x16', 
 		'\x5', '\x16', '\xD1', '\n', '\x16', '\x3', '\x17', '\x3', '\x17', '\x3', 
 		'\x18', '\x3', '\x18', '\x3', '\x19', '\x3', '\x19', '\x3', '\x1A', '\x3', 
-		'\x1A', '\x3', '\x1A', '\x3', '\x39', '\x2', '\x1B', '\x2', '\x4', '\x6', 
-		'\b', '\n', '\f', '\xE', '\x10', '\x12', '\x14', '\x16', '\x18', '\x1A', 
-		'\x1C', '\x1E', ' ', '\"', '$', '&', '(', '*', ',', '.', '\x30', '\x32', 
-		'\x2', '\x3', '\x3', '\x2', '\x5', '\f', '\x2', '\xE0', '\x2', '\x34', 
-		'\x3', '\x2', '\x2', '\x2', '\x4', '\x45', '\x3', '\x2', '\x2', '\x2', 
-		'\x6', 'G', '\x3', '\x2', '\x2', '\x2', '\b', 'N', '\x3', '\x2', '\x2', 
-		'\x2', '\n', 'P', '\x3', '\x2', '\x2', '\x2', '\f', 'R', '\x3', '\x2', 
-		'\x2', '\x2', '\xE', '`', '\x3', '\x2', '\x2', '\x2', '\x10', '\x62', 
-		'\x3', '\x2', '\x2', '\x2', '\x12', 'g', '\x3', '\x2', '\x2', '\x2', '\x14', 
+		'\x1A', '\x3', '\x1A', '\x2', '\x2', '\x1B', '\x2', '\x4', '\x6', '\b', 
+		'\n', '\f', '\xE', '\x10', '\x12', '\x14', '\x16', '\x18', '\x1A', '\x1C', 
+		'\x1E', ' ', '\"', '$', '&', '(', '*', ',', '.', '\x30', '\x32', '\x2', 
+		'\x3', '\x3', '\x2', '\x5', '\f', '\x2', '\xE0', '\x2', '\x34', '\x3', 
+		'\x2', '\x2', '\x2', '\x4', '\x45', '\x3', '\x2', '\x2', '\x2', '\x6', 
+		'G', '\x3', '\x2', '\x2', '\x2', '\b', 'N', '\x3', '\x2', '\x2', '\x2', 
+		'\n', 'P', '\x3', '\x2', '\x2', '\x2', '\f', 'R', '\x3', '\x2', '\x2', 
+		'\x2', '\xE', '`', '\x3', '\x2', '\x2', '\x2', '\x10', '\x62', '\x3', 
+		'\x2', '\x2', '\x2', '\x12', 'g', '\x3', '\x2', '\x2', '\x2', '\x14', 
 		'w', '\x3', '\x2', '\x2', '\x2', '\x16', 'y', '\x3', '\x2', '\x2', '\x2', 
 		'\x18', '}', '\x3', '\x2', '\x2', '\x2', '\x1A', '\x80', '\x3', '\x2', 
 		'\x2', '\x2', '\x1C', '\x84', '\x3', '\x2', '\x2', '\x2', '\x1E', '\x95', 
@@ -1899,7 +1897,7 @@ public partial class AMLParser : Parser {
 		'\x2', '\x34', '\x35', '\a', '\x1A', '\x2', '\x2', '\x35', '\x39', '\a', 
 		'\x3', '\x2', '\x2', '\x36', '\x38', '\x5', '\x4', '\x3', '\x2', '\x37', 
 		'\x36', '\x3', '\x2', '\x2', '\x2', '\x38', ';', '\x3', '\x2', '\x2', 
-		'\x2', '\x39', ':', '\x3', '\x2', '\x2', '\x2', '\x39', '\x37', '\x3', 
+		'\x2', '\x39', '\x37', '\x3', '\x2', '\x2', '\x2', '\x39', ':', '\x3', 
 		'\x2', '\x2', '\x2', ':', '<', '\x3', '\x2', '\x2', '\x2', ';', '\x39', 
 		'\x3', '\x2', '\x2', '\x2', '<', '=', '\a', '\x1B', '\x2', '\x2', '=', 
 		'>', '\a', '\x3', '\x2', '\x2', '>', '\x3', '\x3', '\x2', '\x2', '\x2', 

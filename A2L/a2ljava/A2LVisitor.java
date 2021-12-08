@@ -599,11 +599,11 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFnc_values(A2LParser.Fnc_valuesContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#phormat}.
+	 * Visit a parse tree produced by {@link A2LParser#formate}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPhormat(A2LParser.PhormatContext ctx);
+	T visitFormate(A2LParser.FormateContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#formula}.
 	 * @param ctx the parse tree

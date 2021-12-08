@@ -703,7 +703,7 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPhormat(A2LParser.PhormatContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFormate(A2LParser.FormateContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

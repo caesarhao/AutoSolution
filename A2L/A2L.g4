@@ -4,7 +4,7 @@ grammar A2L;
 
 a2ml
 	:	Begin 'A2ML'
-			declaration*?
+			declaration*
 		End 'A2ML'
 	;
 
@@ -176,7 +176,7 @@ annotation_origin
 
 annotation_text
 	:	Begin 'ANNOTATION_TEXT'
-			STRING*?
+			STRING*
 		End	'ANNOTATION_TEXT'
 	;
 
@@ -196,21 +196,21 @@ axis_descr
 			MaxAxisPoA2LNUMs=A2LNUM
 			LowerLimit=A2LNUM
 			UpperLimit=A2LNUM
-			annotation*
-			axis_pts_ref?
-			byte_order?
-			curve_axis_ref?
-			deposit?
-			extended_limits?
-			fix_axis_par?
-			fix_axis_par_dist?
-			fix_axis_par_list?
-			phormat?
-			max_grad?
-			monotony?
-			phys_unit?
-			read_only?
-			step_size?
+				(annotation
+			|	axis_pts_ref
+			|	byte_order
+			|	curve_axis_ref
+			|	deposit
+			|	extended_limits
+			|	fix_axis_par
+			|	fix_axis_par_dist
+			|	fix_axis_par_list
+			|	formate
+			|	max_grad
+			|	monotony
+			|	phys_unit
+			|	read_only
+			|	step_size)*
 		End	'AXIS_DESCR'
 	;
 
@@ -240,7 +240,7 @@ axis_pts
 			|	display_identifier
 			|	ecu_address_extension
 			|	extended_limits
-			|	phormat
+			|	formate
 			|	function_list
 			|	guard_rails
 			|	if_data
@@ -367,7 +367,7 @@ characteristic
 			|	display_identifier
 			|	ecu_address_extension
 			|	extended_limits
-			|	phormat
+			|	formate
 			|	function_list
 			|	guard_rails
 			|	if_data
@@ -624,7 +624,7 @@ fnc_values
 						AddressType=ADDRTYPE
 	;
 
-phormat
+formate
 	:	'FORMAT'	Formatstring
 	;
 
@@ -781,7 +781,7 @@ measurement
 			|	ecu_address
 			|	ecu_address_extension
 			|	error_mask
-			|	phormat
+			|	formate
 			|	function_list
 			|	if_data
 			|	layout

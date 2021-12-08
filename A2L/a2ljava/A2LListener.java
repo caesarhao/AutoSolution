@@ -988,15 +988,15 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitFnc_values(A2LParser.Fnc_valuesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#phormat}.
+	 * Enter a parse tree produced by {@link A2LParser#formate}.
 	 * @param ctx the parse tree
 	 */
-	void enterPhormat(A2LParser.PhormatContext ctx);
+	void enterFormate(A2LParser.FormateContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link A2LParser#phormat}.
+	 * Exit a parse tree produced by {@link A2LParser#formate}.
 	 * @param ctx the parse tree
 	 */
-	void exitPhormat(A2LParser.PhormatContext ctx);
+	void exitFormate(A2LParser.FormateContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#formula}.
 	 * @param ctx the parse tree

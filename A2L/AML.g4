@@ -2,7 +2,7 @@ grammar AML;
 
 a2ml
 	:	Begin 'A2ML'
-			declaration*?
+			declaration*
 		End 'A2ML'
 	;
 

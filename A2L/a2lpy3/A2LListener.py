@@ -890,12 +890,12 @@ class A2LListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by A2LParser#phormat.
-    def enterPhormat(self, ctx:A2LParser.PhormatContext):
+    # Enter a parse tree produced by A2LParser#formate.
+    def enterFormate(self, ctx:A2LParser.FormateContext):
         pass
 
-    # Exit a parse tree produced by A2LParser#phormat.
-    def exitPhormat(self, ctx:A2LParser.PhormatContext):
+    # Exit a parse tree produced by A2LParser#formate.
+    def exitFormate(self, ctx:A2LParser.FormateContext):
         pass
 
 

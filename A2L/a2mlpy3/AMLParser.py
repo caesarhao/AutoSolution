@@ -32,7 +32,7 @@ def serializedATN():
         buf.write("\3\24\5\24\u00bd\n\24\3\24\3\24\3\24\5\24\u00c2\n\24\3")
         buf.write("\25\3\25\5\25\u00c6\n\25\3\26\3\26\5\26\u00ca\n\26\3\26")
         buf.write("\3\26\3\26\3\26\3\26\5\26\u00d1\n\26\3\27\3\27\3\30\3")
-        buf.write("\30\3\31\3\31\3\32\3\32\3\32\39\2\33\2\4\6\b\n\f\16\20")
+        buf.write("\30\3\31\3\31\3\32\3\32\3\32\2\2\33\2\4\6\b\n\f\16\20")
         buf.write("\22\24\26\30\32\34\36 \"$&(*,.\60\62\2\3\3\2\5\f\2\u00e0")
         buf.write("\2\64\3\2\2\2\4E\3\2\2\2\6G\3\2\2\2\bN\3\2\2\2\nP\3\2")
         buf.write("\2\2\fR\3\2\2\2\16`\3\2\2\2\20b\3\2\2\2\22g\3\2\2\2\24")
@@ -41,7 +41,7 @@ def serializedATN():
         buf.write("\3\2\2\2$\u00b4\3\2\2\2&\u00c1\3\2\2\2(\u00c3\3\2\2\2")
         buf.write("*\u00d0\3\2\2\2,\u00d2\3\2\2\2.\u00d4\3\2\2\2\60\u00d6")
         buf.write("\3\2\2\2\62\u00d8\3\2\2\2\64\65\7\32\2\2\659\7\3\2\2\66")
-        buf.write("8\5\4\3\2\67\66\3\2\2\28;\3\2\2\29:\3\2\2\29\67\3\2\2")
+        buf.write("8\5\4\3\2\67\66\3\2\2\28;\3\2\2\29\67\3\2\2\29:\3\2\2")
         buf.write("\2:<\3\2\2\2;9\3\2\2\2<=\7\33\2\2=>\7\3\2\2>\3\3\2\2\2")
         buf.write("?@\5\6\4\2@A\7\4\2\2AF\3\2\2\2BC\5\f\7\2CD\7\4\2\2DF\3")
         buf.write("\2\2\2E?\3\2\2\2EB\3\2\2\2F\5\3\2\2\2GH\5\b\5\2H\7\3\2")
@@ -250,6 +250,7 @@ class AMLParser ( Parser ):
 
         localctx = AMLParser.A2mlContext(self, self._ctx, self.state)
         self.enterRule(localctx, 0, self.RULE_a2ml)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 50
@@ -258,14 +259,13 @@ class AMLParser ( Parser ):
             self.match(AMLParser.T__0)
             self.state = 55
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,0,self._ctx)
-            while _alt!=1 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1+1:
-                    self.state = 52
-                    self.declaration() 
+            _la = self._input.LA(1)
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << AMLParser.T__2) | (1 << AMLParser.T__3) | (1 << AMLParser.T__4) | (1 << AMLParser.T__5) | (1 << AMLParser.T__6) | (1 << AMLParser.T__7) | (1 << AMLParser.T__8) | (1 << AMLParser.T__9) | (1 << AMLParser.T__10) | (1 << AMLParser.T__11) | (1 << AMLParser.T__16) | (1 << AMLParser.T__19) | (1 << AMLParser.T__22))) != 0):
+                self.state = 52
+                self.declaration()
                 self.state = 57
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,0,self._ctx)
+                _la = self._input.LA(1)
 
             self.state = 58
             self.match(AMLParser.End)

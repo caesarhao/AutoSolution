@@ -499,8 +499,8 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#phormat.
-    def visitPhormat(self, ctx:A2LParser.PhormatContext):
+    # Visit a parse tree produced by A2LParser#formate.
+    def visitFormate(self, ctx:A2LParser.FormateContext):
         return self.visitChildren(ctx)
 
 
