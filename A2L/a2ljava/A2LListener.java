@@ -298,6 +298,16 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitAlignment_byte(A2LParser.Alignment_byteContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#alignment_float16_ieee}.
+	 * @param ctx the parse tree
+	 */
+	void enterAlignment_float16_ieee(A2LParser.Alignment_float16_ieeeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#alignment_float16_ieee}.
+	 * @param ctx the parse tree
+	 */
+	void exitAlignment_float16_ieee(A2LParser.Alignment_float16_ieeeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#alignment_float32_ieee}.
 	 * @param ctx the parse tree
 	 */
@@ -517,6 +527,16 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBit_operation(A2LParser.Bit_operationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#blob}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlob(A2LParser.BlobContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#blob}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlob(A2LParser.BlobContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#byte_order}.
 	 * @param ctx the parse tree
@@ -867,6 +887,16 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitEcu_calibration_offset(A2LParser.Ecu_calibration_offsetContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#encoding}.
+	 * @param ctx the parse tree
+	 */
+	void enterEncoding(A2LParser.EncodingContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#encoding}.
+	 * @param ctx the parse tree
+	 */
+	void exitEncoding(A2LParser.EncodingContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#epk}.
 	 * @param ctx the parse tree
@@ -1328,15 +1358,15 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitNo_axis_pts_5(A2LParser.No_axis_pts_5Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link A2LParser#no_of_A2LNUMerfaces}.
+	 * Enter a parse tree produced by {@link A2LParser#no_of_interfaces}.
 	 * @param ctx the parse tree
 	 */
-	void enterNo_of_A2LNUMerfaces(A2LParser.No_of_A2LNUMerfacesContext ctx);
+	void enterNo_of_interfaces(A2LParser.No_of_interfacesContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link A2LParser#no_of_A2LNUMerfaces}.
+	 * Exit a parse tree produced by {@link A2LParser#no_of_interfaces}.
 	 * @param ctx the parse tree
 	 */
-	void exitNo_of_A2LNUMerfaces(A2LParser.No_of_A2LNUMerfacesContext ctx);
+	void exitNo_of_interfaces(A2LParser.No_of_interfacesContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#no_rescale_x}.
 	 * @param ctx the parse tree
@@ -1827,6 +1857,16 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSystem_constant(A2LParser.System_constantContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#typedef_characteristic}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypedef_characteristic(A2LParser.Typedef_characteristicContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#typedef_characteristic}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypedef_characteristic(A2LParser.Typedef_characteristicContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#unit}.
 	 * @param ctx the parse tree

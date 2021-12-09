@@ -185,6 +185,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAlignment_byte(A2LParser.Alignment_byteContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link A2LParser#alignment_float16_ieee}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlignment_float16_ieee(A2LParser.Alignment_float16_ieeeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link A2LParser#alignment_float32_ieee}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -316,6 +322,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBit_operation(A2LParser.Bit_operationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#blob}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlob(A2LParser.BlobContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#byte_order}.
 	 * @param ctx the parse tree
@@ -526,6 +538,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitEcu_calibration_offset(A2LParser.Ecu_calibration_offsetContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#encoding}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEncoding(A2LParser.EncodingContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#epk}.
 	 * @param ctx the parse tree
@@ -803,11 +821,11 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNo_axis_pts_5(A2LParser.No_axis_pts_5Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link A2LParser#no_of_A2LNUMerfaces}.
+	 * Visit a parse tree produced by {@link A2LParser#no_of_interfaces}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNo_of_A2LNUMerfaces(A2LParser.No_of_A2LNUMerfacesContext ctx);
+	T visitNo_of_interfaces(A2LParser.No_of_interfacesContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#no_rescale_x}.
 	 * @param ctx the parse tree
@@ -1102,6 +1120,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSystem_constant(A2LParser.System_constantContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#typedef_characteristic}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedef_characteristic(A2LParser.Typedef_characteristicContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#unit}.
 	 * @param ctx the parse tree

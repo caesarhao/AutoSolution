@@ -1,7 +1,9 @@
 grammar A2L;
 
 /* A2ML grammar begin */
-
+/* The A2ML block only describes the syntax of communication parameters. */
+/* The actual parameter values are given in the IF_DATA blocks. 
+The values in the IF_DATA blocks must match the syntax description of the A2ML block. */
 a2ml
 	:	Begin 'A2ML'
 			declaration*
@@ -113,6 +115,7 @@ keyword
 	:	STRING
 	;
 
+/* constant is really uint32 */
 constant
 	:	A2LNUM
 	;
@@ -136,6 +139,10 @@ addr_epk
 
 alignment_byte
 	:	'ALIGNMENT_BYTE'	AlignmentBorder=A2LNUM
+	;
+
+alignment_float16_ieee
+	:	'ALIGNMENT_FLOAT16_IEEE'	AlignmentBorder=A2LNUM
 	;
 
 alignment_float32_ieee
@@ -313,6 +320,12 @@ bit_operation
 		End 'BIT_OPERATION'
 	;
 
+blob
+	:	Begin 'BLOB'
+			STRING*
+		End 'BLOB'
+	;
+
 byte_order
 	:	'BYTE_ORDER' ByteOrder=BYTEORDER
 	;
@@ -366,6 +379,7 @@ characteristic
 			|	discrete
 			|	display_identifier
 			|	ecu_address_extension
+			|	encoding
 			|	extended_limits
 			|	formate
 			|	function_list
@@ -386,14 +400,14 @@ characteristic
 	;
 
 CHARACTERISTIC_TYPE
-	:	'ASCII'
-	|	'CURVE'
-	|	'MAP'
-	|	'CUBOID'
-	|	'CUBE_4'
-	|	'CUBE_5'
-	|	'VAL_BLK'
-	|	'VALUE'
+	:	'ASCII'		/* string */
+	|	'CURVE' 	/* 1D-table */
+	|	'MAP'		/* 2D-table */
+	|	'CUBOID'	/* 3D-table */
+	|	'CUBE_4'	/* 4D-table */
+	|	'CUBE_5'	/* 5D-table */
+	|	'VAL_BLK'	/* array (no axes) */
+	|	'VALUE' 	/* scalar */
 	;
 
 coeffs	// f(x) = (axx + bx + c) / (dxx + ex + f)
@@ -407,7 +421,7 @@ coeffs_linear //
 comparison_quantity
 	:	'COMPARISON_QUANTITY'	Name=Ident
 	;
-
+/* COMPU_METHODs convert this data from their fixed-point representation into a floating-point representation for display in an MC-system. */
 compu_method
 	:	Begin 'COMPU_METHOD'
 			Name = Ident
@@ -424,16 +438,18 @@ compu_method
 		End 'COMPU_METHOD'
 	;
 
+/* The conversion direction is from the internal format to the physical format, except for RAT_FUNC, which describes the conversion from the physical format to the internal format. */
 COMPU_METHOD_CONVERSION_TYPE
-	:	'IDENTICAL'
-	|	'FORM'
-	|	'LINEAR'
-	|	'RAT_FUNC'
-	|	'TAB_INTP'
-	|	'TAB_NOINTP'
-	|	'TAB_VERB'
+	:	'IDENTICAL'		/* no conversion */
+	|	'FORM'			/* formula which consists of a specific set of operators and functions */
+	|	'LINEAR'		/* linear, 2-coefficient function with slope and offset */
+	|	'RAT_FUNC'		/* 6-coefficient rational function with 2nd-degree numerator and denominator polynomials */
+	|	'TAB_INTP'		/* table with interpolation */
+	|	'TAB_NOINTP'	/* table without interpolation */
+	|	'TAB_VERB'		/* verbal table (i.e. enumeration) */
 	;
 
+/* compu_tab, like enum in C */
 compu_tab
 	:	Begin 'COMPU_TAB'	Name=Ident
 			LongIdentifier=STRING
@@ -560,6 +576,10 @@ ecu_address_extension
 
 ecu_calibration_offset
 	:	'ECU_CALIBRATION_OFFSET'	Offset=A2LNUM
+	;
+
+encoding
+	:	'ENCODING'	Encod=('UTF8'|'UTF16'|'UTF32')
 	;
 
 epk
@@ -705,6 +725,7 @@ identification
 	:	'IDENTIFICATION'	Position=A2LNUM
 							DataType=DATATYPE
 	;
+/* As a primary keyword on MODULE level, the IF_DATA section contains the parametric values for the configuration of the protocol stack.  */
 /* 
 if_data
 	:	Begin 'IF_DATA'	Name=Ident
@@ -824,7 +845,8 @@ memory_segment
 			|'FLASH'
 			|'RAM'
 			|'ROM'
-			|'REGISTER')
+			|'REGISTER'
+			|'NOT_IN_ECU')
 			Attribute=('INTERN'
 			|'EXTERN')
 			Address=A2LNUM
@@ -834,9 +856,16 @@ memory_segment
 		End 'MEMORY_SEGMENT'
 	;
 
+/* Defines default parameters that are common for other keywords of the module, 
+so they do not have to be repeated for each of them. 
+They include the definition of byte alignment, byte order, size and storage of data in the ECU memory. 
+The parameters of MOD_COMMON are optional parameters of other keywords. 
+If they are not defined in a keyword, then the corresponding parameter value of MOD_COMMON is used. 
+Otherwise, when a parameter is defined in a keyword, then it overrules the parameter value defined in MOD_COMMON. */
 mod_common
 	:	Begin 'MOD_COMMON'	Comment=STRING
 			(	alignment_byte
+			|	alignment_float16_ieee
 			|	alignment_float32_ieee
 			|	alignment_float64_ieee
 			|	alignment_int64
@@ -848,6 +877,10 @@ mod_common
 		End 'MOD_COMMON'
 	;
 
+/* Specifies general parameters of a module (i.e. ECU). 
+This includes data such as the name of the CPU, customer, version and other ECU-specific data. 
+Furthermore, this keyword contains the description of the organization of the ECU's memory via the keyword MEMORY_SEGMENT 
+as well as a list of system constants which can be used in conversion methods. */
 mod_par
 	:	Begin 'MOD_PAR'	Comment=STRING
 			(	addr_epk
@@ -860,7 +893,7 @@ mod_par
 			|	epk
 			|	memory_layout
 			|	memory_segment
-			|	no_of_A2LNUMerfaces
+			|	no_of_interfaces
 			|	phone_no
 			|	supplier
 			|	system_constant
@@ -889,7 +922,8 @@ module
 			|	user_rights
 			|	mod_common
 			|	mod_par
-			|	variant_coding)*
+			|	variant_coding
+			|	typedef_characteristic)*
 		End 'MODULE'
 	;
 
@@ -922,7 +956,7 @@ no_axis_pts_5
 						DataType=DATATYPE
 	;
 
-no_of_A2LNUMerfaces
+no_of_interfaces
 	:	'NO_OF_INTERFACES'	Num=A2LNUM
 	;
 
@@ -998,6 +1032,7 @@ read_write
 record_layout
 	:	Begin 'RECORD_LAYOUT' Name=Ident
 			(	alignment_byte
+			|	alignment_float16_ieee
 			|	alignment_float32_ieee
 			|	alignment_float64_ieee
 			|	alignment_int64
@@ -1214,6 +1249,21 @@ system_constant
 	:	'SYSTEM_CONSTANT'	Name=STRING Value=STRING
 	;
 
+typedef_characteristic
+	:	Begin 'TYPEDEF_CHARACTERISTIC'	Name=Ident
+			LongIdentifier=STRING
+			Type=CHARACTERISTIC_TYPE
+			record_layout
+			MaxDiff=A2LNUM
+			Conversion=Ident
+			LowerLimit=A2LNUM
+			UpperLimit=A2LNUM
+			extended_limits
+			formate
+			phys_unit
+		End 'TYPEDEF_CHARACTERISTIC'
+	;
+
 unit
 	:	Begin 'UNIT'	Name=Ident
 			LongIdentifier=STRING
@@ -1327,9 +1377,11 @@ PREDEFINED_TYPE_NAME
 	:	'char'
 	|	'int'
 	|	'long'
+	|	'int64'
 	|	'uchar'
 	|	'uint'
 	|	'ulong'
+	|	'uint64'
 	|	'double'
 	|	'float'
 	;
@@ -1343,6 +1395,7 @@ DATATYPE
 	|	'SLONG'
 	|	'A_UINT64'
 	|	'A_INT64'
+	|	'FLOAT16_IEEE'
 	|	'FLOAT32_IEEE'
 	|	'FLOAT64_IEEE'
 	;
@@ -1357,6 +1410,7 @@ ADDRTYPE
 	:	'PBYTE'
 	|	'PWORD'
 	|	'PLONG'
+	|	'PLONGLONG'
 	|	'DIRECT'
 	;
 
@@ -1365,6 +1419,8 @@ BYTEORDER
 	|	'BIG_ENDIAN'
 	|	'MSB_LAST'
 	|	'MSB_FIRST'
+	|	'MSB_FIRST_MSW_LAST'
+	|	'MSB_LAST_MSW_FIRST'
 	;
 
 INDEXORDER
@@ -1418,7 +1474,7 @@ STRING
 
 
 WS
-    :   [ \t\r\n]+
+    :   [ \t\n\r]+
         -> skip
     ;
 

@@ -364,6 +364,18 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAlignment_float16_ieee(A2LParser.Alignment_float16_ieeeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAlignment_float16_ieee(A2LParser.Alignment_float16_ieeeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAlignment_float32_ieee(A2LParser.Alignment_float32_ieeeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -623,6 +635,18 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBit_operation(A2LParser.Bit_operationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBlob(A2LParser.BlobContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBlob(A2LParser.BlobContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1043,6 +1067,18 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEcu_calibration_offset(A2LParser.Ecu_calibration_offsetContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEncoding(A2LParser.EncodingContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEncoding(A2LParser.EncodingContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1600,13 +1636,13 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNo_of_A2LNUMerfaces(A2LParser.No_of_A2LNUMerfacesContext ctx) { }
+	@Override public void enterNo_of_interfaces(A2LParser.No_of_interfacesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNo_of_A2LNUMerfaces(A2LParser.No_of_A2LNUMerfacesContext ctx) { }
+	@Override public void exitNo_of_interfaces(A2LParser.No_of_interfacesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -2195,6 +2231,18 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSystem_constant(A2LParser.System_constantContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTypedef_characteristic(A2LParser.Typedef_characteristicContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTypedef_characteristic(A2LParser.Typedef_characteristicContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
