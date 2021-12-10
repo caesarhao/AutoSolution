@@ -6,8 +6,13 @@ grammar A2L;
 The values in the IF_DATA blocks must match the syntax description of the A2ML block. */
 a2ml
 	:	Begin 'A2ML'
-			declaration*
+			declaration_list
 		End 'A2ML'
+	;
+
+declaration_list
+	: 	declaration
+	|	declaration declaration_list
 	;
 
 declaration
@@ -31,7 +36,8 @@ predefined_type_name
 	:	PREDEFINED_TYPE_NAME;
 
 block_definition
-	:	'block' tag type_name
+	:	'block' tag member
+	|	'block' tag '(' member ')*'
 	;
 
 enum_type_name
@@ -135,6 +141,10 @@ a2ml_ver
 
 addr_epk
 	:	'ADDR_EPK'	Address=A2LNUM
+	;
+
+address_type
+	:	ADDRTYPE
 	;
 
 alignment_byte
@@ -321,8 +331,19 @@ bit_operation
 	;
 
 blob
-	:	Begin 'BLOB'
-			STRING*
+	:	Begin 'BLOB' Name=Ident
+			LongIdentifier=STRING
+			Address=A2LNUM
+			Size=A2LNUM
+			(	address_type
+			|	annotation
+			|	calibration_access
+			|	display_identifier
+			|	ecu_address_extension
+			|	if_data
+			|	max_refresh
+			|	model_link
+			|	symbol_link)*
 		End 'BLOB'
 	;
 
@@ -388,6 +409,7 @@ characteristic
 			|	map_list
 			|	matrix_dim
 			|	max_refresh
+			|	model_link
 			|	number
 			|	phys_unit
 			|	read_only
@@ -483,6 +505,10 @@ compu_vtab_range
 			(A2LNUM A2LNUM STRING)*?
 			default_value?
 		End 'COMPU_VTAB_RANGE'
+	;
+
+consistent_exchange
+	:	'TODOTODOTODOTODOTODO CONSISTENT_EXCHANGE'
 	;
 
 cpu_type
@@ -748,6 +774,27 @@ in_measurement
 		End 'IN_MEASUREMENT'
 	;
 
+instance
+	:	Begin 'INSTANCE' Name=Ident
+			LongIdentifier=STRING
+			TypedefName=Ident
+			Address=A2LNUM
+			(	address_type
+			|	annotation
+			|	calibration_access
+			|	display_identifier
+			|	ecu_address_extension
+			|	if_data
+			|	layout
+			|	matrix_dim
+			|	max_refresh
+			|	model_link
+			|	overwrite
+			|	read_write
+			|	symbol_link)*
+		End 'INSTANCE'
+	;
+
 layout
 	:	'LAYOUT'	IndexMode=('ROW_DIR'|'COLUMN_DIR')
 	;
@@ -770,8 +817,8 @@ map_list
 
 matrix_dim
 	:	'MATRIX_DIM'	xDim=A2LNUM
-						yDim=A2LNUM
-						zDim=A2LNUM
+						(yDim=A2LNUM)?
+						(zDim=A2LNUM)?
 	;
 
 max_grad
@@ -902,11 +949,16 @@ mod_par
 		End 'MOD_PAR'
 	;
 
+model_link
+	:	'MODEL_LINK'	Model=STRING
+	;
+
 module
 	:	Begin 'MODULE'	Name=Ident
 			LongIdentifier = STRING
 			a2ml?	
 			(	axis_pts
+			|	blob
 			|	characteristic
 			|	compu_method
 			|	compu_tab
@@ -916,14 +968,20 @@ module
 			|	function
 			|	group
 			|	if_data
+			|	instance
 			|	measurement
-			|	record_layout
-			|	unit
-			|	user_rights
 			|	mod_common
 			|	mod_par
-			|	variant_coding
-			|	typedef_characteristic)*
+			|	record_layout
+			|	transformer
+			|	typedef_axis
+			|	typedef_blob
+			|	typedef_characteristic
+			|	typedef_measurement
+			|	typedef_structure
+			|	unit
+			|	user_rights
+			|	variant_coding)*
 		End 'MODULE'
 	;
 
@@ -998,6 +1056,10 @@ out_measurement
 	:	Begin 'OUT_MEASUREMENT'
 			Ident*
 		End 'OUT_MEASUREMENT'
+	;
+
+overwrite
+	:	'TODOTODO overwrite'
 	;
 
 phone_no
@@ -1226,6 +1288,19 @@ step_size
 	:	'STEP_SIZE'	StepSize=A2LNUM
 	;
 
+structure_component
+	:	Begin 'STRUCTURE_COMPONENT' Name=Ident
+			TypedefName=Ident
+			AddressOffset=A2LNUM
+			(
+				address_type
+			|	layout
+			|	matrix_dim
+			|	symbol_type_link
+			)*
+		End 'STRUCTURE_COMPONENT'
+	;
+
 sub_function
 	:	Begin 'SUB_FUNCTION'	Ident*
 		End 'SUB_FUNCTION'
@@ -1245,23 +1320,127 @@ symbol_link
 						Offset=A2LNUM
 	;
 
+symbol_type_link
+	:	'SYMBOL_TYPE_LINK' SymbolName=STRING
+	;
+
 system_constant
 	:	'SYSTEM_CONSTANT'	Name=STRING Value=STRING
+	;
+
+transformer
+	:	Begin 'TRANSFORMER' Name=Ident
+			Version=STRING
+			Executable32=STRING
+			Executable64=STRING
+			Timeout=A2LNUM
+			Trigger=('ON_CHANGE'|'ON_USER_REQUEST')
+			InverseTransformer=Ident
+			(	transformer_in_objects
+			|	transformer_out_objects)*
+		End 'TRANSFORMER'
+	;
+
+transformer_in_objects
+	:	Begin 'TRANSFORMER_IN_OBJECTS'
+			Ident*
+		End 'TRANSFORMER_IN_OBJECTS'
+	;
+
+transformer_out_objects
+	:	Begin 'TRANSFORMER_OUT_OBJECTS'
+			Ident*
+		End 'TRANSFORMER_OUT_OBJECTS'
+	;
+
+typedef_axis
+	:	Begin 'TYPEDEF_AXIS' Name=Ident
+			LongIdentifier=STRING
+			InputQuantity=Ident
+			RecordLayout=Ident
+			MaxDiff=A2LNUM
+			Conversion=Ident
+			MaxAxisPoints=A2LNUM
+			LowerLimit=A2LNUM
+			UpperLimit=A2LNUM
+			(	byte_order
+			|	deposit
+			|	extended_limits
+			|	formate
+			|	monotony
+			|	phys_unit
+			|	step_size)*
+		End 'TYPEDEF_AXIS'
+	;
+
+typedef_blob
+	:	Begin 'TYPEDEF_BLOB' Name=Ident
+			LongIdentifier=STRING
+			Size=A2LNUM
+			address_type?
+		End 'TYPEDEF_BLOB'
 	;
 
 typedef_characteristic
 	:	Begin 'TYPEDEF_CHARACTERISTIC'	Name=Ident
 			LongIdentifier=STRING
 			Type=CHARACTERISTIC_TYPE
-			record_layout
+			RecordLayout=Ident
 			MaxDiff=A2LNUM
 			Conversion=Ident
 			LowerLimit=A2LNUM
 			UpperLimit=A2LNUM
-			extended_limits
-			formate
-			phys_unit
+			(
+				axis_descr
+			|	bit_mask
+			|	byte_order
+			|	discrete
+			|	encoding
+			|	extended_limits
+			|	formate
+			|	matrix_dim
+			|	number
+			|	phys_unit
+			|	step_size
+			)*
 		End 'TYPEDEF_CHARACTERISTIC'
+	;
+
+typedef_measurement
+	:	Begin 'TYPEDEF_MEASUREMENT' Name=Ident
+			LongIdentifier=STRING
+			DataType=DATATYPE
+			Conversion=Ident
+			Resolution=A2LNUM
+			Accuracy=A2LNUM
+			LowerLimit=A2LNUM
+			UpperLimit=A2LNUM
+			(
+				address_type
+			|	bit_mask
+			|	bit_operation
+			|	byte_order
+			|	discrete
+			|	error_mask
+			|	formate
+			|	layout
+			|	matrix_dim
+			|	phys_unit
+			)*
+		End 'TYPEDEF_MEASUREMENT'
+	;
+
+typedef_structure
+	:	Begin 'TYPEDEF_STRUCTURE' Name=Ident
+			LongIdentifier=STRING
+			Size=A2LNUM
+			(
+				address_type
+			|	consistent_exchange
+			|	structure_component
+			|	symbol_type_link
+			)*
+		End 'TYPEDEF_STRUCTURE'
 	;
 
 unit

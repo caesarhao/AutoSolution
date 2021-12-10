@@ -18,6 +18,16 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitA2ml(A2LParser.A2mlContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#declaration_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaration_list(A2LParser.Declaration_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#declaration_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaration_list(A2LParser.Declaration_listContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#declaration}.
 	 * @param ctx the parse tree
 	 */
@@ -287,6 +297,16 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAddr_epk(A2LParser.Addr_epkContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#address_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddress_type(A2LParser.Address_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#address_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddress_type(A2LParser.Address_typeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#alignment_byte}.
 	 * @param ctx the parse tree
@@ -677,6 +697,16 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCompu_vtab_range(A2LParser.Compu_vtab_rangeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#consistent_exchange}.
+	 * @param ctx the parse tree
+	 */
+	void enterConsistent_exchange(A2LParser.Consistent_exchangeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#consistent_exchange}.
+	 * @param ctx the parse tree
+	 */
+	void exitConsistent_exchange(A2LParser.Consistent_exchangeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#cpu_type}.
 	 * @param ctx the parse tree
@@ -1168,6 +1198,16 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitIn_measurement(A2LParser.In_measurementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#instance}.
+	 * @param ctx the parse tree
+	 */
+	void enterInstance(A2LParser.InstanceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#instance}.
+	 * @param ctx the parse tree
+	 */
+	void exitInstance(A2LParser.InstanceContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#layout}.
 	 * @param ctx the parse tree
 	 */
@@ -1287,6 +1327,16 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMod_par(A2LParser.Mod_parContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#model_link}.
+	 * @param ctx the parse tree
+	 */
+	void enterModel_link(A2LParser.Model_linkContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#model_link}.
+	 * @param ctx the parse tree
+	 */
+	void exitModel_link(A2LParser.Model_linkContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#module}.
 	 * @param ctx the parse tree
@@ -1447,6 +1497,16 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOut_measurement(A2LParser.Out_measurementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#overwrite}.
+	 * @param ctx the parse tree
+	 */
+	void enterOverwrite(A2LParser.OverwriteContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#overwrite}.
+	 * @param ctx the parse tree
+	 */
+	void exitOverwrite(A2LParser.OverwriteContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#phone_no}.
 	 * @param ctx the parse tree
@@ -1808,6 +1868,16 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitStep_size(A2LParser.Step_sizeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#structure_component}.
+	 * @param ctx the parse tree
+	 */
+	void enterStructure_component(A2LParser.Structure_componentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#structure_component}.
+	 * @param ctx the parse tree
+	 */
+	void exitStructure_component(A2LParser.Structure_componentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#sub_function}.
 	 * @param ctx the parse tree
 	 */
@@ -1848,6 +1918,16 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitSymbol_link(A2LParser.Symbol_linkContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#symbol_type_link}.
+	 * @param ctx the parse tree
+	 */
+	void enterSymbol_type_link(A2LParser.Symbol_type_linkContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#symbol_type_link}.
+	 * @param ctx the parse tree
+	 */
+	void exitSymbol_type_link(A2LParser.Symbol_type_linkContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#system_constant}.
 	 * @param ctx the parse tree
 	 */
@@ -1858,6 +1938,56 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitSystem_constant(A2LParser.System_constantContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#transformer}.
+	 * @param ctx the parse tree
+	 */
+	void enterTransformer(A2LParser.TransformerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#transformer}.
+	 * @param ctx the parse tree
+	 */
+	void exitTransformer(A2LParser.TransformerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#transformer_in_objects}.
+	 * @param ctx the parse tree
+	 */
+	void enterTransformer_in_objects(A2LParser.Transformer_in_objectsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#transformer_in_objects}.
+	 * @param ctx the parse tree
+	 */
+	void exitTransformer_in_objects(A2LParser.Transformer_in_objectsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#transformer_out_objects}.
+	 * @param ctx the parse tree
+	 */
+	void enterTransformer_out_objects(A2LParser.Transformer_out_objectsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#transformer_out_objects}.
+	 * @param ctx the parse tree
+	 */
+	void exitTransformer_out_objects(A2LParser.Transformer_out_objectsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#typedef_axis}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypedef_axis(A2LParser.Typedef_axisContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#typedef_axis}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypedef_axis(A2LParser.Typedef_axisContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#typedef_blob}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypedef_blob(A2LParser.Typedef_blobContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#typedef_blob}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypedef_blob(A2LParser.Typedef_blobContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#typedef_characteristic}.
 	 * @param ctx the parse tree
 	 */
@@ -1867,6 +1997,26 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTypedef_characteristic(A2LParser.Typedef_characteristicContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#typedef_measurement}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypedef_measurement(A2LParser.Typedef_measurementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#typedef_measurement}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypedef_measurement(A2LParser.Typedef_measurementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#typedef_structure}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypedef_structure(A2LParser.Typedef_structureContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#typedef_structure}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypedef_structure(A2LParser.Typedef_structureContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#unit}.
 	 * @param ctx the parse tree

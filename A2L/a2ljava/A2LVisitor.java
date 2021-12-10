@@ -17,6 +17,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitA2ml(A2LParser.A2mlContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link A2LParser#declaration_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaration_list(A2LParser.Declaration_listContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link A2LParser#declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -178,6 +184,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAddr_epk(A2LParser.Addr_epkContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#address_type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddress_type(A2LParser.Address_typeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#alignment_byte}.
 	 * @param ctx the parse tree
@@ -412,6 +424,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCompu_vtab_range(A2LParser.Compu_vtab_rangeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#consistent_exchange}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConsistent_exchange(A2LParser.Consistent_exchangeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#cpu_type}.
 	 * @param ctx the parse tree
@@ -707,6 +725,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIn_measurement(A2LParser.In_measurementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link A2LParser#instance}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInstance(A2LParser.InstanceContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link A2LParser#layout}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -778,6 +802,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMod_par(A2LParser.Mod_parContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#model_link}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitModel_link(A2LParser.Model_linkContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#module}.
 	 * @param ctx the parse tree
@@ -874,6 +904,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOut_measurement(A2LParser.Out_measurementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#overwrite}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOverwrite(A2LParser.OverwriteContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#phone_no}.
 	 * @param ctx the parse tree
@@ -1091,6 +1127,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStep_size(A2LParser.Step_sizeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link A2LParser#structure_component}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructure_component(A2LParser.Structure_componentContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link A2LParser#sub_function}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -1115,17 +1157,65 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSymbol_link(A2LParser.Symbol_linkContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link A2LParser#symbol_type_link}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSymbol_type_link(A2LParser.Symbol_type_linkContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link A2LParser#system_constant}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSystem_constant(A2LParser.System_constantContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link A2LParser#transformer}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTransformer(A2LParser.TransformerContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#transformer_in_objects}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTransformer_in_objects(A2LParser.Transformer_in_objectsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#transformer_out_objects}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTransformer_out_objects(A2LParser.Transformer_out_objectsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#typedef_axis}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedef_axis(A2LParser.Typedef_axisContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#typedef_blob}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedef_blob(A2LParser.Typedef_blobContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link A2LParser#typedef_characteristic}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTypedef_characteristic(A2LParser.Typedef_characteristicContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#typedef_measurement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedef_measurement(A2LParser.Typedef_measurementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#typedef_structure}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedef_structure(A2LParser.Typedef_structureContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#unit}.
 	 * @param ctx the parse tree

@@ -24,6 +24,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitDeclaration_list(A2LParser.Declaration_listContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitDeclaration(A2LParser.DeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -207,6 +214,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitAddr_epk(A2LParser.Addr_epkContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitAddress_type(A2LParser.Address_typeContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -480,6 +494,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitCompu_vtab_range(A2LParser.Compu_vtab_rangeContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitConsistent_exchange(A2LParser.Consistent_exchangeContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -829,6 +850,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitInstance(A2LParser.InstanceContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitLayout(A2LParser.LayoutContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -907,6 +935,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitMod_par(A2LParser.Mod_parContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitModel_link(A2LParser.Model_linkContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1019,6 +1054,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitOut_measurement(A2LParser.Out_measurementContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitOverwrite(A2LParser.OverwriteContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1277,6 +1319,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitStructure_component(A2LParser.Structure_componentContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitSub_function(A2LParser.Sub_functionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -1305,6 +1354,13 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitSymbol_type_link(A2LParser.Symbol_type_linkContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitSystem_constant(A2LParser.System_constantContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -1312,7 +1368,56 @@ public class A2LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements A2
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitTransformer(A2LParser.TransformerContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTransformer_in_objects(A2LParser.Transformer_in_objectsContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTransformer_out_objects(A2LParser.Transformer_out_objectsContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTypedef_axis(A2LParser.Typedef_axisContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTypedef_blob(A2LParser.Typedef_blobContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitTypedef_characteristic(A2LParser.Typedef_characteristicContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTypedef_measurement(A2LParser.Typedef_measurementContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTypedef_structure(A2LParser.Typedef_structureContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
