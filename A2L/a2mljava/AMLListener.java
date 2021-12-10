@@ -18,6 +18,16 @@ public interface AMLListener extends ParseTreeListener {
 	 */
 	void exitA2ml(AMLParser.A2mlContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link AMLParser#declaration_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaration_list(AMLParser.Declaration_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AMLParser#declaration_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaration_list(AMLParser.Declaration_listContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AMLParser#declaration}.
 	 * @param ctx the parse tree
 	 */

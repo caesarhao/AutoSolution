@@ -11,8 +11,7 @@ a2ml
 	;
 
 declaration_list
-	: 	declaration
-	|	declaration declaration_list
+	: 	declaration declaration_list?
 	;
 
 declaration
@@ -54,7 +53,7 @@ enumerator
 	;
 
 struct_type_name
-	:	'struct' identifier? '{' struct_member_list? '}'
+	:	'struct' identifier? '{' struct_member_list '}'
 	|	'struct' identifier
 	;
 
@@ -75,7 +74,7 @@ array_specifier
 	;
 
 taggedstruct_type_name
-	:	'taggedstruct' identifier? '{' taggedstruct_member_list? '}'
+	:	'taggedstruct' identifier? '{' taggedstruct_member_list '}'
 	|	'taggedstruct' identifier
 	;
 
@@ -92,11 +91,11 @@ taggedstruct_member
 
 taggedstruct_definition
 	:	tag member?
-	|	tag '(' member ')*;'
+	|	tag '(' member ')*'
 	;
 
 taggedunion_type_name
-	:	'taggedunion' identifier? '{' taggedunion_member_list? '}'
+	:	'taggedunion' identifier? '{' taggedunion_member_list '}'
 	|	'taggedunion' identifier
 	;
 
@@ -144,7 +143,7 @@ addr_epk
 	;
 
 address_type
-	:	ADDRTYPE
+	:	'ADDRESS_TYPE' AddressType=ADDRTYPE
 	;
 
 alignment_byte
@@ -508,7 +507,11 @@ compu_vtab_range
 	;
 
 consistent_exchange
-	:	'TODOTODOTODOTODOTODO CONSISTENT_EXCHANGE'
+	:	'CONSISTENT_EXCHANGE'
+	;
+
+conversion
+	:	'CONVERSION' ConversionMethod=Ident
 	;
 
 cpu_type
@@ -774,6 +777,10 @@ in_measurement
 		End 'IN_MEASUREMENT'
 	;
 
+input_quantity
+	:	'INPUT_QUANTITY' InputQuantity=Ident
+	;
+
 instance
 	:	Begin 'INSTANCE' Name=Ident
 			LongIdentifier=STRING
@@ -801,6 +808,10 @@ layout
 
 left_shift
 	:	'LEFT_SHIFT' Bitcount=A2LNUM 
+	;
+
+limits
+	:	'LIMITS' LowerLimit=A2LNUM UpperLimit=A2LNUM
 	;
 
 loc_measurement
@@ -1059,7 +1070,18 @@ out_measurement
 	;
 
 overwrite
-	:	'TODOTODO overwrite'
+	:	Begin 'OVERWRITE' Name=Ident
+			AxisNumber=A2LNUM
+			(
+				conversion
+			|	extended_limits
+			|	formate
+			|	input_quantity
+			|	limits 
+			|	monotony
+			|	phys_unit
+			)*
+		End 'OVERWRITE'
 	;
 
 phone_no

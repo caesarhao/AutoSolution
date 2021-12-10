@@ -708,6 +708,16 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitConsistent_exchange(A2LParser.Consistent_exchangeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#conversion}.
+	 * @param ctx the parse tree
+	 */
+	void enterConversion(A2LParser.ConversionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#conversion}.
+	 * @param ctx the parse tree
+	 */
+	void exitConversion(A2LParser.ConversionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#cpu_type}.
 	 * @param ctx the parse tree
 	 */
@@ -1198,6 +1208,16 @@ public interface A2LListener extends ParseTreeListener {
 	 */
 	void exitIn_measurement(A2LParser.In_measurementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link A2LParser#input_quantity}.
+	 * @param ctx the parse tree
+	 */
+	void enterInput_quantity(A2LParser.Input_quantityContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#input_quantity}.
+	 * @param ctx the parse tree
+	 */
+	void exitInput_quantity(A2LParser.Input_quantityContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link A2LParser#instance}.
 	 * @param ctx the parse tree
 	 */
@@ -1227,6 +1247,16 @@ public interface A2LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLeft_shift(A2LParser.Left_shiftContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link A2LParser#limits}.
+	 * @param ctx the parse tree
+	 */
+	void enterLimits(A2LParser.LimitsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link A2LParser#limits}.
+	 * @param ctx the parse tree
+	 */
+	void exitLimits(A2LParser.LimitsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link A2LParser#loc_measurement}.
 	 * @param ctx the parse tree

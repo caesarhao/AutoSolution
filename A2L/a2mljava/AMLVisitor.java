@@ -17,6 +17,12 @@ public interface AMLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitA2ml(AMLParser.A2mlContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link AMLParser#declaration_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaration_list(AMLParser.Declaration_listContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link AMLParser#declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

@@ -431,6 +431,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConsistent_exchange(A2LParser.Consistent_exchangeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link A2LParser#conversion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConversion(A2LParser.ConversionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link A2LParser#cpu_type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -725,6 +731,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIn_measurement(A2LParser.In_measurementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link A2LParser#input_quantity}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInput_quantity(A2LParser.Input_quantityContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link A2LParser#instance}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -742,6 +754,12 @@ public interface A2LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLeft_shift(A2LParser.Left_shiftContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link A2LParser#limits}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLimits(A2LParser.LimitsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link A2LParser#loc_measurement}.
 	 * @param ctx the parse tree

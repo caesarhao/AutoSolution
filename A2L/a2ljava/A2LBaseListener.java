@@ -856,6 +856,18 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConversion(A2LParser.ConversionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConversion(A2LParser.ConversionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCpu_type(A2LParser.Cpu_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1444,6 +1456,18 @@ public class A2LBaseListener implements A2LListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterInput_quantity(A2LParser.Input_quantityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInput_quantity(A2LParser.Input_quantityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterInstance(A2LParser.InstanceContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1475,6 +1499,18 @@ public class A2LBaseListener implements A2LListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLeft_shift(A2LParser.Left_shiftContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLimits(A2LParser.LimitsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLimits(A2LParser.LimitsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

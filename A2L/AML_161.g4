@@ -2,14 +2,10 @@ grammar AML;
 
 a2ml
 	:	Begin 'A2ML'
-			declaration_list
+			declaration*
 		End 'A2ML'
 	;
 
-declaration_list
-	: 	declaration declaration_list?
-	;
-	
 declaration
 	:	type_definition  ';'
 	|	block_definition ';'
@@ -31,18 +27,15 @@ predefined_type_name
 	:	'char'
 	|	'int'
 	|	'long'
-	|	'int64'
 	|	'uchar'
 	|	'uint'
 	|	'ulong'
-	|	'uint64'
 	|	'double'
 	|	'float'
 	;
 
 block_definition
-	:	'block' tag member
-	|	'block' tag '(' member ')*'
+	:	'block' tag type_name
 	;
 
 enum_type_name
@@ -59,7 +52,7 @@ enumerator
 	;
 
 struct_type_name
-	:	'struct' identifier? '{' struct_member_list '}'
+	:	'struct' identifier? '{' struct_member_list? '}'
 	|	'struct' identifier
 	;
 
@@ -80,7 +73,7 @@ array_specifier
 	;
 
 taggedstruct_type_name
-	:	'taggedstruct' identifier? '{' taggedstruct_member_list '}'
+	:	'taggedstruct' identifier? '{' taggedstruct_member_list? '}'
 	|	'taggedstruct' identifier
 	;
 
@@ -101,7 +94,7 @@ taggedstruct_definition
 	;
 
 taggedunion_type_name
-	:	'taggedunion' identifier? '{' taggedunion_member_list '}'
+	:	'taggedunion' identifier? '{' taggedunion_member_list? '}'
 	|	'taggedunion' identifier
 	;
 

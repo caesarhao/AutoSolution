@@ -28,6 +28,18 @@ public class AMLBaseListener implements AMLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDeclaration_list(AMLParser.Declaration_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaration_list(AMLParser.Declaration_listContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaration(AMLParser.DeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
