@@ -39,6 +39,12 @@ public interface IAMLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitA2ml([NotNull] AMLParser.A2mlContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="AMLParser.declaration_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDeclaration_list([NotNull] AMLParser.Declaration_listContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="AMLParser.declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

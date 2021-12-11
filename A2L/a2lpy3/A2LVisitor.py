@@ -14,6 +14,11 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by A2LParser#declaration_list.
+    def visitDeclaration_list(self, ctx:A2LParser.Declaration_listContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by A2LParser#declaration.
     def visitDeclaration(self, ctx:A2LParser.DeclarationContext):
         return self.visitChildren(ctx)
@@ -149,8 +154,18 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by A2LParser#address_type.
+    def visitAddress_type(self, ctx:A2LParser.Address_typeContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by A2LParser#alignment_byte.
     def visitAlignment_byte(self, ctx:A2LParser.Alignment_byteContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#alignment_float16_ieee.
+    def visitAlignment_float16_ieee(self, ctx:A2LParser.Alignment_float16_ieeeContext):
         return self.visitChildren(ctx)
 
 
@@ -264,6 +279,11 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by A2LParser#blob.
+    def visitBlob(self, ctx:A2LParser.BlobContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by A2LParser#byte_order.
     def visitByte_order(self, ctx:A2LParser.Byte_orderContext):
         return self.visitChildren(ctx)
@@ -331,6 +351,16 @@ class A2LVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by A2LParser#compu_vtab_range.
     def visitCompu_vtab_range(self, ctx:A2LParser.Compu_vtab_rangeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#consistent_exchange.
+    def visitConsistent_exchange(self, ctx:A2LParser.Consistent_exchangeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#conversion.
+    def visitConversion(self, ctx:A2LParser.ConversionContext):
         return self.visitChildren(ctx)
 
 
@@ -436,6 +466,11 @@ class A2LVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by A2LParser#ecu_calibration_offset.
     def visitEcu_calibration_offset(self, ctx:A2LParser.Ecu_calibration_offsetContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#encoding.
+    def visitEncoding(self, ctx:A2LParser.EncodingContext):
         return self.visitChildren(ctx)
 
 
@@ -574,6 +609,16 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by A2LParser#input_quantity.
+    def visitInput_quantity(self, ctx:A2LParser.Input_quantityContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#instance.
+    def visitInstance(self, ctx:A2LParser.InstanceContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by A2LParser#layout.
     def visitLayout(self, ctx:A2LParser.LayoutContext):
         return self.visitChildren(ctx)
@@ -581,6 +626,11 @@ class A2LVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by A2LParser#left_shift.
     def visitLeft_shift(self, ctx:A2LParser.Left_shiftContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#limits.
+    def visitLimits(self, ctx:A2LParser.LimitsContext):
         return self.visitChildren(ctx)
 
 
@@ -634,6 +684,11 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by A2LParser#model_link.
+    def visitModel_link(self, ctx:A2LParser.Model_linkContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by A2LParser#module.
     def visitModule(self, ctx:A2LParser.ModuleContext):
         return self.visitChildren(ctx)
@@ -669,8 +724,8 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by A2LParser#no_of_A2LNUMerfaces.
-    def visitNo_of_A2LNUMerfaces(self, ctx:A2LParser.No_of_A2LNUMerfacesContext):
+    # Visit a parse tree produced by A2LParser#no_of_interfaces.
+    def visitNo_of_interfaces(self, ctx:A2LParser.No_of_interfacesContext):
         return self.visitChildren(ctx)
 
 
@@ -711,6 +766,11 @@ class A2LVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by A2LParser#out_measurement.
     def visitOut_measurement(self, ctx:A2LParser.Out_measurementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#overwrite.
+    def visitOverwrite(self, ctx:A2LParser.OverwriteContext):
         return self.visitChildren(ctx)
 
 
@@ -894,6 +954,11 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by A2LParser#structure_component.
+    def visitStructure_component(self, ctx:A2LParser.Structure_componentContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by A2LParser#sub_function.
     def visitSub_function(self, ctx:A2LParser.Sub_functionContext):
         return self.visitChildren(ctx)
@@ -914,8 +979,53 @@ class A2LVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by A2LParser#symbol_type_link.
+    def visitSymbol_type_link(self, ctx:A2LParser.Symbol_type_linkContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by A2LParser#system_constant.
     def visitSystem_constant(self, ctx:A2LParser.System_constantContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#transformer.
+    def visitTransformer(self, ctx:A2LParser.TransformerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#transformer_in_objects.
+    def visitTransformer_in_objects(self, ctx:A2LParser.Transformer_in_objectsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#transformer_out_objects.
+    def visitTransformer_out_objects(self, ctx:A2LParser.Transformer_out_objectsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#typedef_axis.
+    def visitTypedef_axis(self, ctx:A2LParser.Typedef_axisContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#typedef_blob.
+    def visitTypedef_blob(self, ctx:A2LParser.Typedef_blobContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#typedef_characteristic.
+    def visitTypedef_characteristic(self, ctx:A2LParser.Typedef_characteristicContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#typedef_measurement.
+    def visitTypedef_measurement(self, ctx:A2LParser.Typedef_measurementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by A2LParser#typedef_structure.
+    def visitTypedef_structure(self, ctx:A2LParser.Typedef_structureContext):
         return self.visitChildren(ctx)
 
 

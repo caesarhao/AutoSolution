@@ -49,6 +49,18 @@ public partial class AMLBaseListener : IAMLListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitA2ml([NotNull] AMLParser.A2mlContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="AMLParser.declaration_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDeclaration_list([NotNull] AMLParser.Declaration_listContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="AMLParser.declaration_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDeclaration_list([NotNull] AMLParser.Declaration_listContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="AMLParser.declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

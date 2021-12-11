@@ -39,6 +39,12 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitA2ml([NotNull] A2LParser.A2mlContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.declaration_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDeclaration_list([NotNull] A2LParser.Declaration_listContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -201,11 +207,23 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitAddr_epk([NotNull] A2LParser.Addr_epkContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.address_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAddress_type([NotNull] A2LParser.Address_typeContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.alignment_byte"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAlignment_byte([NotNull] A2LParser.Alignment_byteContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.alignment_float16_ieee"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAlignment_float16_ieee([NotNull] A2LParser.Alignment_float16_ieeeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.alignment_float32_ieee"/>.
 	/// </summary>
@@ -339,6 +357,12 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitBit_operation([NotNull] A2LParser.Bit_operationContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.blob"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBlob([NotNull] A2LParser.BlobContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.byte_order"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -422,6 +446,18 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitCompu_vtab_range([NotNull] A2LParser.Compu_vtab_rangeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.consistent_exchange"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitConsistent_exchange([NotNull] A2LParser.Consistent_exchangeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.conversion"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitConversion([NotNull] A2LParser.ConversionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.cpu_type"/>.
 	/// </summary>
@@ -548,6 +584,12 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitEcu_calibration_offset([NotNull] A2LParser.Ecu_calibration_offsetContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.encoding"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEncoding([NotNull] A2LParser.EncodingContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.epk"/>.
 	/// </summary>
@@ -711,6 +753,18 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitIn_measurement([NotNull] A2LParser.In_measurementContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.input_quantity"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInput_quantity([NotNull] A2LParser.Input_quantityContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.instance"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInstance([NotNull] A2LParser.InstanceContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.layout"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -722,6 +776,12 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitLeft_shift([NotNull] A2LParser.Left_shiftContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.limits"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLimits([NotNull] A2LParser.LimitsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.loc_measurement"/>.
 	/// </summary>
@@ -783,6 +843,12 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitMod_par([NotNull] A2LParser.Mod_parContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.model_link"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitModel_link([NotNull] A2LParser.Model_linkContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.module"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -825,11 +891,11 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitNo_axis_pts_5([NotNull] A2LParser.No_axis_pts_5Context context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="A2LParser.no_of_A2LNUMerfaces"/>.
+	/// Visit a parse tree produced by <see cref="A2LParser.no_of_interfaces"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNo_of_A2LNUMerfaces([NotNull] A2LParser.No_of_A2LNUMerfacesContext context);
+	Result VisitNo_of_interfaces([NotNull] A2LParser.No_of_interfacesContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.no_rescale_x"/>.
 	/// </summary>
@@ -878,6 +944,12 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitOut_measurement([NotNull] A2LParser.Out_measurementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.overwrite"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOverwrite([NotNull] A2LParser.OverwriteContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.phone_no"/>.
 	/// </summary>
@@ -1095,6 +1167,12 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitStep_size([NotNull] A2LParser.Step_sizeContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.structure_component"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStructure_component([NotNull] A2LParser.Structure_componentContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.sub_function"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -1119,11 +1197,65 @@ public interface IA2LVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitSymbol_link([NotNull] A2LParser.Symbol_linkContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.symbol_type_link"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSymbol_type_link([NotNull] A2LParser.Symbol_type_linkContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.system_constant"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSystem_constant([NotNull] A2LParser.System_constantContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.transformer"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTransformer([NotNull] A2LParser.TransformerContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.transformer_in_objects"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTransformer_in_objects([NotNull] A2LParser.Transformer_in_objectsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.transformer_out_objects"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTransformer_out_objects([NotNull] A2LParser.Transformer_out_objectsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.typedef_axis"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTypedef_axis([NotNull] A2LParser.Typedef_axisContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.typedef_blob"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTypedef_blob([NotNull] A2LParser.Typedef_blobContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.typedef_characteristic"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTypedef_characteristic([NotNull] A2LParser.Typedef_characteristicContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.typedef_measurement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTypedef_measurement([NotNull] A2LParser.Typedef_measurementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="A2LParser.typedef_structure"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTypedef_structure([NotNull] A2LParser.Typedef_structureContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="A2LParser.unit"/>.
 	/// </summary>

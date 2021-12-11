@@ -42,7 +42,7 @@ predefined_type_name
 
 block_definition
 	:	'block' tag member
-	|	'block' tag '(' member ')*'
+	|	'block' tag '(' member ')' '*'
 	;
 
 enum_type_name
@@ -90,14 +90,14 @@ taggedstruct_member_list
 
 taggedstruct_member
 	:	taggedstruct_definition ';'
-	|	'(' taggedstruct_definition ')*;'
+	|	'(' taggedstruct_definition ')' '*' ';'
 	|	block_definition ';' 
-	|	'(' block_definition ')*;'
+	|	'(' block_definition ')' '*' ';'
 	;
 
 taggedstruct_definition
 	:	tag member?
-	|	tag '(' member ')*;'
+	|	tag '(' member ')' '*'
 	;
 
 taggedunion_type_name

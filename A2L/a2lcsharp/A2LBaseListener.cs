@@ -49,6 +49,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitA2ml([NotNull] A2LParser.A2mlContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.declaration_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDeclaration_list([NotNull] A2LParser.Declaration_listContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.declaration_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDeclaration_list([NotNull] A2LParser.Declaration_listContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -373,6 +385,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAddr_epk([NotNull] A2LParser.Addr_epkContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.address_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAddress_type([NotNull] A2LParser.Address_typeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.address_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAddress_type([NotNull] A2LParser.Address_typeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.alignment_byte"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -384,6 +408,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAlignment_byte([NotNull] A2LParser.Alignment_byteContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.alignment_float16_ieee"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAlignment_float16_ieee([NotNull] A2LParser.Alignment_float16_ieeeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.alignment_float16_ieee"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAlignment_float16_ieee([NotNull] A2LParser.Alignment_float16_ieeeContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.alignment_float32_ieee"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -649,6 +685,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBit_operation([NotNull] A2LParser.Bit_operationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.blob"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlob([NotNull] A2LParser.BlobContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.blob"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlob([NotNull] A2LParser.BlobContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.byte_order"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -816,6 +864,30 @@ public partial class A2LBaseListener : IA2LListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCompu_vtab_range([NotNull] A2LParser.Compu_vtab_rangeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.consistent_exchange"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConsistent_exchange([NotNull] A2LParser.Consistent_exchangeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.consistent_exchange"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConsistent_exchange([NotNull] A2LParser.Consistent_exchangeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.conversion"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConversion([NotNull] A2LParser.ConversionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.conversion"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConversion([NotNull] A2LParser.ConversionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.cpu_type"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1068,6 +1140,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitEcu_calibration_offset([NotNull] A2LParser.Ecu_calibration_offsetContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.encoding"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterEncoding([NotNull] A2LParser.EncodingContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.encoding"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitEncoding([NotNull] A2LParser.EncodingContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.epk"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1393,6 +1477,30 @@ public partial class A2LBaseListener : IA2LListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIn_measurement([NotNull] A2LParser.In_measurementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.input_quantity"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInput_quantity([NotNull] A2LParser.Input_quantityContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.input_quantity"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInput_quantity([NotNull] A2LParser.Input_quantityContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.instance"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInstance([NotNull] A2LParser.InstanceContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.instance"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInstance([NotNull] A2LParser.InstanceContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.layout"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1416,6 +1524,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLeft_shift([NotNull] A2LParser.Left_shiftContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.limits"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLimits([NotNull] A2LParser.LimitsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.limits"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLimits([NotNull] A2LParser.LimitsContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.loc_measurement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1537,6 +1657,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMod_par([NotNull] A2LParser.Mod_parContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.model_link"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterModel_link([NotNull] A2LParser.Model_linkContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.model_link"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitModel_link([NotNull] A2LParser.Model_linkContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.module"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1621,17 +1753,17 @@ public partial class A2LBaseListener : IA2LListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNo_axis_pts_5([NotNull] A2LParser.No_axis_pts_5Context context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="A2LParser.no_of_A2LNUMerfaces"/>.
+	/// Enter a parse tree produced by <see cref="A2LParser.no_of_interfaces"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNo_of_A2LNUMerfaces([NotNull] A2LParser.No_of_A2LNUMerfacesContext context) { }
+	public virtual void EnterNo_of_interfaces([NotNull] A2LParser.No_of_interfacesContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="A2LParser.no_of_A2LNUMerfaces"/>.
+	/// Exit a parse tree produced by <see cref="A2LParser.no_of_interfaces"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNo_of_A2LNUMerfaces([NotNull] A2LParser.No_of_A2LNUMerfacesContext context) { }
+	public virtual void ExitNo_of_interfaces([NotNull] A2LParser.No_of_interfacesContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.no_rescale_x"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1728,6 +1860,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitOut_measurement([NotNull] A2LParser.Out_measurementContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.overwrite"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOverwrite([NotNull] A2LParser.OverwriteContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.overwrite"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOverwrite([NotNull] A2LParser.OverwriteContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.phone_no"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2161,6 +2305,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitStep_size([NotNull] A2LParser.Step_sizeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.structure_component"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterStructure_component([NotNull] A2LParser.Structure_componentContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.structure_component"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitStructure_component([NotNull] A2LParser.Structure_componentContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.sub_function"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2209,6 +2365,18 @@ public partial class A2LBaseListener : IA2LListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSymbol_link([NotNull] A2LParser.Symbol_linkContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.symbol_type_link"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSymbol_type_link([NotNull] A2LParser.Symbol_type_linkContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.symbol_type_link"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSymbol_type_link([NotNull] A2LParser.Symbol_type_linkContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.system_constant"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2220,6 +2388,102 @@ public partial class A2LBaseListener : IA2LListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSystem_constant([NotNull] A2LParser.System_constantContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.transformer"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTransformer([NotNull] A2LParser.TransformerContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.transformer"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTransformer([NotNull] A2LParser.TransformerContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.transformer_in_objects"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTransformer_in_objects([NotNull] A2LParser.Transformer_in_objectsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.transformer_in_objects"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTransformer_in_objects([NotNull] A2LParser.Transformer_in_objectsContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.transformer_out_objects"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTransformer_out_objects([NotNull] A2LParser.Transformer_out_objectsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.transformer_out_objects"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTransformer_out_objects([NotNull] A2LParser.Transformer_out_objectsContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.typedef_axis"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTypedef_axis([NotNull] A2LParser.Typedef_axisContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.typedef_axis"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTypedef_axis([NotNull] A2LParser.Typedef_axisContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.typedef_blob"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTypedef_blob([NotNull] A2LParser.Typedef_blobContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.typedef_blob"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTypedef_blob([NotNull] A2LParser.Typedef_blobContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.typedef_characteristic"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTypedef_characteristic([NotNull] A2LParser.Typedef_characteristicContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.typedef_characteristic"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTypedef_characteristic([NotNull] A2LParser.Typedef_characteristicContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.typedef_measurement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTypedef_measurement([NotNull] A2LParser.Typedef_measurementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.typedef_measurement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTypedef_measurement([NotNull] A2LParser.Typedef_measurementContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="A2LParser.typedef_structure"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTypedef_structure([NotNull] A2LParser.Typedef_structureContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="A2LParser.typedef_structure"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTypedef_structure([NotNull] A2LParser.Typedef_structureContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="A2LParser.unit"/>.
 	/// <para>The default implementation does nothing.</para>

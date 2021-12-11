@@ -14,6 +14,11 @@ class AMLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by AMLParser#declaration_list.
+    def visitDeclaration_list(self, ctx:AMLParser.Declaration_listContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by AMLParser#declaration.
     def visitDeclaration(self, ctx:AMLParser.DeclarationContext):
         return self.visitChildren(ctx)

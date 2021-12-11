@@ -17,6 +17,15 @@ class A2LListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by A2LParser#declaration_list.
+    def enterDeclaration_list(self, ctx:A2LParser.Declaration_listContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#declaration_list.
+    def exitDeclaration_list(self, ctx:A2LParser.Declaration_listContext):
+        pass
+
+
     # Enter a parse tree produced by A2LParser#declaration.
     def enterDeclaration(self, ctx:A2LParser.DeclarationContext):
         pass
@@ -260,12 +269,30 @@ class A2LListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by A2LParser#address_type.
+    def enterAddress_type(self, ctx:A2LParser.Address_typeContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#address_type.
+    def exitAddress_type(self, ctx:A2LParser.Address_typeContext):
+        pass
+
+
     # Enter a parse tree produced by A2LParser#alignment_byte.
     def enterAlignment_byte(self, ctx:A2LParser.Alignment_byteContext):
         pass
 
     # Exit a parse tree produced by A2LParser#alignment_byte.
     def exitAlignment_byte(self, ctx:A2LParser.Alignment_byteContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#alignment_float16_ieee.
+    def enterAlignment_float16_ieee(self, ctx:A2LParser.Alignment_float16_ieeeContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#alignment_float16_ieee.
+    def exitAlignment_float16_ieee(self, ctx:A2LParser.Alignment_float16_ieeeContext):
         pass
 
 
@@ -467,6 +494,15 @@ class A2LListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by A2LParser#blob.
+    def enterBlob(self, ctx:A2LParser.BlobContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#blob.
+    def exitBlob(self, ctx:A2LParser.BlobContext):
+        pass
+
+
     # Enter a parse tree produced by A2LParser#byte_order.
     def enterByte_order(self, ctx:A2LParser.Byte_orderContext):
         pass
@@ -590,6 +626,24 @@ class A2LListener(ParseTreeListener):
 
     # Exit a parse tree produced by A2LParser#compu_vtab_range.
     def exitCompu_vtab_range(self, ctx:A2LParser.Compu_vtab_rangeContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#consistent_exchange.
+    def enterConsistent_exchange(self, ctx:A2LParser.Consistent_exchangeContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#consistent_exchange.
+    def exitConsistent_exchange(self, ctx:A2LParser.Consistent_exchangeContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#conversion.
+    def enterConversion(self, ctx:A2LParser.ConversionContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#conversion.
+    def exitConversion(self, ctx:A2LParser.ConversionContext):
         pass
 
 
@@ -779,6 +833,15 @@ class A2LListener(ParseTreeListener):
 
     # Exit a parse tree produced by A2LParser#ecu_calibration_offset.
     def exitEcu_calibration_offset(self, ctx:A2LParser.Ecu_calibration_offsetContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#encoding.
+    def enterEncoding(self, ctx:A2LParser.EncodingContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#encoding.
+    def exitEncoding(self, ctx:A2LParser.EncodingContext):
         pass
 
 
@@ -1025,6 +1088,24 @@ class A2LListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by A2LParser#input_quantity.
+    def enterInput_quantity(self, ctx:A2LParser.Input_quantityContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#input_quantity.
+    def exitInput_quantity(self, ctx:A2LParser.Input_quantityContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#instance.
+    def enterInstance(self, ctx:A2LParser.InstanceContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#instance.
+    def exitInstance(self, ctx:A2LParser.InstanceContext):
+        pass
+
+
     # Enter a parse tree produced by A2LParser#layout.
     def enterLayout(self, ctx:A2LParser.LayoutContext):
         pass
@@ -1040,6 +1121,15 @@ class A2LListener(ParseTreeListener):
 
     # Exit a parse tree produced by A2LParser#left_shift.
     def exitLeft_shift(self, ctx:A2LParser.Left_shiftContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#limits.
+    def enterLimits(self, ctx:A2LParser.LimitsContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#limits.
+    def exitLimits(self, ctx:A2LParser.LimitsContext):
         pass
 
 
@@ -1133,6 +1223,15 @@ class A2LListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by A2LParser#model_link.
+    def enterModel_link(self, ctx:A2LParser.Model_linkContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#model_link.
+    def exitModel_link(self, ctx:A2LParser.Model_linkContext):
+        pass
+
+
     # Enter a parse tree produced by A2LParser#module.
     def enterModule(self, ctx:A2LParser.ModuleContext):
         pass
@@ -1196,12 +1295,12 @@ class A2LListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by A2LParser#no_of_A2LNUMerfaces.
-    def enterNo_of_A2LNUMerfaces(self, ctx:A2LParser.No_of_A2LNUMerfacesContext):
+    # Enter a parse tree produced by A2LParser#no_of_interfaces.
+    def enterNo_of_interfaces(self, ctx:A2LParser.No_of_interfacesContext):
         pass
 
-    # Exit a parse tree produced by A2LParser#no_of_A2LNUMerfaces.
-    def exitNo_of_A2LNUMerfaces(self, ctx:A2LParser.No_of_A2LNUMerfacesContext):
+    # Exit a parse tree produced by A2LParser#no_of_interfaces.
+    def exitNo_of_interfaces(self, ctx:A2LParser.No_of_interfacesContext):
         pass
 
 
@@ -1274,6 +1373,15 @@ class A2LListener(ParseTreeListener):
 
     # Exit a parse tree produced by A2LParser#out_measurement.
     def exitOut_measurement(self, ctx:A2LParser.Out_measurementContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#overwrite.
+    def enterOverwrite(self, ctx:A2LParser.OverwriteContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#overwrite.
+    def exitOverwrite(self, ctx:A2LParser.OverwriteContext):
         pass
 
 
@@ -1601,6 +1709,15 @@ class A2LListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by A2LParser#structure_component.
+    def enterStructure_component(self, ctx:A2LParser.Structure_componentContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#structure_component.
+    def exitStructure_component(self, ctx:A2LParser.Structure_componentContext):
+        pass
+
+
     # Enter a parse tree produced by A2LParser#sub_function.
     def enterSub_function(self, ctx:A2LParser.Sub_functionContext):
         pass
@@ -1637,12 +1754,93 @@ class A2LListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by A2LParser#symbol_type_link.
+    def enterSymbol_type_link(self, ctx:A2LParser.Symbol_type_linkContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#symbol_type_link.
+    def exitSymbol_type_link(self, ctx:A2LParser.Symbol_type_linkContext):
+        pass
+
+
     # Enter a parse tree produced by A2LParser#system_constant.
     def enterSystem_constant(self, ctx:A2LParser.System_constantContext):
         pass
 
     # Exit a parse tree produced by A2LParser#system_constant.
     def exitSystem_constant(self, ctx:A2LParser.System_constantContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#transformer.
+    def enterTransformer(self, ctx:A2LParser.TransformerContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#transformer.
+    def exitTransformer(self, ctx:A2LParser.TransformerContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#transformer_in_objects.
+    def enterTransformer_in_objects(self, ctx:A2LParser.Transformer_in_objectsContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#transformer_in_objects.
+    def exitTransformer_in_objects(self, ctx:A2LParser.Transformer_in_objectsContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#transformer_out_objects.
+    def enterTransformer_out_objects(self, ctx:A2LParser.Transformer_out_objectsContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#transformer_out_objects.
+    def exitTransformer_out_objects(self, ctx:A2LParser.Transformer_out_objectsContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#typedef_axis.
+    def enterTypedef_axis(self, ctx:A2LParser.Typedef_axisContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#typedef_axis.
+    def exitTypedef_axis(self, ctx:A2LParser.Typedef_axisContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#typedef_blob.
+    def enterTypedef_blob(self, ctx:A2LParser.Typedef_blobContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#typedef_blob.
+    def exitTypedef_blob(self, ctx:A2LParser.Typedef_blobContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#typedef_characteristic.
+    def enterTypedef_characteristic(self, ctx:A2LParser.Typedef_characteristicContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#typedef_characteristic.
+    def exitTypedef_characteristic(self, ctx:A2LParser.Typedef_characteristicContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#typedef_measurement.
+    def enterTypedef_measurement(self, ctx:A2LParser.Typedef_measurementContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#typedef_measurement.
+    def exitTypedef_measurement(self, ctx:A2LParser.Typedef_measurementContext):
+        pass
+
+
+    # Enter a parse tree produced by A2LParser#typedef_structure.
+    def enterTypedef_structure(self, ctx:A2LParser.Typedef_structureContext):
+        pass
+
+    # Exit a parse tree produced by A2LParser#typedef_structure.
+    def exitTypedef_structure(self, ctx:A2LParser.Typedef_structureContext):
         pass
 
 

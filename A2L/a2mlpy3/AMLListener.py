@@ -17,6 +17,15 @@ class AMLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by AMLParser#declaration_list.
+    def enterDeclaration_list(self, ctx:AMLParser.Declaration_listContext):
+        pass
+
+    # Exit a parse tree produced by AMLParser#declaration_list.
+    def exitDeclaration_list(self, ctx:AMLParser.Declaration_listContext):
+        pass
+
+
     # Enter a parse tree produced by AMLParser#declaration.
     def enterDeclaration(self, ctx:AMLParser.DeclarationContext):
         pass

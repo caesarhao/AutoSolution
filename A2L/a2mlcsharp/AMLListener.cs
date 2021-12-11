@@ -42,6 +42,16 @@ public interface IAMLListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitA2ml([NotNull] AMLParser.A2mlContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="AMLParser.declaration_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDeclaration_list([NotNull] AMLParser.Declaration_listContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="AMLParser.declaration_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDeclaration_list([NotNull] AMLParser.Declaration_listContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="AMLParser.declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
