@@ -56,6 +56,7 @@ namespace EasyOS
 			if (null != dat.compuMethod){
 				this.cmbbCompuMethod.Active = Group<CompuMethod>.GFindIndexWithName(dat.compuMethod.name);
 			}
+			this.spinbuttonArraySize.Value = dat.arraySize;
 			return true;
 		}
 		public Message SaveData(Message dat=null){
@@ -67,6 +68,7 @@ namespace EasyOS
 			dat.type = (BaseType)this.cmbbType.Active;
 			dat.unit = Group<Unit>.GFindWithName (this.cmbbUnit.ActiveText);
 			dat.compuMethod = Group<CompuMethod>.GFindWithName(this.cmbbCompuMethod.ActiveText);
+			dat.arraySize = (ushort)(this.spinbuttonArraySize.Value);
 			return dat;
 		}
 		protected void OnEntryNameChanged (object sender, EventArgs e)
@@ -97,6 +99,12 @@ namespace EasyOS
 		{
 			if (((ComboBox)sender).Active >= 0)
 				currentMsg.compuMethod = Group<CompuMethod>.GItem (((ComboBox)sender).Active);
+		}
+
+
+		protected void OnSpinButtonArraySizeChanged (object sender, EventArgs e)
+		{
+			currentMsg.arraySize = (ushort)this.spinbuttonArraySize.Value;
 		}
 	}
 }

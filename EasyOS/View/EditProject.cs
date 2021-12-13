@@ -20,6 +20,10 @@ namespace EasyOS
 				DescriptionAttribute despAtt = (DescriptionAttribute)item.GetType ().GetMember (item.ToString ()) [0].GetCustomAttributes (typeof(DescriptionAttribute), false) [0];
 				this.cmbbLanguage.AppendText (despAtt.Description);
 			}
+			foreach (var item in Enum.GetValues(typeof(EasyOS.Project.EDebugInterface))) {
+				DescriptionAttribute despAtt = (DescriptionAttribute)item.GetType ().GetMember (item.ToString ()) [0].GetCustomAttributes (typeof(DescriptionAttribute), false) [0];
+				this.cmbbDebugInterface.AppendText (despAtt.Description);
+			}
 		}
 		public bool LoadData(Project dat){
 			currentPrj = dat;
@@ -31,19 +35,22 @@ namespace EasyOS
 			RefreshCmbbTarget ();
 			switch (dat.language) {
 			case Project.ELanguage.E_Lang_C:
-				this.cmbbTarget.Active = (int)dat.target - (int)Project.ELanguage.E_Lang_C;
+				this.cmbbTarget.Active = (int)dat.target - (int)Project.ETargetType.E_C_General;
+				break;
+			case Project.ELanguage.E_Lang_Cpp:
+				this.cmbbTarget.Active = (int)dat.target - (int)Project.ETargetType.E_Cpp_General;
 				break;
 			case Project.ELanguage.E_Lang_Python:
-				this.cmbbTarget.Active = (int)dat.target - (int)Project.ELanguage.E_Lang_Python;
+				this.cmbbTarget.Active = (int)dat.target - (int)Project.ETargetType.E_Python_General;
 				break;
 			case Project.ELanguage.E_Lang_Lua:
-				this.cmbbTarget.Active = (int)dat.target - (int)Project.ELanguage.E_Lang_Lua;
+				this.cmbbTarget.Active = (int)dat.target - (int)Project.ETargetType.E_Lua_General;
 				break;
 			default:
 				break;
 			}
-
 			this.entryVersion.Text = dat.version;
+			this.cmbbDebugInterface.Active = (int)dat.debugInterface;
 			return true;
 		}
 		public Project SaveData(Project dat=null){
@@ -59,6 +66,9 @@ namespace EasyOS
 			case Project.ELanguage.E_Lang_C:
 				dat.target = (Project.ETargetType)(this.cmbbTarget.Active + (int)Project.ETargetType.E_C_General);
 				break;
+			case Project.ELanguage.E_Lang_Cpp:
+				dat.target = (Project.ETargetType)(this.cmbbTarget.Active + (int)Project.ETargetType.E_Cpp_General);
+				break;
 			case Project.ELanguage.E_Lang_Python:
 				dat.target = (Project.ETargetType)(this.cmbbTarget.Active + (int)Project.ETargetType.E_Python_General);
 				break;
@@ -69,6 +79,7 @@ namespace EasyOS
 				break;
 			}
 			dat.version = this.entryVersion.Text;
+			dat.debugInterface = (Project.EDebugInterface)this.cmbbDebugInterface.Active;
 			return dat;
 		}
 		private void RefreshCmbbTarget(){
@@ -77,6 +88,10 @@ namespace EasyOS
 			case Project.ELanguage.E_Lang_C:
 				starter = (int)Project.ETargetType.E_C_General;
 				ender = (int)Project.ETargetType.E_C_EndFlag;
+				break;
+			case Project.ELanguage.E_Lang_Cpp:
+				starter = (int)Project.ETargetType.E_Cpp_General;
+				ender = (int)Project.ETargetType.E_Cpp_EndFlag;
 				break;
 			case Project.ELanguage.E_Lang_Python:
 				starter = (int)Project.ETargetType.E_Python_General;
@@ -104,6 +119,7 @@ namespace EasyOS
 		protected void OnCmbbLanguageChanged (object sender, EventArgs e)
 		{
 			ComboBox senderr = (ComboBox)sender;
+			currentPrj.language = (Project.ELanguage)senderr.Active;
 			RefreshCmbbTarget ();
 		}
 		protected void OnEntryNameChanged (object sender, EventArgs e)
@@ -117,6 +133,48 @@ namespace EasyOS
 		protected void OnEntryDescriptionChanged (object sender, EventArgs e)
 		{
 			currentPrj.description = ((Entry)sender).Text;
+		}
+
+		protected void OnEntryVersionChanged (object sender, EventArgs e)
+		{
+			currentPrj.version = ((Entry)sender).Text;
+		}
+
+		protected void OnEntryAuthorChanged (object sender, EventArgs e)
+		{
+			currentPrj.author = ((Entry)sender).Text;
+		}
+
+		protected void OnCmbbxLicenseChanged (object sender, EventArgs e)
+		{
+			currentPrj.license = (Project.ELicense)((ComboBox)sender).Active;
+		}
+
+		protected void OnCmbbTargetChanged (object sender, EventArgs e)
+		{
+			ComboBox senderr = (ComboBox)sender;
+			switch (currentPrj.language) {
+			case Project.ELanguage.E_Lang_C:
+				currentPrj.target = (Project.ETargetType)(senderr.Active + (int)Project.ETargetType.E_C_General);
+				break;
+			case Project.ELanguage.E_Lang_Cpp:
+				currentPrj.target = (Project.ETargetType)(senderr.Active + (int)Project.ETargetType.E_Cpp_General);
+				break;
+			case Project.ELanguage.E_Lang_Python:
+				currentPrj.target = (Project.ETargetType)(senderr.Active + (int)Project.ETargetType.E_Python_General);
+				break;
+			case Project.ELanguage.E_Lang_Lua:
+				currentPrj.target = (Project.ETargetType)(senderr.Active + (int)Project.ETargetType.E_Lua_General);
+				break;
+			default:
+				break;
+			}
+
+		}
+
+		protected void OnCmbbDebugInterfaceChanged (object sender, EventArgs e)
+		{
+			currentPrj.debugInterface = (Project.EDebugInterface)((ComboBox)sender).Active;
 		}
 	}
 }

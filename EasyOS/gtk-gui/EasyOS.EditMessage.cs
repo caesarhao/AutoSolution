@@ -24,7 +24,11 @@ namespace EasyOS
 		
 		private global::Gtk.Label label4;
 		
+		private global::Gtk.Label label5;
+		
 		private global::Gtk.Label label6;
+		
+		private global::Gtk.SpinButton spinbuttonArraySize;
 
 		protected virtual void Build ()
 		{
@@ -33,7 +37,7 @@ namespace EasyOS
 			global::Stetic.BinContainer.Attach (this);
 			this.Name = "EasyOS.EditMessage";
 			// Container child EasyOS.EditMessage.Gtk.Container+ContainerChild
-			this.table1 = new global::Gtk.Table (((uint)(5)), ((uint)(2)), false);
+			this.table1 = new global::Gtk.Table (((uint)(6)), ((uint)(2)), false);
 			this.table1.Name = "table1";
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
@@ -135,20 +139,46 @@ namespace EasyOS
 			w9.XOptions = ((global::Gtk.AttachOptions)(4));
 			w9.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
+			this.label5 = new global::Gtk.Label ();
+			this.label5.Name = "label5";
+			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString ("Array Size");
+			this.table1.Add (this.label5);
+			global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table1 [this.label5]));
+			w10.TopAttach = ((uint)(5));
+			w10.BottomAttach = ((uint)(6));
+			w10.XOptions = ((global::Gtk.AttachOptions)(4));
+			w10.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table1.Gtk.Table+TableChild
 			this.label6 = new global::Gtk.Label ();
 			this.label6.Name = "label6";
 			this.label6.LabelProp = global::Mono.Unix.Catalog.GetString ("Description");
 			this.table1.Add (this.label6);
-			global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table1 [this.label6]));
-			w10.TopAttach = ((uint)(1));
-			w10.BottomAttach = ((uint)(2));
-			w10.XOptions = ((global::Gtk.AttachOptions)(4));
-			w10.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table1 [this.label6]));
+			w11.TopAttach = ((uint)(1));
+			w11.BottomAttach = ((uint)(2));
+			w11.XOptions = ((global::Gtk.AttachOptions)(4));
+			w11.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table1.Gtk.Table+TableChild
+			this.spinbuttonArraySize = new global::Gtk.SpinButton (0D, 65536D, 1D);
+			this.spinbuttonArraySize.CanFocus = true;
+			this.spinbuttonArraySize.Name = "spinbuttonArraySize";
+			this.spinbuttonArraySize.Adjustment.PageIncrement = 10D;
+			this.spinbuttonArraySize.ClimbRate = 1D;
+			this.spinbuttonArraySize.Numeric = true;
+			this.table1.Add (this.spinbuttonArraySize);
+			global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.table1 [this.spinbuttonArraySize]));
+			w12.TopAttach = ((uint)(5));
+			w12.BottomAttach = ((uint)(6));
+			w12.LeftAttach = ((uint)(1));
+			w12.RightAttach = ((uint)(2));
+			w12.XOptions = ((global::Gtk.AttachOptions)(4));
+			w12.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.Add (this.table1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
+			this.spinbuttonArraySize.ValueChanged += new global::System.EventHandler (this.OnSpinButtonArraySizeChanged);
 			this.entryName.Changed += new global::System.EventHandler (this.OnEntryNameChanged);
 			this.entryDescription.Changed += new global::System.EventHandler (this.OnEntryDescriptionChanged);
 			this.cmbbUnit.Changed += new global::System.EventHandler (this.OnCmbbUnitChanged);

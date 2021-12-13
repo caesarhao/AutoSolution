@@ -10,6 +10,7 @@ namespace EasyOS
 		public BaseType type{ get; set;}
 		public Unit unit{get; set;}
 		public CompuMethod compuMethod{ get; set;}
+		public ushort arraySize{ get; set; }
 		public Message ()
 		{
 		}
@@ -21,6 +22,7 @@ namespace EasyOS
 			ret.Add ("\t<type>" + type + "</type>");
 			ret.Add ("\t<unit>" + unit.name + "</unit>");
 			ret.Add ("\t<compuMethod>" + compuMethod.name + "</compuMethod>");
+			ret.Add("\t<arraySize>" + arraySize + "</arraySize>");
 			ret.Add ("</Message>");
 			return ret;
 		}
@@ -31,6 +33,7 @@ namespace EasyOS
 			xe.Add (new XElement ("type", type));
 			xe.Add (new XElement ("unit", unit.name));
 			xe.Add (new XElement ("compuMethod", compuMethod.name));
+			xe.Add(new XElement ("arraySize", arraySize));
 			return xe;
 		}
 		public static Message ParseFromXml(XmlNode node, Message ret = null){
@@ -53,6 +56,10 @@ namespace EasyOS
 			if (null != cnode) {
 				ret.compuMethod = Group<CompuMethod>.GFindWithName (cnode.InnerText);
 			}
+			cnode = node.SelectSingleNode ("arraySize");
+			if (null != cnode) {
+				ret.arraySize = Convert.ToUInt16 (cnode.InnerText);
+			}
 			return ret;
 		}
 		public static List<Message> CreateBaseMessages(){
@@ -70,6 +77,7 @@ namespace EasyOS
 			msg.type = BaseType.SINT32;
 			msg.unit = Group<Unit>.GFindWithName ("Celsius");
 			msg.compuMethod = Group<CompuMethod>.GFindWithName ("OneToOne");
+			msg.arraySize = 0;
 			return msg;
 		}
 		public static Message CreateAtmosphericPressure(){
@@ -79,6 +87,7 @@ namespace EasyOS
 			msg.type = BaseType.UINT32;
 			msg.unit = Group<Unit>.GFindWithName ("Pascal");
 			msg.compuMethod = Group<CompuMethod>.GFindWithName ("OneToOne");
+			msg.arraySize = 0;
 			return msg;
 		}
 		public static Message CreateBatteryVoltage(){
@@ -88,6 +97,7 @@ namespace EasyOS
 			msg.type = BaseType.UINT32;
 			msg.unit = Group<Unit>.GFindWithName ("volt");
 			msg.compuMethod = Group<CompuMethod>.GFindWithName ("OneToTen");
+			msg.arraySize = 0;
 			return msg;
 		}
 		public static Message CreateChargeState(){
@@ -97,6 +107,7 @@ namespace EasyOS
 			msg.type = BaseType.BOOL;
 			msg.unit = Group<Unit>.GFindWithName ("none");
 			msg.compuMethod = Group<CompuMethod>.GFindWithName ("OnOff");
+			msg.arraySize = 0;
 			return msg;
 		}
 	}

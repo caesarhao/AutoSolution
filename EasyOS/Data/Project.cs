@@ -29,11 +29,13 @@ namespace EasyOS
 		}
 		public enum ELanguage{
 			[Description("Language C")]
-			E_Lang_C = 0,
+			E_Lang_C,
+			[Description("Language C++")]
+			E_Lang_Cpp,
 			[Description("Language Python")]
-			E_Lang_Python = 1,
+			E_Lang_Python,
 			[Description("Language Lua")]
-			E_Lang_Lua = 2
+			E_Lang_Lua
 		}
 		public enum ETargetType{
 			[Description("General C")]
@@ -42,24 +44,53 @@ namespace EasyOS
 			E_C_Arduino,
 			[Description("C EndFlag")]
 			E_C_EndFlag,
+
+			[Description("General C++")]
+			E_Cpp_General,
+			[Description("Arduino with C++")]
+			E_Cpp_Arduino,
+			[Description("ESP with C++")]
+			E_Cpp_ESP,
+			[Description("Cpp EndFlag")]
+			E_Cpp_EndFlag,
+
 			[Description("General Python")]
 			E_Python_General,
 			[Description("PyS60")]
 			E_Python_PyS60,
 			[Description("Python EndFlag")]
 			E_Python_EndFlag,
+
 			[Description("General Lua")]
 			E_Lua_General,
 			[Description("NodeMCU with Lua")]
 			E_Lua_NodeMCU,
 			[Description("Lua EndFlag")]
-			E_Lua_EndFlag,
+			E_Lua_EndFlag
+		}
+		public enum EDebugInterface{
+			[Description("No Debug")]
+			E_NO_DEBUG,
+			[Description("XCP ON CAN")]
+			E_XCP_ON_CAN,
+			[Description("XCP ON TCP")]
+			E_XCP_ON_TCP,
+			[Description("XCP ON UDP")]
+			E_XCP_ON_UDP,
+			[Description("XCP ON SxI")]
+			E_XCP_ON_SxI,
+			[Description("XCP ON USB")]
+			E_XCP_ON_USB,
+			[Description("XCP ON UART")]
+			E_XCP_ON_UART,
+
 		}
 		public string author;
 		public ELicense license;
 		public ELanguage language;
 		public ETargetType target;
 		public string version;
+		public EDebugInterface debugInterface;
 
 		public Group<Unit> Units;
 		public Group<CompuMethod> CompuMethods;
@@ -79,6 +110,7 @@ namespace EasyOS
 			author = "caesarhao";
 			description = "An example";
 			version = "0.1";
+			debugInterface = EDebugInterface.E_NO_DEBUG;
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
@@ -91,6 +123,7 @@ namespace EasyOS
 			ret.Add ("\t<language>" + language + "</language>");
 			ret.Add ("\t<target>" + target + "</target>");
 			ret.Add ("\t<version>" + version + "</version>");
+			ret.Add ("\t<debugInterface>" + debugInterface + "</debugInterface>");
 			ret.AddRange (Units.SaveToXml ().Select(x => "\t" + x));
 			ret.AddRange (CompuMethods.SaveToXml ().Select(x => "\t" + x));
 			ret.AddRange (Messages.SaveToXml ().Select(x => "\t" + x));
@@ -109,6 +142,7 @@ namespace EasyOS
 			xe.Add (new XElement ("language", language));
 			xe.Add (new XElement ("target", target));
 			xe.Add (new XElement ("version", version));
+			xe.Add (new XElement ("debugInterface", debugInterface));
 			xe.Add (Units.SaveAsXml ());
 			xe.Add (CompuMethods.SaveAsXml ());
 			xe.Add (Messages.SaveAsXml ());
@@ -123,6 +157,14 @@ namespace EasyOS
 			}
 			ret = (Project)AbstractData.ParseFromXml (node, ret);
 			XmlNode cnode = null;
+			cnode = node.SelectSingleNode ("name");
+			if (null != cnode) {
+				ret.name = cnode.InnerText;
+			}
+			cnode = node.SelectSingleNode ("description");
+			if (null != cnode) {
+				ret.description = cnode.InnerText;
+			}
 			cnode = node.SelectSingleNode ("author");
 			if (null != cnode) {
 				ret.author = cnode.InnerText;
@@ -139,9 +181,21 @@ namespace EasyOS
 				Enum.TryParse(cnode.InnerText, out eVal);
 				ret.language = eVal;
 			}
-			cnode = node.SelectSingleNode ("author");
+			cnode = node.SelectSingleNode ("target");
 			if (null != cnode) {
-				ret.author = cnode.InnerText;
+				ETargetType eVal;
+				Enum.TryParse(cnode.InnerText, out eVal);
+				ret.target = eVal;
+			}
+			cnode = node.SelectSingleNode ("version");
+			if (null != cnode) {
+				ret.version = cnode.InnerText;
+			}
+			cnode = node.SelectSingleNode ("debugInterface");
+			if (null != cnode) {
+				EDebugInterface eVal;
+				Enum.TryParse (cnode.InnerText, out eVal);
+				ret.debugInterface = eVal;
 			}
 			cnode = node.SelectSingleNode ("Units");
 			if (null != cnode) {
