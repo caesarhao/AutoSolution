@@ -17,6 +17,11 @@ namespace EasyOS
 		override public string ToString(){
 			return name;
 		}
+		public string LongIdentifier{
+			get{
+				return "\"" + this.description + "\"";
+			}
+		}
 		public abstract List<string> SaveToXml();
 		public abstract XElement SaveAsXml ();
 		public static AbstractData ParseFromXml(XmlNode node, AbstractData ret = null){
@@ -36,6 +41,7 @@ namespace EasyOS
 		}
 //		public abstract typeof(this) ParseFromXml (string[] lines);
 //		public abstract string[] GenCode();
+		public abstract List<string> GenA2L();
 	}
 }
 

@@ -80,6 +80,12 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public override List<string> GenA2L ()
+		{
+			List<string> ret = new List<string> ();
+
+			return ret;
+		}
 		public static List<Task> CreateBaseTasks(){
 			List<Task> ret = new List<Task> ();
 			ret.Add (CreateOs10msTask ());

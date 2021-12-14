@@ -52,10 +52,12 @@ namespace EasyOS
 				currentRF = (RationalFunction)dat;
 				this.notebook1.GetNthPage (0).ShowAll ();
 				this.notebook1.GetNthPage (1).HideAll ();
-				this.entryNumerator.Text = currentRF.Numerators [0].ToString();
+				this.entryNumerator2.Text = currentRF.Numerators [2].ToString();
 				this.entryNumerator1.Text = currentRF.Numerators [1].ToString();
-				this.entryDenominator.Text = currentRF.Denominators [0].ToString();
+				this.entryNumerator.Text = currentRF.Numerators [0].ToString();
+				this.entryDenominator2.Text = currentRF.Denominators [2].ToString();
 				this.entryDenominator1.Text = currentRF.Denominators [1].ToString();
+				this.entryDenominator.Text = currentRF.Denominators [0].ToString();
 			} else if (dat is VerbalTable) {
 				currentVT = (VerbalTable)dat;
 				this.notebook1.GetNthPage (0).HideAll ();
@@ -78,8 +80,10 @@ namespace EasyOS
 			if (dat is RationalFunction) {
 				((RationalFunction)dat).Numerators [0] = Convert.ToDouble (this.entryNumerator.Text);
 				((RationalFunction)dat).Numerators [1] = Convert.ToDouble (this.entryNumerator1.Text);
+				((RationalFunction)dat).Numerators [2] = Convert.ToDouble (this.entryNumerator2.Text);
 				((RationalFunction)dat).Denominators [0] = Convert.ToDouble (this.entryDenominator.Text);
 				((RationalFunction)dat).Denominators [1] = Convert.ToDouble (this.entryDenominator1.Text);
+				((RationalFunction)dat).Denominators [2] = Convert.ToDouble (this.entryDenominator2.Text);
 			} else if (dat is VerbalTable) {
 				TreeIter ti;
 				lsVT.GetIterFirst (out ti);
@@ -128,11 +132,11 @@ namespace EasyOS
 			currentCM.description = ((Entry)sender).Text;
 		}
 
-		protected void OnEntryNumeratorChanged (object sender, EventArgs e)
+		protected void OnEntryNumerator2Changed (object sender, EventArgs e)
 		{
 			double resu;
 			if(double.TryParse(((Entry)sender).Text, out resu))
-				currentRF.Numerators [0] = resu;
+				currentRF.Numerators [2] = resu;
 
 		}
 
@@ -143,11 +147,18 @@ namespace EasyOS
 				currentRF.Numerators [1] = resu;
 		}
 
-		protected void OnEntryDenominatorChanged (object sender, EventArgs e)
+		protected void OnEntryNumeratorChanged (object sender, EventArgs e)
 		{
 			double resu;
 			if(double.TryParse(((Entry)sender).Text, out resu))
-				currentRF.Denominators [0] = resu;
+				currentRF.Numerators [0] = resu;
+		}
+
+		protected void OnEntryDenominator2Changed (object sender, EventArgs e)
+		{
+			double resu;
+			if(double.TryParse(((Entry)sender).Text, out resu))
+				currentRF.Denominators [2] = resu;
 		}
 
 		protected void OnEntryDenominator1Changed (object sender, EventArgs e)
@@ -155,6 +166,13 @@ namespace EasyOS
 			double resu;
 			if(double.TryParse(((Entry)sender).Text, out resu))
 				currentRF.Denominators [1] = resu;
+		}
+
+		protected void OnEntryDenominatorChanged (object sender, EventArgs e)
+		{
+			double resu;
+			if(double.TryParse(((Entry)sender).Text, out resu))
+				currentRF.Denominators [0] = resu;
 		}
 	}
 }

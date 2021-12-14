@@ -102,6 +102,14 @@ namespace EasyOS
 
 			return ret;
 		}
+		public override List<string> GenA2L ()
+		{
+			List<string> ret = new List<string> ();
+			foreach (var item in elements) {
+				ret.AddRange (item.GenA2L());
+			}
+			return ret;
+		}
 		public int Count(){
 			return elements.Count;
 		}

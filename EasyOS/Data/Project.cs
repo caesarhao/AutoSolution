@@ -219,6 +219,26 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public override List<string> GenA2L ()
+		{
+			List<string> ret = new List<string> ();
+			ret.Add ("ASAP2_VERSION 1 71");
+			ret.Add ("/begin PROJECT " + this.name + " " + this.LongIdentifier);
+
+			ret.Add ("/begin HEADER " + this.LongIdentifier);
+			ret.Add ("\tPROJECT_NO " + this.target.ToString());
+			ret.Add ("\tVERSION " + "\"" + this.version + "\"");
+			ret.Add ("/end HEADER");
+
+			ret.Add ("/begin MODULE " + this.name + "\"\"");
+			ret.Add ("/begin A2ML");
+			ret.Add ("/end A2ML");
+
+			ret.Add ("/end MODULE");
+
+			ret.Add ("/end PROJECT");
+			return ret;
+		}
 	}
 }
 

@@ -87,7 +87,24 @@ namespace EasyOS
 			}
 			return ret;
 		}
-
+		public override List<string> GenA2L ()
+		{
+			List<string> ret = new List<string> ();
+			ret.Add ("/begin UNIT " + this.name);
+			ret.Add (this.LongIdentifier);
+			ret.Add("\""+this.showAs+"\"");
+			ret.Add ("EXTENDED_SI");
+			ret.Add ("SI_EXPONENTS "
+				+ this.exponents[(int)SIunit.m] + " "
+				+ this.exponents[(int)SIunit.kg] + " "
+				+ this.exponents[(int)SIunit.s] + " "
+				+ this.exponents[(int)SIunit.A] + " "
+				+ this.exponents[(int)SIunit.K] + " "
+				+ this.exponents[(int)SIunit.mol] + " "
+				+ this.exponents[(int)SIunit.cd] + " ");
+			ret.Add ("/end UNIT");
+			return ret;
+		}
 		public override bool Equals(object obj){
 			if (null == obj) {
 				return false;

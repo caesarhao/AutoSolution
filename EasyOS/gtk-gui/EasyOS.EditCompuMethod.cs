@@ -24,7 +24,7 @@ namespace EasyOS
 		
 		private global::Gtk.HBox hbox1;
 		
-		private global::Gtk.Entry entryNumerator;
+		private global::Gtk.Entry entryNumerator2;
 		
 		private global::Gtk.Label label5;
 		
@@ -32,15 +32,23 @@ namespace EasyOS
 		
 		private global::Gtk.Label label7;
 		
+		private global::Gtk.Entry entryNumerator;
+		
+		private global::Gtk.Label label10;
+		
 		private global::Gtk.HBox hbox2;
 		
-		private global::Gtk.Entry entryDenominator;
+		private global::Gtk.Entry entryDenominator2;
 		
 		private global::Gtk.Label label8;
 		
 		private global::Gtk.Entry entryDenominator1;
 		
 		private global::Gtk.Label label9;
+		
+		private global::Gtk.Entry entryDenominator;
+		
+		private global::Gtk.Label label11;
 		
 		private global::Gtk.HSeparator hseparator1;
 		
@@ -146,19 +154,19 @@ namespace EasyOS
 			this.hbox1.Name = "hbox1";
 			this.hbox1.Spacing = 6;
 			// Container child hbox1.Gtk.Box+BoxChild
-			this.entryNumerator = new global::Gtk.Entry ();
-			this.entryNumerator.WidthRequest = 5;
-			this.entryNumerator.CanFocus = true;
-			this.entryNumerator.Name = "entryNumerator";
-			this.entryNumerator.IsEditable = true;
-			this.entryNumerator.InvisibleChar = '●';
-			this.hbox1.Add (this.entryNumerator);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.entryNumerator]));
+			this.entryNumerator2 = new global::Gtk.Entry ();
+			this.entryNumerator2.WidthRequest = 5;
+			this.entryNumerator2.CanFocus = true;
+			this.entryNumerator2.Name = "entryNumerator2";
+			this.entryNumerator2.IsEditable = true;
+			this.entryNumerator2.InvisibleChar = '●';
+			this.hbox1.Add (this.entryNumerator2);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.entryNumerator2]));
 			w7.Position = 0;
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.label5 = new global::Gtk.Label ();
 			this.label5.Name = "label5";
-			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString (" * 1 + ");
+			this.label5.LabelProp = global::Mono.Unix.Catalog.GetString (" * Phy * Phy + ");
 			this.hbox1.Add (this.label5);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.label5]));
 			w8.Position = 1;
@@ -177,40 +185,59 @@ namespace EasyOS
 			// Container child hbox1.Gtk.Box+BoxChild
 			this.label7 = new global::Gtk.Label ();
 			this.label7.Name = "label7";
-			this.label7.LabelProp = global::Mono.Unix.Catalog.GetString (" * Phy");
+			this.label7.LabelProp = global::Mono.Unix.Catalog.GetString (" * Phy + ");
 			this.hbox1.Add (this.label7);
 			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.label7]));
 			w10.Position = 3;
 			w10.Expand = false;
 			w10.Fill = false;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.entryNumerator = new global::Gtk.Entry ();
+			this.entryNumerator.WidthRequest = 5;
+			this.entryNumerator.CanFocus = true;
+			this.entryNumerator.Name = "entryNumerator";
+			this.entryNumerator.IsEditable = true;
+			this.entryNumerator.InvisibleChar = '●';
+			this.hbox1.Add (this.entryNumerator);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.entryNumerator]));
+			w11.Position = 4;
+			// Container child hbox1.Gtk.Box+BoxChild
+			this.label10 = new global::Gtk.Label ();
+			this.label10.Name = "label10";
+			this.label10.LabelProp = global::Mono.Unix.Catalog.GetString (" * 1");
+			this.hbox1.Add (this.label10);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.label10]));
+			w12.Position = 5;
+			w12.Expand = false;
+			w12.Fill = false;
 			this.table2.Add (this.hbox1);
-			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table2 [this.hbox1]));
-			w11.LeftAttach = ((uint)(1));
-			w11.RightAttach = ((uint)(2));
-			w11.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.table2 [this.hbox1]));
+			w13.LeftAttach = ((uint)(1));
+			w13.RightAttach = ((uint)(2));
+			w13.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table2.Gtk.Table+TableChild
 			this.hbox2 = new global::Gtk.HBox ();
 			this.hbox2.Name = "hbox2";
 			this.hbox2.Spacing = 6;
 			// Container child hbox2.Gtk.Box+BoxChild
-			this.entryDenominator = new global::Gtk.Entry ();
-			this.entryDenominator.WidthRequest = 5;
-			this.entryDenominator.CanFocus = true;
-			this.entryDenominator.Name = "entryDenominator";
-			this.entryDenominator.IsEditable = true;
-			this.entryDenominator.InvisibleChar = '●';
-			this.hbox2.Add (this.entryDenominator);
-			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.entryDenominator]));
-			w12.Position = 0;
+			this.entryDenominator2 = new global::Gtk.Entry ();
+			this.entryDenominator2.WidthRequest = 5;
+			this.entryDenominator2.CanFocus = true;
+			this.entryDenominator2.Name = "entryDenominator2";
+			this.entryDenominator2.IsEditable = true;
+			this.entryDenominator2.InvisibleChar = '●';
+			this.hbox2.Add (this.entryDenominator2);
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.entryDenominator2]));
+			w14.Position = 0;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.label8 = new global::Gtk.Label ();
 			this.label8.Name = "label8";
-			this.label8.LabelProp = global::Mono.Unix.Catalog.GetString (" * 1 + ");
+			this.label8.LabelProp = global::Mono.Unix.Catalog.GetString (" * Phy * Phy + ");
 			this.hbox2.Add (this.label8);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label8]));
-			w13.Position = 1;
-			w13.Expand = false;
-			w13.Fill = false;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label8]));
+			w15.Position = 1;
+			w15.Expand = false;
+			w15.Fill = false;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.entryDenominator1 = new global::Gtk.Entry ();
 			this.entryDenominator1.WidthRequest = 5;
@@ -219,44 +246,63 @@ namespace EasyOS
 			this.entryDenominator1.IsEditable = true;
 			this.entryDenominator1.InvisibleChar = '●';
 			this.hbox2.Add (this.entryDenominator1);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.entryDenominator1]));
-			w14.Position = 2;
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.entryDenominator1]));
+			w16.Position = 2;
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.label9 = new global::Gtk.Label ();
 			this.label9.Name = "label9";
-			this.label9.LabelProp = global::Mono.Unix.Catalog.GetString (" * Phy");
+			this.label9.LabelProp = global::Mono.Unix.Catalog.GetString (" * Phy + ");
 			this.hbox2.Add (this.label9);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label9]));
-			w15.Position = 3;
-			w15.Expand = false;
-			w15.Fill = false;
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label9]));
+			w17.Position = 3;
+			w17.Expand = false;
+			w17.Fill = false;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.entryDenominator = new global::Gtk.Entry ();
+			this.entryDenominator.WidthRequest = 5;
+			this.entryDenominator.CanFocus = true;
+			this.entryDenominator.Name = "entryDenominator";
+			this.entryDenominator.IsEditable = true;
+			this.entryDenominator.InvisibleChar = '●';
+			this.hbox2.Add (this.entryDenominator);
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.entryDenominator]));
+			w18.Position = 4;
+			// Container child hbox2.Gtk.Box+BoxChild
+			this.label11 = new global::Gtk.Label ();
+			this.label11.Name = "label11";
+			this.label11.LabelProp = global::Mono.Unix.Catalog.GetString (" * 1");
+			this.hbox2.Add (this.label11);
+			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.label11]));
+			w19.Position = 5;
+			w19.Expand = false;
+			w19.Fill = false;
 			this.table2.Add (this.hbox2);
-			global::Gtk.Table.TableChild w16 = ((global::Gtk.Table.TableChild)(this.table2 [this.hbox2]));
-			w16.TopAttach = ((uint)(2));
-			w16.BottomAttach = ((uint)(3));
-			w16.LeftAttach = ((uint)(1));
-			w16.RightAttach = ((uint)(2));
-			w16.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w20 = ((global::Gtk.Table.TableChild)(this.table2 [this.hbox2]));
+			w20.TopAttach = ((uint)(2));
+			w20.BottomAttach = ((uint)(3));
+			w20.LeftAttach = ((uint)(1));
+			w20.RightAttach = ((uint)(2));
+			w20.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table2.Gtk.Table+TableChild
 			this.hseparator1 = new global::Gtk.HSeparator ();
 			this.hseparator1.Name = "hseparator1";
 			this.table2.Add (this.hseparator1);
-			global::Gtk.Table.TableChild w17 = ((global::Gtk.Table.TableChild)(this.table2 [this.hseparator1]));
-			w17.TopAttach = ((uint)(1));
-			w17.BottomAttach = ((uint)(2));
-			w17.LeftAttach = ((uint)(1));
-			w17.RightAttach = ((uint)(2));
-			w17.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w21 = ((global::Gtk.Table.TableChild)(this.table2 [this.hseparator1]));
+			w21.TopAttach = ((uint)(1));
+			w21.BottomAttach = ((uint)(2));
+			w21.LeftAttach = ((uint)(1));
+			w21.RightAttach = ((uint)(2));
+			w21.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table2.Gtk.Table+TableChild
 			this.label4 = new global::Gtk.Label ();
 			this.label4.Name = "label4";
 			this.label4.LabelProp = global::Mono.Unix.Catalog.GetString ("Int(Phy)=");
 			this.table2.Add (this.label4);
-			global::Gtk.Table.TableChild w18 = ((global::Gtk.Table.TableChild)(this.table2 [this.label4]));
-			w18.TopAttach = ((uint)(1));
-			w18.BottomAttach = ((uint)(2));
-			w18.XOptions = ((global::Gtk.AttachOptions)(4));
-			w18.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w22 = ((global::Gtk.Table.TableChild)(this.table2 [this.label4]));
+			w22.TopAttach = ((uint)(1));
+			w22.BottomAttach = ((uint)(2));
+			w22.XOptions = ((global::Gtk.AttachOptions)(4));
+			w22.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.notebook1.Add (this.table2);
 			// Notebook tab
 			this.label2 = new global::Gtk.Label ();
@@ -279,10 +325,10 @@ namespace EasyOS
 			this.buttonAdd.UseUnderline = true;
 			this.buttonAdd.Label = global::Mono.Unix.Catalog.GetString ("Add");
 			this.vbox1.Add (this.buttonAdd);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.buttonAdd]));
-			w20.Position = 0;
-			w20.Expand = false;
-			w20.Fill = false;
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.buttonAdd]));
+			w24.Position = 0;
+			w24.Expand = false;
+			w24.Fill = false;
 			// Container child vbox1.Gtk.Box+BoxChild
 			this.buttonDelete = new global::Gtk.Button ();
 			this.buttonDelete.Sensitive = false;
@@ -291,15 +337,15 @@ namespace EasyOS
 			this.buttonDelete.UseUnderline = true;
 			this.buttonDelete.Label = global::Mono.Unix.Catalog.GetString ("Delete");
 			this.vbox1.Add (this.buttonDelete);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.buttonDelete]));
-			w21.Position = 1;
-			w21.Expand = false;
-			w21.Fill = false;
+			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.buttonDelete]));
+			w25.Position = 1;
+			w25.Expand = false;
+			w25.Fill = false;
 			this.hbox3.Add (this.vbox1);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.vbox1]));
-			w22.Position = 0;
-			w22.Expand = false;
-			w22.Fill = false;
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.vbox1]));
+			w26.Position = 0;
+			w26.Expand = false;
+			w26.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -310,11 +356,11 @@ namespace EasyOS
 			this.TreeViewVT.Name = "TreeViewVT";
 			this.GtkScrolledWindow.Add (this.TreeViewVT);
 			this.hbox3.Add (this.GtkScrolledWindow);
-			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.GtkScrolledWindow]));
-			w24.Position = 1;
+			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.GtkScrolledWindow]));
+			w28.Position = 1;
 			this.notebook1.Add (this.hbox3);
-			global::Gtk.Notebook.NotebookChild w25 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.hbox3]));
-			w25.Position = 1;
+			global::Gtk.Notebook.NotebookChild w29 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.hbox3]));
+			w29.Position = 1;
 			// Notebook tab
 			this.label3 = new global::Gtk.Label ();
 			this.label3.Name = "label3";
@@ -322,20 +368,22 @@ namespace EasyOS
 			this.notebook1.SetTabLabel (this.hbox3, this.label3);
 			this.label3.ShowAll ();
 			this.table1.Add (this.notebook1);
-			global::Gtk.Table.TableChild w26 = ((global::Gtk.Table.TableChild)(this.table1 [this.notebook1]));
-			w26.TopAttach = ((uint)(2));
-			w26.BottomAttach = ((uint)(3));
-			w26.LeftAttach = ((uint)(1));
-			w26.RightAttach = ((uint)(2));
+			global::Gtk.Table.TableChild w30 = ((global::Gtk.Table.TableChild)(this.table1 [this.notebook1]));
+			w30.TopAttach = ((uint)(2));
+			w30.BottomAttach = ((uint)(3));
+			w30.LeftAttach = ((uint)(1));
+			w30.RightAttach = ((uint)(2));
 			this.Add (this.table1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
-			this.entryDenominator.Changed += new global::System.EventHandler (this.OnEntryDenominatorChanged);
+			this.entryDenominator2.Changed += new global::System.EventHandler (this.OnEntryDenominator2Changed);
 			this.entryDenominator1.Changed += new global::System.EventHandler (this.OnEntryDenominator1Changed);
-			this.entryNumerator.Changed += new global::System.EventHandler (this.OnEntryNumeratorChanged);
+			this.entryDenominator.Changed += new global::System.EventHandler (this.OnEntryDenominatorChanged);
+			this.entryNumerator2.Changed += new global::System.EventHandler (this.OnEntryNumerator2Changed);
 			this.entryNumerator1.Changed += new global::System.EventHandler (this.OnEntryNumerator1Changed);
+			this.entryNumerator.Changed += new global::System.EventHandler (this.OnEntryNumeratorChanged);
 			this.buttonAdd.Clicked += new global::System.EventHandler (this.OnButtonAddClicked);
 			this.buttonDelete.Clicked += new global::System.EventHandler (this.OnButtonDeleteClicked);
 			this.TreeViewVT.CursorChanged += new global::System.EventHandler (this.OnTreeViewVTCursorChanged);

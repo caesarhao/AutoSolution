@@ -40,8 +40,14 @@ namespace EasyOS
 		public double[] Denominators{get; set;}
 		public RationalFunction ()
 		{
-			Numerators = new double[2];
-			Denominators = new double[2];
+			Numerators = new double[3];
+			Numerators [0] = 0;
+			Numerators [1] = 1;
+			Numerators [2] = 0;
+			Denominators = new double[3];
+			Denominators [0] = 1;
+			Denominators [1] = 0;
+			Denominators [2] = 0;
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
@@ -91,6 +97,24 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public override List<string> GenA2L ()
+		{
+			List<string> ret = new List<string> ();
+			ret.Add ("/begin COMPU_METHOD");
+			ret.Add (this.name);
+			ret.Add (this.LongIdentifier);
+			ret.Add ("RAT_FUNC");
+			ret.Add ("FORMAT " + "\"%10.2\"");
+			ret.Add ("\"No Unit\"");
+			ret.Add ("COEFF " + this.Numerators[2] + " "
+				+ this.Numerators[1] + " "
+				+ this.Numerators[0] + " "
+				+ this.Denominators[2] + " "
+				+ this.Denominators[1] + " "
+				+ this.Denominators[0] + " ");
+			ret.Add ("/end COMPU_METHOD");
+			return ret;
+		}
 		public static List<RationalFunction> CreateBaseRationalFunctions(){
 			List<RationalFunction> ret = new List<RationalFunction> ();
 			ret.Add (CreateOneToOne());
@@ -103,8 +127,10 @@ namespace EasyOS
 			ret.description = "Rational function one to one";
 			ret.Numerators [0] = 0;
 			ret.Numerators [1] = 1;
+			ret.Numerators [2] = 0;
 			ret.Denominators[0] = 1;
 			ret.Denominators[1] = 0;
+			ret.Denominators[2] = 0;
 			return ret;
 		}
 		public static RationalFunction CreateOneToTen(){
@@ -113,8 +139,10 @@ namespace EasyOS
 			ret.description = "Rational function one to ten";
 			ret.Numerators [0] = 0;
 			ret.Numerators [1] = 10;
+			ret.Numerators [2] = 0;
 			ret.Denominators[0] = 1;
 			ret.Denominators[1] = 0;
+			ret.Denominators[2] = 0;
 			return ret;
 		}
 	}
@@ -167,6 +195,16 @@ namespace EasyOS
 						dnode.SelectSingleNode ("value").InnerText);
 				}
 			}
+			return ret;
+		}
+		public override List<string> GenA2L ()
+		{
+			List<string> ret = new List<string> ();
+			ret.Add ("/begin COMPU_METHOD");
+			ret.Add (this.name);
+			ret.Add (this.LongIdentifier);
+			ret.Add ("TAB_VERB");
+			ret.Add ("/end COMPU_METHOD");
 			return ret;
 		}
 		public static List<VerbalTable> CreateBaseVerbalTables(){

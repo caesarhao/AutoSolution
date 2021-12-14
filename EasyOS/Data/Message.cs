@@ -62,6 +62,22 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public override List<string> GenA2L ()
+		{
+			List<string> ret = new List<string> ();
+			ret.Add ("/begin MEASUREMENT");
+			ret.Add (this.name); // name
+			ret.Add ("\"" + this.description + "\""); // long identifier
+			ret.Add (this.type.ToString()); // data type
+			ret.Add (this.compuMethod.ToString()); // conversion
+			ret.Add("1"); // resolution, smallest possible change in bits
+			ret.Add(""+this.type.Accuracy()); // accuracy, possible variation from exact value in %
+			ret.Add(""+this.type.LowerLimit()); // lower limit
+			ret.Add(""+this.type.UpperLimit()); // upper limit
+			ret.Add("ECU_ADDRESS  " + "AddressToSet_"+this.name);
+			ret.Add ("/end MEASUREMENT");
+			return ret;
+		}
 		public static List<Message> CreateBaseMessages(){
 			List<Message> ret = new List<Message> ();
 			ret.Add (CreateAmbientTemperature ());

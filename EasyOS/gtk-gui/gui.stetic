@@ -2322,13 +2322,13 @@
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Entry" id="entryNumerator">
+                      <widget class="Gtk.Entry" id="entryNumerator2">
                         <property name="MemberName" />
                         <property name="WidthRequest">5</property>
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">●</property>
-                        <signal name="Changed" handler="OnEntryNumeratorChanged" />
+                        <signal name="Changed" handler="OnEntryNumerator2Changed" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -2338,7 +2338,7 @@
                     <child>
                       <widget class="Gtk.Label" id="label5">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes"> * 1 + </property>
+                        <property name="LabelProp" translatable="yes"> * Phy * Phy + </property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -2364,10 +2364,36 @@
                     <child>
                       <widget class="Gtk.Label" id="label7">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes"> * Phy</property>
+                        <property name="LabelProp" translatable="yes"> * Phy + </property>
                       </widget>
                       <packing>
                         <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Entry" id="entryNumerator">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">5</property>
+                        <property name="CanFocus">True</property>
+                        <property name="IsEditable">True</property>
+                        <property name="InvisibleChar">●</property>
+                        <signal name="Changed" handler="OnEntryNumeratorChanged" />
+                      </widget>
+                      <packing>
+                        <property name="Position">4</property>
+                        <property name="AutoSize">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label10">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes"> * 1</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">5</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>
@@ -2392,13 +2418,13 @@
                     <property name="MemberName" />
                     <property name="Spacing">6</property>
                     <child>
-                      <widget class="Gtk.Entry" id="entryDenominator">
+                      <widget class="Gtk.Entry" id="entryDenominator2">
                         <property name="MemberName" />
                         <property name="WidthRequest">5</property>
                         <property name="CanFocus">True</property>
                         <property name="IsEditable">True</property>
                         <property name="InvisibleChar">●</property>
-                        <signal name="Changed" handler="OnEntryDenominatorChanged" />
+                        <signal name="Changed" handler="OnEntryDenominator2Changed" />
                       </widget>
                       <packing>
                         <property name="Position">0</property>
@@ -2408,7 +2434,7 @@
                     <child>
                       <widget class="Gtk.Label" id="label8">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes"> * 1 + </property>
+                        <property name="LabelProp" translatable="yes"> * Phy * Phy + </property>
                       </widget>
                       <packing>
                         <property name="Position">1</property>
@@ -2434,10 +2460,36 @@
                     <child>
                       <widget class="Gtk.Label" id="label9">
                         <property name="MemberName" />
-                        <property name="LabelProp" translatable="yes"> * Phy</property>
+                        <property name="LabelProp" translatable="yes"> * Phy + </property>
                       </widget>
                       <packing>
                         <property name="Position">3</property>
+                        <property name="AutoSize">True</property>
+                        <property name="Expand">False</property>
+                        <property name="Fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Entry" id="entryDenominator">
+                        <property name="MemberName" />
+                        <property name="WidthRequest">5</property>
+                        <property name="CanFocus">True</property>
+                        <property name="IsEditable">True</property>
+                        <property name="InvisibleChar">●</property>
+                        <signal name="Changed" handler="OnEntryDenominatorChanged" />
+                      </widget>
+                      <packing>
+                        <property name="Position">4</property>
+                        <property name="AutoSize">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="Gtk.Label" id="label11">
+                        <property name="MemberName" />
+                        <property name="LabelProp" translatable="yes"> * 1</property>
+                      </widget>
+                      <packing>
+                        <property name="Position">5</property>
                         <property name="AutoSize">True</property>
                         <property name="Expand">False</property>
                         <property name="Fill">False</property>

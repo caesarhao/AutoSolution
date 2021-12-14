@@ -71,6 +71,28 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public override List<string> GenA2L ()
+		{
+			List<string> ret = new List<string> ();
+			ret.Add ("/begin FUNCTION");
+			ret.Add (this.name);
+			ret.Add ("\"" + this.description + "\"");
+
+			ret.Add ("/begin IN_MEASUREMENT");
+			foreach (var item in receiveMessages) {
+				ret.Add (item.name);
+			}
+			ret.Add ("/end IN_MEASUREMENT");
+
+			ret.Add ("/begin OUT_MEASUREMENT");
+			foreach (var item in sendMessages) {
+				ret.Add (item.name);
+			}
+			ret.Add ("/end OUT_MEASUREMENT");
+
+			ret.Add ("/end FUNCTION");
+			return ret;
+		}
 		public static List<Process> CreateBaseProcesses(){
 			List<Process> ret = new List<Process> ();
 			ret.Add (CreateMeasureAmbientData ());
