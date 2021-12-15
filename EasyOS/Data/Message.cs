@@ -62,6 +62,23 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public override List<string> GenC ()
+		{
+			List<string> ret = new List<string> ();
+			ret.Add ("/* " + this.description + " */");
+			ret.Add("" + this.type.ToC() + " " + this.name + ";");
+			ret.Add ("void Receive_Msg_" + this.name + "(" + this.type.ToC() + "* localAddr);");
+			ret.Add ("void Send_Msg_" + this.name + "(" + this.type.ToC() + " localCopy);");
+			ret.Add ("void Receive_Msg_" + this.name + "(" + this.type.ToC() + "* localAddr)");
+			ret.Add ("{");
+			ret.Add ("\t*localAddr = " + this.name + ";");
+			ret.Add ("}");
+			ret.Add ("void Send_Msg_" + this.name + "(" + this.type.ToC() + " localCopy)");
+			ret.Add ("{");
+			ret.Add ("\t" + this.name + " = localCopy;");
+			ret.Add ("}");
+			return ret;
+		}
 		public override List<string> GenA2L ()
 		{
 			List<string> ret = new List<string> ();
@@ -75,6 +92,9 @@ namespace EasyOS
 			ret.Add(""+this.type.LowerLimit()); // lower limit
 			ret.Add(""+this.type.UpperLimit()); // upper limit
 			ret.Add("ECU_ADDRESS  " + "AddressToSet_"+this.name);
+			if (this.arraySize > 0) {
+				ret.Add("ARRAY_SIZE " + this.arraySize);
+			}
 			ret.Add ("/end MEASUREMENT");
 			return ret;
 		}

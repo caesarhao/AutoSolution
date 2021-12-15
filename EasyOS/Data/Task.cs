@@ -80,6 +80,11 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public override List<string> GenC ()
+		{
+			List<string> ret = new List<string> ();
+			return ret;
+		}
 		public override List<string> GenA2L ()
 		{
 			List<string> ret = new List<string> ();

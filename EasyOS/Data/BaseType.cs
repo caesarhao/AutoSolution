@@ -164,7 +164,7 @@ namespace EasyOS
 				return "void";
 				break;
 			case BaseType.BOOL:
-				return "_Bool";
+				return "int";
 				break;
 			case BaseType.UINT8:
 				return "unsigned char";
@@ -204,7 +204,7 @@ namespace EasyOS
 				break;
 			}
 		}
-		public static string ToArduino(this BaseType t){
+		public static string ToCpp(this BaseType t){
 			switch (t) {
 			case BaseType.VOID:
 				return "void";

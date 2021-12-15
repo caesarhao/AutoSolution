@@ -41,6 +41,7 @@ namespace EasyOS
 		}
 //		public abstract typeof(this) ParseFromXml (string[] lines);
 //		public abstract string[] GenCode();
+		public abstract List<string> GenC();
 		public abstract List<string> GenA2L();
 	}
 }

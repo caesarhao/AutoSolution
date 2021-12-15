@@ -71,6 +71,31 @@ namespace EasyOS
 			}
 			return ret;
 		}
+		public override List<string> GenC ()
+		{
+			List<string> ret = new List<string> ();
+			ret.Add ("/* " + this.description + " */");
+			ret.Add ("void " + this.name + "()");
+			ret.Add ("{");
+			ret.Add ("\t/* Create local copies of messages */");
+			foreach(var item in this.receiveMessages){
+				ret.Add ("\t" + item.type.ToC () + " " + item.name + ";");
+			}
+			foreach(var item in this.sendMessages){
+				ret.Add ("\t" + item.type.ToC () + " " + item.name + ";");
+			}
+			foreach(var item in this.receiveMessages){
+				ret.Add ("\tReceive_Msg_" + item.name + "(&" + item.name + ");");
+			}
+			ret.Add ("\t/* Code start here */");
+			ret.Add ("\t");
+			ret.Add ("\t/* Code end here */");
+			foreach(var item in this.sendMessages){
+				ret.Add ("\tSend_Msg_" + item.name + "(" + item.name + ");");
+			}
+			ret.Add ("}");
+			return ret;
+		}
 		public override List<string> GenA2L ()
 		{
 			List<string> ret = new List<string> ();
