@@ -235,7 +235,6 @@ namespace EasyOS
 			this.entryDescription.Changed += new global::System.EventHandler (this.OnEntryDescriptionChanged);
 			this.entryAuthor.Changed += new global::System.EventHandler (this.OnEntryAuthorChanged);
 			this.cmbbxLicense.Changed += new global::System.EventHandler (this.OnCmbbxLicenseChanged);
-			this.cmbbTarget.Changed += new global::System.EventHandler (this.OnCmbbTargetChanged);
 			this.cmbbLanguage.Changed += new global::System.EventHandler (this.OnCmbbLanguageChanged);
 			this.cmbbDebugInterface.Changed += new global::System.EventHandler (this.OnCmbbDebugInterfaceChanged);
 		}

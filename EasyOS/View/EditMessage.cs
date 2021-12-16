@@ -57,6 +57,7 @@ namespace EasyOS
 				this.cmbbCompuMethod.Active = Group<CompuMethod>.GFindIndexWithName(dat.compuMethod.name);
 			}
 			this.spinbuttonArraySize.Value = dat.arraySize;
+			this.chkbtnCalibration.Active = dat.calibratable;
 			return true;
 		}
 		public Message SaveData(Message dat=null){
@@ -69,6 +70,7 @@ namespace EasyOS
 			dat.unit = Group<Unit>.GFindWithName (this.cmbbUnit.ActiveText);
 			dat.compuMethod = Group<CompuMethod>.GFindWithName(this.cmbbCompuMethod.ActiveText);
 			dat.arraySize = (ushort)(this.spinbuttonArraySize.Value);
+			dat.calibratable = this.chkbtnCalibration.Active;
 			return dat;
 		}
 		protected void OnEntryNameChanged (object sender, EventArgs e)
@@ -105,6 +107,12 @@ namespace EasyOS
 		protected void OnSpinButtonArraySizeChanged (object sender, EventArgs e)
 		{
 			currentMsg.arraySize = (ushort)this.spinbuttonArraySize.Value;
+		}
+
+		protected void OnChkbtnCalibrationToggled (object sender, EventArgs e)
+		{
+			CheckButton senderr = (CheckButton)sender;
+			currentMsg.calibratable = senderr.Active;
 		}
 	}
 }

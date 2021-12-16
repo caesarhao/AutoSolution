@@ -11,8 +11,12 @@ namespace EasyOS
 		public Unit unit{get; set;}
 		public CompuMethod compuMethod{ get; set;}
 		public ushort arraySize{ get; set; }
+		public bool calibratable{ get; set; }
 		public Message ()
 		{
+			type = BaseType.UINT8;
+			arraySize = 0;
+			calibratable = false;
 		}
 		public override List<string> SaveToXml(){
 			List<string> ret = new List<string> ();
@@ -23,6 +27,7 @@ namespace EasyOS
 			ret.Add ("\t<unit>" + unit.name + "</unit>");
 			ret.Add ("\t<compuMethod>" + compuMethod.name + "</compuMethod>");
 			ret.Add("\t<arraySize>" + arraySize + "</arraySize>");
+			ret.Add("\t<calibratable>" + calibratable + "</calibratable>");
 			ret.Add ("</Message>");
 			return ret;
 		}
@@ -34,6 +39,7 @@ namespace EasyOS
 			xe.Add (new XElement ("unit", unit.name));
 			xe.Add (new XElement ("compuMethod", compuMethod.name));
 			xe.Add(new XElement ("arraySize", arraySize));
+			xe.Add(new XElement ("calibratable", calibratable));
 			return xe;
 		}
 		public static Message ParseFromXml(XmlNode node, Message ret = null){
@@ -59,6 +65,10 @@ namespace EasyOS
 			cnode = node.SelectSingleNode ("arraySize");
 			if (null != cnode) {
 				ret.arraySize = Convert.ToUInt16 (cnode.InnerText);
+			}
+			cnode = node.SelectSingleNode ("calibratable");
+			if (null != cnode) {
+				ret.calibratable = bool.Parse (cnode.InnerText);
 			}
 			return ret;
 		}

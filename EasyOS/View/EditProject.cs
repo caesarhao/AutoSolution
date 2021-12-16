@@ -152,8 +152,9 @@ namespace EasyOS
 
 		protected void OnCmbbTargetChanged (object sender, EventArgs e)
 		{
+			
 			ComboBox senderr = (ComboBox)sender;
-			switch (currentPrj.language) {
+			switch ((Project.ELanguage)this.cmbbLanguage.Active) {
 			case Project.ELanguage.E_Lang_C:
 				currentPrj.target = (Project.ETargetType)(senderr.Active + (int)Project.ETargetType.E_C_General);
 				break;
@@ -169,6 +170,7 @@ namespace EasyOS
 			default:
 				break;
 			}
+
 
 		}
 
