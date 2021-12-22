@@ -222,6 +222,26 @@ namespace EasyOS
 		public override List<string> GenC ()
 		{
 			List<string> ret = new List<string> ();
+			ret.AddRange (Messages.GenC ());
+			ret.AddRange (Processes.GenC ());
+			ret.AddRange (Tasks.GenC ());
+			ret.Add ("/* initialization */");
+			ret.Add ("void setup()");
+			ret.Add ("{");
+			foreach(var item in this.Tasks.GetAll()){
+				if (-1 == item.raster) {
+					ret.Add ("\t" + item.name + "();");
+				}
+			}
+			ret.Add ("}");
+			ret.Add ("void loop()");
+			ret.Add ("{");
+			foreach(var item in this.Tasks.GetAll()){
+				if (-1 != item.raster) {
+					ret.Add ("\t" + item.name + "();");
+				}
+			}
+			ret.Add ("}");
 			return ret;
 		}
 		public override List<string> GenA2L ()
@@ -238,6 +258,12 @@ namespace EasyOS
 			ret.Add ("/begin MODULE " + this.name + "\"\"");
 			ret.Add ("/begin A2ML");
 			ret.Add ("/end A2ML");
+
+			ret.AddRange (Units.GenA2L ());
+			ret.AddRange (CompuMethods.GenA2L ());
+			ret.AddRange (Messages.GenA2L ());
+			ret.AddRange (Processes.GenA2L ());
+			ret.AddRange (Tasks.GenA2L ());
 
 			ret.Add ("/end MODULE");
 

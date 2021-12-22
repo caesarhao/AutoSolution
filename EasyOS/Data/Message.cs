@@ -77,13 +77,13 @@ namespace EasyOS
 			List<string> ret = new List<string> ();
 			ret.Add ("/* " + this.description + " */");
 			ret.Add("" + this.type.ToC() + " " + this.name + ";");
-			ret.Add ("void Receive_Msg_" + this.name + "(" + this.type.ToC() + "* localAddr);");
-			ret.Add ("void Send_Msg_" + this.name + "(" + this.type.ToC() + " localCopy);");
-			ret.Add ("void Receive_Msg_" + this.name + "(" + this.type.ToC() + "* localAddr)");
+			ret.Add ("void Rte_Read_" + this.name + "(" + this.type.ToC() + "* localAddr);");
+			ret.Add ("void Rte_Write_" + this.name + "(" + this.type.ToC() + " localCopy);");
+			ret.Add ("void Rte_Read_" + this.name + "(" + this.type.ToC() + "* localAddr)");
 			ret.Add ("{");
-			ret.Add ("\t*localAddr = " + this.name + ";");
+			ret.Add ("\t(*localAddr) = " + this.name + ";");
 			ret.Add ("}");
-			ret.Add ("void Send_Msg_" + this.name + "(" + this.type.ToC() + " localCopy)");
+			ret.Add ("void Rte_Write_" + this.name + "(" + this.type.ToC() + " localCopy)");
 			ret.Add ("{");
 			ret.Add ("\t" + this.name + " = localCopy;");
 			ret.Add ("}");

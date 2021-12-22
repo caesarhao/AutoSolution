@@ -83,6 +83,14 @@ namespace EasyOS
 		public override List<string> GenC ()
 		{
 			List<string> ret = new List<string> ();
+			ret.Add ("/* " + this.description + " */");
+			ret.Add ("void " + this.name + "()");
+			ret.Add ("{");
+			foreach(var item in this.processes){
+				ret.Add ("\t" + item.name + "();");
+			}
+
+			ret.Add ("}");
 			return ret;
 		}
 		public override List<string> GenA2L ()

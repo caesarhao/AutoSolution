@@ -85,13 +85,13 @@ namespace EasyOS
 				ret.Add ("\t" + item.type.ToC () + " " + item.name + ";");
 			}
 			foreach(var item in this.receiveMessages){
-				ret.Add ("\tReceive_Msg_" + item.name + "(&" + item.name + ");");
+				ret.Add ("\tRte_Read_" + item.name + "(&" + item.name + ");");
 			}
 			ret.Add ("\t/* Code start here */");
 			ret.Add ("\t");
 			ret.Add ("\t/* Code end here */");
 			foreach(var item in this.sendMessages){
-				ret.Add ("\tSend_Msg_" + item.name + "(" + item.name + ");");
+				ret.Add ("\tRte_Write_" + item.name + "(" + item.name + ");");
 			}
 			ret.Add ("}");
 			return ret;
