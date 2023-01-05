@@ -30,8 +30,6 @@ namespace SHex
 				this.Child.ShowAll ();
 			}
 			this.Hide ();
-			this.treeviewMemBlcs.RowActivated += new global::Gtk.RowActivatedHandler (this.OnRowActivated);
-			this.treeviewMemBlcs.ColumnsChanged += new global::System.EventHandler (this.OnColumnsChanged);
 		}
 	}
 }
