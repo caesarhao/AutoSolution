@@ -12,7 +12,7 @@ namespace SHex
 		protected const int COL_START_ADDRESS = 2;
 		protected const int COL_SIZE = 3;
 		protected TreeStore tsMemBlcS;
-		private List<MemBlock> mbs;
+		protected List<MemBlock> mbs;
 		public MemBlockView ()
 		{
 			this.Build ();
@@ -81,8 +81,10 @@ namespace SHex
 			TreePath tp = new TreePath (args.Path);
 			if (this.tsMemBlcS.GetIter (out iter, tp)){
 				string nstartAdr = (string)this.tsMemBlcS.GetValue (iter, COL_START_ADDRESS);
-				this.tsMemBlcS.SetValue (iter, COL_START_ADDRESS, 0x40008000.ToString());
+				nstartAdr = args.NewText;
+				this.tsMemBlcS.SetValue (iter, COL_START_ADDRESS, nstartAdr);
 				this.mbs [0].StartAddr = 0x40008000;
+				this.tsMemBlcS.SetValue (iter, COL_START_ADDRESS, this.mbs [0].StartAddrAsHex());
 			}
 		}
 	}

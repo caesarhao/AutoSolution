@@ -110,31 +110,42 @@ namespace SHex
 				if (0 < mb.DataSize % 0x10000) {
 					subMbs++;
 				}
+				// get high 2 bytes
 				ushort ulba = (ushort)(mb.StartAddr >> 16);
 				for (int i = 0; i < subMbs; i++) {
-					// output start address
+					// output start address, high 2 bytes
 					hr = new HexRecord(HexRecord.RecordTypeE.ExtLineAddr);
 					hr.Data[0]=BitConverter.GetBytes (ulba + i) [1];
 					hr.Data[1]=BitConverter.GetBytes (ulba + i) [0];
 					retu.Add (hr.generate());
 					// output data records
+					// Current subMb start address
 					uint startAd = ((uint)(ulba+i)<<16);
+					// if it does not start from 0x0000, for example, 0x8000
 					if (!mb.IsAddressInMemBlk (startAd)) {
 						startAd = (uint)mb.StartAddr;
 					}
+					// Current subMb end address
 					uint lastAd = ((uint)(ulba+i)<<16) + 0xFFFF;
+					// if it does not end with 0xFFFF, for example, 0x0FFF
 					if (!mb.IsAddressInMemBlk (lastAd)) {
 						lastAd = (uint)mb.LastAddress;
 					}
+					// subMb data length, number of bytes
 					int subMbLen = (int)(lastAd - startAd + 1);
+					// subMb offset in Mb.
+					uint subMbOffset = startAd - mb.StartAddr;
 					int lines = subMbLen/BytesEachLine;
 					hr = new HexRecord (HexRecord.RecordTypeE.Data);
 					hr.Data = new byte[BytesEachLine];
 					for (int j = 0; j < lines; j++) {
 						int offset = j * BytesEachLine;
+						// line start address, based on subMb start address and offset.
 						ushort llba = (ushort)((startAd + offset) & 0xFFFF);
 						hr.Address = llba;
-						Array.Copy (mb.DataAsArray, (startAd + offset), hr.Data, 0, BytesEachLine);
+						// copy data from memory block to line.
+						// offset is the offset in subMb.
+						Array.Copy (mb.DataAsArray, (subMbOffset+offset), hr.Data, 0, BytesEachLine);
 						retu.Add (hr.generate());
 					}
 					if (0 < subMbLen%BytesEachLine) {
@@ -142,7 +153,7 @@ namespace SHex
 						int restBytes = subMbLen-offset;
 						hr.Data = new byte[restBytes];
 						hr.Address = (ushort)((startAd + offset) & 0xFFFF);
-						Array.Copy (mb.DataAsArray, (startAd + offset), hr.Data, 0, restBytes);
+						Array.Copy (mb.DataAsArray, (startAd - mb.StartAddr + offset), hr.Data, 0, restBytes);
 						retu.Add (hr.generate());
 					}
 				}
